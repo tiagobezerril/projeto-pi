@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira</title>
+</head>
+<body>
+    <h1>Monitoramento de Vazamento de Gás(GLP)</h1>
+    <i><h2>Calculadora Financeira:</h2></i>
+    <hr>
+    
+    <br>
+   <b>Digite o Custo de 1(um) Cilindro:</b>
+    <br><input id="valor_cilindro" type="number"><br>
+    <br>
+    <hr>
+    <br>
+    <b>Informe Quantos Cilindros São Usados Simultaneamente: </b>
+    <br><input id="cilindros_simultaneos" type="number"><br>
+    <br>
+    <hr>
+    <br>
+    <b>Quantos Metros Cubicos(m3) Tem o Ambiente em que o Sensor Vai Ficar?:</b> 
+    <br><input id="metros_quadrados" type="number"><br>
+    <br>
+    <hr>
+    <br>
+    <button onclick="calcular()">Controle de Vazamento</button><br>
+    <b><div id="mensagem_custo"></div></b>
+    <b><div id="mensagem_velocidade"></div></b>
+    <b><div id="mensagem_vazamento"></div></b>
+    <b><i><div id="mensagem_letal"></div></i></b>
+    <b><i><div id="desperdicio"></div></i></b>
+</body>
+</html>
+<script>
+
+    // Massa Molar do Gás GLP: 72,3 g/mol
+    // Constante Dos Gases Ideais: 0.082 ATM
+    // Temperatura Em Kelvin: 343,15 kelvin
+    //  Pressão Do Gás: 5 kgf/cm² 
+    // Vazão Volumétrica: Qv = v x A 
+    // Taxa de Vazamento em Massa: Qv X p
+
+    function calcular(){
+        var custo_cilindro = Number(valor_cilindro.value)
+        var usado_simultaneo = Number(cilindros_simultaneos.value)
+        var metros = Number(metros_quadrados.value)
+        var vazao = (4.34 * 0.001) * 3600
+        var densidade = 2.3
+        var custotot_cilindro = Number(custo_cilindro * usado_simultaneo)
+        var vazamento_massa = Number(vazao * densidade)
+        var taxa_liberacao = 0.05 * metros
+        var tot_liberacao = taxa_liberacao * densidade
+        var massa_molar = 72.3
+        var constante_gases = 0.082
+        var temperatura_kelvin = 343.15
+        var pressao = 5
+        var velocidade_vazamento = 2 * pressao / densidade
+        var desperdicio_monetario = (custo_cilindro /45) * vazamento_massa
+
+        mensagem_custo.innerHTML = 'Seu custo com os cilindros está sendo de R$' + custotot_cilindro
+        mensagem_velocidade.innerHTML = 'A velocidade do vazamento está sendo de: ' + velocidade_vazamento + 'm/s'
+        mensagem_vazamento.innerHTML = 'A quantidade de vazamento está sendo de ' + vazamento_massa + 'kg/h'
+        mensagem_letal.style.color = 'red'
+        mensagem_letal.innerHTML = 'Com ' + tot_liberacao + 'kg/h, esse ambiente já seria letal'
+        desperdicio.style.color = 'red'
+        desperdicio.innerHTML = 'O prejuízo com 1 hora de vazamento está sendo de R$' + desperdicio_monetario
+
+    }
+
+</script>
