@@ -68,6 +68,10 @@
         if (consumoCilindro > 13) {
             divMensagem.innerHTML = `<h1>Conferir valores inseridos, o cilindro P13 contém somente 13 kilos de gás e seu consumo ultrapassa sua capacidade total!!</h1>`
         }
+        if (consumoCilindro <= 0) {
+            divMensagem.innerHTML = `<h1>Conferir valores inseridos, os valores inseridos são invalidos!! <br>
+                                        Conferir Kg/h, seu uso diário e a duração do cilindro</h1>`
+        }
     }
 
     function P45() {
@@ -99,6 +103,10 @@
         }
         if (consumoCilindro > 45) {
             divMensagem.innerHTML = `<h1>Conferir valores inseridos, o cilindro P45 contém somente 45 kilos de gás e seu consumo ultrapassa sua capacidade total!!</h1>`
+        }
+        if (consumoCilindro <= 0) {
+            divMensagem.innerHTML = `<h1>Conferir valores inseridos, os valores inseridos são invalidos!! <br>
+                                        Conferir Kg/h, seu uso diário e a duração do cilindro</h1>`
         }
     }
 </script>
