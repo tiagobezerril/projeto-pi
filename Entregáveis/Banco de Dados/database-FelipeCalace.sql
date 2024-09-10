@@ -130,18 +130,19 @@ select empresaInstalada as 'Local de instalção', estadoAtual as Funcionamento 
 
 create table dadosSensores(
     idSensor int primary key auto_increment,
-    porcentagemGas varchar(5) not null,
+    porcentagemGasVazado varchar(5) not null,
     vazamento char(3) not null
-        constraint chkVazamento check(vazamento in('Sim','Não'))
+        constraint chkVazamento check(vazamento in('Sim','Não')),
+    dataHora datetime
     );
 
 insert into dadosSensores values
-(default,'55.5','Sim'),
-(default,'0.00','Não'),
-(default,'100','Sim'),
-(default,'1.50','Sim');
+(default,'55.5','Sim','2020-02-01 15:23:47'),
+(default,'0.00','Não','2024-05-23 21:25:12'),
+(default,'100','Sim','2023-09-10 14:57:59'),
+(default,'1.50','Sim','2024-08-23 23:59:59');
 
-select idSensor as 'Id do Sensor',porcentagemGas as 'Porcentagem de Vazamento' from dadosSensores;
+select idSensor as 'Id do Sensor',porcentagemGasVazado as 'Porcentagem de Vazamento' from dadosSensores;
 select * from dadosSensores
     where vazamento= 'Não';
 select * from dadosSensores
