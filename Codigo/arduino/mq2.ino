@@ -20,12 +20,12 @@ if (porcentagem < 0) {
 } else if (porcentagem > 100){
   porcentagem = 100;
 }
+  int alerta = 2;
 
-Serial.print("Valor de Saída do Sensor:"); 
-Serial.print(ValorSensor);
-Serial.print(" -> porcentagem:");
-Serial.print(porcentagem);
-Serial.println("%");
+  // Imprime ambos os valores na mesma linha, separados por um espaço.
+  Serial.print(alerta);
+  Serial.print(" ");
+  Serial.println(porcentagem);
 
 delay(1000);
 }
