@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SafeWare - Calculadora Financeira</title>
-</head>
-
-<body>
-    <h1>Calculadora Financeira</h1>
-    <hr>
-
-
-    <div id="div_mensagem">
-        
-    </div>
-</body>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SafeWare - Calculadora Financeira</title>
+    </head>
+    <body>
+        <h1>Calculadora Financeira</h1>
+        <hr>
+        <div id="div_mensagem"></div>
+    </body>
 </html>
-
 <script>
     var mensagem = `
     <p><b>• O calculo é baseado em um cilindro que ja foi totalmente utilizado</b></p>
@@ -65,8 +57,7 @@
 
         <button onclick="calcular()">Calcular</button>
 
-        <br><br>
-    `;
+        <br><br>`;
 
     div_mensagem.innerHTML = mensagem;
 
@@ -105,8 +96,6 @@
         precoCilindro = Number(input_precoCilindro.value);
         qtdDiasUso = Number(input_dias.value);
 
-
-
         if (cilindroKg == 45) {
             diasMedia = 244;
             tempoMedia = 30;
@@ -135,7 +124,7 @@
             Preço cilindro de ${cilindroKg}kg: R$${precoCilindro}
             <br><br>
 
-            Com base que seu cilindro de ${cilindroKg}kg dura ${qtdDiasUso} dias:
+            Com base em que seu cilindro de ${cilindroKg}kg dura ${qtdDiasUso} dias:
             <br><br>
 
             Seu consumo diário de gás é de ${consumoDiario} kg/dia
@@ -144,7 +133,7 @@
             Seu consumo mensal de gás é de ${consumoMensal} kg/mês
             <br><br>
 
-            Sua média de uso diário deveria ser ${mediaDiariaUso} minutos
+            Sua média de uso diário deveria ser de ${mediaDiariaUso} minutos
             <br><br>
             Este valor corresponde ao seu uso atual?
             <br>
@@ -182,9 +171,6 @@
         `
         ;
     }
-
-
-
 
     function descobrir() {
         var usoRealMin = Number(input_usoRealMinutos.value); // tempo de uso diário informado

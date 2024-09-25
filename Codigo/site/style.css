@@ -1,0 +1,155 @@
+body {
+    align-items: center;
+}
+
+.card_top {
+    background-color: rgb(226, 218, 218);
+    border-radius: 20px;
+    height: 60px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.button_safe {
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    border-radius: 25px;
+    padding: 7px;
+    border: 0px;
+    margin-top:12.5px;
+    margin-right: 470px;
+    margin-left: 15px;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 22px;
+    padding-right: 15px;
+}
+
+.button_bar {
+    background-color:  rgb(226, 218, 218);
+    border-radius: 25px;
+    padding: 7px;
+    border: 0px;
+    margin-right: 10px;
+    margin-top:12.5px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 22px;
+    padding-right: 15px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button_bar:hover{
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    color: aliceblue;
+    }
+
+.button_bar:active{
+    transform: translateY(5px);
+    }
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 100px;
+    text-align: left;
+    margin-left: 100px;
+}
+
+.text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 45px;
+    text-align: left;
+    margin-left: 100px;
+}
+
+.destaque {
+    color: #2D20EE;
+}
+
+.imagem01 {
+    position: relative;
+    bottom: 410px; left: 750px;
+    width: 38%;
+    border-radius: 50px;
+}
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 790;
+    text-align: left;
+    margin-left: 50px;
+    color: aliceblue;
+}
+
+footer{
+    background-color: black;
+}
+
+.contato {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    bottom: 40px;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 50px;
+    color: aliceblue;
+}
+
+.input_rodape{
+    background-color: black;
+    padding: 7px;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: 200;
+    line-height: 30px;
+}
+
+.input_rodape{
+    background-color: black;
+    position: relative;
+    left: 10px;
+    bottom: 50px;
+    border-color: aliceblue;
+    border-radius: 50px;
+    border: 20px;
+}
+
+.input_rodape:focus{
+        border-color: aliceblue;
+}
+
+.select_cargo{
+    color: aliceblue;
+    background-color: black;
+    border-radius: 50px;
+    border-color: aliceblue;
+    position: relative;
+    left: 10px;
+    bottom: 50px;
+    width: 17.4%;
+    height: 48px;
+}
+
+.input_comentario{
+    background-color: black;
+    position: relative;
+    left: 10px; bottom: 20px;
+    height: 100px;
+    width: 500px;
+    border-color: aliceblue;
+    border-radius: 20px;
+    border: solid 20px;
+}
