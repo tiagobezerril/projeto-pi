@@ -82,3 +82,43 @@ h1 {
     width: 38%;
     border-radius: 50px;
 }
+
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    font-weight: 790;
+    text-align: left;
+    margin-left: 50px;
+    color: aliceblue;
+}
+
+footer{
+    background-color: black;
+}
+
+.contato {
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    bottom: 40px;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: left;
+    margin-left: 50px;
+    color: aliceblue;
+}
+
+.input_rodape{
+    background-color: black;
+    padding: 7px;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: 200;
+    line-height: 30px;
+}
+
+.rodape{
+    border-radius: 50px;
+    border: 20px;
+    border-color: aliceblue;
+}
