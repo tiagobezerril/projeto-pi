@@ -1,0 +1,82 @@
+body {
+    align-items: center;
+}
+
+.card_top {
+    background-color: rgb(226, 218, 218);
+    border-radius: 20px;
+    height: 60px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 60px;
+}
+
+.button_safe {
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    border-radius: 25px;
+    padding: 7px;
+    border: 0px;
+    margin-top:12.5px;
+    margin-right: 650px;
+    margin-left: 15px;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 22px;
+    padding-right: 15px;
+}
+
+.button_bar {
+    background-color:  rgb(226, 218, 218);
+    border-radius: 25px;
+    padding: 7px;
+    border: 0px;
+    margin-right: 10px;
+    margin-top:12.5px;
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 22px;
+    padding-right: 15px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button_bar:hover{
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    color: aliceblue;
+    }
+
+.button_bar:active{
+    transform: translateY(5px);
+    }
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 100px;
+    text-align: left;
+    margin-left: 100px;
+}
+
+.text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 45px;
+    text-align: left;
+    margin-left: 100px;
+}
+
+.destaque {
+    color: #2D20EE;
+}
+
+.imagem01 {
+    margin-left: 600px;
+    size: 50%;
+}
