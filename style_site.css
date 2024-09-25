@@ -1,84 +1,43 @@
-body {
-    align-items: center;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-.card_top {
-    background-color: rgb(226, 218, 218);
-    border-radius: 20px;
-    height: 60px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 20px;
-    margin-bottom: 60px;
-}
+<link rel="stylesheet" href="style_site.css">
 
-.button_safe {
-    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
-    border-radius: 25px;
-    padding: 7px;
-    border: 0px;
-    margin-top:12.5px;
-    margin-right: 650px;
-    margin-left: 15px;
-    color: aliceblue;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    line-height: 22px;
-    padding-right: 15px;
-}
+<body>
+    <div class="card_top">
+        <button class="button_safe" >SafeWare</button>
+        <button class="button_bar">Início</button>
+        <button class="button_bar">Sobre nós</button>
+        <button class="button_bar">Projeto</button>
+        <button class="button_bar">Contato</button>
+    </div>
 
-.button_bar {
-    background-color:  rgb(226, 218, 218);
-    border-radius: 25px;
-    padding: 7px;
-    border: 0px;
-    margin-right: 10px;
-    margin-top:12.5px;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    line-height: 22px;
-    padding-right: 15px;
-    transition-duration: 0.4s;
-    cursor: pointer;
-}
+    <h1>A SUA COZINHA <br> SEGURA</h1> <br>
+    
+    <div class="text"><b>Garantimos ao seu <span class="destaque">negócio</span> a <br>
+        melhor maneira de <span class="destaque">prevenção</span> para <br> que você e seus funcionários <br>
+        estejam <span class="destaque">seguros</span>.</b></div>
 
-.button_bar:hover{
-    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
-    color: aliceblue;
-    }
+        <div><img class="imagem01" src="https://s3-alpha-sig.figma.com/img/c02e/6416/9e87d373159d1e5d01e630315c43dd0f?Expires=1728259200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ExWirRbGOx3LDvppnDiISZLGTX58IvkDbwxW2-aFJoMo5C1s2UcyrZ9A1QsATBG4iJKG-7G4GujAb7rLTLqbF9ntyKQmUEkHDP9Yfeiokqc1T49YARd4B6RIs73~H60pHTzOlPfG-V~Lrlx5lvyUI8YDiPP0ajB4wWYeGrnTAwWaB17Vz04RO6F5gzHI4xzQ8jDJVlWXzG4Vv50yLudyLX~8RtRKcDZUXRQ3uWgFIpz~fyXeMq32gs6D5gxQgzF95CxEg5WB0te5KJG-9~KP-P49wkDmlvSqnZzSigohjWrp05uywmLKF7AVSNtmSJVfPZn-CJprBQH3wV92tWSWuA__" alt=""><></div>
 
-.button_bar:active{
-    transform: translateY(5px);
-    }
+        <footer>
+            <h2>Fale conosco</h2> <br>
 
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 60px;
-    font-weight: 900;
-    line-height: 100px;
-    text-align: left;
-    margin-left: 100px;
-}
+            <p class="contato">Deixe seu contato.</p> <br>
 
-.text {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 45px;
-    text-align: left;
-    margin-left: 100px;
-}
+            <div class="rodape"><input class="input_rodape" type="text"></div>
+            
+            <div class="rodape"><input class="input_rodape" type="text"></div> <br>
 
-.destaque {
-    color: #2D20EE;
-}
+            <div class="rodape"><input class="input_rodape" type="text"></div>
 
-.imagem01 {
-    position: relative;
-    bottom: 410px; left: 750px;
-    width: 38%;
-    border-radius: 50px;
-}
+             <select name="" id=""></select> <br>
+            <input class="input_rodape" type="text">
+        </footer>
+</body>
+</html>
