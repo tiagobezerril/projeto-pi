@@ -18,7 +18,7 @@ body {
     padding: 7px;
     border: 0px;
     margin-top:12.5px;
-    margin-right: 650px;
+    margin-right: 470px;
     margin-left: 15px;
     color: aliceblue;
     font-family: Arial, Helvetica, sans-serif;
@@ -117,8 +117,39 @@ footer{
     line-height: 30px;
 }
 
-.rodape{
+.input_rodape{
+    background-color: black;
+    position: relative;
+    left: 10px;
+    bottom: 50px;
+    border-color: aliceblue;
     border-radius: 50px;
     border: 20px;
+}
+
+.input_rodape:focus{
+        border-color: aliceblue;
+}
+
+.select_cargo{
+    color: aliceblue;
+    background-color: black;
+    border-radius: 50px;
     border-color: aliceblue;
+    position: relative;
+    left: 10px;
+    bottom: 50px;
+    width: 17.4%;
+    height: 48px;
+}
+
+.input_comentario{
+    background-color: black;
+    position: relative;
+    left: 10px; bottom: 20px;
+    height: 100px;
+    width: 500px;
+    border-color: aliceblue;
+    border-radius: 20px;
+    border: solid 20px;
 }
