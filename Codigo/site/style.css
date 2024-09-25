@@ -1,5 +1,7 @@
 body {
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .card_top {
@@ -63,6 +65,12 @@ h1 {
     margin-left: 100px;
 }
 
+.imagem01 {
+    position: relative;
+    bottom: 410px; left: 750px;
+    width: 38%;
+    border-radius: 50px;
+}
 .text {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 28px;
@@ -76,12 +84,6 @@ h1 {
     color: #2D20EE;
 }
 
-.imagem01 {
-    position: relative;
-    bottom: 410px; left: 750px;
-    width: 38%;
-    border-radius: 50px;
-}
 
 h2 {
     font-family: Arial, Helvetica, sans-serif;
@@ -94,6 +96,7 @@ h2 {
 
 footer{
     background-color: black;
+    padding-top: 10px;
 }
 
 .contato {
@@ -120,36 +123,69 @@ footer{
 .input_rodape{
     background-color: black;
     position: relative;
-    left: 10px;
+    left: 50px;
     bottom: 50px;
-    border-color: aliceblue;
+    border: 2px solid aliceblue;
     border-radius: 50px;
-    border: 20px;
-}
-
-.input_rodape:focus{
-        border-color: aliceblue;
 }
 
 .select_cargo{
-    color: aliceblue;
+    font-size: 16px;
+    color: gray;
     background-color: black;
     border-radius: 50px;
-    border-color: aliceblue;
+    border: 2px solid aliceblue;
     position: relative;
-    left: 10px;
-    bottom: 50px;
+    left: 50px;
+    bottom: 51px;
     width: 17.4%;
     height: 48px;
 }
 
 .input_comentario{
+    font-size: 15px;
     background-color: black;
     position: relative;
-    left: 10px; bottom: 20px;
+    left: 50px; bottom: 35px;
     height: 100px;
     width: 500px;
-    border-color: aliceblue;
+    border: 2px solid aliceblue;
     border-radius: 20px;
-    border: solid 20px;
+}
+
+footer button{
+    position: relative;
+    left: 50px; bottom: 18px;
+    color: aliceblue;
+    background-color: black;
+    border: 2px solid aliceblue;
+    border-radius: 50px;
+    height: 50px;
+    width: 20%;
+}
+
+
+.contato_geral{
+    color: aliceblue;
+    text-align:right;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    font-weight: 200;   
+}
+
+.contato_geral span{
+    font-weight: bold;
+    position: relative;
+    bottom: 400px; right: 5%;
+    text-align: right;
+    width: 100px;
+    margin-left: 190px;
+}
+
+.contato_geral p{
+    position: relative;
+    bottom: 400px; left: 30%;
+    text-align: right;
+    width: 600px;
+    margin-left: 0px;
 }
