@@ -77,6 +77,8 @@ h1 {
 }
 
 .imagem01 {
-    margin-left: 600px;
-    size: 50%;
+    position: relative;
+    bottom: 410px; left: 750px;
+    width: 38%;
+    border-radius: 50px;
 }
