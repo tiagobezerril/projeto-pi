@@ -9,22 +9,22 @@ body {
     background-position: right top;
     background-repeat: no-repeat;
 }
-
+/* MENU */
 .menu {
+    position: fixed;
     background-color: rgb(226, 218, 218);
+    width: 92%;
     height: 60px;
-
     display: grid;
     grid-template-columns: 10% 80% 10%;
     gap: 5px;
     align-items: center;
-    
     border-radius: 10px;
     padding: 5px 10px;
     margin-left: 50px;
     margin-right: 50px;
-    margin-top: 20px;
-    z-index: 10;
+    margin-top: 10px;
+    z-index: 5;
 
     -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
     -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
@@ -71,7 +71,7 @@ body {
 .contratar {
     width: 100px;
     height: 30px;
-    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    background: #2D20EE;
     border-radius: 25px;
     
     color: white;
@@ -87,17 +87,16 @@ body {
     cursor: pointer;
     font-weight: bolder;
     font-size: 18px;
-    /* transition: width 0.4s
-                height 0.4s; */
+    transition: background 0.5s ease, transform 0.5s ease;
+
 }
 
 .contratar:hover, .contratar:focus {
     background: #7269F2;
-    /* width: 110px;
-    height: 40px;
-    transition: width 0.4s
-                height 0.4s; */
+    transform: scale(1.1);
 }
+
+/* HOME */
 
 h1 {
     font-size: 60px;
@@ -133,6 +132,8 @@ h2 {
     margin-left: 50px;
     color: aliceblue;
 }
+
+/* RODAPÉ */
 
 footer{
     background-color: black;
@@ -226,24 +227,23 @@ footer button{
     margin-left: 0px;
 }
 
-/* TELA CADASTRO */
+/* TELA DE CADASTRO E LOGIN */
 
 .imgCad {
     width: 500px;
 }
 
-.cadastro {
+.corpo {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    margin-top: 130px;
-    /* width: 100%; */
+    height: 100vh;
     display: grid;
     grid-template-columns: 50% 50%;
     justify-content: center;
     align-items: center;
-    /* align-self: center; */
+    z-index: 0;
 }
 
 .img{
@@ -288,22 +288,23 @@ footer button{
 }
 
 .form button {
-    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
-    color: white;
-    border: 0;
     width: 415px;
     height: 40px;
+    background: #2D20EE;
+    /* linear-gradient(90deg, #2D20EE 0%, #7269F2 100%); */
+    color: white;
+    border: 0;
     border-radius: 10px;
     font-size: 20px;
     font-weight: bolder;
     font-family: "Inter", sans-serif;
     cursor: pointer;
-    /* transition: background 0.4s; */
+    transition: background 0.5s ease;
 }
 
 .form button:hover, .form button:focus{
-    background: #2D20EE;
-    /* transition: linear all 0.4s; */
+    background: #7269F2;
+    /* linear-gradient(90deg, #2D20EE 0%, rgba(45, 32, 238, 0.8) 100%); */
 }
 
 .form a{
