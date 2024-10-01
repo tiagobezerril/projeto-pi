@@ -1,10 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
+* {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
 body {
-    align-items: center;
     margin: 0;
     padding: 0;
-    font-family: "Inter", sans-serif;
     background-image: url(img/circle.png);
     background-position: right top;
     background-repeat: no-repeat;
@@ -254,12 +257,18 @@ footer button{
 
 .form{
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form span{
+    width: 60%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    width: 400px;
-    margin-left: 100px;
 }
 
 .form h2 {
@@ -288,10 +297,9 @@ footer button{
 }
 
 .form button {
-    width: 415px;
+    width: 100%;
     height: 40px;
     background: #2D20EE;
-    /* linear-gradient(90deg, #2D20EE 0%, #7269F2 100%); */
     color: white;
     border: 0;
     border-radius: 10px;
@@ -304,7 +312,6 @@ footer button{
 
 .form button:hover, .form button:focus{
     background: #7269F2;
-    /* linear-gradient(90deg, #2D20EE 0%, rgba(45, 32, 238, 0.8) 100%); */
 }
 
 .form a{
