@@ -1,61 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
 body {
+    margin: 0;
+    padding: 0;
+    background-image: url(img/circle.png);
+    background-position: right top;
+    background-repeat: no-repeat;
+}
+/* MENU */
+.menu {
+    position: fixed;
+    background-color: rgb(226, 218, 218);
+    width: 92%;
+    height: 60px;
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+    gap: 5px;
+    align-items: center;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 10px;
+    z-index: 5;
+
+    -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+    -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+    box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+}
+
+.logo {
+    width: 120px;
+    height: 40px;
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    border-radius: 25px;
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 22px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.card_top {
-    background-color: rgb(226, 218, 218);
-    border-radius: 20px;
-    height: 60px;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-top: 20px;
-    margin-bottom: 60px;
-}
-
-.button_safe {
-    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
-    border-radius: 25px;
-    padding: 7px;
-    border: 0px;
-    margin-top:12.5px;
-    margin-right: 470px;
-    margin-left: 15px;
-    color: aliceblue;
-    font-family: Arial, Helvetica, sans-serif;
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
     font-size: 18px;
-    font-weight: 800;
-    line-height: 22px;
-    padding-right: 15px;
+    font-weight: bolder;
+    margin-right: 20px;
 }
 
-.button_bar {
-    background-color:  rgb(226, 218, 218);
-    border-radius: 25px;
-    padding: 7px;
-    border: 0px;
-    margin-right: 10px;
-    margin-top:12.5px;
+.buttons a {
+    text-decoration: none;
     color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    line-height: 22px;
-    padding-right: 15px;
-    transition-duration: 0.4s;
     cursor: pointer;
+    transition: 0.4s;
 }
 
-.button_bar:hover{
-    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
-    color: aliceblue;
-    }
+.buttons a:hover, .buttons a:focus {
+    color: #2D20EE;
+    transition: 0.4s;
+}
 
-.button_bar:active{
-    transform: translateY(5px);
-    }
+.contratar {
+    width: 100px;
+    height: 30px;
+    background: #2D20EE;
+    border-radius: 25px;
+    
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 18px;
+    transition: background 0.5s ease, transform 0.5s ease;
+
+}
+
+.contratar:hover, .contratar:focus {
+    background: #7269F2;
+    transform: scale(1.1);
+}
+
+/* HOME */
 
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 60px;
     font-weight: 900;
     line-height: 100px;
@@ -63,8 +109,13 @@ h1 {
     margin-left: 100px;
 }
 
+.imagem01 {
+    position: relative;
+    bottom: 410px; left: 750px;
+    width: 38%;
+    border-radius: 50px;
+}
 .text {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 28px;
     font-weight: 700;
     line-height: 45px;
@@ -76,15 +127,8 @@ h1 {
     color: #2D20EE;
 }
 
-.imagem01 {
-    position: relative;
-    bottom: 410px; left: 750px;
-    width: 38%;
-    border-radius: 50px;
-}
 
 h2 {
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 30px;
     font-weight: 790;
     text-align: left;
@@ -92,12 +136,14 @@ h2 {
     color: aliceblue;
 }
 
+/* RODAPÉ */
+
 footer{
     background-color: black;
+    padding-top: 10px;
 }
 
 .contato {
-    font-family: Arial, Helvetica, sans-serif;
     position: relative;
     bottom: 40px;
     font-size: 15px;
@@ -111,7 +157,6 @@ footer{
     background-color: black;
     padding: 7px;
     color: aliceblue;
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 17px;
     font-weight: 200;
     line-height: 30px;
@@ -120,36 +165,163 @@ footer{
 .input_rodape{
     background-color: black;
     position: relative;
-    left: 10px;
+    left: 50px;
     bottom: 50px;
-    border-color: aliceblue;
+    border: 2px solid aliceblue;
     border-radius: 50px;
-    border: 20px;
-}
-
-.input_rodape:focus{
-        border-color: aliceblue;
 }
 
 .select_cargo{
-    color: aliceblue;
+    font-size: 16px;
+    color: gray;
     background-color: black;
     border-radius: 50px;
-    border-color: aliceblue;
+    border: 2px solid aliceblue;
     position: relative;
-    left: 10px;
-    bottom: 50px;
+    left: 50px;
+    bottom: 51px;
     width: 17.4%;
     height: 48px;
 }
 
 .input_comentario{
+    font-size: 15px;
     background-color: black;
     position: relative;
-    left: 10px; bottom: 20px;
+    left: 50px; bottom: 35px;
     height: 100px;
     width: 500px;
-    border-color: aliceblue;
+    border: 2px solid aliceblue;
     border-radius: 20px;
-    border: solid 20px;
+}
+
+footer button{
+    position: relative;
+    left: 50px; bottom: 18px;
+    color: aliceblue;
+    background-color: black;
+    border: 2px solid aliceblue;
+    border-radius: 50px;
+    height: 50px;
+    width: 20%;
+}
+
+.contato_geral{
+    color: aliceblue;
+    text-align:right;
+    font-size: 17px;
+    font-weight: 200;   
+}
+
+.contato_geral span{
+    font-weight: bold;
+    position: relative;
+    bottom: 400px; right: 5%;
+    text-align: right;
+    width: 100px;
+    margin-left: 190px;
+}
+
+.contato_geral p{
+    position: relative;
+    bottom: 400px; left: 30%;
+    text-align: right;
+    width: 600px;
+    margin-left: 0px;
+}
+
+/* TELA DE CADASTRO E LOGIN */
+
+.imgCad {
+    width: 500px;
+}
+
+.corpo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+}
+
+.img{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form span{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.form h2 {
+    text-align: center;
+    width: 220px;
+    margin: 0;
+    margin-bottom: 10px;
+    color: #2D20EE;
+    padding-bottom: 10px;
+    border-bottom: solid 2px #2D20EE;
+}
+
+.form hr {
+    color: #2D20EE;
+    border-width: 10px;
+}
+
+.form input {
+    width: 100%;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    padding-left: 15px;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+}
+
+.form button {
+    width: 100%;
+    height: 40px;
+    background: #2D20EE;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+
+.form button:hover, .form button:focus{
+    background: #7269F2;
+}
+
+.form a{
+    text-decoration: none;
+    color: #2D20EE;
+    font-size: 12px;
+    align-self: flex-start;
+    font-weight: bold;
+}
+
+.form a:hover, .form a:focus{
+    color: #1a1191;
 }
