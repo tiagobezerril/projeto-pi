@@ -1,6 +1,6 @@
 	CREATE DATABASE Safeware;
     
-    USE Safewae;
+    USE Safeware;
     
     CREATE TABLE Empresa (
     idEmpresa int primary key auto_increment,
@@ -32,7 +32,35 @@
     idDados int primary key auto_increment,
     dtColeta date,
     porcentagem int,
-    fkmantencao int,
-    Constraint fksensorManutencao foreign key (fkmanutencao)
-    references manutencao (idmanutencao)
+    fkmanutencao int,
+    Constraint fksensorManuntencao foreign key (fkmanutencao)
+    references manutencao (idmanuntecao)
     );
+    
+    desc manutencao;
+  
+INSERT INTO empresa value
+	(default, 'Safeware', 12345678921);
+  
+INSERT INTO usuario value 
+	(default, 'Tiago', 'bezerriltiago@gmail.com', 'ab1234', default);
+  
+  select * from empresa;
+  update usuario set fkempresa = 1
+	where idusuario = 1;
+    
+ SELECT u1.nome as usuario,
+		e1.nome as empresa
+	FROM usuario as u1
+    JOIN empresa as e1
+    on e1.idEmpresa = u1.fkEmpresa;
+    
+SELECT m1.status as Atividade,
+		p1.porcentagem as '%'
+	FROM manutencao as m1
+    JOIN dados as p1
+    ON m1.idmanuntecao = p1.fkmanutencao;
+    
+INSERT INTO manutencao VALUE 
+	(default, 2024-16-09, 2024-23-09, null, default) 
+    
