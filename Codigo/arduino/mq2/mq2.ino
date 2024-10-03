@@ -1,6 +1,6 @@
 //Sensor de gás utilizando MQ2.
 
-const int PINO_SENSOR_MQ2 = A2;//Saida do sensor na A2.
+const int PINO_SENSOR_MQ2 = A1;//Saida do sensor na A2.
 
 const int VALOR_MINIMO = 100; //Valor minimo recebido pelo Arduino.
 const int VALOR_MAXIMO = 1000; //Valor maximo recebido pelo Arduino.
@@ -20,12 +20,14 @@ if (porcentagem < 0) {
 } else if (porcentagem > 100){
   porcentagem = 100;
 }
-  int alerta = 2;
+  // int alerta = 2;
 
   // Imprime ambos os valores na mesma linha, separados por um espaço.
-  Serial.print(alerta);
-  Serial.print(" ");
+  // Serial.print(alerta);
+  // Serial.print(";");
   Serial.println(porcentagem);
 
-delay(1000);
+  
+
+delay(1500);
 }
