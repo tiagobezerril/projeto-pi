@@ -28,6 +28,7 @@ body {
     margin-right: 50px;
     margin-top: 10px;
     z-index: 5;
+    top: 0px;
 
     -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
     -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
@@ -102,6 +103,8 @@ body {
 /* HOME */
 
 h1 {
+    position: relative;
+    top: 40px;
     font-size: 60px;
     font-weight: 900;
     line-height: 100px;
@@ -111,11 +114,13 @@ h1 {
 
 .imagem01 {
     position: relative;
-    bottom: 410px; left: 750px;
+    bottom: 300px; left: 750px;
     width: 38%;
     border-radius: 50px;
 }
 .text {
+    position: relative;
+    top: 50px;
     font-size: 28px;
     font-weight: 700;
     line-height: 45px;
@@ -136,6 +141,51 @@ h2 {
     color: aliceblue;
 }
 
+.corpohome {
+    display: flex;
+    background-color: rgb(226, 218, 218);
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+    border-radius: 10%;
+}
+
+
+.objetivos {
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bolder;
+    background-color: white;
+    margin-top: 60px;
+    border-radius: 15%;
+    height: 200px;
+    width: 250px;
+}
+
+.line {
+    background-color: #7269F2;
+    height: 5px;
+    width: 120px;
+    margin-top: 10px;
+}
+
+.objetivos span{
+    width: 50%;
+    padding-top: 15px;
+}
+
+.imgobj{
+height: 55px;
+margin-top: 20px;
+}
+
+.sercliente{
+    background-color: #7269F2;
+    
+}
 /* RODAPÉ */
 
 footer{
