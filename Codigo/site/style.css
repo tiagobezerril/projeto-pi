@@ -144,12 +144,10 @@ h2 {
 .corpohome {
     display: flex;
     background-color: rgb(226, 218, 218);
-    display: flex;
     justify-content: center;
     justify-content: space-evenly;
     border-radius: 10%;
 }
-
 
 .objetivos {
     display:flex;
@@ -184,7 +182,6 @@ margin-top: 20px;
 
 .sercliente{
     background-color: #7269F2;
-    
 }
 /* RODAPÉ */
 

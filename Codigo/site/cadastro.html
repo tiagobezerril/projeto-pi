@@ -1,44 +1,173 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SafeWare | Cadastro</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <header class="menu">
-            <span class="logo">SafeWare</span>
-            <div class="buttons">
-                <a href="index.html">Início</a>
-                <a href="">Sobre nós</a>
-                <a href="">Projetos</a>
-                <a href="calculadora.html">Calculadora</a>
-            </div>
-            <a class="contratar" href="cadastro.html">Contratar</a>
-        </header>
-        
-        <div class="corpo">
-            <div class="img">
-                <img src="img/cadastro.png" alt="cadastro" class="imgCad">
-            </div>
-            <div class="form">
-                <span>
-                    <h2>Cadastre-se</h2>
-                    <input type="text" id="ipt_nomeEmp" placeholder="Nome da empresa">
-                    <input type="text" id="ipt_nomeFun" placeholder="Nome para contato">
-                    <input type="text" id="ipt_CNPJ" placeholder="CNPJ">
-                    <input type="text" id="ipt_email" placeholder="E-mail">
-                    <input type="password" id="ipt_senha" placeholder="Senha">
-                    <input type="password" id="ipt_confirm" placeholder="Confirme a senha">
 
-                    <button onclick="entrar()">Cadastrar-se</button>
-                    <a href="login.html">Já é cliente?</a>
-                </span>
-                
-                
-            </div>
-            
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeWare | Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="menu">
+        <span class="logo">SafeWare</span>
+        <div class="buttons">
+            <a href="index.html">Início</a>
+            <a href="">Sobre nós</a>
+            <a href="">Projetos</a>
+            <a href="calculadora.html">Calculadora</a>
         </div>
-    </body>
+        <a class="contratar" href="cadastro.html">Contratar</a>
+    </header>
+
+    <div class="corpo">
+        <div class="img">
+            <img src="img/cadastro.png" alt="cadastro" class="imgCad">
+        </div>
+        <div class="form">
+            <span>
+                <h2>Cadastre-se</h2>
+                <div></div>
+                <input oninput="block()" type="text" id="ipt_nomeEmp" placeholder="Nome da empresa">
+                <div id="Emp"></div>
+                <input type="Number" id="ipt_CNPJ" placeholder="CNPJ">
+                <div id="cnpj"></div>
+                <input oninput="block()" type="text" id="ipt_email" placeholder="E-mail">
+                <div id="ema"></div>
+                <input type="password" id="ipt_senha" placeholder="Senha">
+                <div id="senhas"></div>
+                <input type="password" id="ipt_confirm" placeholder="Confirme a senha">
+                <div id="conSenha"></div>
+
+                <button onclick="entrar()">Cadastrar-se</button>
+                <div id="validado"></div>
+                <a href="login.html">Já é cliente? Faça seu login aqui!</a>
+            </span>
+
+
+        </div>
+
+    </div>
+</body>
+
 </html>
+<script>
+    var correto = true
+
+    var Empresa = ""
+    var CNPJ = ""
+    var email = ""
+    var senha = ""
+    var confirmação = ""
+    var mensagem=""
+    
+
+    function block() {
+        Empresa = ipt_nomeEmp.value
+        email = ipt_email.value
+
+        ipt_nomeEmp.value = Empresa
+            .replaceAll('!', '')
+            .replaceAll('@', '')
+            .replaceAll('#', '')
+            .replaceAll('$', '')
+            .replaceAll('%', '')
+            .replaceAll('¨', '')
+            .replaceAll('&', '')
+            .replaceAll('*', '')
+            .replaceAll('(', '')
+            .replaceAll(')', '')
+
+        Empresa = ipt_nomeEmp.value
+
+        ipt_email.value = email
+            .replaceAll('!', '')
+            .replaceAll('#', '')
+            .replaceAll('$', '')
+            .replaceAll('%', '')
+            .replaceAll('¨', '')
+            .replaceAll('&', '')
+            .replaceAll('*', '')
+            .replaceAll('(', '')
+            .replaceAll(')', '')
+            .replaceAll(',', '')
+    }
+
+    function entrar() {
+
+        Empresa = ipt_nomeEmp.value
+        var ofEmp = Empresa.length
+
+        if (ofEmp >= 3) {
+            Emp.innerHTML = "Nome Válido"
+        } else {
+            correto=false
+            Emp.innerHTML = "Digite o Nome da sua Empresa"
+        }
+
+
+        CNPJ = ipt_CNPJ.value
+        var ofCNPJ = CNPJ.length
+
+        if (ofCNPJ == 11) {
+            cnpj.innerHTML = "CNPJ Válido"
+        } else {
+            correto=false
+            cnpj.innerHTML = "O CNPJ Precisa de Exatamente 11 Caracteres"
+        }
+
+
+        email = ipt_email.value
+        var ofEmail = email.length
+        var termina_com = email.endsWith('.com')
+        var termina_br = email.endsWith('.br')
+
+        if (ofEmail > 3) {
+            if (termina_com || termina_br) {
+                ema.innerHTML = "Email Válido"
+            } else {
+                correto = false
+                ema.innerHTML = "Email Inválido"
+            }
+        } else {
+            correto = false
+            ema.innerHTML = "Email Inválido, Digite seu Email"
+        }
+
+
+
+        senha = ipt_senha.value
+        var ofSenha = senha.length
+
+        if (ofSenha >= 8) {
+            senhas.innerHTML = "Senha Válida"
+        } else {
+            correto=false
+            senhas.innerHTML = "A Senha Precisa de no Mínimo 8 Caracteres"
+        }
+
+
+        confirmação = ipt_confirm.value
+        var ofConfirma = confirmação.length
+
+        if (confirmação == senha && ofConfirma >= 8) {
+            conSenha.innerHTML = "Senhas Válidas"
+        } else {
+            correto=false
+            conSenha.innerHTML = "Digite os Mesmos Valores Digitados Acima"
+        }
+
+
+        if (correto) {
+            
+            mensagem = "Informações cadastradas, 'Clique em já é cliente?' abaixo"
+        } else if (correto==false)
+            mensagem = "Informações Inválidas"
+            correto=true
+
+
+
+            validado.innerHTML=`${mensagem}`
+        }
+    
+</script>

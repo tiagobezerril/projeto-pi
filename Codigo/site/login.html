@@ -25,14 +25,71 @@
             <div class="form">
                 <span>
                     <h2>Login</h2>
-                    <input type="text" id="ipt_email" placeholder="Email">
+
+                    <input oninput="block()" type="text" id="ipt_email" placeholder="Email">
+
+                    <div id="div_email"></div>
+
                     <input type="password" id="ipt_senha" placeholder="Senha">
+                    
+                    <div id="div_senhas"></div>
+
+                    <button onclick="entrar()">Entrar</button>
     
-                    <button >Entrar</button>
                     <a href="cadastro.html">Ainda não é cliente?</a>
                 </span>
             </div>
         </div>
     </body>
 </html>
-<!-- onclick="entrar()" -->
+
+<script>
+
+    var email = ''
+    var senha = ''
+
+    function block(){
+        email = ipt_email.value
+
+        ipt_email.value = email
+            .replaceAll('!', '')
+            .replaceAll('#', '')
+            .replaceAll('$', '')
+            .replaceAll('%', '')
+            .replaceAll('¨', '')
+            .replaceAll('&', '')
+            .replaceAll('*', '')
+            .replaceAll('(', '')
+            .replaceAll(')', '')
+            .replaceAll(',', '')
+    }
+    
+    function entrar(){
+        email = ipt_email.value
+        var ofEmail = email.length
+        var termina_com = email.endsWith('.com')
+        var termina_br = email.endsWith('.br')
+
+        if (ofEmail > 3) {
+            if (termina_com || termina_br) {
+                div_email.innerHTML = "E-mail Válido"
+            } else {
+                correto = false
+                div_email.innerHTML = "E-mail Inválido"
+            }
+        } else {
+            correto = false
+            div_email.innerHTML = "E-mail Inválido, Digite seu E-mail"
+        }
+
+        senha = ipt_senha.value
+        var ofSenha = senha.length
+
+        if (ofSenha >= 8) {
+            div_senhas.innerHTML = "Senha Válida"
+        } else {
+            correto=false
+            div_senhas.innerHTML = "A senha precisa de no mínimo 8 caracteres"
+        }
+    }
+</script>
