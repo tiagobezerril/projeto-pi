@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <hr>
+        
+    <h2>Cozinha</h2>
+    <p>Insira a quantidade desses equipamentos abaixo que você possui:</p>
+
+    <span>Fogão industrial - </span>
+    <input type="text" id="input_fogao">
+    <br><br>
+    <span>Chapas e grelhas - </span>
+    <input type="text" id="input_chapa">
+    <br><br>
+    <span>Fritadeiras - </span>
+    <input type="text" id="input_fritadeira">
+    <br><br>
+    <span>Forno a gás ou elétrico - </span>
+    <input type="text" id="input_forno">
+    <br><br>
+    <span>Coifa industrial - </span>
+    <input type="text" id="input_coifa">
+    <br><br>
+    <span>Geladeira industrial - </span>
+    <input type="text" id="input_geladeira">
+    
+    <br><br> 
+</body>
+</html>
+
+<script>
+    var valorTotalEqp = 0;
+    var fogao = 0;
+    var chapa = 0;
+    var fritadeira = 0;
+    var forno = 0;
+    var coifa = 0;
+    var geladeira = 0;
+
+    function blablala(){
+        fogao = Number(input_fogao.value) * 1635;
+        chapa = Number(input_chapa.value) * 3659;
+        fritadeira = Number(input_fritadeira.value) * 406;
+        forno = Number(input_forno.value) * 1627;
+        coifa = Number(input_coifa.value) * 2135;
+        geladeira = Number(input_geladeira.value) * 4700;
+
+        valorTotalEqp = fogao + chapa + fritadeira + forno + coifa + geladeira;
+
+        if (cilindroKg == 90) {
+            diasMedia = 488;
+            tempoMedia = 30;
+        }
+        if (cilindroKg == 13) {
+            diasMedia = 70;
+            tempoMedia = 30;
+        }
+    }
+</script>
