@@ -1,38 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SafeWare | Calculadora Financeira</title>
-    </head>
-    <body><center>
-        <h1>Calculadora Financeira</h1>
-        <hr>
-        <p><b>• O calculo é baseado em um cilindro P45 que ja foi totalmente utilizado</b></p>
-            <p><b>• OBS: O calculo é realizado em um cilindro por vez para que possa ser mais preciso, e detecte vazamentos com
-                maior facilidade</b></p>
-            <hr>
-            <h2>Cilindro de gás</h2>
-        
-            <p>Quanto você pagou pelo cilindro?</p>
-        <select name="" id="slct_precoCilindro"">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeWare | Calculadora Financeira</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="menu">
+        <span class="logo">SafeWare</span>
+        <div class="buttons">
+            <a href="index.html">Início</a>
+            <a href="">Sobre nós</a>
+            <a href="">Projetos</a>
+            <a href="calculadora.html">Calculadora</a>
+        </div>
+        <a class="contratar" href="cadastro.html">Contratar</a>
+    </header>
+    <div class="info">
+        <h2>Calculadora Financeira</h2>
+        <span> Na nossa calculadora financeira é possível verificar a média de gastos que o estabelecimento deve ter com gás e os riscos que um vazamento pode causar ao local</span>
+
+        <h2 class="importante">Pontos importantes:</h2>
+
+        <p><b>• O calculo é baseado em um cilindro que ja foi totalmente utilizado</b></p>
+        <p><b>• OBS: O calculo é realizado em um cilindro por vez para que possa ser mais preciso, e detecte vazamentos com
+                        maior facilidade</b></p>
+        <h2 class="Dados">Dados do cilindro</h2>
+
+        <p class="question">Quanto você pagou pelo cilindro?</p>
+        <select id="slct_precoCilindro"">
             <option>R$500</option>
             <option>R$600</option>
             <option>R$700</option>
             <option>R$800</option>
         </select>
         
-            <p>Quantos dias esse cilindro durou?</p>
-            <input type="number" id="input_dias">
-        
+            <p class="question">Quantos dias esse cilindro durou?</p>
+            <input type=" number" id="input_dias">
+
             <br><br>
-        
+
             <button onclick="calcular()">Calcular</button>
-        
+
             <br><br>`;
-        <div id="div_mensagem"></div>
-    </center>
-    </body>
+            <div id="div_mensagem"></div>
+        </div>
+</body>
+
 </html>
 <script>
     var cilindroKg = 0;
@@ -46,7 +63,7 @@
 
     function calcular() {
         //valor dos equipamentos basicos de uma cozinha industrial
-    
+
         //Relacionado ao cilindro/gás
         cilindroKg = Number(0)
         precoCilindro = (slct_precoCilindro.value);
@@ -97,8 +114,8 @@
 
 
     function sim() {
-        div_mensagem.innerHTML = 
-        `
+        div_mensagem.innerHTML =
+            `
             <span style="color: green; font-size: 30px; font-weight: bold;">Você não possui vazamentos. :)</span>
             <p>Mas com um vazamento <b>MINIMO de 2% de gás</b> já torna sua cozinha
             em um ambiente <b>perigoso e propenso a um acidente grave!</b> <span style="font-weight: bold; color: red; font-size: 20px;">Como INCÊNDIOS e EXPLOSÕES!</span></p>
@@ -111,14 +128,14 @@
     }
 
     function nao() {
-        div_mensagem.innerHTML = 
-        `
+        div_mensagem.innerHTML =
+            `
             <span style="color: red; font-size: 20px; font-weight: bold;">Não!?</span> Informe qual é o seu consumo diario em minutos:
             <br><br>
             <input type="text" id="input_usoRealMinutos">
             <button onclick="descobrir()">Descobrir gravidade</button>
         `
-        ;
+            ;
     }
 
     function descobrir() {
