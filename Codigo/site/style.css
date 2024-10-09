@@ -372,3 +372,115 @@ footer button{
 .form a:hover, .form a:focus{
     color: #1a1191;
 }
+
+/* CALCULADORA */
+
+.info{
+    display: flex;
+    flex-direction: column;
+}
+
+.info h2{
+    font-weight: 900;
+    text-align: left;
+    width: 220px;
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-bottom: 10px;
+    color: #2D20EE;
+    padding-bottom: 10px;
+    border-bottom: solid 2px #2D20EE;
+}
+
+.info span{
+    display: flex;
+    width: 455px;
+    height: 100px;
+    margin-left: 50px;
+    font-size: 17px;
+    font-weight: 600;
+    color: gray;
+}
+
+.Dados{
+    display: flex;
+    position: relative;
+    bottom: 280px;
+    right: 270px;
+    align-self: flex-end;
+    border-bottom: white !important;
+    width: 300px !important;
+    margin-top: 0px !important;
+}
+
+.importante{
+    font-size: 25px;
+    width: 500px !important;
+    border-bottom: 0px !important;
+    margin-top: 5px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.info p{
+    margin-left: 50px;
+    width: 450px;
+    color: gray;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.question{
+    display: flex;
+    align-self: flex-end;
+    position: relative;
+    bottom: 280px;
+    right: 120px;
+}
+
+.info select{
+    align-self: flex-end;
+    position: relative;
+    width: 400px;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    padding-left: 15px;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+    right: 170px;
+    bottom: 280px;
+}
+
+.info input{
+    display: flex;
+    align-self: flex-end;
+    position: relative;
+    width: 400px;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    padding-left: 15px;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+    right: 170px;
+    bottom: 280px;
+}
+
+button{
+    align-self: flex-end;
+    position: relative;
+    bottom: 290px;
+    right: 170px;
+    width: 400px;
+    height: 40px;
+    background: #2D20EE;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: "Inter", sans-serif;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
