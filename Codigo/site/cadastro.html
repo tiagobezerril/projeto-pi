@@ -58,6 +58,7 @@
 
 </html>
 <script>
+    var razao_errada = `<input oninput="block()" class="input_errada" type="text" id="ipt_razao" placeholder="Razão social">`
     var correto = true
     var Repre =""
     var social = ""
@@ -134,10 +135,11 @@
         } else {
             correto = false
             razao.innerHTML = "Digite o Nome Oficial da Sua Empresa"
+            ipt_razao = razao_errada
         }
 
         Repre = ipt_rep.value
-        var ofRep = Rep.length
+        var ofRep = Repre.length
 
         if (ofRep >= 3) {
             rep.innerHTML = "Nome Válido"

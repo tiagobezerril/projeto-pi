@@ -484,6 +484,17 @@ footer button{
     font-family: "Inter", sans-serif;
 }
 
+.form .input_errada {
+    width: 100%;
+    height: 35px;
+    border: 10px;
+    border-color: red;
+    border-radius: 10px;
+    padding-left: 15px;
+    font-weight: 700;
+    font-family: "Inter", sans-serif;
+}
+
 .form button {
     width: 100%;
     height: 40px;
