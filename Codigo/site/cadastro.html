@@ -59,7 +59,7 @@
 </html>
 <script>
     var correto = true
-    var Rep =""
+    var Repre =""
     var social = ""
     var fantasia = ""
     var CNPJ = ""
@@ -73,10 +73,10 @@
         fantasia = ipt_nomeFant.value
         email = ipt_email.value
         social = ipt_razao.value
-        Rep= ipt_rep.value
+        Repre= ipt_rep.value
         
 
-        ipt_rep.value = Rep
+        ipt_rep.value = Repre
             .replaceAll('!', '')
             .replaceAll('@', '')
             .replaceAll('#', '')
@@ -88,7 +88,7 @@
             .replaceAll(')', '')
         
 
-        ipt_razao.value = fantasia
+        ipt_razao.value = social
             .replaceAll('!', '')
             .replaceAll('@', '')
             .replaceAll('#', '')
@@ -136,7 +136,7 @@
             razao.innerHTML = "Digite o Nome Oficial da Sua Empresa"
         }
 
-        Rep = ipt_rep.value
+        Repre = ipt_rep.value
         var ofRep = Rep.length
 
         if (ofRep >= 3) {
