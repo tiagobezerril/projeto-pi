@@ -8,35 +8,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeWare | Página Inicial</title>
+    
+    <link rel="shortcut icon" type="imagex/png" href="img/Logo.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<link rel="stylesheet" href="style.css">
 
 <body>
     <header class="menu">
         <span class="logo">SafeWare</span>
         <div class="buttons">
-            <a href="index.html">Início</a>
-            <a href="">Sobre nós</a>
-            <a href="">Projeto</a>
+            <a href="#inicio">Início</a>
+            <a href="#sobreNos">Sobre nós</a>
+            <a href="#projeto">Projeto</a>
             <a href="calculadora.html">Calculadora</a>
         </div>
         <a class="contratar" href="cadastro.html">Contratar</a>
     </header>
-
-    <h1>A SUA COZINHA <br> SEGURA</h1>
-    
-    <div class="text">
-        <b>
-            Garantimos ao seu <span class="destaque">negócio</span> a <br>
-            melhor maneira de <span class="destaque">prevenção</span> para 
-            <br> que você e seus funcionários <br>
-            estejam <span class="destaque">seguros.</span>
-        </b>
+    <div id="inicio">
+        <div>
+            <p class="titulo">A SUA COZINHA SEGURA</p>
+            <span class="linha"></span>
+            <div class="text">
+                Garantimos ao seu <span class="destaque">negócio</span> a melhor maneira de 
+                <span class="destaque">prevenção</span> para que você e seus funcionários
+                estejam <span class="destaque">seguros.</span>
+            </div>
+        </div>
+        <div class="imgInicio">
+            <img src="img/imagem_safeware.png">
+        </div>
     </div>
-        <img class="imagem01" src="img/imagem_safeware.png">
+    
+    <div id="fundoHome">
+        <div id="valores">
+            <div class="card">
+                <img src="img/alvo.png" alt="Missão">
+                <span class="linha"></span>
+                <p>
+                    Garantir o monitoramento eficiente de vazamentos de gás, promovendo um ambiente de 
+                    trabalho mais seguro e confiável
+                </p>
+            </div>
+            <div class="card">
+                <img src="img/visao.png" alt="Visão">
+                <span class="linha"></span>
+                <p>
+                    Ser a referência na região em tecnologias de monitoramento de gás, 
+	                reconhecida pela excelência no comprometimento com a proteção de vidas.
+                </p>
+            </div>
+            <div class="card">
+                <img src="img/valores.png" alt="Valores">
+                <span class="linha"></span>
+                <p>
+                    Segurança <br>
+                    Inovação <br>
+                    Comprometimento <br>
+                    Colaboração
+                </p>
+            </div>
+        </div>
 
-        <div class="corpohome">
+        <div id="cadastrese">
+            <span>
+                <p>Ainda não é nosso cliente?</p>
+                <a href="cadastro.html" class="botaoLink">Quero me tornar cliente</a>
+            </span>
+        </div>
+
+        <div id="sobreNos">
+            <span class="subTitulo">Sobre nós</span>
+            <span class="linha"></span>
+            <p>
+                Somos uma empresa fundada em 2024 com o objetivo de monitorar o vazamento de gás em cozinhas 
+                industriais, trazendo prevenção ao seu estabelecimento. 
+            </p>
+        </div>
+
+        <div id="projeto">
+            <div class="cardProjeto">
+                <div>
+                    <span class="subTitulo">A tecnologia chegou para a segurança da sua cozinha!</span>
+                    <p><b>Acompanhe os dados da sua cozinha de qualquer lugar!</b> <br><br>
+                        A nossa tecnologia usa um sensor de gás inflamável para detectar vazamentos de gás GLP e te notificar caso necessário, 
+                        é possivel acompanhar os dados coletados de qualquer lugar com conexão apenas logando em nosso site.
+                    </p>
+                    <!-- <a href="" class="botaoLink">Conheça o projeto</a> -->
+                </div>
+                <img src="img/projeto.png" alt="">
+            </div>
+        </div>
+    </div>
+        <!-- <div class="corpohome">
 
             <div class="objetivos">
             <img class="imgobj" src="https://cdn-icons-png.flaticon.com/512/2120/2120483.png" alt="">
@@ -64,7 +128,7 @@
             <div class="sercliente">
                 Ainda não é nosso cliente?
             </div>
-        </div>
+        </div> -->
 
         <footer>
             <h2>Fale conosco</h2> <br>

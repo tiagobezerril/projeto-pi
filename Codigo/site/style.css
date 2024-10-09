@@ -3,6 +3,7 @@
 * {
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -11,10 +12,14 @@ body {
     background-image: url(img/circle.png);
     background-position: right top;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-behavior: smooth;
 }
 /* MENU */
 .menu {
-    position: fixed;
+    position: relative;
     background-color: rgb(226, 218, 218);
     width: 92%;
     height: 60px;
@@ -24,8 +29,6 @@ body {
     align-items: center;
     border-radius: 10px;
     padding: 5px 10px;
-    margin-left: 50px;
-    margin-right: 50px;
     margin-top: 10px;
     z-index: 5;
     top: 0px;
@@ -101,91 +104,223 @@ body {
 }
 
 /* HOME */
+#inicio {
+    width: 90%;
+    display: flex;
+    gap: 120px;
+    align-items: center;
+    margin-bottom: 50px;
+}
 
-h1 {
-    position: relative;
-    top: 40px;
+#inicio .titulo{
+    width: 480px;
     font-size: 60px;
     font-weight: 900;
-    line-height: 100px;
-    text-align: left;
-    margin-left: 100px;
+    line-height: 90px;
+    margin-bottom: 0;
 }
 
-.imagem01 {
-    position: relative;
-    bottom: 300px; left: 750px;
-    width: 38%;
-    border-radius: 50px;
+#inicio .linha{
+    background: linear-gradient(to right, #2D20EE, #7269F2);
+    border-radius: 10px;
+    width: 90%;
+    height: 3px;
+    margin: 15x 0;
+    display: flex;
 }
+
 .text {
-    position: relative;
-    top: 50px;
+    width:450px;
     font-size: 28px;
     font-weight: 700;
     line-height: 45px;
     text-align: left;
-    margin-left: 100px;
 }
 
 .destaque {
     color: #2D20EE;
 }
 
-
-h2 {
-    font-size: 30px;
-    font-weight: 790;
-    text-align: left;
-    margin-left: 50px;
-    color: aliceblue;
-}
-
-.corpohome {
+.imgInicio{
     display: flex;
-    background-color: rgb(226, 218, 218);
     justify-content: center;
-    justify-content: space-evenly;
-    border-radius: 10%;
+    align-items: center;
 }
 
-.objetivos {
-    display:flex;
+.imgInicio img {
+    width: 90%;
+    border-radius: 50px;
+}
+
+#fundoHome{
+    width: 100%;
+    background: linear-gradient(to bottom, #EFF0F0, #ffff);
+    /* background-color: #EFF0F0; */
+    border-radius: 70px 70px 0 0;
+}
+
+#valores{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 90px;
+    margin: 50px 0;
+}
+
+.card{
+    width: 300px;
+    height: 270px;
+    border-radius: 35px;
+    padding: 20px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+    -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+    box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+}
+
+.card img{
+    width: 60px;
+    margin-bottom: 5px;
+}
+
+.linha{
+    background: linear-gradient(to right, #2D20EE, #7269F2);
+    border-radius: 10px;
+    width: 80%;
+    height: 2px;
+    margin: 9px 0;
+}
+
+.card p{
+    margin: 7px;
+    line-height: 25px;
+}
+
+#cadastrese{
+    background: linear-gradient(to right, #2D20EE, #7269F2);
+    width: 100%;
+    height: 150px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 50px 0;
+}
+
+#cadastrese span{
+    width: 50%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    color: white;
+    font-weight: 600;
+}
+
+.botaoLink{
+    width: 250px;
+    height: 60px;
+    border-radius: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-decoration: none;
+    font-weight: 700;
+    color: #564cdd;
+    background-color: white;
+    transition: background 0.5s ease, transform 0.5s ease;
+}
+
+.botaoLink:hover, .botaoLink:focus{
+    transform: scale(1.1);
+}
+
+#sobreNos{
+    width: 100%;
+    height: 300px;
+    margin: 50px 0;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     text-align: center;
-    align-items: center;
-    font-size: 18px;
-    font-weight: bolder;
-    background-color: white;
-    margin-top: 60px;
-    border-radius: 15%;
-    height: 200px;
-    width: 250px;
 }
 
-.line {
-    background-color: #7269F2;
-    height: 5px;
-    width: 120px;
-    margin-top: 10px;
+#sobreNos .subTitulo {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
-.objetivos span{
+#sobreNos .linha {
+    width: 40%;
+    height: 3px;
+}
+
+#sobreNos p{
     width: 50%;
-    padding-top: 15px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 40px;
 }
 
-.imgobj{
-height: 55px;
-margin-top: 20px;
+#projeto {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0;
 }
 
-.sercliente{
-    background-color: #7269F2;
+.cardProjeto {
+    width: 70%;
+    height: 400px;
+    background: linear-gradient(to right, #2D20EE, #7269F2);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
+
+.cardProjeto div {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    color: white;
+    font-size: 15px;
+}
+
+.cardProjeto .subTitulo{
+    font-size: 25px;
+    font-weight: 800;
+    line-height: 40px;
+}
+
+.cardProjeto p{
+    margin-bottom: 20px;
+}
+
+.cardProjeto img{
+    border-radius: 0 20px 20px 0;
+}
+
 /* RODAPÉ */
-
 footer{
+    width: 100%;
     background-color: black;
     padding-top: 10px;
 }
@@ -278,7 +413,6 @@ footer button{
 }
 
 /* TELA DE CADASTRO E LOGIN */
-
 .imgCad {
     width: 500px;
 }
