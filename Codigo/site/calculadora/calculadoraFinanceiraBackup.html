@@ -25,33 +25,40 @@
 
         <div class="esquerda">
             <p class="titulo">Calculadora Financeira</p>
-            <span> Na nossa calculadora financeira é possível verificar a média de gastos que o estabelecimento deve ter com gás e os riscos que um vazamento pode causar ao local</span>
+            <span class="linha"></span>
+            <span class="texto">
+                A calculadora financeira apresenta média de gastos que o estabelecimento 
+                deve ter com gás e os riscos que um vazamento pode causar ao local.
+            </span>
     
-            <h2 class="importante">Pontos importantes:</h2>
+            <p class="subTitulo">Pontos importantes:</p>
     
-            <li>
-                <ul>
-                    O calculo é baseado em um cilindro que ja foi totalmente utilizado
-                </ul>
-                <ul>
-                    OBS: O calculo é realizado em um cilindro por vez para que possa ser mais preciso, e detecte vazamentos com
-                        maior facilidade
-                </ul>
-            </li>
+            <ul>
+                <li>
+                    O cálculo é baseado em um cilindro que ja foi totalmente utilizado.
+                </li>
+                <li>
+                    OBS: O cálculo é realizado em um cilindro por vez para que possa ser mais preciso, e detecte
+                    vazamentos com maior facilidade.
+                </li>
+            </ul>
         </div>
 
         <div class="direita">
-            <h2 class="Dados">Dados do cilindro</h2>
+            <p class="subTitulo">Dados do cilindro</p>
     
-            <p class="question">Quanto você pagou pelo cilindro?</p>
-            <select id="slct_precoCilindro"">
-                <option>R$500</option>
-                <option>R$600</option>
-                <option>R$700</option>
-                <option>R$800</option>
+            <p class="label">Quanto você pagou pelo cilindro?</p>
+            <select id="slct_precoCilindro">
+                <span class="options">
+                    <option>Selecione uma opção</option>
+                    <option>R$500</option>
+                    <option>R$600</option>
+                    <option>R$700</option>
+                    <option>R$800</option>
+                </span>
             </select>
-            <p class="question">Quantos dias esse cilindro durou?</p>
-            <input type=" number" id="input_dias">
+            <p class="label">Quantos dias esse cilindro durou?</p>
+            <input type=" number" id="input_dias" placeholder="Duração do cilindro">
 
             <button class="calcular" onclick="calcular()">Calcular</button>
 

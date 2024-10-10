@@ -323,6 +323,61 @@ footer{
     width: 100%;
     background-color: black;
     padding-top: 10px;
+    color: white;
+    display: flex;
+}
+
+.rodapeEsq {
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+}
+
+.rodapeEsq .titulo{
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.rodapeEsq .contato{
+    margin: 20px 0;
+    font-size: 13px;
+    font-weight: 200;
+}
+
+#form{
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+#form span{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+#form span input, #form span select{
+    width: 99%;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding-left: 5px;
+}
+
+#form span input::placeholder{
+    color: white;
+}
+
+.input_comentario{
+    font-size: 10px;
+    background-color: black;
+    height: 100px;
+    width: 500px;
+    border: 2px solid aliceblue;
+    border-radius: 10px;
+    margin: 10px 0;
 }
 
 .contato {
@@ -332,10 +387,11 @@ footer{
     font-weight: 400;
     text-align: left;
     margin-left: 50px;
-    color: aliceblue;
+    color: white;
 }
 
-.input_rodape{
+
+/* .input_rodape{
     background-color: black;
     padding: 7px;
     color: aliceblue;
@@ -351,9 +407,9 @@ footer{
     bottom: 50px;
     border: 2px solid aliceblue;
     border-radius: 50px;
-}
+} */
 
-.select_cargo{
+/* .select_cargo{
     font-size: 16px;
     color: gray;
     background-color: black;
@@ -364,18 +420,8 @@ footer{
     bottom: 51px;
     width: 17.4%;
     height: 48px;
-}
+} */
 
-.input_comentario{
-    font-size: 15px;
-    background-color: black;
-    position: relative;
-    left: 50px; bottom: 35px;
-    height: 100px;
-    width: 500px;
-    border: 2px solid aliceblue;
-    border-radius: 20px;
-}
 
 footer button{
     position: relative;
@@ -469,10 +515,10 @@ footer button{
     display: flex;
 }
 
-.form hr {
+/* .form hr {
     color: #2D20EE;
     border-width: 10px;
-}
+} */
 
 .form input {
     width: 100%;
@@ -530,12 +576,15 @@ footer button{
     position: absolute;
     left: 0;
     top: 0;
+
     width: 100%;
     height: 100vh;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    gap: 30px;
 }
 
 .esquerda, .direita{
@@ -543,69 +592,59 @@ footer button{
     display: flex;
     flex-direction: column;
     justify-content: center;
-
     width: 40%;
 }
 
+.direita{
+    gap: 10px;
+    padding-left: 20px;
+}
+
 .info .titulo{
-    font-size: 30px;
+    font-size: 34px;
     font-weight: 900;
     text-align: left;
-    width: 220px;
+    width: 300px;
     color: #2D20EE;
-    padding-bottom: 10px;
-    border-bottom: solid 2px #2D20EE;
+    margin: 0;
 }
 
-.info span{
-    display: flex;
-    width: 455px;
-    height: 100px;
-    /* margin-left: 50px; */
-    font-size: 17px;
-    font-weight: 600;
-    color: gray;
-}
-
-.Dados{
-    display: flex;
-    /* position: relative;
-    bottom: 280px;
-    right: 270px; */
-    align-self: flex-end;
-    border-bottom: white !important;
-    width: 300px !important;
-    margin-top: 0px !important;
-}
-
-.importante{
+.esquerda .subTitulo, .direita .subTitulo{
     font-size: 25px;
-    width: 500px !important;
-    border-bottom: 0px !important;
-    /* margin-top: 5px !important;
-    margin-bottom: 0px !important;
-    padding-bottom: 0px !important; */
+    font-weight: 800;
+    color: #2D20EE;
+    width: fit-content;
+    margin: 0;
+    margin-top: 20px;
 }
 
-.info p{
-    margin-left: 50px;
-    width: 450px;
-    color: gray;
+.info .texto{
+    width: 455px;
+    height: 70px;
     font-size: 17px;
     font-weight: 600;
+    color: gray;
 }
 
-.question{
-    display: flex;
-    align-self: flex-end;
-    /* position: relative;
-    bottom: 280px;
-    right: 120px; */
+.info ul {
+    color: gray;
+    width: 450px;
+    height: 100px;
+    font-weight: 600;
+    padding-left: 20px;
 }
 
-.info select{
-    align-self: flex-end;
-    /* position: relative; */
+.info li{
+    padding-bottom: 10px;
+}
+
+.label{
+    color: gray;
+    font-weight: 600;
+    margin: 0;
+}
+
+.info select, .info input{
     width: 400px;
     height: 40px;
     border: 0;
@@ -613,26 +652,23 @@ footer button{
     padding-left: 15px;
     font-weight: 700;
     font-family: "Inter", sans-serif;
-    /* right: 170px;
-    bottom: 280px; */
+    color: #9b9b9b;
 }
 
-.info input{
-    display: flex;
-    align-self: flex-end;
-    width: 400px;
-    height: 40px;
-    border: 0;
-    border-radius: 10px;
-    /* padding-left: 15px; */
-    font-weight: 700;
-    font-family: "Inter", sans-serif;
-    /* right: 170px;
-    bottom: 280px; */
+.info input::placeholder{
+    color: #9b9b9b;
+}
+
+option{
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.options{
+    margin: 5px;
 }
 
 .calcular{
-    align-self: flex-end;
     width: 400px;
     height: 40px;
     background: #2D20EE;
@@ -644,4 +680,8 @@ footer button{
     font-family: "Inter", sans-serif;
     cursor: pointer;
     transition: background 0.5s ease;
+}
+
+.calcular:hover, .calcular:focus{
+    background: #7269F2;
 }
