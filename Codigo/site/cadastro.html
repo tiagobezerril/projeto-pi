@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeWare | Cadastro</title>
-    
+
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" type="imagex/png" href="img/Logo.png">
 </head>
@@ -58,33 +58,60 @@
 
 </html>
 <script>
+    var razao_errada = `<input oninput="block()" class="input_errada" type="text" id="ipt_razao" placeholder="Razão social">`
     var correto = true
-
-    var Empresa = ""
+    var Repre =""
+    var social = ""
+    var fantasia = ""
     var CNPJ = ""
     var email = ""
     var senha = ""
     var confirmação = ""
-    var mensagem=""
-    
+    var mensagem = ""
+
 
     function block() {
-        Empresa = ipt_nomeEmp.value
+        fantasia = ipt_nomeFant.value
         email = ipt_email.value
+        social = ipt_razao.value
+        Repre= ipt_rep.value
+        
 
-        ipt_nomeEmp.value = Empresa
+        ipt_rep.value = Repre
             .replaceAll('!', '')
             .replaceAll('@', '')
             .replaceAll('#', '')
             .replaceAll('$', '')
             .replaceAll('%', '')
             .replaceAll('¨', '')
-            .replaceAll('&', '')
+            .replaceAll('*', '')
+            .replaceAll('(', '')
+            .replaceAll(')', '')
+        
+
+        ipt_razao.value = social
+            .replaceAll('!', '')
+            .replaceAll('@', '')
+            .replaceAll('#', '')
+            .replaceAll('$', '')
+            .replaceAll('%', '')
+            .replaceAll('¨', '')
             .replaceAll('*', '')
             .replaceAll('(', '')
             .replaceAll(')', '')
 
-        Empresa = ipt_nomeEmp.value
+        ipt_nomeFant.value = fantasia
+            .replaceAll('!', '')
+            .replaceAll('@', '')
+            .replaceAll('#', '')
+            .replaceAll('$', '')
+            .replaceAll('%', '')
+            .replaceAll('¨', '')
+            .replaceAll('*', '')
+            .replaceAll('(', '')
+            .replaceAll(')', '')
+
+        fantasia = ipt_nomeFant.value
 
         ipt_email.value = email
             .replaceAll('!', '')
@@ -92,7 +119,6 @@
             .replaceAll('$', '')
             .replaceAll('%', '')
             .replaceAll('¨', '')
-            .replaceAll('&', '')
             .replaceAll('*', '')
             .replaceAll('(', '')
             .replaceAll(')', '')
@@ -101,25 +127,47 @@
 
     function entrar() {
 
-        Empresa = ipt_nomeEmp.value
-        var ofEmp = Empresa.length
+        social = ipt_razao.value
+        var ofSoci = social.length
 
-        if (ofEmp >= 3) {
-            Emp.innerHTML = "Nome Válido"
+        if (ofSoci >= 3) {
+            razao.innerHTML = "Nome Válido"
         } else {
-            correto=false
-            Emp.innerHTML = "Digite o Nome da sua Empresa"
+            correto = false
+            razao.innerHTML = "Digite o Nome Oficial da Sua Empresa"
+            ipt_razao = razao_errada
+        }
+
+        Repre = ipt_rep.value
+        var ofRep = Repre.length
+
+        if (ofRep >= 3) {
+            rep.innerHTML = "Nome Válido"
+        } else {
+            correto = false
+            rep.innerHTML = "Digite o Nome do seu Representante Legal"
+        }
+
+
+        fantasia = ipt_nomeFant.value
+        var ofFant = fantasia.length
+
+        if (ofFant >= 3) {
+            fant.innerHTML = "Nome Válido"
+        } else {
+            correto = false
+            fant.innerHTML = "Digite o Nome Social da Sua Empresa"
         }
 
 
         CNPJ = ipt_CNPJ.value
         var ofCNPJ = CNPJ.length
 
-        if (ofCNPJ == 11) {
+        if (ofCNPJ == 14) {
             cnpj.innerHTML = "CNPJ Válido"
         } else {
-            correto=false
-            cnpj.innerHTML = "O CNPJ Precisa de Exatamente 11 Caracteres"
+            correto = false
+            cnpj.innerHTML = "O CNPJ é inválido"
         }
 
 
@@ -148,7 +196,7 @@
         if (ofSenha >= 8) {
             senhas.innerHTML = "Senha Válida"
         } else {
-            correto=false
+            correto = false
             senhas.innerHTML = "A Senha Precisa de no Mínimo 8 Caracteres"
         }
 
@@ -159,21 +207,21 @@
         if (confirmação == senha && ofConfirma >= 8) {
             conSenha.innerHTML = "Senhas Válidas"
         } else {
-            correto=false
+            correto = false
             conSenha.innerHTML = "Digite os Mesmos Valores Digitados Acima"
         }
 
 
         if (correto) {
-            
+
             mensagem = "Informações cadastradas, 'Clique em já é cliente?' abaixo"
-        } else if (correto==false)
+        } else if (correto == false)
             mensagem = "Informações Inválidas"
-            correto=true
+        correto = true
 
 
 
-            validado.innerHTML=`${mensagem}`
-        }
-    
+        validado.innerHTML = `${mensagem}`
+    }
+
 </script>
