@@ -5,7 +5,7 @@ use safeware;
 CREATE TABLE Empresa (
   idCadastro INT PRIMARY KEY,
   razao_social VARCHAR(45),
-  nome_fantacia VARCHAR(45),
+  nome_fantasia VARCHAR(45),
   cnpj CHAR(14),
   representante VARCHAR(45),
   e_mail VARCHAR(45),
