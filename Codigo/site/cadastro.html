@@ -57,7 +57,7 @@
 
 <script>
     var correto = true
-
+    validado.innerHTML=""
     function validarRazao() {
         var social = ipt_razao.value
         ipt_razao.value = social
@@ -72,9 +72,10 @@
             .replaceAll(')', '')
 
         if (social.length >= 3) {
-            ipt_razao.style.border = "3px solid #07c707" 
+            ipt_razao.style.border = "3px solid #00ff00" 
         } else {
-            ipt_razao.style.border = "3px solid #eb0f0f" 
+            correto = false
+            ipt_razao.style.border = "3px solid red" 
         }
     }
 
@@ -92,18 +93,20 @@
             .replaceAll(')', '')
 
         if (fantasia.length >= 3) {
-            ipt_nomeFant.style.border = "3px solid #07c707"
+            ipt_nomeFant.style.border = "3px solid #00ff00"
         } else {
-            ipt_nomeFant.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_nomeFant.style.border = "3px solid red"
         }
     }
 
     function validarCNPJ() {
         var CNPJ = ipt_CNPJ.value
         if (CNPJ.length == 14) {
-            ipt_CNPJ.style.border = "3px solid #07c707"
+            ipt_CNPJ.style.border = "3px solid #00ff00"
         } else {
-            ipt_CNPJ.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_CNPJ.style.border = "3px solid red"
         }
     }
 
@@ -121,9 +124,10 @@
             .replaceAll(')', '')
 
         if (Repre.length >= 3) {
-            ipt_rep.style.border = "3px solid #07c707"
+            ipt_rep.style.border = "3px solid #00ff00"
         } else {
-            ipt_rep.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_rep.style.border = "3px solid red"
         }
     }
 
@@ -132,9 +136,10 @@
         var termina_com = email.endsWith('.com')
         var termina_br = email.endsWith('.br')
         if (email.length > 3 && (termina_com || termina_br)) {
-            ipt_email.style.border = "3px solid #07c707"
+            ipt_email.style.border = "3px solid #00ff00"
         } else {
-            ipt_email.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_email.style.border = "3px solid red"
         }
     }
 
@@ -142,10 +147,11 @@
         var senha = ipt_senha.value
         if (senha.length >= 8) {
             senhas.innerHTML = "Senha Válida"
-            ipt_senha.style.border = "3px solid #07c707"
+            ipt_senha.style.border = "3px solid #00ff00"
         } else {
             senhas.innerHTML = "A Senha Precisa de no Mínimo 8 Caracteres"
-            ipt_senha.style.border = "3px solid #eb0f0f"
+            ipt_senha.style.border = "3px solid red"
+            correto = false
         }
     }
 
@@ -154,26 +160,30 @@
         var confirmacao = ipt_confirm.value
         if (confirmacao == senha && confirmacao.length >= 8) {
             conSenha.innerHTML = "Senhas Válidas"
-            ipt_confirm.style.border = "3px solid #07c707"
+            ipt_confirm.style.border = "3px solid #00ff00"
         } else {
             conSenha.innerHTML = "As senhas não coincidem"
-            ipt_confirm.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_confirm.style.border = "3px solid red"
         }
     }
 
     function validarCadastro() {
+        validado.innerHTML=""
         validarRazao()
-        validarFantasia()
+        validarFantasia()   
         validarCNPJ()
         validarRepresentante()
         validarEmail()
         validarSenha()
         validarConfirmacao()
 
-        if (correto) {
+        if (correto == true) {
             validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo"
+
         } else {
             validado.innerHTML = "Informações Inválidas, revise os campos em vermelho."
+            correto = true
         }
     }
 </script>
