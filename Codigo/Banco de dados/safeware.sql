@@ -46,3 +46,8 @@ CREATE TABLE Dados (
   FOREIGN KEY (fksensor) REFERENCES Sensor(idsensor)
 );
 
+
+CREATE USER 'safe'@'localhost' IDENTIFIED BY 'URUBU100';
+
+GRANT INSERT ON safeware.Dados TO 'safe'@'localhost';
+FLUSH PRIVILEGES;
