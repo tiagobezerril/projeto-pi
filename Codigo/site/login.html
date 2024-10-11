@@ -48,6 +48,7 @@
 
     function validarEmail() {
         var email = ipt_email.value
+        correto = true
 
        
         ipt_email.value = email
@@ -77,6 +78,7 @@
     function validarSenha() {
         var senha = ipt_senha.value
         var ofSenha = senha.length
+        correto = true
 
         if (ofSenha >= 8) {
             ipt_senha.style.border = "3px solid #00ff00"
