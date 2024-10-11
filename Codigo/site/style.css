@@ -17,6 +17,17 @@ body {
     align-items: center;
     scroll-behavior: smooth;
 }
+
+input{
+    outline: none;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 /* MENU */
 .menu {
     position: relative;
@@ -572,10 +583,11 @@ textarea:focus{
     display: flex;
 }
 
-/* .form hr {
-    color: #2D20EE;
-    border-width: 10px;
-} */
+#senhas, #conSenha, #validado{
+    font-size: 12px;
+    font-weight: bold;
+    color: #555555;
+}
 
 .form input {
     width: 100%;

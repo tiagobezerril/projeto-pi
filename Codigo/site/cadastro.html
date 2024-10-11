@@ -72,9 +72,9 @@
             .replaceAll(')', '')
 
         if (social.length >= 3) {
-            ipt_razao.style.border = "3px solid #00ff00" 
+            ipt_razao.style.border = "3px solid #07c707" 
         } else {
-            ipt_razao.style.border = "3px solid red" 
+            ipt_razao.style.border = "3px solid #eb0f0f" 
         }
     }
 
@@ -92,18 +92,18 @@
             .replaceAll(')', '')
 
         if (fantasia.length >= 3) {
-            ipt_nomeFant.style.border = "3px solid #00ff00"
+            ipt_nomeFant.style.border = "3px solid #07c707"
         } else {
-            ipt_nomeFant.style.border = "3px solid red"
+            ipt_nomeFant.style.border = "3px solid #eb0f0f"
         }
     }
 
     function validarCNPJ() {
         var CNPJ = ipt_CNPJ.value
         if (CNPJ.length == 14) {
-            ipt_CNPJ.style.border = "3px solid #00ff00"
+            ipt_CNPJ.style.border = "3px solid #07c707"
         } else {
-            ipt_CNPJ.style.border = "3px solid red"
+            ipt_CNPJ.style.border = "3px solid #eb0f0f"
         }
     }
 
@@ -121,9 +121,9 @@
             .replaceAll(')', '')
 
         if (Repre.length >= 3) {
-            ipt_rep.style.border = "3px solid #00ff00"
+            ipt_rep.style.border = "3px solid #07c707"
         } else {
-            ipt_rep.style.border = "3px solid red"
+            ipt_rep.style.border = "3px solid #eb0f0f"
         }
     }
 
@@ -132,9 +132,9 @@
         var termina_com = email.endsWith('.com')
         var termina_br = email.endsWith('.br')
         if (email.length > 3 && (termina_com || termina_br)) {
-            ipt_email.style.border = "3px solid #00ff00"
+            ipt_email.style.border = "3px solid #07c707"
         } else {
-            ipt_email.style.border = "3px solid red"
+            ipt_email.style.border = "3px solid #eb0f0f"
         }
     }
 
@@ -142,10 +142,10 @@
         var senha = ipt_senha.value
         if (senha.length >= 8) {
             senhas.innerHTML = "Senha Válida"
-            ipt_senha.style.border = "3px solid #00ff00"
+            ipt_senha.style.border = "3px solid #07c707"
         } else {
             senhas.innerHTML = "A Senha Precisa de no Mínimo 8 Caracteres"
-            ipt_senha.style.border = "3px solid red"
+            ipt_senha.style.border = "3px solid #eb0f0f"
         }
     }
 
@@ -154,10 +154,10 @@
         var confirmacao = ipt_confirm.value
         if (confirmacao == senha && confirmacao.length >= 8) {
             conSenha.innerHTML = "Senhas Válidas"
-            ipt_confirm.style.border = "3px solid #00ff00"
+            ipt_confirm.style.border = "3px solid #07c707"
         } else {
             conSenha.innerHTML = "As senhas não coincidem"
-            ipt_confirm.style.border = "3px solid red"
+            ipt_confirm.style.border = "3px solid #eb0f0f"
         }
     }
 

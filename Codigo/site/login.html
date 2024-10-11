@@ -27,6 +27,7 @@
         <div class="form">
             <span>
                 <h2>Login</h2>
+                <span class="linha"></span>
 
                 <input oninput="validarEmail()" type="text" id="ipt_email" placeholder="Email">
                 <div id="div_email"></div>
@@ -67,9 +68,9 @@
         var termina_br = email.endsWith('.br')
 
         if (ofEmail > 3 && (termina_com || termina_br)) {
-            ipt_email.style.border = "3px solid #00ff00"
+            ipt_email.style.border = "3px solid #07c707"
         } else {
-            ipt_email.style.border = "3px solid red"
+            ipt_email.style.border = "3px solid #eb0f0f"
         }
     }
 
@@ -78,9 +79,9 @@
         var ofSenha = senha.length
 
         if (ofSenha >= 8) {
-            ipt_senha.style.border = "3px solid #00ff00"
+            ipt_senha.style.border = "3px solid #07c707"
         } else {
-            ipt_senha.style.border = "3px solid red"
+            ipt_senha.style.border = "3px solid #eb0f0f"
         }
     }
 
