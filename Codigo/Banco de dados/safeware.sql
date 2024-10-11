@@ -30,7 +30,8 @@ CREATE TABLE Sensor (
   idsensor INT PRIMARY KEY,
   tipo VARCHAR(3),
   dtinstalacao DATE,
-  status VARCHAR(11),
+  stts VARCHAR(11),
+  local_inst VARCHAR(45),
   fkempresa INT,
   FOREIGN KEY (fkempresa) REFERENCES Empresa(idCadastro)
 );
