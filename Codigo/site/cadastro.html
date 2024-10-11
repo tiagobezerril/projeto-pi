@@ -30,65 +30,36 @@
             <span>
                 <h2>Cadastre-se</h2>
                 <span class="linha"></span>
-                <input oninput="block()" type="text" id="ipt_razao" placeholder="Razão social">
+                <input oninput="validarRazao()" type="text" id="ipt_razao" placeholder="Razão social">
                 <div id="razao"></div>
-                <input oninput="block()" type="text" id="ipt_nomeFant" placeholder="Nome fantasia">
+                <input oninput="validarFantasia()" type="text" id="ipt_nomeFant" placeholder="Nome fantasia">
                 <div id="fant"></div>
-                <input type="Number" id="ipt_CNPJ" placeholder="CNPJ">
+                <input oninput="validarCNPJ()" type="Number" id="ipt_CNPJ" placeholder="CNPJ">
                 <div id="cnpj"></div>
-                <input oninput="block()" type="text" id="ipt_rep" placeholder="Representante legal">
+                <input oninput="validarRepresentante()" type="text" id="ipt_rep" placeholder="Representante legal">
                 <div id="rep"></div>
-                <input oninput="block()" type="text" id="ipt_email" placeholder="E-mail">
+                <input oninput="validarEmail()" type="text" id="ipt_email" placeholder="E-mail">
                 <div id="ema"></div>
-                <input type="password" id="ipt_senha" placeholder="Senha">
+                <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha">
                 <div id="senhas"></div>
-                <input type="password" id="ipt_confirm" placeholder="Confirme a senha">
+                <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha">
                 <div id="conSenha"></div>
 
-                <button onclick="entrar()">Cadastrar-se</button>
+                <button onclick="validarCadastro()">Cadastrar-se</button>
                 <div id="validado"></div>
                 <a href="login.html">Já é cliente? Faça seu login aqui!</a>
             </span>
-
-
         </div>
-
     </div>
 </body>
 
 </html>
+
 <script>
-    var razao_errada = `<input oninput="block()" class="input_errada" type="text" id="ipt_razao" placeholder="Razão social">`
     var correto = true
-    var Repre =""
-    var social = ""
-    var fantasia = ""
-    var CNPJ = ""
-    var email = ""
-    var senha = ""
-    var confirmação = ""
-    var mensagem = ""
 
-
-    function block() {
-        fantasia = ipt_nomeFant.value
-        email = ipt_email.value
-        social = ipt_razao.value
-        Repre= ipt_rep.value
-        
-
-        ipt_rep.value = Repre
-            .replaceAll('!', '')
-            .replaceAll('@', '')
-            .replaceAll('#', '')
-            .replaceAll('$', '')
-            .replaceAll('%', '')
-            .replaceAll('¨', '')
-            .replaceAll('*', '')
-            .replaceAll('(', '')
-            .replaceAll(')', '')
-        
-
+    function validarRazao() {
+        var social = ipt_razao.value
         ipt_razao.value = social
             .replaceAll('!', '')
             .replaceAll('@', '')
@@ -100,6 +71,15 @@
             .replaceAll('(', '')
             .replaceAll(')', '')
 
+        if (social.length >= 3) {
+            ipt_razao.style.border = "3px solid #00ff00" 
+        } else {
+            ipt_razao.style.border = "3px solid red" 
+        }
+    }
+
+    function validarFantasia() {
+        var fantasia = ipt_nomeFant.value
         ipt_nomeFant.value = fantasia
             .replaceAll('!', '')
             .replaceAll('@', '')
@@ -111,10 +91,27 @@
             .replaceAll('(', '')
             .replaceAll(')', '')
 
-        fantasia = ipt_nomeFant.value
+        if (fantasia.length >= 3) {
+            ipt_nomeFant.style.border = "3px solid #00ff00"
+        } else {
+            ipt_nomeFant.style.border = "3px solid red"
+        }
+    }
 
-        ipt_email.value = email
+    function validarCNPJ() {
+        var CNPJ = ipt_CNPJ.value
+        if (CNPJ.length == 14) {
+            ipt_CNPJ.style.border = "3px solid #00ff00"
+        } else {
+            ipt_CNPJ.style.border = "3px solid red"
+        }
+    }
+
+    function validarRepresentante() {
+        var Repre = ipt_rep.value
+        ipt_rep.value = Repre
             .replaceAll('!', '')
+            .replaceAll('@', '')
             .replaceAll('#', '')
             .replaceAll('$', '')
             .replaceAll('%', '')
@@ -122,106 +119,61 @@
             .replaceAll('*', '')
             .replaceAll('(', '')
             .replaceAll(')', '')
-            .replaceAll(',', '')
+
+        if (Repre.length >= 3) {
+            ipt_rep.style.border = "3px solid #00ff00"
+        } else {
+            ipt_rep.style.border = "3px solid red"
+        }
     }
 
-    function entrar() {
-
-        social = ipt_razao.value
-        var ofSoci = social.length
-
-        if (ofSoci >= 3) {
-            razao.innerHTML = "Nome Válido"
-        } else {
-            correto = false
-            razao.innerHTML = "Digite o Nome Oficial da Sua Empresa"
-            ipt_razao = razao_errada
-        }
-
-        Repre = ipt_rep.value
-        var ofRep = Repre.length
-
-        if (ofRep >= 3) {
-            rep.innerHTML = "Nome Válido"
-        } else {
-            correto = false
-            rep.innerHTML = "Digite o Nome do seu Representante Legal"
-        }
-
-
-        fantasia = ipt_nomeFant.value
-        var ofFant = fantasia.length
-
-        if (ofFant >= 3) {
-            fant.innerHTML = "Nome Válido"
-        } else {
-            correto = false
-            fant.innerHTML = "Digite o Nome Social da Sua Empresa"
-        }
-
-
-        CNPJ = ipt_CNPJ.value
-        var ofCNPJ = CNPJ.length
-
-        if (ofCNPJ == 14) {
-            cnpj.innerHTML = "CNPJ Válido"
-        } else {
-            correto = false
-            cnpj.innerHTML = "O CNPJ é inválido"
-        }
-
-
-        email = ipt_email.value
-        var ofEmail = email.length
+    function validarEmail() {
+        var email = ipt_email.value
         var termina_com = email.endsWith('.com')
         var termina_br = email.endsWith('.br')
-
-        if (ofEmail > 3) {
-            if (termina_com || termina_br) {
-                ema.innerHTML = "Email Válido"
-            } else {
-                correto = false
-                ema.innerHTML = "Email Inválido"
-            }
+        if (email.length > 3 && (termina_com || termina_br)) {
+            ipt_email.style.border = "3px solid #00ff00"
         } else {
-            correto = false
-            ema.innerHTML = "Email Inválido, Digite seu Email"
+            ipt_email.style.border = "3px solid red"
         }
-
-
-
-        senha = ipt_senha.value
-        var ofSenha = senha.length
-
-        if (ofSenha >= 8) {
-            senhas.innerHTML = "Senha Válida"
-        } else {
-            correto = false
-            senhas.innerHTML = "A Senha Precisa de no Mínimo 8 Caracteres"
-        }
-
-
-        confirmação = ipt_confirm.value
-        var ofConfirma = confirmação.length
-
-        if (confirmação == senha && ofConfirma >= 8) {
-            conSenha.innerHTML = "Senhas Válidas"
-        } else {
-            correto = false
-            conSenha.innerHTML = "Digite os Mesmos Valores Digitados Acima"
-        }
-
-
-        if (correto) {
-
-            mensagem = "Informações cadastradas, 'Clique em já é cliente?' abaixo"
-        } else if (correto == false)
-            mensagem = "Informações Inválidas"
-        correto = true
-
-
-
-        validado.innerHTML = `${mensagem}`
     }
 
+    function validarSenha() {
+        var senha = ipt_senha.value
+        if (senha.length >= 8) {
+            senhas.innerHTML = "Senha Válida"
+            ipt_senha.style.border = "3px solid #00ff00"
+        } else {
+            senhas.innerHTML = "A Senha Precisa de no Mínimo 8 Caracteres"
+            ipt_senha.style.border = "3px solid red"
+        }
+    }
+
+    function validarConfirmacao() {
+        var senha = ipt_senha.value
+        var confirmacao = ipt_confirm.value
+        if (confirmacao == senha && confirmacao.length >= 8) {
+            conSenha.innerHTML = "Senhas Válidas"
+            ipt_confirm.style.border = "3px solid #00ff00"
+        } else {
+            conSenha.innerHTML = "As senhas não coincidem"
+            ipt_confirm.style.border = "3px solid red"
+        }
+    }
+
+    function validarCadastro() {
+        validarRazao()
+        validarFantasia()
+        validarCNPJ()
+        validarRepresentante()
+        validarEmail()
+        validarSenha()
+        validarConfirmacao()
+
+        if (correto) {
+            validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo"
+        } else {
+            validado.innerHTML = "Informações Inválidas, revise os campos em vermelho."
+        }
+    }
 </script>

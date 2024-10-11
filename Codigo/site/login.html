@@ -1,58 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SafeWare | Login</title>
-        
-        <link rel="stylesheet" href="style.css">
-        <link rel="shortcut icon" type="imagex/png" href="img/Logo.png">
-    </head>
-    <body>
-        <header class="menu">
-            <span class="logo">SafeWare</span>
-            <div class="buttons">
-                <a href="index.html">Início</a>
-                <a href="index.html#sobreNos">Sobre nós</a>
-                <a href="index.html#projeto">Projeto</a>
-                <a href="calculadora/calculadoraFinanceiraBackup.html">Calculadora</a>
-            </div>
-            <a class="contratar" href="cadastro.html">Contratar</a>
-        </header>
-        
-        <div class="corpo">
-            <div class="img">
-                <img src="img/cadastro.png" alt="cadastro" class="imgCad">
-            </div>
-            <div class="form">
-                <span>
-                    <h2>Login</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeWare | Login</title>
 
-                    <input oninput="block()" type="text" id="ipt_email" placeholder="Email">
-
-                    <div id="div_email"></div>
-
-                    <input type="password" id="ipt_senha" placeholder="Senha">
-                    
-                    <div id="div_senhas"></div>
-
-                    <button onclick="entrar()">Entrar</button>
-    
-                    <a href="cadastro.html">Ainda não é cliente?</a>
-                </span>
-            </div>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="imagex/png" href="img/Logo.png">
+</head>
+<body>
+    <header class="menu">
+        <span class="logo">SafeWare</span>
+        <div class="buttons">
+            <a href="index.html">Início</a>
+            <a href="index.html#sobreNos">Sobre nós</a>
+            <a href="index.html#projeto">Projeto</a>
+            <a href="calculadora/calculadoraFinanceiraBackup.html">Calculadora</a>
         </div>
-    </body>
+        <a class="contratar" href="cadastro.html">Contratar</a>
+    </header>
+
+    <div class="corpo">
+        <div class="img">
+            <img src="img/cadastro.png" alt="cadastro" class="imgCad">
+        </div>
+        <div class="form">
+            <span>
+                <h2>Login</h2>
+
+                <input oninput="validarEmail()" type="text" id="ipt_email" placeholder="Email">
+                <div id="div_email"></div>
+
+                <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha">
+                <div id="div_senhas"></div>
+
+                <button onclick="entrar()">Entrar</button>
+
+                <a href="cadastro.html">Ainda não é cliente?</a>
+            </span>
+        </div>
+    </div>
+</body>
 </html>
 
 <script>
+    var correto = true
 
-    var email = ''
-    var senha = ''
+    function validarEmail() {
+        var email = ipt_email.value
 
-    function block(){
-        email = ipt_email.value
-
+       
         ipt_email.value = email
             .replaceAll('!', '')
             .replaceAll('#', '')
@@ -64,34 +61,37 @@
             .replaceAll('(', '')
             .replaceAll(')', '')
             .replaceAll(',', '')
-    }
-    
-    function entrar(){
-        email = ipt_email.value
+
         var ofEmail = email.length
         var termina_com = email.endsWith('.com')
         var termina_br = email.endsWith('.br')
 
-        if (ofEmail > 3) {
-            if (termina_com || termina_br) {
-                div_email.innerHTML = "E-mail Válido"
-            } else {
-                correto = false
-                div_email.innerHTML = "E-mail Inválido"
-            }
+        if (ofEmail > 3 && (termina_com || termina_br)) {
+            ipt_email.style.border = "3px solid #00ff00"
         } else {
-            correto = false
-            div_email.innerHTML = "E-mail Inválido, Digite seu E-mail"
+            ipt_email.style.border = "3px solid red"
         }
+    }
 
-        senha = ipt_senha.value
+    function validarSenha() {
+        var senha = ipt_senha.value
         var ofSenha = senha.length
 
         if (ofSenha >= 8) {
-            div_senhas.innerHTML = "Senha Válida"
+            ipt_senha.style.border = "3px solid #00ff00"
         } else {
-            correto=false
-            div_senhas.innerHTML = "A senha precisa de no mínimo 8 caracteres"
+            ipt_senha.style.border = "3px solid red"
+        }
+    }
+
+    function entrar() {
+        validarEmail()
+        validarSenha()
+
+        if (correto) {
+            alert("Login realizado com sucesso!")
+        } else {
+            alert("Verifique os campos preenchidos!")
         }
     }
 </script>
