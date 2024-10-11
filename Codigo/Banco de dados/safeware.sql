@@ -37,11 +37,12 @@ CREATE TABLE Sensor (
 
 -- Criando a tabela Dados
 CREATE TABLE Dados (
-  idDados INT PRIMARY KEY,
-  porcentagem INT,
-  dtdecoleta datetime,
+  idDados INT,
   fksensor INT,
+  PRIMARY KEY (idDados, fksensor),
+  porcentagem INT,
+  dtdecoleta datetime default current_timestamp(),
+  
   FOREIGN KEY (fksensor) REFERENCES Sensor(idsensor)
 );
 
-SELECT current_timestamp();
