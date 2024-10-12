@@ -34,7 +34,7 @@
                 <div id="razao"></div>
                 <input oninput="validarFantasia()" type="text" id="ipt_nomeFant" placeholder="Nome fantasia">
                 <div id="fant"></div>
-                <input oninput="validarCNPJ()" type="Number" id="ipt_CNPJ" placeholder="CNPJ">
+                <input oninput="validarCNPJ()" type="text" id="ipt_CNPJ" placeholder="CNPJ" maxlength="14">
                 <div id="cnpj"></div>
                 <input oninput="validarRepresentante()" type="text" id="ipt_rep" placeholder="Representante legal">
                 <div id="rep"></div>
@@ -57,7 +57,9 @@
 
 <script>
     var correto = true
-    validado.innerHTML=""
+    var abc = true
+    validado.innerHTML = ""
+
     function validarRazao() {
         var social = ipt_razao.value
         ipt_razao.value = social
@@ -72,10 +74,10 @@
             .replaceAll(')', '')
 
         if (social.length >= 3) {
-            ipt_razao.style.border = "3px solid #00ff00" 
+            ipt_razao.style.border = "3px solid #00ff00"
         } else {
             correto = false
-            ipt_razao.style.border = "3px solid red" 
+            ipt_razao.style.border = "3px solid red"
         }
     }
 
@@ -133,9 +135,12 @@
 
     function validarEmail() {
         var email = ipt_email.value
+        var possui_arroba = ipt_email.value.includes("@")
+        var termina_sptech = email.endsWith("Sptech.School")
         var termina_com = email.endsWith('.com')
         var termina_br = email.endsWith('.br')
-        if (email.length > 3 && (termina_com || termina_br)) {
+        var termina_net = email.endsWith('.net')
+        if (email.length > 3 && possui_arroba && (termina_com || termina_br || termina_net || termina_sptech)) {
             ipt_email.style.border = "3px solid #00ff00"
         } else {
             correto = false
@@ -144,12 +149,36 @@
     }
 
     function validarSenha() {
+
         var senha = ipt_senha.value
-        if (senha.length >= 8) {
+        var possui_ex = ipt_senha.value.includes("!")
+        var possui_arroba = ipt_senha.value.includes("@")
+        var possui_velha = ipt_senha.value.includes("#")
+        var possui_money = ipt_senha.value.includes("$")
+        var possui_porc = ipt_senha.value.includes("%")
+        var possui_ristico = ipt_senha.value.includes("*")
+        var possui_E = ipt_senha.value.includes("&")
+        var possui_1 = ipt_senha.value.includes("1")
+        var possui_2 = ipt_senha.value.includes("2")
+        var possui_3 = ipt_senha.value.includes("3")
+        var possui_4 = ipt_senha.value.includes("4")
+        var possui_5 = ipt_senha.value.includes("5")
+        var possui_6 = ipt_senha.value.includes("6")
+        var possui_7 = ipt_senha.value.includes("7")
+        var possui_8 = ipt_senha.value.includes("8")
+        var possui_9 = ipt_senha.value.includes("9")
+        var possui_0 = ipt_senha.value.includes("0")
+        var texto_minusculo = senha.toLowerCase()
+        var texto_maiusculo = senha.toUpperCase()
+
+        abc = (senha != texto_maiusculo && senha != texto_minusculo)
+
+        if (abc == true && senha.length >= 8 && (possui_1 || possui_2 || possui_3 || possui_4 || possui_5 || possui_6 || possui_7 || possui_8 || possui_9 || possui_0) && (possui_ex || possui_arroba || possui_E || possui_money || possui_velha || possui_porc || possui_ristico)) {
             senhas.innerHTML = "Senha Válida"
             ipt_senha.style.border = "3px solid #00ff00"
+
         } else {
-            senhas.innerHTML = "A Senha Precisa de no Mínimo 8 Caracteres"
+            senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número."
             ipt_senha.style.border = "3px solid red"
             correto = false
         }
@@ -169,9 +198,9 @@
     }
 
     function validarCadastro() {
-        validado.innerHTML=""
+        correto = true
         validarRazao()
-        validarFantasia()   
+        validarFantasia()
         validarCNPJ()
         validarRepresentante()
         validarEmail()
