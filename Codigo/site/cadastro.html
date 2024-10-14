@@ -12,7 +12,7 @@
 
 <body>
     <header class="menu">
-        <a href="index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
+        <span class="logo">SafeWare</span>
         <div class="buttons">
             <a href="index.html">Início</a>
             <a href="index.html#sobreNos">Sobre nós</a>
@@ -34,7 +34,7 @@
                 <div id="razao"></div>
                 <input oninput="validarFantasia()" type="text" id="ipt_nomeFant" placeholder="Nome fantasia">
                 <div id="fant"></div>
-                <input oninput="validarCNPJ()" type="Number" id="ipt_CNPJ" placeholder="CNPJ">
+                <input oninput="validarCNPJ()" type="text" id="ipt_CNPJ" placeholder="CNPJ" maxlength="14">
                 <div id="cnpj"></div>
                 <input oninput="validarRepresentante()" type="text" id="ipt_rep" placeholder="Representante legal">
                 <div id="rep"></div>
@@ -57,6 +57,8 @@
 
 <script>
     var correto = true
+    var abc = true
+    validado.innerHTML = ""
 
     function validarRazao() {
         var social = ipt_razao.value
@@ -72,9 +74,10 @@
             .replaceAll(')', '')
 
         if (social.length >= 3) {
-            ipt_razao.style.border = "3px solid #07c707" 
+            ipt_razao.style.border = "3px solid #00ff00"
         } else {
-            ipt_razao.style.border = "3px solid #eb0f0f" 
+            correto = false
+            ipt_razao.style.border = "3px solid red"
         }
     }
 
@@ -92,18 +95,20 @@
             .replaceAll(')', '')
 
         if (fantasia.length >= 3) {
-            ipt_nomeFant.style.border = "3px solid #07c707"
+            ipt_nomeFant.style.border = "3px solid #00ff00"
         } else {
-            ipt_nomeFant.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_nomeFant.style.border = "3px solid red"
         }
     }
 
     function validarCNPJ() {
         var CNPJ = ipt_CNPJ.value
         if (CNPJ.length == 14) {
-            ipt_CNPJ.style.border = "3px solid #07c707"
+            ipt_CNPJ.style.border = "3px solid #00ff00"
         } else {
-            ipt_CNPJ.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_CNPJ.style.border = "3px solid red"
         }
     }
 
@@ -121,31 +126,61 @@
             .replaceAll(')', '')
 
         if (Repre.length >= 3) {
-            ipt_rep.style.border = "3px solid #07c707"
+            ipt_rep.style.border = "3px solid #00ff00"
         } else {
-            ipt_rep.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_rep.style.border = "3px solid red"
         }
     }
 
     function validarEmail() {
         var email = ipt_email.value
+        var possui_arroba = ipt_email.value.includes("@")
+        var termina_sptech = email.endsWith("Sptech.School")
         var termina_com = email.endsWith('.com')
         var termina_br = email.endsWith('.br')
-        if (email.length > 3 && (termina_com || termina_br)) {
-            ipt_email.style.border = "3px solid #07c707"
+        var termina_net = email.endsWith('.net')
+        if (email.length > 3 && possui_arroba && (termina_com || termina_br || termina_net || termina_sptech)) {
+            ipt_email.style.border = "3px solid #00ff00"
         } else {
-            ipt_email.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_email.style.border = "3px solid red"
         }
     }
 
     function validarSenha() {
+
         var senha = ipt_senha.value
-        if (senha.length >= 8) {
-            senhas.innerHTML = "Senha válida"
-            ipt_senha.style.border = "3px solid #07c707"
+        var possui_ex = ipt_senha.value.includes("!")
+        var possui_arroba = ipt_senha.value.includes("@")
+        var possui_velha = ipt_senha.value.includes("#")
+        var possui_money = ipt_senha.value.includes("$")
+        var possui_porc = ipt_senha.value.includes("%")
+        var possui_ristico = ipt_senha.value.includes("*")
+        var possui_E = ipt_senha.value.includes("&")
+        var possui_1 = ipt_senha.value.includes("1")
+        var possui_2 = ipt_senha.value.includes("2")
+        var possui_3 = ipt_senha.value.includes("3")
+        var possui_4 = ipt_senha.value.includes("4")
+        var possui_5 = ipt_senha.value.includes("5")
+        var possui_6 = ipt_senha.value.includes("6")
+        var possui_7 = ipt_senha.value.includes("7")
+        var possui_8 = ipt_senha.value.includes("8")
+        var possui_9 = ipt_senha.value.includes("9")
+        var possui_0 = ipt_senha.value.includes("0")
+        var texto_minusculo = senha.toLowerCase()
+        var texto_maiusculo = senha.toUpperCase()
+
+        abc = (senha != texto_maiusculo && senha != texto_minusculo)
+
+        if (abc == true && senha.length >= 8 && (possui_1 || possui_2 || possui_3 || possui_4 || possui_5 || possui_6 || possui_7 || possui_8 || possui_9 || possui_0) && (possui_ex || possui_arroba || possui_E || possui_money || possui_velha || possui_porc || possui_ristico)) {
+            senhas.innerHTML = "Senha Válida"
+            ipt_senha.style.border = "3px solid #00ff00"
+
         } else {
-            senhas.innerHTML = "A senha precisa de no mínimo 8 caracteres"
-            ipt_senha.style.border = "3px solid #eb0f0f"
+            senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número."
+            ipt_senha.style.border = "3px solid red"
+            correto = false
         }
     }
 
@@ -153,15 +188,17 @@
         var senha = ipt_senha.value
         var confirmacao = ipt_confirm.value
         if (confirmacao == senha && confirmacao.length >= 8) {
-            conSenha.innerHTML = "Senhas válidas"
-            ipt_confirm.style.border = "3px solid #07c707"
+            conSenha.innerHTML = "Senhas Válidas"
+            ipt_confirm.style.border = "3px solid #00ff00"
         } else {
             conSenha.innerHTML = "As senhas não coincidem"
-            ipt_confirm.style.border = "3px solid #eb0f0f"
+            correto = false
+            ipt_confirm.style.border = "3px solid red"
         }
     }
 
     function validarCadastro() {
+        correto = true
         validarRazao()
         validarFantasia()
         validarCNPJ()
@@ -170,10 +207,12 @@
         validarSenha()
         validarConfirmacao()
 
-        if (correto) {
-            validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo."
+        if (correto == true) {
+            validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo"
+
         } else {
             validado.innerHTML = "Informações Inválidas, revise os campos em vermelho."
+            correto = true
         }
     }
 </script>
