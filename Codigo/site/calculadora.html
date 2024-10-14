@@ -170,10 +170,9 @@
             div_mensagem.innerHTML = `
                 <div id='comVazamento'>
                     <p class='atencao'>Você possui um vazamento!</p>
-                    <p>Você está <span style="color: red">perdendo ${diferencaTempo.toFixed(0)} minutos diários</span></p>
-                    <p>São <span style="color: red">${diferencaDias.toFixed(0)} dias</span> a mais de uso que você está perdendo!</p>
-                    <p>Sua perda é de <span style="color: red">R$${perda2} em gás por mês</span></p>
-                    <p>Sua perda é de <span style="color: red">R$${(perda2 * 12)} em gás por ano</span></p>
+                    <p>Você está <span class='vermelho'>perdendo ${diferencaTempo.toFixed(0)} minutos diários</span></p>
+                    <p>São <span class='vermelho'>${diferencaDias.toFixed(0)} dias</span> a mais de uso que você está perdendo!</p>
+                    <p>Sua perda é de <span class='vermelho'>R$${perda2} em gás por mês</span> e <span class='vermelho'>R$${(perda2 * 12)} por ano</span></p>
                     <p>Está vazando ${totalVazamento.toFixed(0)} kg de gás por mês e ${totalVazamento * 12}kg por ano!</p>
                     <p>O que pode gerar acidentes que acarretam em custos com reparação da estrutura e o isolamento do local.</p>    
     
@@ -183,8 +182,14 @@
                 </div>
             `;
         } else {
-            div_mensagem.innerHTML = `<p style="color: purple; font-weight: bold; font-size: 20px;">Você tem um cilindro mágico :o.</p>
-            <button onclick="retorno()">Nova consulta</button>
+            div_mensagem.style.height = '200px'
+            div_mensagem.innerHTML = `
+            <div id='comVazamento'>
+                <p class='titulo'>Dados não correspondentes</p>
+                <span class='linha'></span>
+                <p class='incorreto'>Os dados inseridos não correspondem aos resultados, reveja as informações e tente novamente.</p>
+                <button onclick="retorno()">Tentar novamente</button>
+            </div>
             `;
         }
     }

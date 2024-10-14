@@ -9,7 +9,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(../img/circle.png);
+    background-image: url(img/circle.png);
     background-position: right top;
     background-repeat: no-repeat;
     display: flex;
@@ -903,6 +903,7 @@ option{
 
 #comVazamento {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -930,4 +931,28 @@ option{
     background-color: #1a1191;
     transition: 0.5s;
     cursor: pointer;
+}
+
+.vermelho{
+    font-size: 18px;
+    color: #f70000;
+    font-weight: bold;
+}
+
+#comVazamento .titulo{
+    font-size: 23px;
+    color: #2D20EE;
+    margin: 0;
+}
+
+#comVazamento .linha{
+    width: 80%;
+    height: 3px;
+    margin: 2px;
+}
+
+.incorreto {
+    font-size: 18px;
+    font-weight: bold;
+
 }
