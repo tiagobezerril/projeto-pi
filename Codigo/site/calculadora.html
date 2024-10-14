@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeWare | Calculadora Financeira</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="shortcut icon" type="imagex/png" href="../img/Logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="imagex/png" href="img/Logo.png">
 </head>
 
 <body>
     <header class="menu">
-        <a href="../index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
+        <a href="index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
         <div class="buttons">
-            <a href="../index.html">Início</a>
-            <a href="../index.html#sobreNos">Sobre nós</a>
-            <a href="../index.html#projeto">Projeto</a>
-            <a href="calculadora/calculadoraFinanceiraBackup.html">Calculadora</a>
+            <a href="index.html">Início</a>
+            <a href="index.html#sobreNos">Sobre nós</a>
+            <a href="index.html#projeto">Projeto</a>
+            <a href="calculadora.html">Calculadora</a>
         </div>  
-        <a class="contratar" href="../cadastro.html">Contratar</a>
+        <a class="contratar" href="cadastro.html">Contratar</a>
     </header>
 
     <div id="info">
@@ -127,7 +127,7 @@
     function sim() {
         div_mensagem.innerHTML = 
         `<div id='semVazamento'>
-            <img src='../img/seguro.png'>
+            <img src='img/seguro.png'>
             <span class='verde'>Você não possui vazamentos!</span>
             <p>Mas com um vazamento <b>mínimo de 2% de gás</b> já torna sua cozinha
             em um ambiente <b>perigoso e propenso a um acidente grave!</b></p> 
@@ -143,7 +143,7 @@
         div_mensagem.innerHTML = 
         `
             <div id='nao'>
-                <img src='../img/aviso.png'>
+                <img src='img/aviso.png'>
                 <p class='atencao'">Você pode estar tendo um vazamento!</p> 
                 <p>Informe qual é o seu consumo diário em minutos para descobrir sua perda:</p>
                 <input type="text" id="input_usoRealMinutos" placeholder='Ex: 60'>

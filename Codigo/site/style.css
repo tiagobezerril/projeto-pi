@@ -526,6 +526,7 @@ textarea:focus{
 }
 
 .form h2 {
+    font-size: 30px;
     text-align: center;
     width: 220px;
     margin: 0;
@@ -541,7 +542,7 @@ textarea:focus{
     display: flex;
 }
 
-#senhas, #conSenha, #validado{
+#senhas, #conSenha, #validado, #div_senhas{
     font-size: 12px;
     font-weight: bold;
     color: #555555;
@@ -805,7 +806,7 @@ option{
     cursor: pointer;
 }
 
-/*  */
+/* TELA SEM VAZAMENTO */
 
 #semVazamento{
     width: 100%;
@@ -858,6 +859,8 @@ option{
     cursor: pointer;
 }
 
+/* TELA GASTO NÃO CORRESPONDENTE */
+
 #nao{
     width: 100%;
     display: flex;
@@ -878,10 +881,6 @@ option{
     font-size: 22px;
 }
 
-#input_usoRealMinutos{
-
-}
-
 #nao button{
     margin-top: 10px;
     font-size: 15px;
@@ -899,6 +898,8 @@ option{
     transition: 0.5s;
     cursor: pointer;
 }
+
+/* TELA COM VAZAMENTO */
 
 #comVazamento {
     width: 100%;

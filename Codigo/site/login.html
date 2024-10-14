@@ -15,7 +15,7 @@
             <a href="index.html">Início</a>
             <a href="index.html#sobreNos">Sobre nós</a>
             <a href="index.html#projeto">Projeto</a>
-            <a href="calculadora/calculadoraFinanceiraBackup.html">Calculadora</a>
+            <a href="calculadora.html">Calculadora</a>
         </div>
         <a class="contratar" href="cadastro.html">Contratar</a>
     </header>
@@ -27,6 +27,7 @@
         <div class="form">
             <span>
                 <h2>Login</h2>
+                <span class="linha"></span>
 
                 <input oninput="validarEmail()" type="text" id="ipt_email" placeholder="Email">
                 <div id="div_email"></div>
@@ -57,10 +58,10 @@
         var termina_br = email.endsWith('.br')
         var termina_net = email.endsWith('.net')
         if (email.length > 3 && possui_arroba && (termina_com || termina_br || termina_net || termina_sptech)) {
-            ipt_email.style.border = "3px solid #00ff00"
+            ipt_email.style.border = "3px solid #08a708"
         } else {
             correto = false
-            ipt_email.style.border = "3px solid red"
+            ipt_email.style.border = "3px solid #f70000"
         }
     }
 
@@ -94,10 +95,10 @@
         (possui_ex || possui_arroba || possui_E || possui_money || possui_velha || possui_porc || possui_ristico)) {
         
         div_senhas.innerHTML = "Senha Válida";
-        ipt_senha.style.border = "3px solid #00ff00";
+        ipt_senha.style.border = "3px solid #08a708";
     } else {
         div_senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número.";
-        ipt_senha.style.border = "3px solid red";
+        ipt_senha.style.border = "3px solid #f70000";
         correto = false;
     }
 }
