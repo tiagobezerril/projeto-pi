@@ -12,7 +12,7 @@
 
 <body>
     <header class="menu">
-        <span class="logo">SafeWare</span>
+        <a href="index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
         <div class="buttons">
             <a href="index.html">Início</a>
             <a href="index.html#sobreNos">Sobre nós</a>
@@ -141,10 +141,10 @@
     function validarSenha() {
         var senha = ipt_senha.value
         if (senha.length >= 8) {
-            senhas.innerHTML = "Senha Válida"
+            senhas.innerHTML = "Senha válida"
             ipt_senha.style.border = "3px solid #07c707"
         } else {
-            senhas.innerHTML = "A Senha Precisa de no Mínimo 8 Caracteres"
+            senhas.innerHTML = "A senha precisa de no mínimo 8 caracteres"
             ipt_senha.style.border = "3px solid #eb0f0f"
         }
     }
@@ -153,7 +153,7 @@
         var senha = ipt_senha.value
         var confirmacao = ipt_confirm.value
         if (confirmacao == senha && confirmacao.length >= 8) {
-            conSenha.innerHTML = "Senhas Válidas"
+            conSenha.innerHTML = "Senhas válidas"
             ipt_confirm.style.border = "3px solid #07c707"
         } else {
             conSenha.innerHTML = "As senhas não coincidem"
@@ -171,7 +171,7 @@
         validarConfirmacao()
 
         if (correto) {
-            validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo"
+            validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo."
         } else {
             validado.innerHTML = "Informações Inválidas, revise os campos em vermelho."
         }

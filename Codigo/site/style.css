@@ -9,7 +9,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url(img/circle.png);
+    background-image: url(../img/circle.png);
     background-position: right top;
     background-repeat: no-repeat;
     display: flex;
@@ -459,48 +459,6 @@ textarea:focus{
 .endereco .titulo, .contato .titulo, .direitos .titulo{
     font-weight: 700;
 }
-/* .input_rodape{
-    background-color: black;
-    padding: 7px;
-    color: aliceblue;
-    font-size: 17px;
-    font-weight: 200;
-    line-height: 30px;
-}
-
-.input_rodape{
-    background-color: black;
-    position: relative;
-    left: 50px;
-    bottom: 50px;
-    border: 2px solid aliceblue;
-    border-radius: 50px;
-} */
-
-/* .select_cargo{
-    font-size: 16px;
-    color: gray;
-    background-color: black;
-    border-radius: 50px;
-    border: 2px solid aliceblue;
-    position: relative;
-    left: 50px;
-    bottom: 51px;
-    width: 17.4%;
-    height: 48px;
-} */
-
-
-/* footer button{
-    position: relative;
-    left: 50px; bottom: 18px;
-    color: aliceblue;
-    background-color: black;
-    border: 2px solid aliceblue;
-    border-radius: 50px;
-    height: 50px;
-    width: 20%;
-} */
 
 .contato_geral{
     color: aliceblue;
@@ -528,7 +486,7 @@ textarea:focus{
 
 /* TELA DE CADASTRO E LOGIN */
 .imgCad {
-    width: 500px;
+    width: 470px;
 }
 
 .corpo {
@@ -546,7 +504,7 @@ textarea:focus{
 
 .img{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 
@@ -641,7 +599,7 @@ textarea:focus{
 }
 
 /* CALCULADORA */
-.info{
+#info{
     position: absolute;
     left: 0;
     top: 0;
@@ -656,7 +614,7 @@ textarea:focus{
     gap: 30px;
 }
 
-.esquerda, .direita{
+#esquerda, #direita{
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -664,12 +622,21 @@ textarea:focus{
     width: 40%;
 }
 
-.direita{
+#direita{
     gap: 10px;
     padding-left: 20px;
 }
 
-.info .titulo{
+#calculadora{
+    gap: 10px;
+    padding-left: 20px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#info .titulo{
     font-size: 34px;
     font-weight: 900;
     text-align: left;
@@ -678,7 +645,7 @@ textarea:focus{
     margin: 0;
 }
 
-.esquerda .subTitulo, .direita .subTitulo{
+#esquerda .subTitulo, #direita .subTitulo{
     font-size: 25px;
     font-weight: 800;
     color: #2D20EE;
@@ -687,7 +654,7 @@ textarea:focus{
     margin-top: 20px;
 }
 
-.info .texto{
+#info .texto{
     width: 455px;
     height: 70px;
     font-size: 17px;
@@ -695,7 +662,7 @@ textarea:focus{
     color: gray;
 }
 
-.info ul {
+#info ul {
     color: gray;
     width: 450px;
     height: 100px;
@@ -703,7 +670,7 @@ textarea:focus{
     padding-left: 20px;
 }
 
-.info li{
+#info li{
     padding-bottom: 10px;
 }
 
@@ -713,7 +680,7 @@ textarea:focus{
     margin: 0;
 }
 
-.info select, .info input{
+#info select, #info input{
     width: 400px;
     height: 40px;
     border: 0;
@@ -724,7 +691,7 @@ textarea:focus{
     color: #9b9b9b;
 }
 
-.info input::placeholder{
+#info input::placeholder{
     color: #9b9b9b;
 }
 
@@ -753,4 +720,213 @@ option{
 
 .calcular:hover, .calcular:focus{
     background: #7269F2;
+}
+
+/* RESULTADO CALCULADORA */
+
+#div_mensagem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #EFF0F0;
+    border-radius: 20px;
+    width: 550px;
+    height: 400px;
+    padding: 25px;
+    color: #646464;
+    font-size: 16px;
+    -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+    -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+    box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+}
+
+#div_mensagem .titulo{
+    width: 100%;
+    text-align: center;
+}
+
+.inseridos{
+    color: #646464;
+    margin: 0;
+    text-align: center;
+}
+
+.rotulo {
+    color: #2D20EE;
+    font-weight: bold;
+}
+
+#div_mensagem .linha{
+    align-self: center;
+    background: linear-gradient(to right, #2D20EE, #7269F2);
+    border-radius: 10px;
+    width: 65%;
+    height: 2px;
+    margin: 15x 0;
+    display: flex;
+}
+
+.resultado{
+    text-align: center;
+    border-radius: 10px;
+    font-weight: bold;
+    color: #2D20EE;
+    line-height: 20px;
+}
+
+.corresponde p{
+    font-size: 14px;
+    margin: 0;
+}
+
+.corresponde span{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.corresponde button{
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #2D20EE;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 45%;
+    height: 30px;
+}
+
+.corresponde button:hover, .corresponde button:focus{
+    background-color: #1a1191;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+/*  */
+
+#semVazamento{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 5px;
+}
+
+#semVazamento p{
+    margin: 0;
+}
+
+#semVazamento img{
+    width: 80px;
+    margin: 0;
+}
+
+#semVazamento .verde{
+    color: #08a708; 
+    /* color: #2D20EE; */
+    font-size: 30px; 
+    font-weight: bold;
+}
+
+.atencao{
+    color: #f70000;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+#semVazamento button{
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #2D20EE;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 50%;
+    height: 30px;
+}
+
+#semVazamento button:hover, #semVazamento button:focus{
+    background-color: #1a1191;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#nao{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#nao img {
+    width: 100px;
+    align-self: center;
+}
+
+#nao .atencao{
+    align-self: center;
+    font-weight: 800;
+    font-size: 22px;
+}
+
+#input_usoRealMinutos{
+
+}
+
+#nao button{
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #f70000;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 80%;
+    height: 40px;
+}
+
+#nao button:hover, #nao button:focus{
+    background-color: #da0d0d;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+#comVazamento {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 15px;
+}
+
+#comVazamento p{
+    margin: 0;
+}
+
+#comVazamento button{
+    font-size: 15px;
+    font-weight: bold;
+    background-color: #2D20EE;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    width: 50%;
+    height: 30px;
+}
+
+#comVazamento button:hover, #comVazamento button:focus{
+    background-color: #1a1191;
+    transition: 0.5s;
+    cursor: pointer;
 }

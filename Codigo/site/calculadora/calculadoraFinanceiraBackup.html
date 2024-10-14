@@ -11,7 +11,7 @@
 
 <body>
     <header class="menu">
-        <span class="logo">SafeWare</span>
+        <a href="../index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
         <div class="buttons">
             <a href="../index.html">Início</a>
             <a href="../index.html#sobreNos">Sobre nós</a>
@@ -21,9 +21,8 @@
         <a class="contratar" href="../cadastro.html">Contratar</a>
     </header>
 
-    <div class="info">
-
-        <div class="esquerda">
+    <div id="info">
+        <div id="esquerda">
             <p class="titulo">Calculadora Financeira</p>
             <span class="linha"></span>
             <span class="texto">
@@ -44,150 +43,155 @@
             </ul>
         </div>
 
-        <div class="direita">
-            <p class="subTitulo">Dados do cilindro</p>
+        <div id="direita">
+            <div id="calculadora">
+                <p class="subTitulo">Dados do cilindro</p>
+        
+                <p class="label">Quanto você pagou pelo cilindro?</p>
+                <select id="slct_precoCilindro">
+                    <span class="options">
+                        <option>Selecione uma opção</option>
+                        <option value="500">R$500</option>
+                        <option value="600">R$600</option>
+                        <option value="700">R$700</option>
+                        <option value="800">R$800</option>
+                    </span>
+                </select>
+                <p class="label">Quantos dias esse cilindro durou?</p>
+                <input type=" number" id="input_dias" placeholder="Duração do cilindro">
     
-            <p class="label">Quanto você pagou pelo cilindro?</p>
-            <select id="slct_precoCilindro">
-                <span class="options">
-                    <option>Selecione uma opção</option>
-                    <option>R$500</option>
-                    <option>R$600</option>
-                    <option>R$700</option>
-                    <option>R$800</option>
-                </span>
-            </select>
-            <p class="label">Quantos dias esse cilindro durou?</p>
-            <input type=" number" id="input_dias" placeholder="Duração do cilindro">
-
-            <button class="calcular" onclick="calcular()">Calcular</button>
-
-            <div id="div_mensagem"></div>
+                <button class="calcular" onclick="calcular()">Calcular</button>
+            </div>
+            <div id="div_mensagem" style='display: none;'></div>
         </div>
     </div>
 </body>
 
 </html>
 <script>
-    var cilindroKg = 0;
+    var cilindroKg = 45; // Definindo o valor do cilindro
     var precoCilindro = 0;
     var qtdDiasUso = 0;
 
-    var diasMedia = 0;
-    var tempoMedia = 0;
+    var diasMedia = 24;
+    var tempoMedia = 30;
 
     var mediaDiariaUso = 0;
 
     function calcular() {
-        //valor dos equipamentos basicos de uma cozinha industrial
-
-        //Relacionado ao cilindro/gás
-        cilindroKg = Number(0)
-        precoCilindro = (slct_precoCilindro.value);
+        precoCilindro = Number(slct_precoCilindro.value);
         qtdDiasUso = Number(input_dias.value);
 
-        if (cilindroKg = 45) {
-            diasMedia = 244;
-            tempoMedia = 30;
+        // Verifique se a quantidade de dias não é zero
+        if (qtdDiasUso <= 0) {
+            calculadora.innerHTML += "Por favor, insira um número válido de dias.";
+            return;
+        } else {
+            calculadora.style.display = 'none';
+            esquerda.style.display = 'none';
+            // info.style.display = 'none';
         }
 
-
-        // cálculo da média diária de uso (minutos)
+        // Cálculo da média diária de uso
         mediaDiariaUso = (diasMedia * tempoMedia) / qtdDiasUso;
 
-        // calcular média de consumo diário e mensal em kg
+        // Cálculo do consumo diário e mensal
         var consumoDiario = cilindroKg / qtdDiasUso;
         var consumoMensal = consumoDiario * 30;
 
-
+        div_mensagem.style.display='flex'
         div_mensagem.innerHTML = `
-            Cilindro(kg): ${cilindroKg} kg
-            <br>
+            <p class='titulo'>Resultado</p>
+            <span class='linha'></span>
+            <p class='inseridos'><span class='rotulo'>Cilindro(kg): </span>${cilindroKg}kg</p>
 
-            Preço cilindro de ${cilindroKg}kg: ${precoCilindro}
-            <br><br>
+            <p class='inseridos'><span class='rotulo'>Preço do cilindro: </span>R$ ${precoCilindro}</p>
 
-            Com base em que seu cilindro de ${cilindroKg}kg dura ${qtdDiasUso.toFixed(0)} dias em média:
-            <br><br>
+            <p class='inseridos'>Com base em um cilindro de ${cilindroKg}kg que dura ${qtdDiasUso.toFixed(0)} dias em média:</p>
 
-            Seu consumo diário de gás é de ${consumoDiario.toFixed(0)} kg/dia <br>
-            <br>
-
-            Seu consumo mensal de gás é de ${consumoMensal.toFixed(0)} kg/mês
-            <br><br>
-
-            Sua média de uso diário deveria ser de ${mediaDiariaUso.toFixed(2)} minutos
-            <br><br>
-            Este valor corresponde ao seu uso atual?
-            <br> <br>
-            <button onclick="sim()">Sim</button>
-            <button onclick="nao()">Não</button>
+            <div class='resultado'>
+                <p>Seu consumo diário de gás é de ${consumoDiario.toFixed(2)}kg/dia</p>
+                <p>Seu consumo mensal de gás é de ${consumoMensal.toFixed(2)}kg/mês</p>
+                <p>Sua média de uso diário deveria ser de ${mediaDiariaUso.toFixed(2)} minutos</p>
+            </div>
+            <div class='corresponde'>
+                <p>Este valor corresponde ao seu uso atual?</p>
+                <span>
+                    <button onclick="sim()">Sim</button>
+                    <button onclick="nao()">Não</button>
+                </span>
+            </div>
         `;
     }
 
-    function retorno() {
-        div_mensagem.innerHTML = mensagem;
-    }
-
-
     function sim() {
-        div_mensagem.innerHTML =
-            `
-            <span style="color: green; font-size: 30px; font-weight: bold;">Você não possui vazamentos. :)</span>
-            <p>Mas com um vazamento <b>MINIMO de 2% de gás</b> já torna sua cozinha
-            em um ambiente <b>perigoso e propenso a um acidente grave!</b> <span style="font-weight: bold; color: red; font-size: 20px;">Como INCÊNDIOS e EXPLOSÕES!</span></p>
-            <p>Esse acidente pode te gerar a perca de <span style="color: red; font-weight: bold; font-size: 20px;">R$${valorTotalEqp}</span> apenas em equipamentos!</p>
-            <p>Gera custos com reparação da estrutura e o isolamento do local.</p>    
+        div_mensagem.innerHTML = 
+        `<div id='semVazamento'>
+            <img src='../img/seguro.png'>
+            <span class='verde'>Você não possui vazamentos!</span>
+            <p>Mas com um vazamento <b>mínimo de 2% de gás</b> já torna sua cozinha
+            em um ambiente <b>perigoso e propenso a um acidente grave!</b></p> 
+            <span class='atencao'>Pode gerar INCÊNDIOS e EXPLOSÕES!</span> 
             
-            <p style="color: red; font-weight: bold; font-size: 20px;">E coloca em risco sua vida e a de seus funcionários!</p>
+            <p class='atencao'>O que coloca em risco sua vida e a de seus funcionários!</p>
             <button onclick="retorno()">Nova consulta</button>
+        </div>
         `;
     }
 
     function nao() {
-        div_mensagem.innerHTML =
-            `
-            <span style="color: red; font-size: 20px; font-weight: bold;">Não!?</span> Informe qual é o seu consumo diario em minutos:
-            <br><br>
-            <input type="text" id="input_usoRealMinutos">
-            <button onclick="descobrir()">Descobrir gravidade</button>
+        div_mensagem.innerHTML = 
         `
-            ;
+            <div id='nao'>
+                <img src='../img/aviso.png'>
+                <p class='atencao'">Você pode estar tendo um vazamento!</p> 
+                <p>Informe qual é o seu consumo diário em minutos para descobrir sua perda:</p>
+                <input type="text" id="input_usoRealMinutos" placeholder='Ex: 60'>
+                <button onclick="descobrir()">Descobrir gravidade</button>
+            </div>
+        `;
     }
 
     function descobrir() {
         var usoRealMin = Number(input_usoRealMinutos.value); // tempo de uso diário informado
 
         if (usoRealMin <= mediaDiariaUso) {
-            var diferencaTempo = Number(mediaDiariaUso) - Number(usoRealMin); // diferença do tempo em minutos
-            var consumoEspMin = Number(cilindroKg) / (Number(diasMedia) * Number(tempoMedia)); // consumo de kg por minuto
+            var diferencaTempo = mediaDiariaUso - usoRealMin; // diferença do tempo em minutos
+            var consumoEspMin = cilindroKg / (diasMedia * tempoMedia); // consumo de kg por minuto
             var diferencaKg = diferencaTempo * consumoEspMin; // gás vazado por dia em KG
             var totalVazamento = diferencaKg * 30; // total de gás vazado em KG
-            var custoPerda = ((diferencaTempo / tempoMedia) * (precoCilindro / diasMedia)) * qtdDiasUso; // calcula o custo da perda
-
+            var custoPerda = (diferencaTempo / tempoMedia) * (precoCilindro / diasMedia) * qtdDiasUso; // calcula o custo da perda
+            var perda2 = custoPerda.toFixed(0);
             // Cálculo correto para a diferença de dias de uso
             var consumoReal = usoRealMin * consumoEspMin; // consumo real diário em kg
             var consumoIdeal = mediaDiariaUso * consumoEspMin; // consumo ideal diário em kg
             var diferencaDias = (cilindroKg / consumoReal) - (cilindroKg / consumoIdeal); // dias a mais de uso que está perdendo
 
             div_mensagem.innerHTML = `
-                Você possui um vazamento.
-                <br><br> Você está <span style="color: red">perdendo ${diferencaTempo.toFixed(2)} minutos diários</span>
-                <br><br> São <span style="color: red">${diferencaDias} dias</span> a mais de uso que você está perdendo!
-                <br><br> Sua perda é de <span style="color: red">R$${custoPerda} em gás por mês</span>
-                <br><br> Sua perda é de <span style="color: red">R$${(custoPerda * 12)} em gás por ano</span>
-                <br><br> Está vazando ${totalVazamento}kg de gás por mês e ${totalVazamento * 12}kg por ano!
-                <p>Com um potencial acidente pode te gerar a perca de <span style="color: red; font-weight: bold; font-size: 20px;">R$</span> apenas em equipamentos!</p>
-                <p>Gera custos com reparação da estrutura e o isolamento do local.</p>    
-
-                <p style="color: red; font-weight: bold; font-size: 20px;">E coloca em risco sua vida e a vida de seus funcionarios!</p>
-
-                <button onclick="retorno()">Nova consulta</button>
+                <div id='comVazamento'>
+                    <p class='atencao'>Você possui um vazamento!</p>
+                    <p>Você está <span style="color: red">perdendo ${diferencaTempo.toFixed(0)} minutos diários</span></p>
+                    <p>São <span style="color: red">${diferencaDias.toFixed(0)} dias</span> a mais de uso que você está perdendo!</p>
+                    <p>Sua perda é de <span style="color: red">R$${perda2} em gás por mês</span></p>
+                    <p>Sua perda é de <span style="color: red">R$${(perda2 * 12)} em gás por ano</span></p>
+                    <p>Está vazando ${totalVazamento.toFixed(0)} kg de gás por mês e ${totalVazamento * 12}kg por ano!</p>
+                    <p>O que pode gerar acidentes que acarretam em custos com reparação da estrutura e o isolamento do local.</p>    
+    
+                    <p class='atencao'>E coloca em risco sua vida e a vida de seus funcionários!</p>
+    
+                    <button onclick="retorno()">Nova consulta</button>
+                </div>
             `;
         } else {
             div_mensagem.innerHTML = `<p style="color: purple; font-weight: bold; font-size: 20px;">Você tem um cilindro mágico :o.</p>
             <button onclick="retorno()">Nova consulta</button>
             `;
         }
+    }
+
+    function retorno() {
+        calculadora.style.display = 'flex';
+        esquerda.style.display = 'flex';
+        div_mensagem.style.display = "none"; // Limpar a mensagem para uma nova consulta
     }
 </script>
