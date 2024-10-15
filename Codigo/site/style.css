@@ -626,6 +626,9 @@ textarea:focus{
 #direita{
     gap: 10px;
     padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #calculadora{
@@ -701,9 +704,9 @@ option{
     border-radius: 20px;
 }
 
-.options{
+/* .options{
     margin: 5px;
-}
+} */
 
 .calcular{
     width: 400px;
@@ -723,6 +726,13 @@ option{
     background: #7269F2;
 }
 
+#calculadora .erro{
+    color: #da0d0d;
+    font-size: 14px;
+    margin: 0;
+    font-weight: 600;
+}
+
 /* RESULTADO CALCULADORA */
 
 #div_mensagem {
@@ -733,7 +743,6 @@ option{
     border-radius: 20px;
     width: 550px;
     height: 400px;
-    padding: 25px;
     color: #646464;
     font-size: 16px;
     -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
@@ -904,10 +913,11 @@ option{
 #comVazamento {
     width: 100%;
     height: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     text-align: center;
     gap: 15px;
 }
@@ -916,14 +926,69 @@ option{
     margin: 0;
 }
 
+#comVazamento .esquerda{
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+#comVazamento .direita{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    color: white;
+    border-radius: 0 10px 10px 0px;
+    background: linear-gradient(0deg, #2D20EE 0%, #7269F2 100%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#comVazamento .direita button{
+    background-color: #2e20ee00;
+    color: white;
+    font-weight: 500;
+    width: 150px;
+}
+
+#comVazamento .direita button:hover, #comVazamento .direita button:focus{
+    background-color: #2e20ee00;
+    color: #dddddd;
+    font-weight: 500;
+    transition: 0s;
+}
+
+/* #comVazamento button:hover{
+    color: #000000;
+    font-weight: bolder;
+} */
+
+#comVazamento .contratar{
+    background-color: #ececec;
+    color: #2D20EE;
+    border-radius: 5px;
+    width: 70%;
+    height: 30px;
+    margin: 0;
+}
+
+#comVazamento .obs{
+    text-align: center;
+    font-size: 15px;
+}
+
 #comVazamento button{
     font-size: 15px;
     font-weight: bold;
-    background-color: #2D20EE;
+    background-color: #2e20ee;
     color: white;
     border: 0;
     border-radius: 5px;
-    width: 50%;
+    width: 30%;
     height: 30px;
 }
 
