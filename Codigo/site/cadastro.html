@@ -208,8 +208,8 @@
         validarConfirmacao()
 
         if (correto == true) {
-            validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo"
-
+            // validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo"
+            window.location.replace("dashboard.html");
         } else {
             validado.innerHTML = "Informações Inválidas, revise os campos em vermelho."
             correto = true

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SafeWare | Dashboard</title>
+        
+        <link rel="shortcut icon" type="imagex/png" href="img/Logo.png">
+        <link rel="stylesheet" href="dashboard.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu,person" />
+        <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=person" /> -->
+    </head>
+    <body>
+        <header class="menu">
+            <div class="esquerda">
+                <span href="" id="burguer" class="material-symbols-outlined" onclick="clickMenu()">
+                    menu
+                </span>
+            </div>
+            <div class="centro">
+                <a href="" style="width: 100px; display: contents;"><span class="logo">SafeWare</span></a>
+            </div>
+            <div class="direita">
+                <a href="" class="perfil">
+                    <span class="material-symbols-outlined">
+                        person
+                    </span>
+                </a>
+            </div>
+        </header>
+
+        <div id="opcoes">
+            <span>Cozinha 1</span>
+            <span class="linha"></span>
+            <span></span>
+            <span class="linha"></span>
+            <span></span>
+            <span class="linha"></span>
+        </div>
+
+        <div id="dadoSensores">
+            <span class="esquerda">
+                <p class="titulo">Cozinha 1</p>
+            </span>
+            <span class="direita">
+                <button>Sensor 1</button>
+                <button>Sensor 2</button>
+                <button class="alerta">Sensor 3</button>
+            </span>
+        </div>
+        <div id="dash">
+            <div class="esquerda">
+                <span>
+                    <p class="titulo">Sensor 3</p>
+                </span>
+                <span>
+                    <p>Porcentagem atual</p>
+                    <canvas>Grafico</canvas>
+                </span>
+                <span class="graficoLinha">
+                    <p>Porcentagem de vazamento durante o dia</p>
+                    <canvas>Grafico</canvas>
+                </span>
+            </div>
+
+            <div class="direita">
+                <div class="KPIs">
+                    <span class="inicio">
+                        <p>Horario de início</p>
+                        <p>12:32:06</p>
+                    </span>
+                    <span class="final">
+                        <p>Horario de encerramento</p>
+                        <p>--</p>
+                    </span>
+                    <span class="status">
+                        <p>Status de vazamento</p>
+                        <p>Em andamento</p>
+                    </span>
+                </div>
+                <div class="graficoBarra">
+                    <span>
+                        <label>Mês: </label>
+                        <select id="">
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
+                    </span>
+                    <canvas>Grafico</canvas>
+                </div>
+            </div>
+        </div>
+        <!-- <footer>
+            <div class="rodapeEsq">
+                <p class="titulo">Fale conosco</p>
+                <p class="contato">Deixe seu contato.</p>
+    
+                <div id="form">
+                    <span>
+                        <input class="input_nome" type="text" placeholder="Nome">
+                        <input class="input_empresa" type="text" placeholder="Nome do estabelecimento">
+                        <input class="input_email" type="text" placeholder="E-mail">
+                    </span>
+                     
+                    <textarea class="input_comentario" placeholder="Gostaria de comentar alguma coisa para nossa conversa ser objetiva?"></textarea>
+        
+                    <button id="contato">Enviar</button>
+                </div>
+            </div>
+            <div class="rodapeDir">
+                <div class="endereco">
+                    <span class="titulo">
+                        São Paulo
+                    </span>
+                    <p>
+                        R. Haddock Lobo, 595
+                        Cerqueira César
+                        CEP 01414-001
+                    </p>
+                </div>
+                <div class="contato">
+                    <span class="titulo">
+                        Contatos
+                    </span>
+                    <p>
+                        empresa@sptech.school <br>
+                        <a href="https://github.com/tiagobezerril/projeto-pi" target="_blank">Github</a> <br>
+                        55 11 94002-8922
+                    </p>
+                </div>
+                <div class="direitos">
+                    <span class="titulo">
+                        © 2024 SafeWare
+                    </span>
+                </div>
+            </div>
+        </footer> -->
+    </body>
+</html>
+<script>
+    function clickMenu(){
+        if (opcoes.style.display == 'flex'){
+            opcoes.style.display = 'none';
+        } else{
+            opcoes.style.display = 'flex';
+        }
+    }
+</script>

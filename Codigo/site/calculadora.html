@@ -54,16 +54,6 @@
                     <option value="45">P45</option>
                     <option value="13">P13</option>
                 </select>
-                <!-- <p class="label">Quanto você pagou pelo cilindro?</p>
-                <select id="slct_precoCilindro">
-                    <span class="options">
-                        <option>Selecione uma opção</option>
-                        <option value="500">R$500</option>
-                        <option value="600">R$600</option>
-                        <option value="700">R$700</option>
-                        <option value="800">R$800</option>
-                    </span>
-                </select>  -->
                 <p class="label">Qual o preço do seu cilindro?</p>
                 <input type="text" id="input_preco" placeholder="Preço do cilindro">
 
@@ -73,26 +63,6 @@
                 <button class="calcular" onclick="calcular()">Calcular</button>
             </div>
             <div id="div_mensagem" style='display: none;'>
-                <!-- <div id='comVazamento'>
-                    <div>
-                        <p class='atencao'>Você possui um vazamento!</p>
-                        <p>Você está <span class='vermelho'>perdendo ${diferencaTempo.toFixed(0)} minutos diários</span></p>
-                        <p>São <span class='vermelho'>${diferencaDias.toFixed(0)} dias</span> a mais de uso que você está perdendo por ano!</p>
-                        <p>Sua perda é de <span class='vermelho'>R$${perda2} em gás por mês</span> e <span class='vermelho'>R$${(perda2 * 12)} por ano</span></p>
-                        <p>Está vazando ${totalVazamento.toFixed(0)}kg de gás por mês e ${totalVazamento * 12}kg por ano!</p>
-                        <p>Com um potencial acidente, isso pode gerar um grande prejuízo financeiro</p>    
-                    
-    
-                    <p class='atencao'>e coloca em risco sua vida e a vida de seus funcionários!</p>
-                    </div>
-    
-                    <div class='botoes'>
-                        <img src="img/ciencia.png" alt="" width="200px">
-                        <p class='obs'>Com os nossos serviços você já teria ciencia do vazamento, contrate-nos já!</p>
-                        <a class="contratar" href="cadastro.html">Contratar</a>
-                        <button id='botaoRetorno' onclick="retorno()">Nova consulta</button>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -100,14 +70,8 @@
 
 </html>
 <script>
-    // var cilindroKg = 45; // Definindo o valor do cilindro
-    // var precoCilindro = 0;
-    // var qtdDiasUso = 0;
-
     var diasMedia = 24;
     var tempoMedia = 30;
-
-    // var mediaDiariaUso = 0;
 
     function calcular() {
         var tipoCilindro = Number(slct_tipo.value);
