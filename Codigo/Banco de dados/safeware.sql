@@ -73,7 +73,8 @@ CREATE TABLE Dados (
 ) AUTO_INCREMENT = 3000
 ;
 
-CREATE USER 'safeware'@'localhost' IDENTIFIED BY 'URUBU100';
+
+CREATE USER 'safe'@'localhost' IDENTIFIED BY 'URUBU100';
 
 GRANT INSERT ON safeware.Dados TO 'safe'@'localhost';
 FLUSH PRIVILEGES;
