@@ -103,14 +103,16 @@
     }
 
     function validarCNPJ() {
-        var CNPJ = ipt_CNPJ.value
-        if (CNPJ.length == 14) {
-            ipt_CNPJ.style.border = "3px solid #08a708"
-        } else {
-            correto = false
-            ipt_CNPJ.style.border = "3px solid #f70000"
-        }
+    var CNPJ = ipt_CNPJ.value;
+
+   
+    if (CNPJ.length == 14 && !isNaN(CNPJ)) {
+        ipt_CNPJ.style.border = "3px solid #08a708"
+    } else {
+        correto = false
+        ipt_CNPJ.style.border = "3px solid #f70000"
     }
+}
 
     function validarRepresentante() {
         var Repre = ipt_rep.value
@@ -208,7 +210,6 @@
         validarConfirmacao()
 
         if (correto == true) {
-            // validado.innerHTML = "Informações cadastradas, clique em 'Já é cliente?' abaixo"
             window.location.replace("../../../dat-acqu-ino/index.html");
         } else {
             validado.innerHTML = "Informações Inválidas, revise os campos em vermelho."
