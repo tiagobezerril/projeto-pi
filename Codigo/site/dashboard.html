@@ -110,8 +110,12 @@
                     <option value="12">Dezembro</option>
                 </select>
             </span>
-            <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-            <canvas id="graficoMes1"></canvas>
+            
+        </div>
+        <div class="baixo2">
+            <p class="graficoTitulo">Quantidade de vazamentos Mensal Cozinha 01 </p>
+            <canvas id="teste" style="width: 100%;"></canvas>
+
         </div>
     </div>
 
@@ -334,26 +338,26 @@
 
         //COMENTAR QUANDO FOR CONECTAR NA API
         const dadosDefault = [
-            { dtinstalacao: '05h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '06h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '07h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '08h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '09h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '10h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '11h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '12h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '13h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '14h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '15h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '16h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '17h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '18h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '19h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '20h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '21h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '22h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '23h', sensor: (Math.random() * 3) },
-            { dtinstalacao: '00h', sensor: (Math.random() * 3) }
+            { dtinstalacao: '05h', sensor:  0},
+            { dtinstalacao: '06h', sensor:  1},
+            { dtinstalacao: '07h', sensor:  0},
+            { dtinstalacao: '08h', sensor:  0},
+            { dtinstalacao: '09h', sensor:  0},
+            { dtinstalacao: '10h', sensor:  0},
+            { dtinstalacao: '11h', sensor:  3},
+            { dtinstalacao: '12h', sensor:  0},
+            { dtinstalacao: '13h', sensor:  0},
+            { dtinstalacao: '14h', sensor:  0},
+            { dtinstalacao: '15h', sensor:  2},
+            { dtinstalacao: '16h', sensor:  0},
+            { dtinstalacao: '17h', sensor:  0},
+            { dtinstalacao: '18h', sensor:  0},
+            { dtinstalacao: '19h', sensor:  0},
+            { dtinstalacao: '20h', sensor:  0},
+            { dtinstalacao: '21h', sensor:  0},
+            { dtinstalacao: '22h', sensor:  0},
+            { dtinstalacao: '23h', sensor:  0},
+            { dtinstalacao: '00h', sensor:  0}
         ];
 
         var dadosSensor = dadosDefault.map(dado => dado.sensor) // COMENTAR QUANDO FOR CONECTAR NA API
@@ -448,191 +452,6 @@
     }
 
 
-    // TODO CÓDIGO COMENTADO A BAIXO FOI UMA VERSÃO ALTERNATIVA E VERBOSA (REPETINDO CÓDIGO PRA FACILITAR NO ENTENDIMENTO)
-
-    // const configSensorAnalogicoGeral1 = {
-    //     type: 'line',
-    //     data: {
-    //         datasets: [{
-    //             label: 'Analogico',
-    //             borderColor: '#e63535',
-    //             backgroundColor: '#e63535'
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             x: {
-    //                 beginAtZero: true
-    //             },
-    //             y: {
-    //                 title: {
-    //                     display: true,
-    //                     text: '(%)'
-    //                 },
-    //                 beginAtZero: true,
-    //             },
-    //         },
-    //     }
-    // }
-
-    // const configSensorAnalogicoGeral2 = {
-    //     type: 'line',
-    //     data: {
-    //         datasets: [{
-    //             label: 'Analogico',
-    //             borderColor: '#e63535',
-    //             backgroundColor: '#e63535'
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             x: {
-    //                 beginAtZero: true
-    //             },
-    //             y: {
-    //                 title: {
-    //                     display: true,
-    //                     text: '(%)'
-    //                 },
-    //                 beginAtZero: true,
-    //             },
-    //         },
-    //     }
-    // }
-
-    // const configSensorAnalogicoGeral3 = {
-    //     type: 'line',
-    //     data: {
-    //         datasets: [{
-    //             label: 'Analogico',
-    //             borderColor: '#e63535',
-    //             backgroundColor: '#e63535'
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             x: {
-    //                 beginAtZero: true
-    //             },
-    //             y: {
-    //                 title: {
-    //                     display: true,
-    //                     text: '(%)'
-    //                 },
-    //                 beginAtZero: true,
-    //             },
-    //         },
-    //     }
-    // }
-
-
-    // // DADOS "MOCKADOS" com valores aleatórios para os 3 sensores
-    // const dados1 = [
-    //     { dtinstalacao: '05h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '06h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '07h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '08h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '09h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '10h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '11h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '12h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '13h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '14h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '15h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '16h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '17h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '18h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '19h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '20h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '21h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '22h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '23h', sensor: (Math.random() * 3) },
-    //     { dtinstalacao: '00h', sensor: (Math.random() * 3) }
-    // ];
-
-    // const dados2 = [
-    //     { dtinstalacao: '05h', sensor: 0 },
-    //     { dtinstalacao: '06h', sensor: 0 },
-    //     { dtinstalacao: '07h', sensor: 0 },
-    //     { dtinstalacao: '08h', sensor: 0 },
-    //     { dtinstalacao: '09h', sensor: 0 },
-    //     { dtinstalacao: '10h', sensor: 0 },
-    //     { dtinstalacao: '11h', sensor: 0 },
-    //     { dtinstalacao: '12h', sensor: 0 },
-    //     { dtinstalacao: '13h', sensor: 0 },
-    //     { dtinstalacao: '14h', sensor: 0 },
-    //     { dtinstalacao: '15h', sensor: 0 },
-    //     { dtinstalacao: '16h', sensor: 0 },
-    //     { dtinstalacao: '17h', sensor: 0 },
-    //     { dtinstalacao: '18h', sensor: 0 },
-    //     { dtinstalacao: '19h', sensor: 0 },
-    //     { dtinstalacao: '20h', sensor: 0 },
-    //     { dtinstalacao: '21h', sensor: 0 },
-    //     { dtinstalacao: '22h', sensor: 0 },
-    //     { dtinstalacao: '23h', sensor: 0 },
-    //     { dtinstalacao: '00h', sensor: 0 }
-    // ];
-
-    // const dados3 = [
-    //     { dtinstalacao: '05h', sensor: 0 },
-    //     { dtinstalacao: '06h', sensor: 0 },
-    //     { dtinstalacao: '07h', sensor: 0 },
-    //     { dtinstalacao: '08h', sensor: 0 },
-    //     { dtinstalacao: '09h', sensor: 0 },
-    //     { dtinstalacao: '10h', sensor: 0 },
-    //     { dtinstalacao: '11h', sensor: 0 },
-    //     { dtinstalacao: '12h', sensor: 0 },
-    //     { dtinstalacao: '13h', sensor: 0 },
-    //     { dtinstalacao: '14h', sensor: 0 },
-    //     { dtinstalacao: '15h', sensor: 0 },
-    //     { dtinstalacao: '16h', sensor: 0 },
-    //     { dtinstalacao: '17h', sensor: 0 },
-    //     { dtinstalacao: '18h', sensor: 0 },
-    //     { dtinstalacao: '19h', sensor: 0 },
-    //     { dtinstalacao: '20h', sensor: 0 },
-    //     { dtinstalacao: '21h', sensor: 0 },
-    //     { dtinstalacao: '22h', sensor: 0 },
-    //     { dtinstalacao: '23h', sensor: 0 },
-    //     { dtinstalacao: '00h', sensor: 0 }
-    // ];
-
-
-    // // SENSOR 1
-    // var sensorAnalogico1 = document.getElementById('sensorAnalogico1').getContext('2d')
-    // // criando chart
-    // var chart1 = new Chart(sensorAnalogico1, configSensorAnalogicoGeral1);
-
-    // // colocando os dados "mockados" no chart
-    // dados1.forEach(dadoDaVez => {
-    //     chart1.data.datasets[0].data.push(dadoDaVez.sensor)
-    //     chart1.data.labels.push(dadoDaVez.dtinstalacao)
-    //     chart1.update()
-    // })
-
-    // // SENSOR 2
-    // var sensorAnalogico2 = document.getElementById('sensorAnalogico2').getContext('2d')
-    // // criando chart
-    // var chart2 = new Chart(sensorAnalogico2, configSensorAnalogicoGeral2);
-
-    // // colocando os dados "mockados" no chart
-    // dados2.forEach(dadoDaVez => {
-    //     chart2.data.datasets[0].data.push(dadoDaVez.sensor)
-    //     chart2.data.labels.push(dadoDaVez.dtinstalacao)
-    //     chart2.update()
-    // })
-
-    // // SENSOR 3
-    // var sensorAnalogico3 = document.getElementById('sensorAnalogico3').getContext('2d')
-
-    // // criando chart
-    // var chart3 = new Chart(sensorAnalogico3, configSensorAnalogicoGeral3);
-
-    // // colocando os dados "mockados" no chart
-    // dados3.forEach(dadoDaVez => {
-    //     chart3.data.datasets[0].data.push(dadoDaVez.sensor)
-    //     chart3.data.labels.push(dadoDaVez.dtinstalacao)
-    //     chart3.update()
-    // })
 
     /// --------------------------SEGUNDO GRAFICO----------------------------------------------------------
 
@@ -640,7 +459,7 @@
     const configVazamentoAtual = {
         type: 'doughnut',
         data: {
-            labels: ["Vazamento Atual Sensor 01 / Fogão 01"],
+            labels: ["Vazamento Sensor 01 / Fogão 01"],
             datasets: [{
                 backgroundColor: ['#8E94E6', 'rgba(0, 0, 0, 0.1)'],
                 borderWidth: 0
@@ -673,7 +492,7 @@
     for (var i = 1; i <= 3; i++) {
 
         // CADA VEZ QUE RODAR, PEGA UM GRAFICO DIFERENTE (1, 2 E ASSIM VAI)
-        var vazamentoAtual = document.getElementById("graficoMes" + i).getContext('2d')
+        var vazamentoAtual = document.getElementById("graficoMeia").getContext('2d')
         // CRIANDO CHART
         var chart = new Chart(vazamentoAtual, configVazamentoAtual)
 
@@ -690,5 +509,57 @@
         }
 
     }
+
+    const ctx = document.getElementById('teste').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+                datasets: [
+                    {
+                        label: 'SENSOR01 - FOGÃO 01',
+                        data: [45, 40, 38, 37, 33, 25],
+                        backgroundColor: 'steelblue',
+                        borderColor: 'steelblue',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'SENSOR02 - FOGÃO 02',
+                        data: [39, 40, 43, 38, 29, 27],
+                        backgroundColor: '#32cd32',
+                        borderColor: '#32cd32',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'SENSOR01 - FORNO 01',
+                        data: [44, 39, 42, 35, 31, 29],
+                        backgroundColor: '#ffcbdb',
+                        borderColor: '#ffcbdb',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'SENSOR01 - FORNO 02',
+                        data: [41, 37, 43, 32, 24, 31],
+                        backgroundColor: '#23238E',
+                        borderColor: '#23238E',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Consumo Total',
+                        data: [36, 39, 44, 41, 37, 34],
+                        backgroundColor: '#A020F0',
+                        borderColor: '#A020F0',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
 
 </script>
