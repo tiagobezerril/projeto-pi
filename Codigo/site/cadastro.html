@@ -103,14 +103,29 @@
     }
 
     function validarCNPJ() {
-    var CNPJ = ipt_CNPJ.value;
+    var CNPJ = ipt_CNPJ.value
 
-   
+
     if (CNPJ.length == 14 && !isNaN(CNPJ)) {
+        var CNPJFormatado = ''
+        for (var contador = 0; contador < CNPJ.length; contador++) {
+            CNPJFormatado += CNPJ[contador]
+           
+            if (contador == 1) {
+                CNPJFormatado += '.'
+            } else if (contador == 4) {
+                CNPJFormatado += '.'
+            } else if (contador == 7) {
+                CNPJFormatado += '/'
+            } else if (contador == 11) {
+                CNPJFormatado += '-'
+            }
+        }
+        ipt_CNPJ.value = CNPJFormatado 
         ipt_CNPJ.style.border = "3px solid #08a708"
     } else {
         correto = false
-        ipt_CNPJ.style.border = "3px solid #f70000"
+        ipt_CNPJ.style.border = "3px solid #f70000" 
     }
 }
 
