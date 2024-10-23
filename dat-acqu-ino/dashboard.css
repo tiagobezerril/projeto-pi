@@ -211,12 +211,17 @@ span#burguer:hover, span#burguer:focus{
 
 }
 
+#sensorAnalogico{
+    height: 380px !important;
+    /* width: 800px !important; */
+}
+
 .dash .cima{
     width: 100%;
-    display: grid;
+    /* display: grid;
     grid-template-columns: 75% 24%;
     gap: 10px;
-    padding: 20px;
+    padding: 20px; */
     /* align-items: center;
     justify-content: center; */
 }

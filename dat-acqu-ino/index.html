@@ -59,12 +59,12 @@
                     <span>
                         <p id="tituloSensor1" class="titulo alerta">Sensor 1</p>
                     </span>
-                    <span>
+                    <span style="display: flex; flex-direction: column; align-items: center;">
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
                         <canvas id="sensorAnalogico" class="graficoLinha"></canvas>
                     </span>
                 </div>
-                <div class="direita">
+                <!-- <div class="direita">
                     <span>
                         <p class="graficoTitulo">Porcentagem atual</p>
                         <canvas id="graficoMeia" class="meiaLua">Grafico</canvas>
@@ -84,10 +84,10 @@
                             <p class="dado">Em andamento</p>
                         </span>
                     </div>
-                </div>
+                </div> -->
             </div>
 
-            <div class="baixo">
+            <!-- <div class="baixo">
                 <span>
                     <label>Mês: </label>
                     <select id="">
@@ -106,8 +106,8 @@
                     </select>
                 </span>
                 <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-                <canvas>Grafico</canvas>
-            </div>
+                <canvas id="graficoMes"></canvas>
+            </div> -->
         </div>
 
         <div class="dash" id="sensor2">
@@ -120,15 +120,6 @@
                     <span>
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
                         <canvas id="estaticoLinha" class="graficoLinha"></canvas>
-
-                        <!-- 
-                        <div style="display: flex;">
-                            <div style="width: 50%;">
-                                <canvas ></canvas>
-                            </div>
-                        </div> 
-                        -->
-
                     </span>
                 </div>
                 <div class="direita">
@@ -173,7 +164,7 @@
                     </select>
                 </span>
                 <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-                <canvas>Grafico</canvas>
+                <canvas id="graficoMes"></canvas>
             </div>
         </div>
 
@@ -187,15 +178,6 @@
                     <span>
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
                         <canvas id="estaticoLinha" class="graficoLinha"></canvas>
-
-                        <!-- 
-                        <div style="display: flex;">
-                            <div style="width: 50%;">
-                                
-                            </div>
-                        </div> 
-                        -->
-
                     </span>
                 </div>
                 <div class="direita">
@@ -240,7 +222,7 @@
                     </select>
                 </span>
                 <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-                <canvas>Grafico</canvas>
+                <canvas id="graficoMes"></canvas>
             </div>
         </div>
 
