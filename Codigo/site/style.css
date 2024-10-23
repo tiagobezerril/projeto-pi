@@ -736,9 +736,6 @@ option{
 /* RESULTADO CALCULADORA */
 
 #div_mensagem {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
     background-color: #EFF0F0;
     border-radius: 20px;
     width: 550px;
@@ -748,6 +745,15 @@ option{
     -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
     -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
     box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+}
+
+#resultado{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
 }
 
 #div_mensagem .titulo{
@@ -825,6 +831,7 @@ option{
     justify-content: center;
     text-align: center;
     gap: 5px;
+    padding: 20px;
 }
 
 #semVazamento p{
@@ -877,6 +884,7 @@ option{
     justify-content: center;
     align-items: center;
     gap: 5px;
+    padding: 20px;
 }
 
 #nao img {

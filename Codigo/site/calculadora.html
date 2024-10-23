@@ -86,7 +86,7 @@
             calculadora.style.display = 'none';
             esquerda.style.display = 'none';
             esquerda.style.width = '0';
-            esquerda.innerHTML = '';
+            // esquerda.innerHTML = '';
         }
 
         // Cálculo da média diária de uso
@@ -99,26 +99,28 @@
         div_mensagem.style.width = '550px';
         div_mensagem.style.display='flex'
         div_mensagem.innerHTML = `
-            <p class='titulo'>Resultado</p>
-            <span class='linha'></span>
-            <p class='inseridos'><span class='rotulo'>Cilindro(kg): </span>${tipoCilindro}kg</p>
+            <div id='resultado'>
+               <p class='titulo'>Resultado</p>
+                <span class='linha'></span>
+                <p class='inseridos'><span class='rotulo'>Cilindro(kg): </span>${tipoCilindro}kg</p>
 
-            <p class='inseridos'><span class='rotulo'>Preço do cilindro: </span>R$ ${precoCilindro}</p>
+                <p class='inseridos'><span class='rotulo'>Preço do cilindro: </span>R$ ${precoCilindro}</p>
 
-            <p class='inseridos'>Com base em um cilindro de ${tipoCilindro}kg que dura ${qtdDiasUso.toFixed(0)} dias em média:</p>
+                <p class='inseridos'>Com base em um cilindro de ${tipoCilindro}kg que dura ${qtdDiasUso.toFixed(0)} dias em média:</p>
 
-            <div class='resultado'>
-                <p>Seu consumo diário de gás é de ${consumoDiario.toFixed(2)}kg/dia</p>
-                <p>Seu consumo mensal de gás é de ${consumoMensal.toFixed(2)}kg/mês</p>
-                <p>Sua média de uso diário deveria ser de ${mediaDiariaUso.toFixed(2)} minutos</p>
-            </div>
-            <div class='corresponde'>
-                <p>Este valor corresponde ao seu uso atual?</p>
-                <span>
-                    <button onclick="sim()">Sim</button>
-                    <button onclick="nao()">Não</button>
-                </span>
-            </div>
+                <div class='resultado'>
+                    <p>Seu consumo diário de gás é de ${consumoDiario.toFixed(2)}kg/dia</p>
+                    <p>Seu consumo mensal de gás é de ${consumoMensal.toFixed(2)}kg/mês</p>
+                    <p>Sua média de uso diário deveria ser de ${mediaDiariaUso.toFixed(2)} minutos</p>
+                </div>
+                <div class='corresponde'>
+                    <p>Este valor corresponde ao seu uso atual?</p>
+                    <span>
+                        <button onclick="sim()">Sim</button>
+                        <button onclick="nao()">Não</button>
+                    </span>
+                </div> 
+            </div> 
         `;
     }
 
@@ -217,5 +219,6 @@
         calculadora.style.display = 'flex';
         esquerda.style.display = 'flex';
         div_mensagem.style.display = "none"; // Limpar a mensagem para uma nova consulta
+        esquerda.style.width = '40%';
     }
 </script>
