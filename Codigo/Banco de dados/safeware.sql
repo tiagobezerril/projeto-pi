@@ -73,8 +73,13 @@ CREATE TABLE Dados (
 ) AUTO_INCREMENT = 3000
 ;
 
-
 CREATE USER 'safe'@'localhost' IDENTIFIED BY 'URUBU100';
 
 GRANT INSERT ON safeware.Dados TO 'safe'@'localhost';
 FLUSH PRIVILEGES;
+
+alter table dados modify column fksensor int primary key auto_increment;
+
+select * from dados; 
+    
+    drop table dados;
