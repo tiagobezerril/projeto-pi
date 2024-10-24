@@ -108,21 +108,35 @@
 
     if (CNPJ.length == 14 && !isNaN(CNPJ)) {
         var CNPJFormatado = ''
+        var validacao = 0
         for (var contador = 0; contador < CNPJ.length; contador++) {
             CNPJFormatado += CNPJ[contador]
            
             if (contador == 1) {
                 CNPJFormatado += '.'
+                validacao++
             } else if (contador == 4) {
                 CNPJFormatado += '.'
+                validacao++
             } else if (contador == 7) {
                 CNPJFormatado += '/'
+                validacao++
             } else if (contador == 11) {
                 CNPJFormatado += '-'
+                validacao++
             }
         }
-        ipt_CNPJ.value = CNPJFormatado 
-        ipt_CNPJ.style.border = "3px solid #08a708"
+
+        if(validacao == 4){
+            correto = true
+            ipt_CNPJ.value = CNPJFormatado 
+            ipt_CNPJ.style.border = "3px solid #08a708"
+        }else {
+        correto = false
+        ipt_CNPJ.style.border = "3px solid #f70000" 
+    }
+
+
     } else {
         correto = false
         ipt_CNPJ.style.border = "3px solid #f70000" 
@@ -215,7 +229,6 @@
     }
 
     function validarCadastro() {
-        correto = true
         validarRazao()
         validarFantasia()
         validarCNPJ()
@@ -223,6 +236,7 @@
         validarEmail()
         validarSenha()
         validarConfirmacao()
+        correto = true
 
         if (correto == true) {
             window.location.replace("../../../dat-acqu-ino/index.html");
