@@ -282,6 +282,48 @@ span#burguer:hover, span#burguer:focus{
     height: 300px;
 }
 
+.metricas{
+    width: 300px;
+    height: 40px; 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    flex-direction: row; 
+    border-radius: 5px;   
+    font-weight: bold; 
+    font-size: 16px;
+    color: #696969;
+}
+
+.metricas p{
+    width: 100px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.metricas span{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    color: white;
+}
+
+.seguro{
+    background-color: #60CE60;
+    width: 80px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.risco{
+    background-color: #e63535; 
+    width: 100px; color: #f0b514;
+}
+
+.extremo{
+    background-color: #be2828;
+    width: 120px;
+    border-radius: 0px 5px 5px 0px;
+}
+
 .dash .esquerda .titulo{
     background-color: #60CE60;
     width: 200px;
