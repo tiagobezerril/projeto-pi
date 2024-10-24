@@ -190,6 +190,7 @@ span#burguer:hover, span#burguer:focus{
     width: 200px;
     height: 40px;
     font-size: 17px;
+    font-weight: bold;
 }
 
 #dadoSensores .direita button:hover, #dadoSensores .direita button:focus{
@@ -315,7 +316,7 @@ span#burguer:hover, span#burguer:focus{
 
 .risco{
     background-color: #e63535; 
-    width: 100px; color: #f0b514;
+    width: 100px;
 }
 
 .extremo{
@@ -376,6 +377,7 @@ span#burguer:hover, span#burguer:focus{
 .dash .direita .KPIs .status.seguro{
     color: #60CE60;
     border: solid 3px #60CE60;
+    background-color: white;
 }
 
 .dash .direita .KPIs .status.seguro .nome {
