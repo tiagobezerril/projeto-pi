@@ -70,9 +70,6 @@
 
 </html>
 <script>
-    var diasMedia = 24;
-    var tempoMedia = 30;
-
     function calcular() {
         var tipoCilindro = Number(slct_tipo.value);
         var precoCilindro = Number(input_preco.value);
@@ -93,7 +90,9 @@
         var consumoDiario = tipoCilindro / qtdDiasUso; // Consumo de gás por dia em kg
         var consumoMensal = consumoDiario * 30; // Consumo mensal
 
-        var mediaDiariaUso = (tempoMedia / diasMedia) * 60; // Média de uso diário em minutos
+        var mediaDiariaUso = (consumoDiario / 0.3).toFixed(0);
+        // 9/24  0.3kg/h
+        // (tempoMedia / diasMedia) * 60; // Média de uso diário em minutos
 
         div_mensagem.style.height = '400px';
         div_mensagem.style.width = '550px';
@@ -111,7 +110,7 @@
                 <div class='resultado'>
                     <p>Seu consumo diário de gás é de ${consumoDiario.toFixed(2)}kg/dia</p>
                     <p>Seu consumo mensal de gás é de ${consumoMensal.toFixed(2)}kg/mês</p>
-                    <p>Sua média de uso diário deveria ser de ${mediaDiariaUso.toFixed(2)} minutos</p>
+                    <p>Sua média de uso diário deveria ser de ${mediaDiariaUso} horas</p>
                 </div>
                 <div class='corresponde'>
                     <p>Este valor corresponde ao seu uso atual?</p>
@@ -146,8 +145,8 @@
             <div id='nao'>
                 <img src='img/aviso.png'>
                 <p class='atencao'">Você pode estar tendo um vazamento!</p> 
-                <p>Informe qual é o seu consumo diário em minutos para descobrir sua perda:</p>
-                <input type="text" id="input_usoRealMinutos" placeholder='Ex: 60'>
+                <p>Informe qual é o seu consumo diário em horas para descobrir sua perda:</p>
+                <input type="text" id="input_usoRealMinutos" placeholder='Horas'>
                 <button onclick="descobrir()">Descobrir gravidade</button>
             </div>
         `;
@@ -155,22 +154,24 @@
 
     function descobrir() {
         // Obter valores de entrada
-        var usoRealMin = Number(input_usoRealMinutos.value); // Tempo real de uso em minutos
+        var usoRealHora = Number(input_usoRealMinutos.value); // Tempo real de uso em horas
         var cilindroKg = Number(slct_tipo.value); // Peso do cilindro em kg
         var preco = Number(input_preco.value); // Preço do gás
+        var qtdDiasUso = Number(input_dias.value);
+        var consumoDiario = cilindroKg / qtdDiasUso;
 
         // Calcular a média de uso diário e consumo
-        var mediaDiariaUso = (tempoMedia / diasMedia) * 60; // Média de uso diário em minutos
-        var consumoEspMin = cilindroKg / (diasMedia * tempoMedia); // Consumo em kg por minuto
+        var mediaDiariaUso = (consumoDiario / 0.3).toFixed(0); // Média de uso diário em horas
+        var consumoEspMin = cilindroKg / (consumoDiario * qtdDiasUso); // Consumo em kg por minuto
 
         // Calcular se há vazamento
-        if (usoRealMin < mediaDiariaUso) {
-            var diferencaTempo = mediaDiariaUso - usoRealMin; // Diferença de tempo em minutos
+        if (usoRealHora < mediaDiariaUso) {
+            var diferencaTempo = mediaDiariaUso - usoRealHora; // Diferença de tempo em minutos
             var diferencaKg = diferencaTempo * consumoEspMin; // Gás vazado por dia em kg
-            var totalVazamento = diferencaKg * 30; // Total de gás vazado em kg por mês
-            var custoPerda = (diferencaTempo / tempoMedia) * (preco / diasMedia); // Cálculo da perda financeira
+            var totalVazamento = (diferencaTempo * 0.3) * 30; // Total de gás vazado em kg por mês
+            var custoPerda = ((diferencaTempo * 30)/24) * (preco / qtdDiasUso); // Cálculo da perda financeira
             var perda2 = custoPerda.toFixed(2);
-            var consumoReal = usoRealMin * consumoEspMin; // Consumo real diário em kg
+            var consumoReal = usoRealHora * consumoEspMin; // Consumo real diário em kg
             var consumoIdeal = mediaDiariaUso * consumoEspMin; // Consumo ideal diário em kg
             var diferencaDias = (cilindroKg / consumoReal) - (cilindroKg / consumoIdeal); // Dias a mais de uso que está perdendo
 
@@ -182,7 +183,7 @@
                 <div id='comVazamento'>
                     <div class='esquerda'>
                         <p class='atencao'>Você possui um vazamento!</p>
-                        <p>Você está <span class='vermelho'>perdendo ${diferencaTempo.toFixed(0)} minutos diários</span></p>
+                        <p>Você está <span class='vermelho'>perdendo ${diferencaTempo.toFixed(2)} horas diárias</span></p>
                         <p>São <span class='vermelho'>${diferencaDias.toFixed(0)} dias</span> a mais de uso que você está perdendo por ano!</p>
                         <p>Sua perda é de <span class='vermelho'>R$${perda2} em gás por mês</span> e <span class='vermelho'>R$${(perda2 * 12)} por ano</span></p>
                         <p>Está vazando ${totalVazamento.toFixed(0)}kg de gás por mês e ${totalVazamento * 12}kg por ano!</p>
@@ -202,9 +203,10 @@
 
         } else {
             div_mensagem.style.height = '200px';
+            
             div_mensagem.innerHTML = `
             <div id='comVazamento'>
-                <div>
+                <div style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
                     <p class='titulo'>Dados não correspondentes</p>
                     <span class='linha'></span>
                     <p class='incorreto'>Os dados inseridos não correspondem aos resultados, reveja as informações e tente novamente.</p>
@@ -212,6 +214,7 @@
                 </div>
             </div>
             `;
+            comVazamento.style.display = 'flex';
         }
     }
 
