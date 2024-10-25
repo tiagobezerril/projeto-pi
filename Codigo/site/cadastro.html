@@ -164,12 +164,12 @@
     function validarEmail() {
         var email = ipt_email.value
         var possui_arroba = ipt_email.value.includes("@")
-        var termina_sptech = email.endsWith("Sptech.School")
-        var termina_com = email.endsWith('.com')
-        var termina_br = email.endsWith('.br')
-        var termina_net = email.endsWith('.net')
+        var termina_com = email.endsWith("Sptech.School")
+            || email.endsWith('.com')
+            || email.endsWith('.br')
+            || email.endsWith('.net')
 
-        if (email.length > 3 && possui_arroba && (termina_com || termina_br || termina_net || termina_sptech)) {
+        if (email.length > 3 && possui_arroba && termina_com) {
             ipt_email.style.border = "3px solid #08a708"
         } else {
             correto = false
