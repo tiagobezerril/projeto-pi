@@ -253,13 +253,12 @@ span#burguer:hover, span#burguer:focus{
     height: 100px;
 }
 
-.dash .direita .KPIs{
+.dash .KPIs{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
 }
 
 .dash .baixo {
@@ -345,9 +344,15 @@ span#burguer:hover, span#burguer:focus{
     box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
 }
 
-.dash .direita .KPIs span{
-    width: 220px;
-    height: 90px;
+.dash .KPIs {
+    width: 22%;
+    display: flex;
+    flex-direction: row;
+}
+
+.dash .KPIs span{
+    width: 200px;
+    height: 70px;
     border: solid 3px #afafaf;
     border-radius: 10px;
     text-align: center;
@@ -356,35 +361,36 @@ span#burguer:hover, span#burguer:focus{
     margin-bottom: 10px;
 }
 
-.dash .direita .KPIs .nome{
+.dash .KPIs .nome{
     background-color: #afafaf;
     color: white;
     line-height: 30px;
     margin: 0;
+    font-size: 15px;
 }
 
-.dash .direita .KPIs .dado{
+.dash .KPIs .dado{
     margin: 0;
-    line-height: 55px;
-    font-size: 20px;
+    line-height: 35px;
+    font-size: 18px;
 }
 
-.dash .direita .KPIs .status.alerta{
+.dash .KPIs .status.alerta{
     color: #e63535;
     border: solid 3px #e63535;
 }
 
-.dash .direita .KPIs .status.seguro{
+.dash .KPIs .status.seguro{
     color: #60CE60;
     border: solid 3px #60CE60;
     background-color: white;
 }
 
-.dash .direita .KPIs .status.seguro .nome {
+.dash .KPIs .status.seguro .nome {
     background-color: #60CE60;
 }
 
-.dash .direita .KPIs .status.alerta .nome {
+.dash .KPIs .status.alerta .nome {
     background-color: #e63535;
 }
 
@@ -507,7 +513,6 @@ span#burguer:hover, span#burguer:focus{
 /* GRAFICOS */
 
 .graficoLinha{
-    width: 850px;
-    height: 450px;
-    margin-bottom: 10px;
+    /* width: 900px !important;
+    margin-bottom: 10px; */
 }
