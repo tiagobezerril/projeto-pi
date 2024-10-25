@@ -90,10 +90,10 @@
         abc = (senha != texto_maiusculo && senha != texto_minusculo)
 
         if (abc && senha.length >= 8 && possui_esp && possui_num) {
-            senhas.innerHTML = "Senha Válida"
+            div_senhas.innerHTML = "Senha Válida"
             ipt_senha.style.border = "3px solid #08a708"
         } else {
-            senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número."
+            div_senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número."
             ipt_senha.style.border = "3px solid #f70000"
             correto = false
         }
