@@ -66,42 +66,38 @@
     }
 
     function validarSenha() {
-    correto = true;
-    var senha = ipt_senha.value;
-    var possui_ex = ipt_senha.value.includes("!");
-    var possui_arroba = ipt_senha.value.includes("@");
-    var possui_velha = ipt_senha.value.includes("#");
-    var possui_money = ipt_senha.value.includes("$");
-    var possui_porc = ipt_senha.value.includes("%");
-    var possui_ristico = ipt_senha.value.includes("*");
-    var possui_E = ipt_senha.value.includes("&");
-    var possui_1 = ipt_senha.value.includes("1");
-    var possui_2 = ipt_senha.value.includes("2");
-    var possui_3 = ipt_senha.value.includes("3");
-    var possui_4 = ipt_senha.value.includes("4");
-    var possui_5 = ipt_senha.value.includes("5");
-    var possui_6 = ipt_senha.value.includes("6");
-    var possui_7 = ipt_senha.value.includes("7");
-    var possui_8 = ipt_senha.value.includes("8");
-    var possui_9 = ipt_senha.value.includes("9");
-    var possui_0 = ipt_senha.value.includes("0");
-    var texto_minusculo = senha.toLowerCase();
-    var texto_maiusculo = senha.toUpperCase();
+        var senha = ipt_senha.value
+        var possui_esp = ipt_senha.value.includes("!")
+            || ipt_senha.value.includes("@")
+            || ipt_senha.value.includes("#")
+            || ipt_senha.value.includes("$")
+            || ipt_senha.value.includes("%")
+            || ipt_senha.value.includes("*")
+            || ipt_senha.value.includes("&")
+        var possui_num = ipt_senha.value.includes("1")
+            || ipt_senha.value.includes("2")
+            || ipt_senha.value.includes("3")
+            || ipt_senha.value.includes("4")
+            || ipt_senha.value.includes("5")
+            || ipt_senha.value.includes("6")
+            || ipt_senha.value.includes("7")
+            || ipt_senha.value.includes("8")
+            || ipt_senha.value.includes("9")
+            || ipt_senha.value.includes("0")
+        var texto_minusculo = senha.toLowerCase()
+        var texto_maiusculo = senha.toUpperCase()
 
-    abc = (senha != texto_maiusculo && senha != texto_minusculo);
+        abc = (senha != texto_maiusculo && senha != texto_minusculo)
 
-    if (abc == true && senha.length >= 8 && 
-        (possui_1 || possui_2 || possui_3 || possui_4 || possui_5 || possui_6 || possui_7 || possui_8 || possui_9 || possui_0) && 
-        (possui_ex || possui_arroba || possui_E || possui_money || possui_velha || possui_porc || possui_ristico)) {
-        
-        div_senhas.innerHTML = "Senha Válida";
-        ipt_senha.style.border = "3px solid #08a708";
-    } else {
-        div_senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número.";
-        ipt_senha.style.border = "3px solid #f70000";
-        correto = false;
+        if (abc && senha.length >= 8 && possui_esp && possui_num) {
+            senhas.innerHTML = "Senha Válida"
+            ipt_senha.style.border = "3px solid #08a708"
+        } else {
+            senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número."
+            ipt_senha.style.border = "3px solid #f70000"
+            correto = false
+        }
     }
-}
 
 
     function entrar() {
