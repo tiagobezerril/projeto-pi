@@ -57,10 +57,14 @@
 <body>
     <div class="container">
         <h2>Simulação de Economia de Gás GLP</h2>
-        Botijões de 45kg usados por semana:<br>
-        <input type="number" id="usoSemana" placeholder="Ex: 1, 2, 3"><br>
-        Percentual de economia com sensores (%):<br>
-        <input type="number" id="Eficienia" placeholder="Ex: 10, 20"><br>
+        Botijões de 45kg usados por semana:
+        <br>
+        <input type="number" id="usoSemana" placeholder="Ex: 1, 2, 3">
+        <br>
+        Percentual de economia com sensores (%):
+        <br>
+        <input type="number" id="Eficienia" placeholder="Ex: 10, 20">
+        <br>
         <button onclick="calculateSavings()">Calcular Economia</button>
 
 
@@ -88,7 +92,7 @@
         // Verificação das entradas
         if (Semana <= 0 || Semana >= 100) {
             alert("Digite uma quantidade válida de cilindros GLP 45.");
-        }else if (S_Eficienia < 0 || S_Eficienia > 100){
+        } else if (S_Eficienia < 0 || S_Eficienia > 100) {
             alert("Teste.");
         } else {
             // Cálculo do gasto anual atual
