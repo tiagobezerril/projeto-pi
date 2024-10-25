@@ -2,6 +2,9 @@
 
 var sensorAnalogico = document.getElementById('graficoLinha1').getContext('2d');
 
+sensorAnalogico.width = '800px';
+sensorAnalogico.height = '800px';
+
 var dadosLabel = ['05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h'];
 
 const configLinha = {
@@ -17,6 +20,9 @@ const configLinha = {
 
     },
     options: {
+        // responsive: true, // Torna o gráfico responsivo
+        // maintainAspectRatio: false,
+        responsive: false,
         scales: {
             x: {
                 beginAtZero: true
