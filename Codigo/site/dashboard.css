@@ -234,6 +234,14 @@ span#burguer:hover, span#burguer:focus{
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 10px;   
+}
+
+.cima .divEsq{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
 }
 
@@ -245,7 +253,7 @@ span#burguer:hover, span#burguer:focus{
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
-    gap: 10px;
+    gap: 20px;
     align-items: start;
 }
 

@@ -1,9 +1,6 @@
 // ------------------- GRAFICOS SENSOR 1 ----------------------------------------
 
-var sensorAnalogico = document.getElementById('graficoLinha1').getContext('2d');
-
-sensorAnalogico.width = '800px';
-sensorAnalogico.height = '800px';
+var sensorAnalogico1 = document.getElementById('graficoLinha1').getContext('2d');
 
 var dadosLabel = ['05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h'];
 
@@ -20,8 +17,6 @@ const configLinha = {
 
     },
     options: {
-        // responsive: true, // Torna o gráfico responsivo
-        // maintainAspectRatio: false,
         responsive: false,
         scales: {
             x: {
@@ -39,7 +34,7 @@ const configLinha = {
     }
 }
 
-var grafico = new Chart(sensorAnalogico, configLinha);
+var grafico1 = new Chart(sensorAnalogico1, configLinha);
 
 /// --------------------------GRAFICO MEIA LUA----------------------------------------------------------
 
@@ -146,6 +141,7 @@ const configLinha2 = {
 
     },
     options: {
+        responsive: false,
         scales: {
             x: {
                 beginAtZero: true
@@ -260,12 +256,13 @@ const configLinha3 = {
             label: 'Índice de vazamento',
             borderColor: '#60CE60',
             backgroundColor: '#60CE60',
-            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] 
+            data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0] 
         }],
         labels: dadosLabel
 
     },
     options: {
+        responsive: false,
         scales: {
             x: {
                 beginAtZero: true

@@ -59,11 +59,11 @@
     <div class="dash" id="sensor1">
         <div class="cima">
             <div class="esquerda">
-                <span style="display: flex; flex-direction: row; justify-content: space-between;">
+                <span class="spanTitulo">
                     <p id="tituloSensor1" class="titulo alerta">Sensor 1</p>
                 </span>
 
-                <div style="display: flex; flex-direction: column; width: 600px; display: flex; flex-direction: column; align-items: center;">
+                <div class="divEsq">
                     <span>
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
                         <canvas id="graficoLinha1" class="graficoLinha"></canvas>
@@ -128,136 +128,142 @@
     </div>
 
     <div class="dash" id="sensor2">
-
         <div class="cima">
             <div class="esquerda">
-                <span style="display: flex; flex-direction: row; justify-content: space-between;">
+                <span class="spanTitulo">
                     <p id="tituloSensor2" class="titulo">Sensor 2</p>
-                    <div class="metricas">
-                        <span class="seguro">Seguro</span>
-                        <span class="risco">Em risco</span>
-                        <span class="extremo">Extremo risco</span>
-                        
-                        <p style="width: 80px;">0%</p>
-                        <p style="width: 100px;">>1% e <5%</p>
-                        <p style="width: 120px;">>5% </p>
+                </span>
+                <div class="divEsq">
+                    <span>
+                        <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
+                        <canvas id="graficoLinha2" class="graficoLinha" height="300px" width="600px"></canvas>
+                    </span>
+
+                    <div class="KPIs">
+                        <span class="inicio">
+                            <p class="nome">Horario de início</p>
+                            <p class="dado">--</p>
+                        </span>
+                        <span class="final">
+                            <p class="nome">Horario de encerramento</p>
+                            <p class="dado">--</p>
+                        </span>
+                        <span class="status seguro">
+                            <p class="nome">Status de vazamento</p>
+                            <p class="dado">Sem vazamento</p>
+                        </span>
                     </div>
-                </span>
-                <span>
-                    <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                    <canvas id="graficoLinha2" class="graficoLinha" height="400px"></canvas>
-                </span>
+                </div>
             </div>
+
             <div class="direita">
-                <span>
+                <div class="metricas">
+                    <span class="seguro">Seguro</span>
+                    <span class="risco">Em risco</span>
+                    <span class="extremo">Extremo risco</span>
+                    
+                    <p style="width: 70px;">0%</p>
+                    <p style="width: 90px;">>1% e <5%</p>
+                    <p style="width: 120px;">>5% </p>
+                </div>
+
+                <span style="width: 180px;">
                     <p class="graficoTitulo">Porcentagem atual</p>
                     <canvas id="graficoMeia2" class="meiaLua"></canvas>
                 </span>
 
-                <div class="KPIs">
-                    <span class="inicio">
-                        <p class="nome">Horario de início</p>
-                        <p class="dado">--</p>
+                <div class="baixo">
+                    <span>
+                        <label>Mês: </label>
+                        <select id="">
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
                     </span>
-                    <span class="final">
-                        <p class="nome">Horario de encerramento</p>
-                        <p class="dado">--</p>
-                    </span>
-                    <span class="status seguro">
-                        <p class="nome">Status de vazamento</p>
-                        <p class="dado">Sem vazamento</p>
-                    </span>
+                    <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
+                    <canvas id="graficoMensal2" height="100px !important;"></canvas>
                 </div>
             </div>
-        </div>
-
-        <div class="baixo">
-            <span>
-                <label>Mês: </label>
-                <select id="">
-                    <option value="1">Janeiro</option>
-                    <option value="2">Fevereiro</option>
-                    <option value="3">Março</option>
-                    <option value="4">Abril</option>
-                    <option value="5">Maio</option>
-                    <option value="6">Junho</option>
-                    <option value="7">Julho</option>
-                    <option value="8">Agosto</option>
-                    <option value="9">Setembro</option>
-                    <option value="10">Outubro</option>
-                    <option value="11">Novembro</option>
-                    <option value="12">Dezembro</option>
-                </select>
-            </span>
-            <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-            <canvas id="graficoMensal2" height="100px !important;"></canvas>
         </div>
     </div>
 
     <div class="dash" id="sensor3">
-
         <div class="cima">
             <div class="esquerda">
-                <span style="display: flex; flex-direction: row; justify-content: space-between;">
+                <span class="spanTitulo">
                     <p id="tituloSensor3" class="titulo">Sensor 3</p>
-                    <div class="metricas">
-                        <span class="seguro">Seguro</span>
-                        <span class="risco">Em risco</span>
-                        <span class="extremo">Extremo risco</span>
-                        
-                        <p style="width: 80px;">0%</p>
-                        <p style="width: 100px;">>1% e <5%</p>
-                        <p style="width: 120px;">>5% </p>
+                </span>
+                <div class="divEsq">
+                    <span>
+                        <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
+                        <canvas id="graficoLinha3" class="graficoLinha" height="300px" width="600px"></canvas>
+                    </span>
+
+                    <div class="KPIs">
+                        <span class="inicio">
+                            <p class="nome">Horario de início</p>
+                            <p class="dado">07:02:12</p>
+                        </span>
+                        <span class="final">
+                            <p class="nome">Horario de encerramento</p>
+                            <p class="dado">07:54:36</p>
+                        </span>
+                        <span class="status seguro">
+                            <p class="nome">Status de vazamento</p>
+                            <p class="dado">Sem vazamento</p>
+                        </span>
                     </div>
-                </span>
-                <span>
-                    <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                    <canvas id="graficoLinha3" class="graficoLinha" height="400px"></canvas>
-                </span>
+                </div>
             </div>
+
             <div class="direita">
-                <span>
+                <div class="metricas">
+                    <span class="seguro">Seguro</span>
+                    <span class="risco">Em risco</span>
+                    <span class="extremo">Extremo risco</span>
+                    
+                    <p style="width: 70px;">0%</p>
+                    <p style="width: 90px;">>1% e <5%</p>
+                    <p style="width: 120px;">>5% </p>
+                </div>
+
+                <span style="width: 180px;">
                     <p class="graficoTitulo">Porcentagem atual</p>
                     <canvas id="graficoMeia3" class="meiaLua"></canvas>
                 </span>
 
-                <div class="KPIs">
-                    <span class="inicio">
-                        <p class="nome">Horario de início</p>
-                        <p class="dado">--</p>
+                <div class="baixo">
+                    <span>
+                        <label>Mês: </label>
+                        <select id="">
+                            <option value="1">Janeiro</option>
+                            <option value="2">Fevereiro</option>
+                            <option value="3">Março</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Maio</option>
+                            <option value="6">Junho</option>
+                            <option value="7">Julho</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setembro</option>
+                            <option value="10">Outubro</option>
+                            <option value="11">Novembro</option>
+                            <option value="12">Dezembro</option>
+                        </select>
                     </span>
-                    <span class="final">
-                        <p class="nome">Horario de encerramento</p>
-                        <p class="dado">--</p>
-                    </span>
-                    <span class="status seguro">
-                        <p class="nome">Status de vazamento</p>
-                        <p class="dado">Sem vazamento</p>
-                    </span>
+                    <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
+                    <canvas id="graficoMensal3" height="100px !important;"></canvas>
                 </div>
             </div>
-        </div>
-
-        <div class="baixo">
-            <span>
-                <label>Mês: </label>
-                <select id="">
-                    <option value="1">Janeiro</option>
-                    <option value="2">Fevereiro</option>
-                    <option value="3">Março</option>
-                    <option value="4">Abril</option>
-                    <option value="5">Maio</option>
-                    <option value="6">Junho</option>
-                    <option value="7">Julho</option>
-                    <option value="8">Agosto</option>
-                    <option value="9">Setembro</option>
-                    <option value="10">Outubro</option>
-                    <option value="11">Novembro</option>
-                    <option value="12">Dezembro</option>
-                </select>
-            </span>
-            <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-            <canvas id="graficoMensal3" height="100px !important;"></canvas>
         </div>
     </div>
 
