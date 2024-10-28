@@ -199,6 +199,7 @@ span#burguer:hover, span#burguer:focus{
 
 #dadoSensores .direita .alerta{
     background-color: #e63535;
+    border: 4px solid #a11919;
     -webkit-box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
     -moz-box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
     box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
