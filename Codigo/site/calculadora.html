@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeWare | Calculadora Financeira</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="imagex/png" href="img/Logo.png">
+    <link rel="shortcut icon" type="image/png" href="img/Logo.png">
 </head>
 
 <body>
@@ -58,7 +58,7 @@
                 <input type="text" id="input_preco" placeholder="Preço do cilindro">
 
                 <p class="label">Quantos dias esse cilindro durou?</p>
-                <input type=" number" id="input_dias" placeholder="Duração do cilindro">
+                <input type="number" id="input_dias" placeholder="Duração do cilindro">
     
                 <button class="calcular" onclick="calcular()">Calcular</button>
             </div>
@@ -74,11 +74,11 @@
         var tipoCilindro = Number(slct_tipo.value);
         var precoCilindro = Number(input_preco.value);
         var qtdDiasUso = Number(input_dias.value);
+        
 
         // Verifique se a quantidade de dias não é zero
-        if (qtdDiasUso <= 0 || tipoCilindro == 0 || precoCilindro <= 0) {
-            calculadora.innerHTML += "<p class='erro'>Por favor, insira insira valores válidos.</p>";
-            return;
+        if (qtdDiasUso <= 0 || tipoCilindro == 0 || precoCilindro <= 0){
+            calculadora.innerHTML += "<p class='erro'>Por favor, insira valores válidos.</p>";
         } else {
             calculadora.style.display = 'none';
             esquerda.style.display = 'none';
@@ -144,7 +144,7 @@
         `
             <div id='nao'>
                 <img src='img/aviso.png'>
-                <p class='atencao'">Você pode estar tendo um vazamento!</p> 
+                <p class='atencao'>Você pode estar tendo um vazamento!</p> 
                 <p>Informe qual é o seu consumo diário em horas para descobrir sua perda:</p>
                 <input type="text" id="input_usoRealMinutos" placeholder='Horas'>
                 <button onclick="descobrir()">Descobrir gravidade</button>
@@ -170,7 +170,8 @@
             var diferencaKg = diferencaTempo * consumoEspMin; // Gás vazado por dia em kg
             var totalVazamento = (diferencaTempo * 0.3) * 30; // Total de gás vazado em kg por mês
             var custoPerda = ((diferencaTempo * 30)/24) * (preco / qtdDiasUso); // Cálculo da perda financeira
-            var perda2 = custoPerda.toFixed(2);
+            var perda2 = custoPerda;
+            var perdaAno= perda2 * 12
             var consumoReal = usoRealHora * consumoEspMin; // Consumo real diário em kg
             var consumoIdeal = mediaDiariaUso * consumoEspMin; // Consumo ideal diário em kg
             var diferencaDias = (cilindroKg / consumoReal) - (cilindroKg / consumoIdeal); // Dias a mais de uso que está perdendo
@@ -185,7 +186,7 @@
                         <p class='atencao'>Você possui um vazamento!</p>
                         <p>Você está <span class='vermelho'>perdendo ${diferencaTempo.toFixed(2)} horas diárias</span></p>
                         <p>São <span class='vermelho'>${diferencaDias.toFixed(0)} dias</span> a mais de uso que você está perdendo por mês!</p>
-                        <p>Sua perda é de <span class='vermelho'>R$${perda2} em gás por mês</span> e <span class='vermelho'>R$${(perda2 * 12)} por ano</span></p>
+                        <p>Sua perda é de <span class='vermelho'>R$${perda2.toFixed(2)} em gás por mês</span> e <span class='vermelho'>R$${(perdaAno.toFixed(2))} por ano</span></p>
                         <p>Está vazando ${totalVazamento.toFixed(0)}kg de gás por mês e ${totalVazamento.toFixed(0) * 12}kg por ano!</p>
                         <p>Com um potencial acidente, isso pode gerar um grande prejuízo financeiro</p>   
                     
