@@ -578,10 +578,3 @@ span#burguer:hover, span#burguer:focus{
 #sensor1{
     display: flex;
 }
-
-/* GRAFICOS */
-
-.graficoLinha{
-    /* width: 900px !important;
-    margin-bottom: 10px; */
-}
