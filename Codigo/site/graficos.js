@@ -9,10 +9,23 @@ const configLinha = {
     data: {
         datasets: [{
             label: 'Índice de vazamento',
+            borderColor: '#464646',
+            backgroundColor: '#464646',
+            data: [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3] // COMENTAR QUANDO FOR CONECTAR NA API
+        },
+        {
+            label: 'Em risco',
+            borderColor: '#eb801d',
+            backgroundColor: '#eb801d',
+            data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
+        },
+        {
+            label: 'Extremo risco',
             borderColor: '#e63535',
             backgroundColor: '#e63535',
-            data: [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3] // COMENTAR QUANDO FOR CONECTAR NA API
-        }],
+            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] // COMENTAR QUANDO FOR CONECTAR NA API
+        }
+        ],
         labels: dadosLabel // COMENTAR QUANDO FOR CONECTAR NA API
 
     },

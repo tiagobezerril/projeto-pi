@@ -299,12 +299,13 @@ span#burguer:hover, span#burguer:focus{
 }
 
 .risco{
-    background-color: #e63535; 
+    background-color: #eb801d; 
     width: 90px;
+    color: #464646;
 }
 
 .extremo{
-    background-color: #be2828;
+    background-color: #e63535;
     width: 120px;
     border-radius: 0px 5px 5px 0px;
 }
