@@ -116,6 +116,10 @@
             || ipt_CNPJ.value.includes("0")
 
 
+            var cnpjSomenteNumeros = CNPJ.replaceAll('.', '').replaceAll('/', '').replaceAll('-', '');
+            ipt_CNPJ.value = cnpjSomenteNumeros;
+        
+
         if ((CNPJ.length == 14 || CNPJ.length == 18) && possui_num) {
             var CNPJFormatado = ''
             for (var contador = 0; contador < CNPJ.length; contador++) {
