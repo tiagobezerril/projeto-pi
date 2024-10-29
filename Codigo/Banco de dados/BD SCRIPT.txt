@@ -3,13 +3,17 @@ SELECT s.idsensor as 'ID Sensor',
   da.dtdecoleta as 'Data de Coleta'
 FROM sensor as s 
 JOIN dados as da ON idsensor = fksensor 
-WHERE idsensor = 2009;
+WHERE idsensor = 2000;
 
-SELECT em.idCadastro as 'Id Empresa',
-em.razao_social as 'Razão Social',
-em.nome_fantasia as 'Nome Fantasia',
-en.Estado,
-  en.cidade AS Cidade,
-  en.cep as CEP
-FROM empresa as em 
-JOIN endereco as en ON idCadastro = fkempresa;
+SELECT 
+  se.local_inst AS 'Local de Instalação',
+  se.tipo AS 'Tipo de Sensor',
+  se.stts AS 'Status Atual',
+  CASE 
+    WHEN se.stts = 'ativo' THEN 'Sensor em funcionamento'
+    WHEN se.stts = 'inativo' THEN 'Sensor desligado'
+    ELSE 'Status desconhecido'
+  END AS 'Descrição do Status'
+FROM sensor AS se;
+
+
