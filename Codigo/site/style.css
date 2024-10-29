@@ -793,6 +793,7 @@ option{
 .corresponde p{
     font-size: 14px;
     margin: 0;
+    text-align: center;
 }
 
 .corresponde span{
