@@ -1,5 +1,5 @@
 CREATE DATABASE safeware;
-use safeware;
+USE safeware;
 
 CREATE TABLE empresa (
   idCadastro INT PRIMARY KEY AUTO_INCREMENT,
@@ -68,3 +68,50 @@ CREATE TABLE dados (
   dtdecoleta datetime default current_timestamp(),
   FOREIGN KEY (fksensor) REFERENCES sensor(idsensor)
 ) AUTO_INCREMENT = 3000;
+
+SELECT razao_social as 'Razão Social',
+nome_fantasia as 'Nome Fantasia',
+cnpj as CNPJ
+FROM empresa
+WHERE razao_social LIKE '%LTDA%';
+
+SELECT em.nome_fantasia as 'Nome Fantasia',
+  en.Estado,
+  en.cidade AS Cidade,
+  en.bairro as Bairro,
+  en.cep as CEP 
+FROM empresa as em 
+JOIN endereco as en ON idCadastro = fkempresa;
+
+SELECT 
+  CONCAT(
+    em.nome_fantasia, ' possui o sensor ', se.tipo, 
+    ' instalado no local ', se.local_inst, 
+    ', localizado em ', en.logradouro, ', ', en.numero, ', ', en.bairro, ', ', en.cidade, ', ', en.Estado, ' - CEP: ', en.cep
+  ) AS 'Descrição Completa'
+FROM empresa AS em
+JOIN endereco AS en ON em.idCadastro = en.fkempresa
+JOIN sensor AS se ON em.idCadastro = se.fkempresa;
+
+SELECT 
+  se.local_inst AS 'Local de Instalação',
+  se.tipo AS 'Tipo de Sensor',
+  se.stts AS 'Status Atual',
+  CASE 
+    WHEN se.stts = 'ativo' THEN 'Sensor em funcionamento'
+    WHEN se.stts = 'inativo' THEN 'Sensor desligado'
+    ELSE 'Status desconhecido'
+  END AS 'Descrição do Status'
+FROM sensor AS se;
+
+SELECT 
+  se.local_inst AS 'Local de Instalação',
+  se.tipo AS 'Tipo de Sensor',
+  IFNULL(se.stts, 'Status não definido') AS 'Status Atual',
+  CASE 
+    WHEN se.stts = 'ativo' THEN 'Sensor em funcionamento'
+    WHEN se.stts = 'inativo' THEN 'Sensor desligado'
+    ELSE 'Status desconhecido'
+  END AS 'Descrição do Status'
+FROM sensor AS se;
+
