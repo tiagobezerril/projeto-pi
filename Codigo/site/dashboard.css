@@ -275,7 +275,7 @@ span#burguer:hover, span#burguer:focus{
 }
 
 .metricas{
-    width: 280px;
+    width: 300px;
     height: 20px; 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -287,20 +287,20 @@ span#burguer:hover, span#burguer:focus{
 }
 
 .metricas p{
-    width: 70px;
+    width: 100px;
     text-align: center;
     margin-top: 5px;
 }
 
 .seguro{
     background-color: #60CE60;
-    width: 70px;
+    width: 100px;
     border-radius: 5px 0px 0px 5px;
 }
 
 .risco{
     background-color: #eb801d; 
-    width: 90px;
+    width: 100px;
     color: #464646;
 }
 
