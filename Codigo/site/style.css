@@ -36,6 +36,7 @@ input[type="number"]::-webkit-outer-spin-button {
     height: 60px;
     display: grid;
     grid-template-columns: 10% 80% 10%;
+    justify-content: space-between;
     gap: 5px;
     align-items: center;
     border-radius: 10px;
@@ -71,7 +72,7 @@ input[type="number"]::-webkit-outer-spin-button {
     gap: 20px;
     font-size: 18px;
     font-weight: bolder;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .buttons a {
@@ -116,16 +117,16 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* HOME */
 #inicio {
-    width: 90%;
+    width: 100%;
     display: flex;
-    gap: 120px;
     align-items: center;
+    justify-content: space-evenly;
     margin-bottom: 50px;
 }
 
 #inicio .titulo{
     width: 480px;
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 900;
     line-height: 90px;
     margin-bottom: 0;
@@ -141,10 +142,10 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .text {
-    width:450px;
-    font-size: 28px;
+    width: 450px;
+    font-size: 23px;
     font-weight: 700;
-    line-height: 45px;
+    line-height: 40px;
     text-align: left;
 }
 
@@ -159,7 +160,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .imgInicio img {
-    width: 90%;
+    width: 400px;
     border-radius: 50px;
 }
 
