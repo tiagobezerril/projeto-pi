@@ -13,12 +13,12 @@ const configLinha = {
             backgroundColor: '#464646',
             data: [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3] // COMENTAR QUANDO FOR CONECTAR NA API
         },
-        {
-            label: 'Em risco',
-            borderColor: '#eb801d',
-            backgroundColor: '#eb801d',
-            data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
-        },
+        //{
+        //    label: 'Em risco',
+        //    borderColor: '#eb801d',
+        //    backgroundColor: '#eb801d',
+        //    data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
+        //},
         {
             label: 'Extremo risco',
             borderColor: '#e63535',
@@ -150,12 +150,12 @@ const configLinha2 = {
             backgroundColor: '#60CE60',
             data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] 
         },
-        {
-            label: 'Em risco',
-            borderColor: '#eb801d',
-            backgroundColor: '#eb801d',
-            data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
-        },
+        //{
+        //    label: 'Em risco',
+        //    borderColor: '#eb801d',
+        //    backgroundColor: '#eb801d',
+        //    data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
+        //},
         {
             label: 'Extremo risco',
             borderColor: '#e63535',
@@ -284,12 +284,12 @@ const configLinha3 = {
             backgroundColor: '#60CE60',
             data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0] 
         },
-        {
-            label: 'Em risco',
-            borderColor: '#eb801d',
-            backgroundColor: '#eb801d',
-            data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
-        },
+        //{
+        //    label: 'Em risco',
+        //    borderColor: '#eb801d',
+        //    backgroundColor: '#eb801d',
+        //    data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
+        //},
         {
             label: 'Extremo risco',
             borderColor: '#e63535',
