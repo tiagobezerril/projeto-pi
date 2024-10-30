@@ -177,85 +177,19 @@
     var paginacao = {};
     var tempo = {};
 
-    // Função para atualizar o gráfico de doughnut
-    function atualizarGraficoDoughnut(grafico, valor) {
-        // Supondo que o valor seja a porcentagem de vazamento atual (por exemplo, 70%)
-        const vazamentoAtual = parseFloat(valor);
-        const restante = 100 - vazamentoAtual;
+    // // Função para atualizar o gráfico de doughnut
+    // function atualizarGraficoDoughnut(grafico, valor) {
+    //     // Supondo que o valor seja a porcentagem de vazamento atual (por exemplo, 70%)
+    //     const vazamentoAtual = parseFloat(valor);
+    //     const restante = 100 - vazamentoAtual;
 
-        // Atualizar os dados do gráfico
-        grafico.data.datasets[0].data = [vazamentoAtual, restante];
-        grafico.update();
-    }
+    //     // Atualizar os dados do gráfico
+    //     grafico.data.datasets[0].data = [vazamentoAtual, restante];
+    //     grafico.update();
+    // }
 
-    // Atualizar a função obterDados para lidar com gráficos diferentes
-    function obterDados(grafico, endpoint, tipo = 'line') {
-        fetch('http://localhost:3300/sensores/' + endpoint)
-            .then(response => response.json())
-            .then(valores => {
-                if (paginacao[endpoint] == null) {
-                    paginacao[endpoint] = 0;
-                }
-                if (tempo[endpoint] == null) {
-                    tempo[endpoint] = 0;
-                }
-
-                var ultimaPaginacao = paginacao[endpoint];
-                paginacao[endpoint] = valores.length;
-                valores = valores.slice(ultimaPaginacao);
-
-                if (tipo === 'line') {
-                    valores.forEach((valor) => {
-                        if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                            grafico.data.labels.shift();
-                            grafico.data.datasets[0].data.shift();
-                        }
-
-                        grafico.data.labels.push(tempo[endpoint]++);
-                        grafico.data.datasets[0].data.push(parseFloat(valor));
-                        grafico.update();
-                    });
-                } else if (tipo === 'doughnut') {
-                    // Para o gráfico de doughnut, enviamos apenas o último valor
-                    if (valores.length > 0) {
-                        atualizarGraficoDoughnut(grafico, valores[valores.length - 1]);
-                    }
-                }
-            })
-            .catch(error => console.error('Erro ao obter dados:', error));
-    }
-
-    // Configuração do gráfico de vazamento atual (doughnut)
-    var vazamentoAtual = new Chart(document.getElementById('porcentagemAtual').getContext('2d'), {
-        type: 'doughnut',
-        data: {
-            labels: ['Vazamento', 'Normal'],
-            datasets: [{
-                label: 'Vazamento atual',
-                data: [0, 100], // Inicia com 0% de vazamento
-                backgroundColor: ['#e63535', '#ccc']
-            }]
-        },
-        options: {
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: function (context) {
-                            return context.label + ': ' + context.raw + '%';
-                        }
-                    }
-                }
-            }
-        }
-    });
-
-    // Atualização contínua dos dados (para ambos os gráficos)
-    setInterval(() => {
-        obterDados(sensorAnalogico, 'analogico', 'line');
-        obterDados(vazamentoAtual, 'vazamentoAtual', 'doughnut'); // Atualiza o gráfico doughnut
-    }, 1000);
-
-    // function obterDados(grafico, endpoint) {
+    // // Atualizar a função obterDados para lidar com gráficos diferentes
+    // function obterDados(grafico, endpoint, tipo = 'line') {
     //     fetch('http://localhost:3300/sensores/' + endpoint)
     //         .then(response => response.json())
     //         .then(valores => {
@@ -270,24 +204,90 @@
     //             paginacao[endpoint] = valores.length;
     //             valores = valores.slice(ultimaPaginacao);
 
-    //             valores.forEach((valor) => {
-    //                 if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-    //                     grafico.data.labels.shift();
-    //                     grafico.data.datasets[0].data.shift();
-    //                 }
+    //             if (tipo === 'line') {
+    //                 valores.forEach((valor) => {
+    //                     if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+    //                         grafico.data.labels.shift();
+    //                         grafico.data.datasets[0].data.shift();
+    //                     }
 
-    //                 grafico.data.labels.push(tempo[endpoint]++);
-    //                 grafico.data.datasets[0].data.push(parseFloat(valor));
-    //                 grafico.update();
-    //             });
+    //                     grafico.data.labels.push(tempo[endpoint]++);
+    //                     grafico.data.datasets[0].data.push(parseFloat(valor));
+    //                     grafico.update();
+    //                 });
+    //             } else if (tipo === 'doughnut') {
+    //                 // Para o gráfico de doughnut, enviamos apenas o último valor
+    //                 if (valores.length > 0) {
+    //                     atualizarGraficoDoughnut(grafico, valores[valores.length - 1]);
+    //                 }
+    //             }
     //         })
     //         .catch(error => console.error('Erro ao obter dados:', error));
     // }
 
+    // // Configuração do gráfico de vazamento atual (doughnut)
+    // var vazamentoAtual = new Chart(document.getElementById('porcentagemAtual').getContext('2d'), {
+    //     type: 'doughnut',
+    //     data: {
+    //         labels: ['Vazamento', 'Normal'],
+    //         datasets: [{
+    //             label: 'Vazamento atual',
+    //             data: [0, 100], // Inicia com 0% de vazamento
+    //             backgroundColor: ['#e63535', '#ccc']
+    //         }]
+    //     },
+    //     options: {
+    //         plugins: {
+    //             tooltip: {
+    //                 callbacks: {
+    //                     label: function (context) {
+    //                         return context.label + ': ' + context.raw + '%';
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // });
+
+    // // Atualização contínua dos dados (para ambos os gráficos)
     // setInterval(() => {
-    //     obterDados(sensorAnalogico, 'analogico');
-    //     // obterDados(sensorDigital, 'digital');
+    //     obterDados(sensorAnalogico, 'analogico', 'line');
+    //     obterDados(vazamentoAtual, 'vazamentoAtual', 'doughnut'); // Atualiza o gráfico doughnut
     // }, 1000);
+
+    function obterDados(grafico, endpoint) {
+        fetch('http://localhost:3300/sensores/' + endpoint)
+            .then(response => response.json())
+            .then(valores => {
+                if (paginacao[endpoint] == null) {
+                    paginacao[endpoint] = 0;
+                }
+                if (tempo[endpoint] == null) {
+                    tempo[endpoint] = 0;
+                }
+
+                var ultimaPaginacao = paginacao[endpoint];
+                paginacao[endpoint] = valores.length;
+                valores = valores.slice(ultimaPaginacao);
+
+                valores.forEach((valor) => {
+                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+                        grafico.data.labels.shift();
+                        grafico.data.datasets[0].data.shift();
+                    }
+
+                    grafico.data.labels.push(tempo[endpoint]++);
+                    grafico.data.datasets[0].data.push(parseFloat(valor));
+                    grafico.update();
+                });
+            })
+            .catch(error => console.error('Erro ao obter dados:', error));
+    }
+
+    setInterval(() => {
+        obterDados(sensorAnalogico, 'analogico');
+        // obterDados(sensorDigital, 'digital');
+    }, 1000);
 
 
 </script>
