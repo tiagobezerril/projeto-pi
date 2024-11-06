@@ -31,7 +31,7 @@ input{
     width: 100%;
     height: 10vh;
     display: grid;
-    grid-template-columns: 5% 80% 15%;
+    grid-template-columns: 5% 35% 60%;
     gap: 5px;
     align-items: center;
     border-radius: 0 0 10px 10px;
@@ -43,11 +43,61 @@ input{
     box-shadow: 0px 8px 7px -6px rgba(168,168,168,1);
 }
 
-.menu .esquerda, .menu .direita{
+.menu .esquerda{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.menu .direita{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.menu .centro{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1vw;
+}
+
+.menu .titulo {
+    color: #2D20EE;
+    font-weight: 900;
+    font-size: 20px;
+    margin: 0;
+}
+
+#sensores{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1vw;
+}
+
+#sensores button{
+    color: white;
+    background-color: #60CE60;
+    border: 0;
+    border-radius: 10px;
+    width: 200px;
+    height: 40px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+#sensores .alerta{
+    background-color: #e63535;
+    border: 3px solid #a11919;
+}
+
+#sensores button:hover, #dadoSensores button:focus{
+    cursor: pointer;
+    transform: scale(0.9);
 }
 
 .menu a{
@@ -116,9 +166,11 @@ span#burguer:hover, span#burguer:focus{
     left: -300px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 250px;
     height: 100vh;
     padding-top: 80px;
+    padding-bottom: 4vh;
     background-color: #EFF0F0;
 
     -webkit-box-shadow: 7px -3px 7px -6px rgba(168,168,168,1);
@@ -158,7 +210,27 @@ span#burguer:hover, span#burguer:focus{
     cursor: default;
 }
 
-#dadoSensores{
+#opcoes a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    color: white;
+    background-color: #2D20EE;
+    width: 10vw;
+    height: 5vh;
+    border-radius: 1.5vh;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+#opcoes a:hover, #opcoes a:focus{
+    background-color: #7269F2;
+    transform: scale(0.9);
+}
+
+
+/* #dadoSensores{
     width: 100%;
     height: 12vh;
     margin-top: 60px;
@@ -180,32 +252,10 @@ span#burguer:hover, span#burguer:focus{
     font-size: 35px;
     font-weight: 900;
     color: #2D20EE;
-}
-
-#dadoSensores .direita button{
-    color: white;
-    background-color: #60CE60;
-    border: 0;
-    border-radius: 10px;
-    width: 200px;
-    height: 40px;
-    font-size: 17px;
-    font-weight: bold;
-}
-
-#dadoSensores .direita button:hover, #dadoSensores .direita button:focus{
-    cursor: pointer;
-}
-
-#dadoSensores .direita .alerta{
-    background-color: #e63535;
-    border: 4px solid #a11919;
-    -webkit-box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
-    -moz-box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
-    box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
-}
+} */
 
 .dash{
+    margin-top: 10vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -219,8 +269,6 @@ span#burguer:hover, span#burguer:focus{
     grid-template-columns: 50% 50%;
     gap: 10px;
     padding: 20px;
-    /* align-items: center;
-    justify-content: center; */
 }
 
 .graficoTitulo{
@@ -353,11 +401,8 @@ span#burguer:hover, span#burguer:focus{
     text-justify: center;
 }
 
-.dash .esquerda .titulo.alerta{
+.dash .titulo.alerta{
     background-color: #e63535;
-    -webkit-box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
-    -moz-box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
-    box-shadow: 7px -3px 15px -3px rgba(255,107,107,1);
 }
 
 .dash .KPIs {

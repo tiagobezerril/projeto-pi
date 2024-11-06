@@ -100,19 +100,19 @@ new Chart(mesCtx, {
     data: {
         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
         datasets: [{
-            label: 'Sensor 1',
+            label: 'Fogão 01',
             data: [2, 0, 0, 2, 4, 4],
             backgroundColor: '#6e65ec',
             borderColor: '#6e65ec'
         },
         {
-            label: 'Sensor 2',
+            label: 'Forno 01',
             data: [0, 1, 0, 1, 0, 1],
             backgroundColor: '#36317a',
             borderColor: '#36317a'
         },
         {
-            label: 'Sensor 3',
+            label: 'Fogão 02',
             data: [1, 0, 2, 0, 0, 1],
             backgroundColor: '#5b5baa',
             borderColor: '#5b5baa'
@@ -150,12 +150,6 @@ const configLinha2 = {
             backgroundColor: '#60CE60',
             data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] 
         },
-        //{
-        //    label: 'Em risco',
-        //    borderColor: '#eb801d',
-        //    backgroundColor: '#eb801d',
-        //    data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
-        //},
         {
             label: 'Extremo risco',
             borderColor: '#e63535',
@@ -237,19 +231,19 @@ new Chart(document.getElementById('graficoMensal2'), {
     data: {
         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
         datasets: [{
-            label: 'Sensor 1',
+            label: 'Fogão 01',
             data: [2, 0, 0, 2, 4, 4],
             backgroundColor: '#6e65ec',
             borderColor: '#6e65ec'
         },
         {
-            label: 'Sensor 2',
+            label: 'Forno 01',
             data: [0, 1, 0, 1, 0, 1],
             backgroundColor: '#36317a',
             borderColor: '#36317a'
         },
         {
-            label: 'Sensor 3',
+            label: 'Fogão 02',
             data: [1, 0, 2, 0, 0, 1],
             backgroundColor: '#5b5baa',
             borderColor: '#5b5baa'
@@ -371,19 +365,19 @@ new Chart(document.getElementById('graficoMensal3'), {
     data: {
         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
         datasets: [{
-            label: 'Sensor 1',
+            label: 'Fogão 01',
             data: [2, 0, 0, 2, 4, 4],
             backgroundColor: '#6e65ec',
             borderColor: '#6e65ec'
         },
         {
-            label: 'Sensor 2',
+            label: 'Forno 01',
             data: [0, 1, 0, 1, 0, 1],
             backgroundColor: '#36317a',
             borderColor: '#36317a'
         },
         {
-            label: 'Sensor 3',
+            label: 'Fogão 02',
             data: [1, 0, 2, 0, 0, 1],
             backgroundColor: '#5b5baa',
             borderColor: '#5b5baa'
