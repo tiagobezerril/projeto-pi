@@ -552,6 +552,20 @@ span#burguer:hover, span#burguer:focus{
     transition: 0.5s;
 }
 
+#perfil .aFuncionario {
+    color: #2D20EE;
+    height: 3vh;
+    width: auto;
+    text-decoration: none;
+    font-weight: 700;
+    align-self: center;
+    font-size: 2.5vh;
+}
+
+#perfil .aFuncionario:hover, #perfil .aFuncionario:focus{
+    color: #7269F2;
+}
+
 #perfil #close{
     color: #a09f9f;
     font-size: 30px;
