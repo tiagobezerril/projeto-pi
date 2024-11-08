@@ -23,7 +23,9 @@ const configLinha = {
             label: 'Extremo risco',
             borderColor: '#e63535',
             backgroundColor: '#e63535',
-            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] // COMENTAR QUANDO FOR CONECTAR NA API
+            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
+            borderDash: [5, 5], // Configuração para linha pontilhada
+            tension: 0.3 // Para suavizar a linha
         }
         ],
         labels: dadosLabel // COMENTAR QUANDO FOR CONECTAR NA API

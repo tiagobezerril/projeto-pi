@@ -169,7 +169,7 @@ span#burguer:hover, span#burguer:focus{
     justify-content: space-between;
     width: 250px;
     height: 100vh;
-    padding-top: 80px;
+    padding-top: 10vh;
     padding-bottom: 4vh;
     background-color: #EFF0F0;
 
@@ -223,7 +223,6 @@ span#burguer:hover, span#burguer:focus{
     text-decoration: none;
     font-weight: 700;
 }
-
 #opcoes a:hover, #opcoes a:focus{
     background-color: #7269F2;
     transform: scale(0.9);
