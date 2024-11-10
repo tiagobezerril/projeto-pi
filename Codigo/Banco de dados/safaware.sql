@@ -7,7 +7,7 @@ CREATE TABLE empresa (
   nome_fantasia VARCHAR(60),
   cnpj CHAR(14),
   representante VARCHAR(45),
-  e_mail VARCHAR(60),
+  email VARCHAR(60),
   senha VARCHAR(45)
 ) AUTO_INCREMENT = 100;
 
@@ -19,7 +19,7 @@ INSERT INTO empresa VALUES
 (default, 'W.m. Iguarias LTDA', 'Suvide Restaurantes Empresariais', '56761836000163', 'Felipe Frata', 'wmiguarias@suvide.com.br', 'Suvida&iguarias86');
 
 CREATE TABLE endereco (
-  idendereco INT PRIMARY KEY AUTO_INCREMENT,
+  idEndereco INT PRIMARY KEY AUTO_INCREMENT,
   Estado VARCHAR(45),
   cidade VARCHAR(45),
   bairro VARCHAR(45),
@@ -37,15 +37,32 @@ INSERT INTO endereco VALUES
 (default, 'SP', 'São Paulo', 'City America', 'Avenida Do Anastacio', '359', '05119000', '103'),
 (default, 'SP', 'São Paulo', 'Vila Carrao', 'Rua Antonio de Barros', '2831', '03401001', '104');
 
+CREATE TABLE cozinha (
+  idCozinha INT PRIMARY KEY AUTO_INCREMENT,
+  fkEmpresa INT,
+  fkEndereco INT,
+  FOREIGN KEY (fkEmpresa) REFERENCES empresa(idCadastro),
+  FOREIGN KEY (fkEndereco) REFERENCES endereco(idEndereco)
+) AUTO_INCREMENT = 100;
+
+CREATE TABLE funcionario (
+  idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(120),
+  email VARCHAR(60),
+  senha VARCHAR(45),
+  supervisor TINYINT,
+  fkempresa INT,
+  FOREIGN KEY (fkempresa) REFERENCES empresa(idCadastro)
+) AUTO_INCREMENT = 100;
+
 CREATE TABLE sensor (
   idsensor INT PRIMARY KEY AUTO_INCREMENT,
   tipo VARCHAR(7),
   dtinstalacao DATE,
-  stts VARCHAR(7),
+  stts VARCHAR(7) CHECK (stts IN ('ativo', 'inativo')),
   local_inst VARCHAR(45),
   fkempresa INT,
-  FOREIGN KEY (fkempresa) REFERENCES empresa(idCadastro),
-  CONSTRAINT chkStts CHECK (stts IN ('ativo', 'inativo'))
+  FOREIGN KEY (fkempresa) REFERENCES empresa(idCadastro)
 ) AUTO_INCREMENT = 2000;
 
 INSERT INTO sensor VALUES
@@ -60,14 +77,23 @@ INSERT INTO sensor VALUES
 (default, 'MQ2', '2024-09-10', 'ativo', 'fogao01', '103'),
 (default, 'MQ2', '2024-09-10', 'ativo', 'forno01', '104');
 
+CREATE TABLE manutencao (
+  idManutencao INT PRIMARY KEY AUTO_INCREMENT,
+  dtHoraInicio DATETIME,
+  dtHoraTermino DATETIME,
+  stts VARCHAR(7) CHECK (stts IN ('ativo', 'inativo')),
+  fkempresa INT,
+  fkSensor INT,
+  FOREIGN KEY (fkSensor) REFERENCES sensor(idsensor)
+) AUTO_INCREMENT = 2000;
+
 CREATE TABLE dados (
-  idDados INT AUTO_INCREMENT,
+  idDados INT PRIMARY KEY AUTO_INCREMENT,
   fksensor INT,
-  PRIMARY KEY (idDados, fksensor),
   porcentagem FLOAT,
-  dtdecoleta datetime default current_timestamp(),
+  dtdecoleta DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (fksensor) REFERENCES sensor(idsensor)
-) AUTO_INCREMENT = 3000;
+)AUTO_INCREMENT=3000;
 
 SELECT razao_social as 'Razão Social',
 nome_fantasia as 'Nome Fantasia',
