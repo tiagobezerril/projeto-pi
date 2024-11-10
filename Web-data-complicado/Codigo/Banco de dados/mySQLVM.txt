@@ -1,0 +1,18 @@
+entrar no usuario root pela vm
+mysql -u root -p
+SPTech#2024
+
+criar o banco de dados
+criar o usuario safeware
+CREATE USER 'safeware'@'%' IDENTIFIED BY 'Urubu100@';
+
+dar permissão para acessar o banco
+GRANT ALL PRIVILEGES ON safeware.* TO 'safeware'@'%';
+FLUSH PRIVILEGES;
+
+sair do banco
+QUIT;
+
+entrar no usuario safeware pela maquina local
+mysql -u safeware -p -P 3307
+Urubu100@

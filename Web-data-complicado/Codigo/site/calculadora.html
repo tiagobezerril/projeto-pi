@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeWare | Calculadora Financeira</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="img/Logo.png">
+</head>
+
+<body>
+    <header class="menu">
+        <a href="index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
+        <div class="buttons">
+            <a href="index.html">Início</a>
+            <a href="index.html#sobreNos">Sobre nós</a>
+            <a href="index.html#projeto">Projeto</a>
+            <a href="calculadora.html">Calculadora</a>
+        </div>  
+        <a class="contratar" href="cadastro.html">Contratar</a>
+    </header>
+
+    <div id="info">
+        <div id="esquerda">
+            <p class="titulo">Calculadora Financeira</p>
+            <span class="linha"></span>
+            <span class="texto">
+                A calculadora financeira apresenta média de gastos que o estabelecimento 
+                deve ter com gás e os riscos que um vazamento pode causar ao local.
+            </span>
+    
+            <p class="subTitulo">Pontos importantes:</p>
+    
+            <ul>
+                <li>
+                    O cálculo é baseado em um cilindro que ja foi totalmente utilizado.
+                </li>
+                <li>
+                    OBS: O cálculo é realizado em um cilindro por vez para que possa ser mais preciso, e detecte
+                    vazamentos com maior facilidade.
+                </li>
+            </ul>
+        </div> 
+
+        <div id="direita">
+            <div id="calculadora">
+                <p class="subTitulo">Dados do cilindro</p>
+        
+                <p class="label">Qual o tipo de cilindro que você utiliza?</p>
+                <select id="slct_tipo">
+                    <option>Selecione uma opção</option>
+                    <option value="90">P90</option>
+                    <option value="45">P45</option>
+                    <option value="13">P13</option>
+                </select>
+                <p class="label">Qual o preço do seu cilindro?</p>
+                <input type="text" id="input_preco" placeholder="Preço do cilindro">
+
+                <p class="label">Quantos dias esse cilindro durou?</p>
+                <input type="number" id="input_dias" placeholder="Duração do cilindro">
+    
+                <button class="calcular" onclick="calcular()">Calcular</button>
+            </div>
+            <div id="div_mensagem" style='display: none;'>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var tipoCilindro = Number(slct_tipo.value);
+        var precoCilindro = Number(input_preco.value);
+        var qtdDiasUso = Number(input_dias.value);
+        
+
+        // Verifique se a quantidade de dias não é zero
+        if (qtdDiasUso <= 0 || tipoCilindro == 0 || precoCilindro <= 0){
+            calculadora.innerHTML += "<p class='erro'>Por favor, insira valores válidos.</p>";
+        } else {
+            calculadora.style.display = 'none';
+            esquerda.style.display = 'none';
+            esquerda.style.width = '0';
+            // esquerda.innerHTML = '';
+        }
+
+        // Cálculo da média diária de uso
+        var consumoDiario = tipoCilindro / qtdDiasUso; // Consumo de gás por dia em kg
+        var consumoMensal = consumoDiario * 30; // Consumo mensal
+
+        var mediaDiariaUso = (consumoDiario / 0.3).toFixed(0);
+        // 9/24  0.3kg/h
+        // (tempoMedia / diasMedia) * 60; // Média de uso diário em minutos
+
+        div_mensagem.style.height = '400px';
+        div_mensagem.style.width = '550px';
+        div_mensagem.style.display='flex'
+        div_mensagem.innerHTML = `
+            <div id='resultado'>
+               <p class='titulo'>Resultado</p>
+                <span class='linha'></span>
+                <p class='inseridos'><span class='rotulo'>Cilindro(kg): </span>${tipoCilindro}kg</p>
+
+                <p class='inseridos'><span class='rotulo'>Preço do cilindro: </span>R$ ${precoCilindro}</p>
+
+                <p class='inseridos'>Com base em um cilindro de ${tipoCilindro}kg que dura ${qtdDiasUso.toFixed(0)} dias em média:</p>
+
+                <div class='resultado'>
+                    <p>Seu consumo diário de gás é de ${consumoDiario.toFixed(2)}kg/dia</p>
+                    <p>Seu consumo mensal de gás é de ${consumoMensal.toFixed(2)}kg/mês</p>
+                    <p>Sua média de uso diário deveria ser de ${mediaDiariaUso} horas</p>
+                </div>
+                <div class='corresponde'>
+                    <p>Este valor corresponde ao seu uso atual?</p>
+                    <span>
+                        <button onclick="sim()">Sim</button>
+                        <button onclick="nao()">Não</button>
+                    </span>
+                </div> 
+            </div> 
+        `;
+    }
+
+    function sim() {
+        var precoCilindro = Number(input_preco.value);
+        div_mensagem.innerHTML = 
+        `<div id='semVazamento'>
+            <img src='img/seguro.png'>
+            <span class='verde'>Você não possui vazamentos!</span>
+            <p>Mas com um vazamento <b>mínimo de 2% de gás</b> já torna sua cozinha
+            em um ambiente <b>perigoso e propenso a um acidente grave!</b></p> 
+            <span class='atencao'>Pode gerar INCÊNDIOS e EXPLOSÕES!</span> 
+            
+            <p class='atencao'>O que coloca em risco sua vida e a de seus funcionários!</p>
+            <button onclick="retorno()">Nova consulta</button>
+        </div>
+        `;
+    }
+
+    function nao() {
+        div_mensagem.innerHTML = 
+        `
+            <div id='nao'>
+                <img src='img/aviso.png'>
+                <p class='atencao'>Você pode estar tendo um vazamento!</p> 
+                <p>Informe qual é o seu consumo diário em horas para descobrir sua perda:</p>
+                <input type="text" id="input_usoRealMinutos" placeholder='Horas'>
+                <button onclick="descobrir()">Descobrir gravidade</button>
+            </div>
+        `;
+    }
+
+    function descobrir() {
+        // Obter valores de entrada
+        var usoRealHora = Number(input_usoRealMinutos.value); // Tempo real de uso em horas
+        var cilindroKg = Number(slct_tipo.value); // Peso do cilindro em kg
+        var preco = Number(input_preco.value); // Preço do gás
+        var qtdDiasUso = Number(input_dias.value);
+        var consumoDiario = cilindroKg / qtdDiasUso;
+
+        // Calcular a média de uso diário e consumo
+        var mediaDiariaUso = (consumoDiario / 0.3).toFixed(0); // Média de uso diário em horas
+        var consumoEspMin = cilindroKg / (consumoDiario * qtdDiasUso); // Consumo em kg por minuto
+
+        // Calcular se há vazamento
+        if (usoRealHora < mediaDiariaUso) {
+            var diferencaTempo = mediaDiariaUso - usoRealHora; // Diferença de tempo em minutos
+            var diferencaKg = diferencaTempo * consumoEspMin; // Gás vazado por dia em kg
+            var totalVazamento = (diferencaTempo * 0.3) * 30; // Total de gás vazado em kg por mês
+            var custoPerda = ((diferencaTempo * 30)/24) * (preco / qtdDiasUso); // Cálculo da perda financeira
+            var perda2 = custoPerda;
+            var perdaAno= perda2 * 12
+            var consumoReal = usoRealHora * consumoEspMin; // Consumo real diário em kg
+            var consumoIdeal = mediaDiariaUso * consumoEspMin; // Consumo ideal diário em kg
+            var diferencaDias = (cilindroKg / consumoReal) - (cilindroKg / consumoIdeal); // Dias a mais de uso que está perdendo
+
+            // Mensagem mais clara e detalhada
+            div_mensagem.style.height = '420px';
+            div_mensagem.style.width = '900px';
+            
+            div_mensagem.innerHTML = `
+                <div id='comVazamento'>
+                    <div class='esquerda'>
+                        <p class='atencao'>Você possui um vazamento!</p>
+                        <p>Você está <span class='vermelho'>perdendo ${diferencaTempo.toFixed(2)} horas diárias</span></p>
+                        <p>São <span class='vermelho'>${diferencaDias.toFixed(0)} dias</span> a mais de uso que você está perdendo por mês!</p>
+                        <p>Sua perda é de <span class='vermelho'>R$${perda2.toFixed(2)} em gás por mês</span> e <span class='vermelho'>R$${(perdaAno.toFixed(2))} por ano</span></p>
+                        <p>Está vazando ${totalVazamento.toFixed(0)}kg de gás por mês e ${totalVazamento.toFixed(0) * 12}kg por ano!</p>
+                        <p>Com um potencial acidente, isso pode gerar um grande prejuízo financeiro</p>   
+                    
+                        <p class='atencao'>e coloca em risco sua vida e a vida de seus funcionários!</p>
+                    </div>
+
+                    <div class='direita'>
+                        <img src="img/contratar.svg" alt="" width="200px">
+                        <p class='obs'>Com os nossos serviços você já teria ciencia do vazamento, contrate-nos já!</p>
+                        <a class="contratar" href="cadastro.html">Contratar</a>
+                        <button id='botaoRetorno' onclick="retorno()">Nova consulta</button>
+                    </div>
+                </div>
+            `;
+
+        } else {
+            div_mensagem.style.height = '200px';
+            
+            div_mensagem.innerHTML = `
+            <div id='comVazamento'>
+                <div style="height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
+                    <p class='titulo'>Dados não correspondentes</p>
+                    <span class='linha'></span>
+                    <p class='incorreto'>Os dados inseridos não correspondem aos resultados, reveja as informações e tente novamente.</p>
+                    <button onclick="retorno()">Tentar novamente</button>
+                </div>
+            </div>
+            `;
+            comVazamento.style.display = 'flex';
+        }
+    }
+
+    function retorno() {
+        calculadora.style.display = 'flex';
+        esquerda.style.display = 'flex';
+        div_mensagem.style.display = "none"; // Limpar a mensagem para uma nova consulta
+        esquerda.style.width = '40%';
+    }
+</script>
