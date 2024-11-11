@@ -1,14 +1,11 @@
 CREATE DATABASE safeware;
 USE safeware;
 
-CREATE TABLE empresa (
+CREATE TABLE restaurante (
   idCadastro INT PRIMARY KEY AUTO_INCREMENT,
   razao_social VARCHAR(120),
   nome_fantasia VARCHAR(60),
-  cnpj CHAR(14),
-  representante VARCHAR(45),
-  email VARCHAR(60),
-  senha VARCHAR(45)
+  cnpj CHAR(14)
 ) AUTO_INCREMENT = 100;
 
 INSERT INTO empresa VALUES
@@ -37,8 +34,8 @@ INSERT INTO endereco VALUES
 (default, 'SP', 'São Paulo', 'City America', 'Avenida Do Anastacio', '359', '05119000', '103'),
 (default, 'SP', 'São Paulo', 'Vila Carrao', 'Rua Antonio de Barros', '2831', '03401001', '104');
 
-CREATE TABLE cozinha (
-  idCozinha INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE filial (
+  idFilial INT PRIMARY KEY AUTO_INCREMENT,
   fkEmpresa INT,
   fkEndereco INT,
   FOREIGN KEY (fkEmpresa) REFERENCES empresa(idCadastro),
@@ -52,7 +49,9 @@ CREATE TABLE funcionario (
   senha VARCHAR(45),
   supervisor TINYINT,
   fkempresa INT,
-  FOREIGN KEY (fkempresa) REFERENCES empresa(idCadastro)
+  fkSupervisor INT,
+  FOREIGN KEY (fkempresa) REFERENCES empresa(idCadastro),
+  FOREIGN KEY (fkSupervisor) REFERENCES funcionario(idFuncionario)
 ) AUTO_INCREMENT = 100;
 
 CREATE TABLE sensor (
@@ -62,6 +61,8 @@ CREATE TABLE sensor (
   stts VARCHAR(7) CHECK (stts IN ('ativo', 'inativo')),
   local_inst VARCHAR(45),
   fkempresa INT,
+  fkFilial INT,
+  FOREIGN KEY (fkFilial) REFERENCES filial(idFilial),
   FOREIGN KEY (fkempresa) REFERENCES empresa(idCadastro)
 ) AUTO_INCREMENT = 2000;
 
