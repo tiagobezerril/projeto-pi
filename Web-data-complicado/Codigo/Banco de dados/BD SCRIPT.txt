@@ -1,5 +1,0 @@
-SELECT s.idsensor as 'ID Sensor', da.porcentagem AS 'Porcentagem', da.dtdecoleta as 'Data de Coleta' FROM sensor as s JOIN dados as da ON idsensor = fksensor WHERE idsensor = 2000;
-
-SELECT se.local_inst AS 'Local de Instalação', se.tipo AS 'Tipo de Sensor', se.stts AS 'Status Atual', CASE WHEN se.stts = 'ativo' THEN 'Sensor em funcionamento' WHEN se.stts = 'inativo' THEN 'Sensor desligado' ELSE 'Status desconhecido' END AS 'Descrição do Status' FROM sensor AS se;
-
-
