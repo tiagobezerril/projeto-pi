@@ -11,7 +11,7 @@
         
         <link rel="shortcut icon" type="imagex/png" href="../img/Logo.png">
         <link rel="stylesheet" href="home.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,person" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_down" />
     </head>
     <body>
         <header class="menu">
@@ -23,12 +23,65 @@
                 <a href="#projeto">Projeto</a>
                 <a href="calculadora.html">Calculadora</a>
             </div>
-            <a onclick="clickPerfil()" class="perfil">
+            <a onclick="clickMenu()" class="perfil">
                 <span class="material-symbols-outlined">
-                    person
+                    arrow_drop_down
                 </span>
             </a>
         </header>
+
+        <div id="perfil">
+            <p class="titulo">Perfil</p>
+            <span class="linha"></span>
+            <div class="form">
+                <p class="subtitulo">Atualize o endereço do estabelecimento</p>
+                <p>Estado:</p>
+                <select id="">
+                    <option value="AC">Acre</option>
+                    <option value="AL">Alagoas</option>
+                    <option value="AP">Amapá</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="BA">Bahia</option>
+                    <option value="CE">Ceará</option>
+                    <option value="ES">Espírito Santo</option>
+                    <option value="GO">Goiás</option>
+                    <option value="MA">Maranhão</option>
+                    <option value="MT">Mato grosso</option>
+                    <option value="MS">Mato grosso do Sul</option>
+                    <option value="MG">Minas gerais</option>
+                    <option value="PA">Pará</option>
+                    <option value="PB">Paraíba</option>
+                    <option value="PR">Paraná</option>
+                    <option value="PE">Pernambuco</option>
+                    <option value="PI">Piauí</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="RN">Rio Grande do Norte</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="RR">Roraima</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="SE">Sergipe</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+                <p>Cidade:</p>
+                <input type="text" placeholder="Cidade">
+                <p>Rua:</p>
+                <input type="text" placeholder="Rua">
+                <p>Número:</p>
+                <input type="number" placeholder="Número">
+                <button>Enviar</button>
+                <a href="" class="aFuncionario">Funcionários</a>
+            </div>
+            <span id="close" onclick="clickClose()" class="material-symbols-outlined">
+                close
+            </span>
+        </div>
+
+        <div id="menuPerfil">
+            <a href="index.html">Dashboard</a>
+            <a onclick="clickPerfil()" style="border-radius: 0 0 1vh 1vh;">Perfil</a>
+        </div>
         <div id="inicio">
             <div>
                 <p class="titulo">A SUA COZINHA SEGURA</p>
@@ -153,7 +206,11 @@
     </body>
 </html>
 <script>
-    function clickPerfil(){
-        
+    function clickMenu(){
+        if (perfil.style.right == '-620px') {
+            perfil.style.right = '0';
+        } else {
+            perfil.style.right = '-620px';
+        }
     }
 </script>

@@ -42,18 +42,29 @@
                 <p>Vazamento detectado</p>
             </div>
         </div>
+        <div class="cimaMeio">
+            <p>Tem alguma dúvida? Converse com o <b>BobIA</b></p>
+            <button>Conversar com BobIA</button>
+        </div>
         <div class="cimaDir">
-
+            <span>
+                <b>Quantidade de filiais</b>
+                <p>2</p>
+                <b>Quantidade de sensores</b>
+                <p>5</p>
+            </span>
             <canvas id="graficoGeral" height="300" width="800"></canvas>
         </div>
     </div>
     <div id="baixo">
         <a href="dashboard.html" class="alerta cozinha" style="text-decoration: none;">
             <img src="../img/cozinhaPerigo.png">
-            <h2>Cozinha 1</h2>
+            <h2>Filial 1</h2>
         </a>
-        <div class="vazio">
-        </div>
+        <a href="dashboard2.html" class="seguro cozinha" style="text-decoration: none;">
+            <img src="../img/cozinhaSegura.png">
+            <h2>Filial 2</h2>
+        </a>
         <div class="vazio">
         </div>
     </div>
@@ -114,7 +125,7 @@
 
             <img src='../img/aviso.png'>
             <p class='atencao'>Um vazamento foi detectado!</p> 
-            <p>O sensor do fogão 1 da cozinha 1 acabou de detectar um vazamento, tome já as providências necessárias para a segurança do seu estabelecimento.</p>
+            <p>O sensor do fogão 1 da filial 1 acabou de detectar um vazamento, tome já as providências necessárias para a segurança do seu estabelecimento.</p>
         </span>
     </div>
     <script>
@@ -153,13 +164,13 @@
             type: 'bar',
             data: {
                 datasets: [{
-                    label: 'Cozinha 1',
+                    label: 'Filial 1',
                     data: [3, 1, 2, 3, 4, 6],
                     borderColor: '#6e65ec',
                     backgroundColor: '#6e65ec'
                 },
                 {
-                    label: 'Cozinha 2',
+                    label: 'Filial 2',
                     data: [1, 2, 2, 5, 3, 2],
                     borderColor: '#36317a',
                     backgroundColor: '#36317a'

@@ -329,18 +329,60 @@ input{
     font-weight: 500;
 }
 
+.cimaMeio{
+    width: 20%;
+    color: #696969;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    /* padding: 5vh; */
+
+}
+
+.cimaMeio button{
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    color: white;
+    width: 80%;
+    height: 5vh;
+    font-weight: 700;
+    font-size: 2.2vh;
+    border: 0;
+    border-radius: 1vh;
+}
+
+.cimaMeio button:hover, .cimaMeio button:focus{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
 .cimaDir {
     background-color: #EFEFEF;
     color: #696969;
-    width: 65vw;
+    width: 52%;
     height: 100%;
     border-radius: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.cimaDir p{
+    font-weight: 700;
+    margin: 1vh;
+    color: #2D20EE;
+}
+
+.cimaDir b{
 }
 
 /* PARTE DE BAIXO */
 
 #baixo {
-    width: 90%;
+    width: 100%;
+    padding: 2vh 7vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
