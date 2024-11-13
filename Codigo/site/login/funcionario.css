@@ -280,36 +280,9 @@ input{
 
 /* PARTE DE CIMA DA VISÃO GERAL */
 
-.funcionarios{
-
+#funcionarioLista {
     width: 100vw;
-    height:200vh;
-    margin-top: 10vh;
-    padding: 3vh 5vw;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.funcionarioLista{
-
-    width: 500vw;
-    height:500px;
-    margin-top: 10vh;
-    padding: 3vh 5vw;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-
-#cima {
-    width: 100vw;
-    height: 90vh;
+    height: 75vh;
     margin-top: 10vh;
     padding: 3vh 5vw;
 
@@ -319,8 +292,8 @@ input{
     justify-content: center;
 }
 
-#cima h1 {
-    height: 10vh;
+#funcionarioLista h1 {
+    height: 15vh;
     color: #2D20EE;
     font-weight: 700;
     margin: 10px;
@@ -328,11 +301,47 @@ input{
     
 }
 
+#funcionarioLista button{
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    border: 0;
+    border-radius: 8px;
+    width: 100vw;
+    height: 55px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#funcionarioLista button{
+    background: linear-gradient(90deg, #df0e0e 0%, #7269F2 100%);
+    border: 0;
+    border-radius: 8px;
+    width: 80vw;
+    height: 35px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#button button{
+    background: linear-gradient(90deg, #df0e0e 0%, #7269F2 100%);
+    border: 0;
+    border-radius: 8px;
+    width: 80vw;
+    height: 35px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+
 .cimaEsq{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
+    width: 80vw;
+    height: 35px;
 }
 
 .cimaEsq div{
@@ -354,7 +363,7 @@ input{
     color: #696969;
     background-color: #EFEFEF;
     border-radius: 1vh;
-    width: 70vw;
+    width: 100vw;
     height: 20vh;
 
     display: flex;

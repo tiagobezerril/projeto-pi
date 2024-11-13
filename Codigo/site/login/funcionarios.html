@@ -43,36 +43,42 @@
 
 
 
-    <div id="cima">
+    <div id="funcionarioLista">
         <div class="cimaEsq">
 
             <h1>Funcionários</h1>
 
-            <main class="cima">
+            <main class="funcionarioLista">
+
                 <div class="funcionarioLista">
-                    <div class="cima">
-                        <div>
+
+                        <div id="funcionario-card">
+                            
                             Nome:<p class="funcionario-nome">X</p>
                             Email: <p class="funcionario-email">email@gmail.com</p>
                         </div>
                         <button onclick="delFuncionario()" class="button">Deletar</button>
                     </div>
-                    <div class="funcionario-card">
-                        <div>
+
+
+                    <div class="funcionarioLista">
+
+                        <div id="funcionario-card">
+
                             Nome:<p class="funcionario-nome">Y</p>
                             Email: <p class="funcionario-email">email@gmail.com</p>
+                        
                         </div>
-                        <button class="button" onclick="delFuncionario()">Deletar</button>
+                        <button onclick="delFuncionario()">Deletar</button>
                     </div>
                     <br><br><br>
+                    <div id="addbutton">
+                        <button id="addbutton"  onclick="addFuncionario()">Adicionar um funcionário</button>
+
+                    </div>
                 </div>
-                <div> <button class="button" onclick="addFuncionario()">Adicionar um funcionário</button> </div>
             </main>
 
-            <main class="add">
-                
-                <div> <button class="button" onclick="addFuncionario()">Adicionar um funcionário</button> </div>
-            </main>
 
         </div>
 
