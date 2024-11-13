@@ -140,5 +140,3 @@ SELECT
   END AS 'Descrição do Status'
 FROM sensor AS se;
 
-CREATE USER 'safeware'@'localhoste' identified by 'Urubu100@';
-GRANT all PRIVILEGES on safeware.funcionario to 'safeware'@'localhost';
