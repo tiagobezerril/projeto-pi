@@ -71,7 +71,7 @@ input{
 .menu .titulo {
     color: #2D20EE;
     font-weight: 900;
-    font-size: 3.5vh;
+    font-size: 3vh;
     margin: 0;
 }
 
@@ -89,12 +89,14 @@ input{
 }
 
 .perfil{
-    background: linear-gradient(0deg, #2D20EE 0%, #7269F2 100%);
+    /* background: linear-gradient(0deg, #2D20EE 0%, #7269F2 100%); */
     width: 45px;
     height: 45px;
     border-radius: 25px;
     text-decoration: none;
     text-align: center;
+    justify-self: center;
+    color: #2D20EE;
 
     -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
     -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
@@ -103,19 +105,50 @@ input{
 }
 
 .perfil span{
-    color: white;
-    font-size: 35px;
+    /* color: #2D20EE; */
+    font-size: 5vw;
     line-height: 40px;
 }
 
 .perfil:hover{
-    background: #7269F2;
+    color: white;
+    cursor: pointer;
+}
+
+#menuPerfil {
+    position: absolute;
+    top: -5vw;
+    align-self: flex-end;
+    background-color: #e4e4e4;
+    color: #646464;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 1vh 1vh;
+    -webkit-box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+    -moz-box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+    box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+
+    transition: top 0.5s ease-in-out;
+}
+
+#menuPerfil a{
+    width: 12vw;
+    padding: 1vh;
+    text-decoration: none;
+    color: #646464;
+    font-weight: 600;
+    
+}
+
+#menuPerfil a:hover, #menuPerfil a:focus{
+    background-color: #2D20EE;
+    color: white;
     cursor: pointer;
 }
 
 /* PERFIL */
 
-#perfil {
+#endereco {
     position: fixed;
     right: -620px;
     top: 0;
@@ -134,7 +167,7 @@ input{
     transition: right 0.5s ease-in-out;
 }
 
-#perfil .titulo{
+#endereco .titulo{
     color: #2D20EE;
     font-weight: bolder;
     font-size: 40px;
@@ -142,7 +175,7 @@ input{
     align-self: center;
 }
 
-#perfil .linha{
+#endereco .linha{
     width: 80%;
     height: 2px;
     background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
@@ -151,7 +184,7 @@ input{
     border-radius: 10px;
 }
 
-#perfil .form{
+#endereco .form{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -160,19 +193,19 @@ input{
     padding: 0 25px;
 }
 
-#perfil p{
+#endereco p{
     margin: 0;
     color: #696969;
     font-weight: bold;
 }
 
-#perfil .subtitulo{
+#endereco .subtitulo{
     color: #696969;
     font-size: 16px;
     align-self: center;
 }
 
-#perfil input, #perfil select{
+#endereco input, #endereco select{
     width: 100%;
     height: 35px;
     border-radius: 8px;
@@ -181,7 +214,7 @@ input{
     padding: 0 10px;
 }
 
-#perfil button{
+#endereco button{
     background-color: #2D20EE;
     border: 0;
     border-radius: 8px;
@@ -191,13 +224,13 @@ input{
     font-size: 16px;
 }
 
-#perfil button:hover, #perfil button:focus{
+#endereco button:hover, #endereco button:focus{
     background: #7269F2;
     cursor: pointer;
     transition: 0.5s;
 }
 
-#perfil .aFuncionario {
+#endereco .aFuncionario {
     color: #2D20EE;
     height: 3vh;
     width: auto;
@@ -207,17 +240,17 @@ input{
     font-size: 2.5vh;
 }
 
-#perfil .aFuncionario:hover, #perfil .aFuncionario:focus{
+#endereco .aFuncionario:hover, #endereco .aFuncionario:focus{
     color: #7269F2;
 }
 
-#perfil #close{
+#endereco #close{
     color: #a09f9f;
     font-size: 30px;
     position: absolute;
 }
 
-#perfil #close:hover, #perfil #close:focus{
+#endereco #close:hover, #endereco #close:focus{
     cursor: pointer;
     color: #696969;
 }
