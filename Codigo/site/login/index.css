@@ -89,19 +89,13 @@ input{
 }
 
 .perfil{
-    /* background: linear-gradient(0deg, #2D20EE 0%, #7269F2 100%); */
-    width: 45px;
+    width: fit-content;
     height: 45px;
     border-radius: 25px;
     text-decoration: none;
     text-align: center;
     justify-self: center;
     color: #2D20EE;
-
-    -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
-    -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
-    box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
-
 }
 
 .perfil span{
@@ -146,7 +140,7 @@ input{
     cursor: pointer;
 }
 
-/* PERFIL */
+/* ENDEREÇO */
 
 #endereco {
     position: fixed;

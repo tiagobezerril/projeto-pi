@@ -32,7 +32,6 @@
                 <span class="material-symbols-outlined" id="setaMenu">
                     arrow_drop_down
                 </span>
-                
             </a>
 
             <!-- <a onclick="clickPerfil()" class="perfil">
@@ -124,7 +123,7 @@
             <input type="text" placeholder="Rua">
             <p>Número:</p>
             <input type="number" placeholder="Número">
-            <button>Enviar</button>
+            <button>Atualizar endereço</button>
             <!-- <a href="" class="aFuncionario">Funcionários</a> -->
         </div>
         <span id="close" onclick="clickClose()" class="material-symbols-outlined">
@@ -166,11 +165,7 @@
         }
     
         function clickEndereco() {
-            if (endereco.style.right == '-620px') {
-                endereco.style.right = '0';
-            } else {
-                endereco.style.right = '-620px';
-            }
+            endereco.style.right = '0';
             clickOpcoes();
         }
     

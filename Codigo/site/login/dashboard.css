@@ -132,31 +132,55 @@ span#burguer:hover, span#burguer:focus{
 }
 
 .perfil{
-    background: linear-gradient(0deg, #2D20EE 0%, #7269F2 100%);
-    width: 45px;
+    width: fit-content;
     height: 45px;
     border-radius: 25px;
     text-decoration: none;
     text-align: center;
-    /* display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: center; */
-
-    -webkit-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
-    -moz-box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
-    box-shadow: -2px 15px 41px -17px rgba(117,117,117,1);
+    justify-self: center;
+    color: #2D20EE;
 
 }
 
 .perfil span{
-    color: white;
-    font-size: 35px;
+    /* color: #2D20EE; */
+    font-size: 5vw;
     line-height: 40px;
 }
 
 .perfil:hover{
-    background: #7269F2;
+    color: white;
+    cursor: pointer;
+}
+
+#menuPerfil {
+    position: absolute;
+    top: -5vw;
+    align-self: flex-end;
+    background-color: #e4e4e4;
+    color: #646464;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 1vh 1vh;
+    -webkit-box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+    -moz-box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+    box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+
+    transition: top 0.5s ease-in-out;
+}
+
+#menuPerfil a{
+    width: 12vw;
+    padding: 1vh;
+    text-decoration: none;
+    color: #646464;
+    font-weight: 600;
+    
+}
+
+#menuPerfil a:hover, #menuPerfil a:focus{
+    background-color: #2D20EE;
+    color: white;
     cursor: pointer;
 }
 
@@ -180,7 +204,7 @@ span#burguer:hover, span#burguer:focus{
     transition: left 0.5s ease-in-out;
 }
 
-#opcoes span{
+#opcoes .filial{
     width: 100%;
     height: 50px;
     padding: 10px;
@@ -190,27 +214,16 @@ span#burguer:hover, span#burguer:focus{
     color: #2D20EE;
     font-weight: bold;
     font-size: 18px;
+    border-bottom: #afafaf solid 2px;
     /* border: 2px solid #999999; */
 }
 
-#opcoes span:hover{
+#opcoes .filial:hover{
     background-color: #dadada;
     cursor: pointer;
 }
 
-#opcoes .linha{
-    background-color: #afafaf;
-    height: 2px;
-    padding: 0;
-    margin: 0;
-}
-
-#opcoes .linha:hover, #opcoes .linha:focus{
-    background-color: #afafaf;
-    cursor: default;
-}
-
-#opcoes a{
+#opcoes .voltar{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -223,7 +236,7 @@ span#burguer:hover, span#burguer:focus{
     text-decoration: none;
     font-weight: 700;
 }
-#opcoes a:hover, #opcoes a:focus{
+#opcoes .voltar:hover, #opcoes .voltar:focus{
     background-color: #7269F2;
     transform: scale(0.9);
 }
@@ -467,9 +480,9 @@ span#burguer:hover, span#burguer:focus{
     padding: 0 10px;
 }
 
-/* PERFIL */
+/* ENDEREÇO */
 
-#perfil {
+#endereco {
     position: fixed;
     right: -620px;
     top: 0;
@@ -488,7 +501,7 @@ span#burguer:hover, span#burguer:focus{
     transition: right 0.5s ease-in-out;
 }
 
-#perfil .titulo{
+#endereco .titulo{
     color: #2D20EE;
     font-weight: bolder;
     font-size: 40px;
@@ -496,7 +509,7 @@ span#burguer:hover, span#burguer:focus{
     align-self: center;
 }
 
-#perfil .linha{
+#endereco .linha{
     width: 80%;
     height: 2px;
     background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
@@ -505,7 +518,7 @@ span#burguer:hover, span#burguer:focus{
     border-radius: 10px;
 }
 
-#perfil .form{
+#endereco .form{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -514,19 +527,19 @@ span#burguer:hover, span#burguer:focus{
     padding: 0 25px;
 }
 
-#perfil p{
+#endereco p{
     margin: 0;
     color: #696969;
     font-weight: bold;
 }
 
-#perfil .subtitulo{
+#endereco .subtitulo{
     color: #696969;
     font-size: 16px;
     align-self: center;
 }
 
-#perfil input, #perfil select{
+#endereco input, #endereco select{
     width: 100%;
     height: 35px;
     border-radius: 8px;
@@ -535,7 +548,7 @@ span#burguer:hover, span#burguer:focus{
     padding: 0 10px;
 }
 
-#perfil button{
+#endereco button{
     background-color: #2D20EE;
     border: 0;
     border-radius: 8px;
@@ -545,13 +558,13 @@ span#burguer:hover, span#burguer:focus{
     font-size: 16px;
 }
 
-#perfil button:hover, #perfil button:focus{
+#endereco button:hover, #endereco button:focus{
     background: #7269F2;
     cursor: pointer;
     transition: 0.5s;
 }
 
-#perfil .aFuncionario {
+#endereco .aFuncionario {
     color: #2D20EE;
     height: 3vh;
     width: auto;
@@ -561,20 +574,176 @@ span#burguer:hover, span#burguer:focus{
     font-size: 2.5vh;
 }
 
-#perfil .aFuncionario:hover, #perfil .aFuncionario:focus{
+#endereco .aFuncionario:hover, #endereco .aFuncionario:focus{
     color: #7269F2;
 }
 
-#perfil #close{
+#endereco #close{
     color: #a09f9f;
     font-size: 30px;
     position: absolute;
 }
 
-#perfil #close:hover, #perfil #close:focus{
+#endereco #close:hover, #endereco #close:focus{
     cursor: pointer;
     color: #696969;
 }
+
+/* MANUTENÇÃO */
+
+#manutencao {
+    position: fixed;
+    right: -620px;
+    /* right: 0; */
+    top: 0;
+    padding: 3vh;
+    padding-top: 7vw;
+    background-color: #dfdfdf;
+    width: 600px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    -webkit-box-shadow: -2px 8px 26px 0px rgba(161,161,161,1);
+    -moz-box-shadow: -2px 8px 26px 0px rgba(161,161,161,1);
+    box-shadow: -2px 8px 26px 0px rgba(161,161,161,1);
+
+    transition: right 0.5s ease-in-out;
+}
+
+#manutencao .titulo{
+    color: #2D20EE;
+    font-weight: bolder;
+    font-size: 4vh;
+    margin: 0;
+    align-self: center;
+}
+
+#manutencao .linha{
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    align-self: center;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+/* #manutencao .form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+    padding: 0 25px;
+} */
+
+#historico {
+    width: 100%;
+    height: 100%;
+    padding: 3vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    color: #646464;
+    overflow: auto;
+}
+
+#historico .manutencao{
+    display: flex;
+    flex-direction: column;
+
+    background-color: white;
+    width: 100%;
+    height: 18vh;
+    padding: 2vh;
+    border-radius: 1vh;
+    gap: 1vh;
+}
+
+#historico::-webkit-scrollbar {
+    width: 0.6vw;               /* width of the entire scrollbar */
+  }
+  
+#historico::-webkit-scrollbar-track {
+    background: none;        /* color of the tracking area */
+}
+
+#historico::-webkit-scrollbar-thumb {
+    background-color: #2D20EE;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: none;  /* creates padding around scroll thumb */
+}
+
+#manutencao h3{
+    color: #2D20EE;
+    margin: 0;
+}
+
+#manutencao p{
+    margin: 0;
+    color: #696969;
+    font-weight: 500;
+}
+
+#manutencao .subtitulo{
+    color: #696969;
+    font-size: 16px;
+    align-self: center;
+}
+
+#manutencao input, #manutencao select{
+    width: 100%;
+    height: 35px;
+    border-radius: 8px;
+    border: 2px solid #b8b8b8;
+    color: #696969;
+    padding: 0 10px;
+}
+
+#manutencao button{
+    background-color: #2D20EE;
+    border: 0;
+    border-radius: 8px;
+    height: 35px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#manutencao button:hover, #manutencao button:focus{
+    background: #7269F2;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#manutencao .aFuncionario {
+    color: #2D20EE;
+    height: 3vh;
+    width: auto;
+    text-decoration: none;
+    font-weight: 700;
+    align-self: center;
+    font-size: 2.5vh;
+}
+
+#manutencao .aFuncionario:hover, #manutencao .aFuncionario:focus{
+    color: #7269F2;
+}
+
+#manutencao #close{
+    color: #a09f9f;
+    font-size: 30px;
+    position: absolute;
+}
+
+#manutencao #close:hover, #manutencao #close:focus{
+    cursor: pointer;
+    color: #696969;
+}
+
+/* ALERTA */
 
 #alerta{
     display: flex;
