@@ -297,6 +297,16 @@ span#burguer:hover, span#burguer:focus{
     height: 300px;
 }
 
+.dash .cima .esquerda .funcionarios canvas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+
+}
+
+
+
 .dash .cima .direita{
     width: 100%;
     display: grid;
