@@ -47,12 +47,13 @@ CREATE TABLE filial (
 
 CREATE TABLE funcionario (
     idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
+    tipo VARCHAR(10),
     nome VARCHAR(120),
     email VARCHAR(60),
     senha VARCHAR(45),
-    supervisor TINYINT,
     fkrestaurante INT,
     fkSupervisor INT,
+	CONSTRAINT chKTipo CHECK(tipo in ('Supervisor', 'Suporte', 'Comum')),
     FOREIGN KEY (fkrestaurante)
         REFERENCES restaurante (idCadastro),
     FOREIGN KEY (fkSupervisor)
@@ -105,8 +106,8 @@ SELECT em.nome_fantasia as 'Nome Fantasia',
   en.cidade AS Cidade,
   en.bairro as Bairro,
   en.cep as CEP 
-FROM empresa as em 
-JOIN endereco as en ON idCadastro = fkempresa;
+FROM restaurante as em 
+JOIN endereco as en ON idCadastro = fkrestaurante;
 
 SELECT 
   CONCAT(
@@ -115,8 +116,8 @@ SELECT
     ', localizado em ', en.logradouro, ', ', en.numero, ', ', en.bairro, ', ', en.cidade, ', ', en.Estado, ' - CEP: ', en.cep
   ) AS 'Descrição Completa'
 FROM empresa AS em
-JOIN endereco AS en ON em.idCadastro = en.fkempresa
-JOIN sensor AS se ON em.idCadastro = se.fkempresa;
+JOIN endereco AS en ON em.idCadastro = en.fkrestaurante
+JOIN sensor AS se ON em.idCadastro = se.fkrestaurante;
 
 SELECT 
   se.local_inst AS 'Local de Instalação',
