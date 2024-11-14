@@ -41,49 +41,26 @@
         </div>
     </header>
 
-
-
-    <div id="funcionarioLista">
-        <div class="cimaEsq">
-
-            <h1>Funcionários</h1>
-
-            <main class="funcionarioLista">
-
-                <div class="funcionarioLista">
-
-                        <div id="funcionario-card1">
-                            
-                            Nome:<p class="funcionario-nome">X</p>
-                            Email: <p class="funcionario-email">email@gmail.com</p>
-                        </div>
-                        <button onclick="delFuncionario()" class="button">Deletar</button>
-                    </div>
-
-
-                    <div class="funcionarioLista">
-
-                        <div id="funcionario-card2">
-
-                            Nome:<p class="funcionario-nome">Y</p>
-                            Email: <p class="funcionario-email">email@gmail.com</p>
-                        
-                        </div>
-                        <button onclick="delFuncionario()">Deletar</button>
-                    </div>
-                    <br><br><br>
-                    
-                </div>
-            </main>
-
-        </div>
-        <div id="funcionarioListaAdd">
-            <div class="addbutton">
-                <button id="addbutton"  onclick="addFuncionario()">Adicionar um funcionário</button>
-    
+    <h1>Funcionários</h1>
+    <div id="funcionarioQuadro">
+        
+        <div class="funcionario-card">
+            <div class="info">
+                <strong>Nome X</strong>
+                <p>Email: email@gmail.com</p>
             </div>
-
+            <button onclick="del()" class="delete-button">X</button>
         </div>
+        <div class="funcionario-card">
+            <div class="info">
+                <strong>Nome Y</strong>
+                <p>Email: email@gmail.com</p>
+            </div>
+            <button onclick="del()" class="delete-button">X</button>
+        </div>
+        <button onclick="add()"class="add-button">Adicionar um funcionário</button>
+    </div>
+    
         
 
         <script>
