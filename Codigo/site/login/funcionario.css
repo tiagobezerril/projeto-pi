@@ -302,18 +302,18 @@ input{
 }
 
 #funcionarioLista button{
-    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    background: linear-gradient(90deg, #df0e0e 0%, #7269F2 100%);
     border: 0;
     border-radius: 8px;
     width: 100vw;
-    height: 55px;
+    height: 5px;
     color: white;
     font-weight: bold;
     font-size: 16px;
 }
 
 #funcionarioLista button{
-    background: linear-gradient(90deg, #df0e0e 0%, #7269F2 100%);
+    background: linear-gradient(90deg, #df0e0e 0%, #df0e0e 100%);
     border: 0;
     border-radius: 8px;
     width: 80vw;
@@ -323,8 +323,9 @@ input{
     font-size: 16px;
 }
 
-#button button{
-    background: linear-gradient(90deg, #df0e0e 0%, #7269F2 100%);
+
+#funcionarioListaAdd button{
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
     border: 0;
     border-radius: 8px;
     width: 80vw;
