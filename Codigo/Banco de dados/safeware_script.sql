@@ -37,9 +37,9 @@ INSERT INTO endereco VALUES
 
 CREATE TABLE filial (
     idFilial INT PRIMARY KEY AUTO_INCREMENT,
-    fkrestaurante INT,
+    fkRestaurante INT,
     fkEndereco INT,
-    FOREIGN KEY (fkrestaurante)
+    FOREIGN KEY (fkRestaurante)
         REFERENCES restaurante (idCadastro),
     FOREIGN KEY (fkEndereco)
         REFERENCES endereco (idEndereco)
@@ -51,10 +51,10 @@ CREATE TABLE funcionario (
     nome VARCHAR(120),
     email VARCHAR(60),
     senha VARCHAR(45),
-    fkrestaurante INT,
+    fkRestaurante INT,
     fkSupervisor INT,
 	CONSTRAINT chKTipo CHECK(tipo in ('Supervisor', 'Suporte', 'Comum')),
-    FOREIGN KEY (fkrestaurante)
+    FOREIGN KEY (fkRestaurante)
         REFERENCES restaurante (idCadastro),
     FOREIGN KEY (fkSupervisor)
         REFERENCES funcionario (idFuncionario)
@@ -66,11 +66,11 @@ CREATE TABLE sensor (
     dtinstalacao DATE,
     stts VARCHAR(7) CHECK (stts IN ('ativo' , 'inativo')),
     local_inst VARCHAR(45),
-    fkrestaurante INT,
+    fkRestaurante INT,
     fkFilial INT,
     FOREIGN KEY (fkFilial)
         REFERENCES filial (idFilial),
-    FOREIGN KEY (fkrestaurante)
+    FOREIGN KEY (fkRestaurante)
         REFERENCES restaurante (idCadastro)
 )  AUTO_INCREMENT=2000;
 
@@ -80,7 +80,7 @@ CREATE TABLE manutencao (
     dtHoraInicio DATETIME,
     dtHoraTermino DATETIME,
     stts VARCHAR(7) CHECK (stts IN ('ativo' , 'inativo')),
-    fkempresa INT,
+    fkRestaurante INT,
     fkSensor INT,
     FOREIGN KEY (fkSensor)
         REFERENCES sensor (idsensor)
