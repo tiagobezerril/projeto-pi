@@ -1,0 +1,75 @@
+<!-- Visão geral da dash -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeWare | Gerenciamento de funcionários</title>
+
+    <link rel="shortcut icon" type="imagex/png" href="../img/logo.png">
+    <link rel="stylesheet" href="addFuncionario.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
+</head>
+
+<body>
+    <header class="menu">
+        <div class="esquerda">
+            <a style="cursor: default;"><span class="logo">SafeWare</span></a>
+            <p class="titulo">Gerenciamento de funcionários</p>
+
+        </div>
+        <div class="direita">
+            <a onclick="clickOpcoes()" class="perfil" id="setaPerfil">
+                <span class="material-symbols-outlined" id="setaMenu">
+                    arrow_drop_down
+                </span>
+            </a>
+        </div>
+    </header>
+
+    <h1>Funcionários</h1>
+    <div id="funcionarioQuadro">
+        <div class="funcionario-card">
+            <div class="info">
+                <strong>Nome X</strong>
+                <p>Email: email@gmail.com</p>
+            </div>
+            <button onclick="del()" class="delete-button">X</button>
+        </div>
+        <div class="funcionario-card">
+            <div class="info">
+                <strong>Nome Y</strong>
+                <p>Email: email@gmail.com</p>
+            </div>
+            <button onclick="del()" class="delete-button">X</button>
+        </div>
+        <button onclick="add()" class="add-button">Adicionar um funcionário</button>
+    </div>
+
+    <div id="menuPerfil">
+        <a href="index.html">Dashboard</a>
+        <a onclick="sair()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
+    </div>
+
+    <script>
+        function clickOpcoes() {
+            if (menuPerfil.style.top == '-5vw') {
+                menuPerfil.style.top = '5vw';
+                setaMenu.innerHTML = 'arrow_drop_up';
+            } else {
+                menuPerfil.style.top = '-5vw';
+                setaMenu.innerHTML = 'arrow_drop_down';
+            }
+        }  
+    </script>
+</body>
+
+</html>

@@ -53,6 +53,22 @@ input{
     gap: 2.5vw;
 }
 
+.menu a{
+    text-decoration: none;
+}
+
+span#burguer{
+    color: #999999;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+span#burguer:hover, span#burguer:focus{
+    color: #7269F2;
+    cursor: pointer;
+}
+
 .logo {
     width: 120px;
     height: 40px;
@@ -66,6 +82,168 @@ input{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.perfil{
+    width: fit-content;
+    height: 45px;
+    border-radius: 25px;
+    text-decoration: none;
+    text-align: center;
+    justify-self: center;
+    color: #2D20EE;
+
+}
+
+.perfil span{
+    /* color: #2D20EE; */
+    font-size: 5vw;
+    line-height: 40px;
+}
+
+.perfil:hover{
+    color: white;
+    cursor: pointer;
+}
+
+#menuPerfil {
+    position: absolute;
+    top: -5vw;
+    align-self: flex-end;
+    background-color: #e4e4e4;
+    color: #646464;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 1vh 1vh;
+    -webkit-box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+    -moz-box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+    box-shadow: 2px 0px 13px 0px rgba(204, 204, 204, 1);
+
+    transition: top 0.5s ease-in-out;
+}
+
+#menuPerfil a{
+    width: 12vw;
+    padding: 1vh;
+    text-decoration: none;
+    color: #646464;
+    font-weight: 600;
+    
+}
+
+#menuPerfil a:hover, #menuPerfil a:focus{
+    background-color: #2D20EE;
+    color: white;
+    cursor: pointer;
+}
+
+/* ENDEREÇO */
+
+#endereco {
+    position: fixed;
+    right: -620px;
+    top: 0;
+    padding: 100px 40px;
+    background-color: #dfdfdf;
+    width: 600px;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    -webkit-box-shadow: -2px 8px 26px 0px rgba(161,161,161,1);
+    -moz-box-shadow: -2px 8px 26px 0px rgba(161,161,161,1);
+    box-shadow: -2px 8px 26px 0px rgba(161,161,161,1);
+
+    transition: right 0.5s ease-in-out;
+}
+
+#endereco .titulo{
+    color: #2D20EE;
+    font-weight: bolder;
+    font-size: 40px;
+    margin: 0;
+    align-self: center;
+}
+
+#endereco .linha{
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
+    align-self: center;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+#endereco .form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 15px;
+    padding: 0 25px;
+}
+
+#endereco p{
+    margin: 0;
+    color: #696969;
+    font-weight: bold;
+}
+
+#endereco .subtitulo{
+    color: #696969;
+    font-size: 16px;
+    align-self: center;
+}
+
+#endereco input, #endereco select{
+    width: 100%;
+    height: 35px;
+    border-radius: 8px;
+    border: 2px solid #b8b8b8;
+    color: #696969;
+    padding: 0 10px;
+}
+
+#endereco button{
+    background-color: #2D20EE;
+    border: 0;
+    border-radius: 8px;
+    height: 35px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#endereco button:hover, #endereco button:focus{
+    background: #7269F2;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+#endereco .aFuncionario {
+    color: #2D20EE;
+    height: 3vh;
+    width: auto;
+    text-decoration: none;
+    font-weight: 700;
+    align-self: center;
+    font-size: 2.5vh;
+}
+
+#endereco .aFuncionario:hover, #endereco .aFuncionario:focus{
+    color: #7269F2;
+}
+
+#endereco #close{
+    color: #a09f9f;
+    font-size: 30px;
+    position: absolute;
+}
+
+#endereco #close:hover, #endereco #close:focus{
+    cursor: pointer;
+    color: #696969;
 }
 
 .menu .titulo {
