@@ -116,11 +116,13 @@
             || ipt_CNPJ.value.includes("0")
 
 
-            var cnpjSomenteNumeros = CNPJ.replaceAll('.', '').replaceAll('/', '').replaceAll('-', '');
-            ipt_CNPJ.value = cnpjSomenteNumeros;
-        
 
-        if ((CNPJ.length == 14 || CNPJ.length == 18) && possui_num) {
+        
+        if (CNPJ.length == 18){
+            ipt_CNPJ.style.border = "3px solid #08a708"
+            correto = true
+        }
+        else if (CNPJ.length == 14  && possui_num) {
             var CNPJFormatado = ''
             for (var contador = 0; contador < CNPJ.length; contador++) {
                 CNPJFormatado += CNPJ[contador]
@@ -141,6 +143,8 @@
         } else {
             correto = false
             ipt_CNPJ.style.border = "3px solid #f70000"
+            var cnpjSomenteNumeros = CNPJ.replaceAll('.', '').replaceAll('/', '').replaceAll('-', '');
+            ipt_CNPJ.value = cnpjSomenteNumeros;
         }
     }
 
@@ -230,22 +234,96 @@
 
     function validarCadastro() {
 
-        correto = true
-        validado.innerHTML = ""
+correto = true
+validado.innerHTML = ""
 
-        validarRazao()
-        validarFantasia()
-        validarCNPJ()
-        validarRepresentante()
-        validarEmail()
-        validarSenha()
-        validarConfirmacao()
+validarRazao()
+validarFantasia()
+validarCNPJ()
+validarRepresentante()
+validarEmail()
+validarSenha()
+validarConfirmacao()
 
+var razaoVar = ipt_razao.value;
+var fantasiaVar= ipt_nomeFant.value;
+var cnpjVar = ipt_CNPJ.value;
+var repVar= ipt_rep.value;
+var emailVar = ipt_email.value;
+var senhaVar = ipt_senha.value;
 
-        if (correto) {
-            window.location.replace("login.html")
-        } else {
-            validado.innerHTML = "Informações Inválidas, revise os campos em vermelho."
-        }
+if (correto) {
+    window.location.replace("login.html")
+} else {
+    validado.innerHTML = "Informações Inválidas, revise os campos em vermelho."
+}
+
+fetch("/usuarios/cadastrar", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+},
+body: JSON.stringify({
+// crie um atributo que recebe o valor recuperado aqui
+// Agora vá para o arquivo routes/usuario.js
+razaoServer: razaoVar,
+fantasiaServer: fantasiaVar,
+cnpjServer: cnpjVar,
+repServer: repVar,
+emailServer: emailVar,
+senhaServer: senhaVar
+
+}),
+})
+.then(function (resposta) {
+console.log("resposta: ", resposta);
+
+if (resposta.ok) {
+  cardErro.style.display = "block";
+
+  mensagem_erro.innerHTML =
+    "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+  setTimeout(() => {
+    window.location = "login.html";
+  }, "2000");
+
+  limparFormulario();
+  finalizarAguardar();
+} else {
+  throw "Houve um erro ao tentar realizar o cadastro!";
+}
+})
+.catch(function (resposta) {
+console.log(`#ERRO: ${resposta}`);
+finalizarAguardar();
+});
+
+return false;
+}
+
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  
     }
 </script>
