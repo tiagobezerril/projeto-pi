@@ -440,7 +440,7 @@ body {
     align-items: center;
 }
 
-#funcionarioQuadro {
+#div_funcionarioQuadro {
     width: 100vw;
     padding: 6vh 2vw;
     color: #696969;
@@ -450,14 +450,14 @@ body {
     background-color: #ffffff;
 }
 
-#funcionarioQuadro h1 {
+#div_funcionarioQuadro h1 {
     color: #2D20EE;
     font-weight: 700;
     font-size: 2em;
     margin: 0;
 }
 
-#funcionarioQuadro .funcionario-card {
+#div_funcionarioQuadro .funcionario-card {
     background-color: #f3f3f3;
     width: 80vw;
     margin: 10px 0;
@@ -469,12 +469,12 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#funcionarioQuadro .funcionario-card .info {
+#div_funcionarioQuadro .funcionario-card .info {
     font-size: 1.1em;
     color: #696969;
 }
 
-#funcionarioQuadro .funcionario-card .delete-button {
+#div_funcionarioQuadro .funcionario-card .delete-button {
     background-color: #df0e0e;
     width: 50px;
     height: 50px;
@@ -486,7 +486,7 @@ body {
     font-weight: bold;
 }
 
-#funcionarioQuadro .add-button {
+#div_funcionarioQuadro .add-button {
     background: linear-gradient(90deg, #2D20EE 0%, #7269F2 100%);
     border: 0;
     border-radius: 8px;
