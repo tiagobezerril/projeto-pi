@@ -14,36 +14,41 @@ INSERT INTO restaurante VALUES
 (default, 'Renome Refeicoes Coletivas LTDA', 'Renome Refeicoes Coletivas', '04436006000167'),
 (default, 'Degustas Comercio de Alimentacao Corporativa LTDA', 'Degustas', '09720990000107'),
 (default, 'W.m. Iguarias LTDA', 'Suvide Restaurantes Empresariais', '56761836000163');
+SELECT * FROM restaurante;
+CREATE TABLE filial (
+    idFilial INT PRIMARY KEY AUTO_INCREMENT,
+    fkRestaurante INT,
+    FOREIGN KEY (fkRestaurante)
+        REFERENCES restaurante (idCadastro)
+)  AUTO_INCREMENT=100;
+
+INSERT INTO filial VALUES 
+	(DEFAULT, 100),
+    (DEFAULT, 100),
+    (DEFAULT, 101),
+    (DEFAULT, 102),
+    (DEFAULT, 103),
+    (DEFAULT, 104);
 
 CREATE TABLE endereco (
     idEndereco INT PRIMARY KEY AUTO_INCREMENT,
-    Estado VARCHAR(45),
+    estado VARCHAR(45),
     cidade VARCHAR(45),
     bairro VARCHAR(45),
     logradouro VARCHAR(45),
     numero VARCHAR(7),
     cep CHAR(8),
-    fkrestaurante INT,
-    FOREIGN KEY (fkrestaurante)
-        REFERENCES restaurante (idCadastro)
+    fkFilial INT,
+    CONSTRAINT fkFilialEnd FOREIGN KEY (fkFilial) REFERENCES filial(idFilial)
 )  AUTO_INCREMENT=1000;
 
 INSERT INTO endereco VALUES
 (default, 'SP', 'São Paulo', 'Vila Moraes', 'Rua Angaturama', '240', '04164010', '100'),
+(default, 'SP', 'São Paulo', 'Vila Monumento', 'Rua Vasconcelos Drumond', '206', '01548000', '100'),
 (default, 'SP', 'São Paulo', 'Vila Monumento', 'Rua Vasconcelos Drumond', '204', '01548000', '101'),
 (default, 'SP', 'São Paulo', 'Agua Fria', 'Rua Ismael Neri', '764', '02335001', '102'),
 (default, 'SP', 'São Paulo', 'City America', 'Avenida Do Anastacio', '359', '05119000', '103'),
 (default, 'SP', 'São Paulo', 'Vila Carrao', 'Rua Antonio de Barros', '2831', '03401001', '104');
-
-CREATE TABLE filial (
-    idFilial INT PRIMARY KEY AUTO_INCREMENT,
-    fkRestaurante INT,
-    fkEndereco INT,
-    FOREIGN KEY (fkRestaurante)
-        REFERENCES restaurante (idCadastro),
-    FOREIGN KEY (fkEndereco)
-        REFERENCES endereco (idEndereco)
-)  AUTO_INCREMENT=100;
 
 CREATE TABLE funcionario (
     idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
@@ -61,38 +66,46 @@ CREATE TABLE funcionario (
 )  AUTO_INCREMENT=100;
 
 CREATE TABLE sensor (
-    idsensor INT PRIMARY KEY AUTO_INCREMENT,
+    idSensor INT PRIMARY KEY AUTO_INCREMENT,
     tipo VARCHAR(7),
-    dtinstalacao DATE,
+    dtInstalacao DATE,
     stts VARCHAR(7) CHECK (stts IN ('ativo' , 'inativo')),
     local_inst VARCHAR(45),
-    fkRestaurante INT,
     fkFilial INT,
     FOREIGN KEY (fkFilial)
-        REFERENCES filial (idFilial),
-    FOREIGN KEY (fkRestaurante)
-        REFERENCES restaurante (idCadastro)
+        REFERENCES filial (idFilial)
 )  AUTO_INCREMENT=2000;
 
+INSERT INTO sensor(tipo,dtInstalacao,stts,local_inst,fkFilial) VALUES 
+	('MQ3','2024-11-10','ativo','Fogão 01',100),
+    ('MQ3','2024-11-10','ativo','Forno 01',100),
+    ('MQ3','2024-11-10','ativo','Cilindro 01',100),
+    ('MQ3','2024-11-15','ativo','Chapa 01',101),
+    ('MQ3','2024-11-15','ativo','Cilindro 01',101);
+
+SELECT * FROM sensor;
 
 CREATE TABLE manutencao (
     idManutencao INT PRIMARY KEY AUTO_INCREMENT,
     dtHoraInicio DATETIME,
     dtHoraTermino DATETIME,
-    stts VARCHAR(7) CHECK (stts IN ('ativo' , 'inativo')),
-    fkRestaurante INT,
     fkSensor INT,
     FOREIGN KEY (fkSensor)
-        REFERENCES sensor (idsensor)
+        REFERENCES sensor(idsensor)
 )  AUTO_INCREMENT=2000;
+
+INSERT INTO manutencao VALUES 
+	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03',2004);
+    
+SELECT * FROM manutencao;
 
 CREATE TABLE dados (
     idDados INT PRIMARY KEY AUTO_INCREMENT,
-    fksensor INT,
+    fkSensor INT,
     porcentagem FLOAT,
-    dtdecoleta DATETIME DEFAULT CURRENT_TIMESTAMP,
+    dtColeta DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (fksensor)
-        REFERENCES sensor (idsensor)
+        REFERENCES sensor(idsensor)
 )  AUTO_INCREMENT=3000;
 
 SELECT razao_social as 'Razão Social',
