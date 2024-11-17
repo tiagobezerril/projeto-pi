@@ -40,10 +40,12 @@
     </div>
 
 
-    <div>
+    <div id="addFuncionario">
         <!-- div para adicionar funcionários type text -->
-        <input type="text" id="ipt_nomeFuncionario" placeholder="Nome do funcionário">
-        <input type="text" id="ipt_emailFuncionario" placeholder="Email do funcionário">
+        <input type="text" id="ipt_nomeFuncionario" style="border-style: solid; border-color: rgb(117, 117, 117);"
+            placeholder="Nome do funcionário">
+        <input type="text" id="ipt_emailFuncionario" style="border-style: solid; border-color: rgb(117, 117, 117);"
+            placeholder="Email do funcionário">
 
     </div>
 
@@ -128,16 +130,26 @@
 
             var nome = ipt_nomeFuncionario.value;
             var email = ipt_emailFuncionario.value;
+            var possui_arroba = ipt_emailFuncionario.value.includes("@")
+            var termina_com = email.endsWith("Sptech.School")
+                || email.endsWith('.com')
+                || email.endsWith('.br')
+                || email.endsWith('.net')
 
-            if (nome == "" && email == "") {
 
+            if (nome == "" || email == "") {
+                ipt_nomeFuncionario.style.border = "3px solid #f70000"
+                ipt_emailFuncionario.style.border = "3px solid #f70000"
                 alert("Por favor, preencha o nome e o email.");
                 return;
 
-            } else if (nome && email != "") {
+            } else if (nome || email != "" && mail.length > 3 && possui_arroba && termina_com) {
+                ipt_nomeFuncionario.style.border = "3px solid #08a708"
+                ipt_emailFuncionario.style.border = "3px solid #08a708"
+
                 funcionariosLista.push({ nome: nome, email: email }); // Adiciona o funcionário ao array.
 
-                admFuncionarios(); // Atualiza a interface.
+                admFuncionarios(); // ativa a função de array e atualiza a pagina .
 
             }
 
