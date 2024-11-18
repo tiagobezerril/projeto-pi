@@ -2,10 +2,10 @@ CREATE DATABASE safeware;
 USE safeware;
 
 CREATE TABLE restaurante (
-  idCadastro INT PRIMARY KEY AUTO_INCREMENT,
-  razao_social VARCHAR(120),
-  nome_fantasia VARCHAR(60),
-  cnpj CHAR(14)
+  idCadastro INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
+  razao_social VARCHAR(120) UNIQUE,
+  nome_fantasia VARCHAR(60) UNIQUE,
+  cnpj CHAR(14) UNIQUE
 ) AUTO_INCREMENT = 100;
 
 INSERT INTO restaurante VALUES
@@ -54,7 +54,7 @@ CREATE TABLE funcionario (
     idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
     tipo VARCHAR(10),
     nome VARCHAR(120),
-    email VARCHAR(60),
+    email VARCHAR(60) UNIQUE,
     senha VARCHAR(45),
     fkRestaurante INT,
     fkSupervisor INT,
