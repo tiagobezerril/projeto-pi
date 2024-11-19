@@ -99,8 +99,21 @@ foreign key (fkUniverso)
 references universo (idUniverso)
 );
 
-insert into viagem values
-(default, 1, 1, )
+INSERT INTO viagem (idViagem, fkDeadpool, fkUniverso, dtViagem) VALUES
+    (DEFAULT, 1, 1, '2024-01-11'),
+    (DEFAULT, 2, 2, '2024-02-21'),
+    (DEFAULT, 4, 4, '2024-04-01'),
+    (DEFAULT, 5, 5, '2024-02-11'),
+    (DEFAULT, 6, 1, '2024-06-01'),
+    (DEFAULT, 7, 2, '2024-06-23'),
+    (DEFAULT, 8, 3, '2024-08-01'),
+    (DEFAULT, 9, 4, '2024-06-24'),
+    (DEFAULT, 12, 2, '2025-02-03'),
+    (DEFAULT, 13, 3, '2025-02-13'),
+    (DEFAULT, 14, 4, '2025-03-28'),
+    (DEFAULT, 15, 5, '2025-03-13');
+
+
 create table batalha (
 idBatalha int auto_increment,
 fkDeadpool int,
@@ -114,3 +127,18 @@ constraint fkBatalhaUniverso
 foreign key (fkUniverso)
 references universo (idUniverso)
 );
+
+
+INSERT INTO batalha (idBatalha, fkDeadpool, fkUniverso, dtBatalha) VALUES
+    (DEFAULT, 1, 1, '2024-01-15'),
+    (DEFAULT, 2, 2, '2024-02-20'),
+    (DEFAULT, 3, 3, '2024-03-25'),
+    (DEFAULT, 4, 4, '2024-04-30'),
+    (DEFAULT, 5, 5, '2024-05-05'),
+    (DEFAULT, 6, 1, '2024-06-10'),
+    (DEFAULT, 7, 2, '2024-07-15'),
+    (DEFAULT, 8, 3, '2024-08-20'),
+    (DEFAULT, 9, 4, '2024-09-25'),
+    (DEFAULT, 12, 2, '2025-12-10'),
+    (DEFAULT, 14, 4, '2025-02-20'),
+    (DEFAULT, 15, 5, '2025-03-25');;
