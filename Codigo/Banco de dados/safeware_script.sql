@@ -118,7 +118,7 @@ CREATE TABLE manutencao (
 INSERT INTO manutencao VALUES 
 	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03',2004);
     
-SELECT * FROM manutencao;
+SELECT last_insert_id(idManutencao) FROM manutencao;
 
 CREATE TABLE dados (
     idDados INT PRIMARY KEY AUTO_INCREMENT,
