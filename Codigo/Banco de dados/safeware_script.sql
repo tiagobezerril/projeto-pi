@@ -15,6 +15,7 @@ INSERT INTO restaurante VALUES
 (default, 'Degustas Comercio de Alimentacao Corporativa LTDA', 'Degustas', '09720990000107'),
 (default, 'W.m. Iguarias LTDA', 'Suvide Restaurantes Empresariais', '56761836000163');
 SELECT * FROM restaurante;
+
 CREATE TABLE filial (
     idFilial INT PRIMARY KEY AUTO_INCREMENT,
     fkRestaurante INT,
@@ -54,7 +55,7 @@ CREATE TABLE funcionario (
     idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
     tipo VARCHAR(10),
     nome VARCHAR(120),
-    email VARCHAR(60),
+    email VARCHAR(60) UNIQUE,
     senha VARCHAR(45),
     fkRestaurante INT,
     fkSupervisor INT,
@@ -64,6 +65,26 @@ CREATE TABLE funcionario (
     FOREIGN KEY (fkSupervisor)
         REFERENCES funcionario (idFuncionario)
 )  AUTO_INCREMENT=100;
+
+INSERT INTO funcionario (tipo, nome, email, senha, fkRestaurante) VALUES
+	('Supervisor', 'Michel', 'michel@gmail.com', 'Senha#123', 100),
+    ('Supervisor', 'Vanessa', 'vanessa@gmail.com', 'Senha#123', 101),
+    ('Supervisor', 'Gabriela', 'gabriela@gmail.com', 'Senha#123', 102);
+    
+SELECT * FROM funcionario;
+    
+INSERT INTO funcionario (tipo, nome, email, senha, fkRestaurante, fkSupervisor) VALUES
+	('Comum', 'Carlos', 'carlos@gmail.com', 'Senha#123', 100, 100),
+    ('Comum', 'Roseli', 'roseli@gmail.com', 'Senha#123', 100, 100),
+    ('Comum', 'Vitor', 'vitor@gmail.com', 'Senha#123', 101, 101),
+    ('Comum', 'Luiz', 'luiz@gmail.com', 'Senha#123', 102, 102);
+    
+INSERT INTO funcionario (tipo, nome, email, senha) VALUES
+	('Suporte', 'Viviane', 'viviane@gmail.com', 'Senha#123'),
+	('Suporte', 'Bhreno', 'bhreno@gmail.com', 'Senha#123'),
+	('Suporte', 'Kaio', 'kaio@gmail.com', 'Senha#123'),
+	('Suporte', 'Tiago', 'tiago@gmail.com', 'Senha#123'),
+	('Suporte', 'Erik', 'erik@gmail.com', 'Senha#123');
 
 CREATE TABLE sensor (
     idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -111,7 +132,7 @@ CREATE TABLE dados (
 SELECT razao_social as 'Razão Social',
 nome_fantasia as 'Nome Fantasia',
 cnpj as CNPJ
-FROM empresa
+FROM restaurante
 WHERE razao_social LIKE '%LTDA%';
 
 SELECT em.nome_fantasia as 'Nome Fantasia',
@@ -121,6 +142,7 @@ SELECT em.nome_fantasia as 'Nome Fantasia',
   en.cep as CEP 
 FROM restaurante as em 
 JOIN endereco as en ON idCadastro = fkrestaurante;
+-- COLOCAR JOIN DA FILIAL
 
 SELECT 
   CONCAT(
@@ -131,6 +153,7 @@ SELECT
 FROM empresa AS em
 JOIN endereco AS en ON em.idCadastro = en.fkrestaurante
 JOIN sensor AS se ON em.idCadastro = se.fkrestaurante;
+-- JOIN DA FILIAL
 
 SELECT 
   se.local_inst AS 'Local de Instalação',
