@@ -13,12 +13,6 @@ const configLinha = {
             backgroundColor: '#464646',
             data: [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3] // COMENTAR QUANDO FOR CONECTAR NA API
         },
-        //{
-        //    label: 'Em risco',
-        //    borderColor: '#eb801d',
-        //    backgroundColor: '#eb801d',
-        //    data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
-        //},
         {
             label: 'Extremo risco',
             borderColor: '#e63535',
@@ -57,16 +51,23 @@ var grafico1 = new Chart(sensorAnalogico1, configLinha);
 
 var vazamentoAtual = document.getElementById("graficoMeia1").getContext('2d');
 
-var valorVazamento = 4;
+var valorAtual1 = 3;
+var corAtual1 = '#e63535';
+
+if (valorAtual1 > 0) {
+    corAtual1 = '#e63535';
+} else {
+    corAtual1 = '#60CE60';
+}
 
 const configVazamentoAtual = {
     type: 'doughnut',
     data: {
         labels: ["Vazamento atual"],
         datasets: [{
-            backgroundColor: ['#e63535', 'rgba(0, 0, 0, 0.1)'],
+            backgroundColor: [corAtual1, 'rgba(0, 0, 0, 0.1)'],
             borderWidth: 0,
-            data: [valorVazamento, 45 - valorVazamento]
+            data: [valorAtual1, 45 - valorAtual1]
         }]
     },
     options: {
@@ -156,7 +157,9 @@ const configLinha2 = {
             label: 'Extremo risco',
             borderColor: '#e63535',
             backgroundColor: '#e63535',
-            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] // COMENTAR QUANDO FOR CONECTAR NA API
+            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
+            borderDash: [5, 5], // Configuração para linha pontilhada
+            tension: 0.3 // Para suavizar a linha
         }
         ],
         labels: dadosLabel
@@ -188,16 +191,23 @@ var grafico = new Chart(linhaCtx2, configLinha2);
 
 var vazamentoAtual2 = document.getElementById("graficoMeia2").getContext('2d');
 
-var valorVazamento = 0;
+var valorAtual2 = 0;
+var corAtual2 = '#e63535';
+
+if (valorAtual2 > 0) {
+    corAtual2 = '#e63535';
+} else {
+    corAtual2 = '#60CE60';
+}
 
 const configVazamentoAtual2 = {
     type: 'doughnut',
     data: {
         labels: ["Vazamento atual"],
         datasets: [{
-            backgroundColor: ['#60CE60', 'rgba(0, 0, 0, 0.1)'],
+            backgroundColor: [corAtual2, 'rgba(0, 0, 0, 0.1)'],
             borderWidth: 0,
-            data: [valorVazamento, 45 - valorVazamento]
+            data: [valorAtual2, 45 - valorAtual2]
         }]
     },
     options: {
@@ -280,17 +290,13 @@ const configLinha3 = {
             backgroundColor: '#60CE60',
             data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0] 
         },
-        //{
-        //    label: 'Em risco',
-        //    borderColor: '#eb801d',
-        //    backgroundColor: '#eb801d',
-        //    data: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] // COMENTAR QUANDO FOR CONECTAR NA API
-        //},
         {
             label: 'Extremo risco',
             borderColor: '#e63535',
             backgroundColor: '#e63535',
-            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] // COMENTAR QUANDO FOR CONECTAR NA API
+            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
+            borderDash: [5, 5], // Configuração para linha pontilhada
+            tension: 0.3 // Para suavizar a linha
         }
         ],
         labels: dadosLabel
@@ -322,16 +328,23 @@ var grafico = new Chart(linhaCtx3, configLinha3);
 
 var vazamentoAtual3 = document.getElementById("graficoMeia3").getContext('2d');
 
-var valorVazamento3 = 0;
+var valorAtual3 = 0;
+var corAtual3 = '#e63535';
+
+if (valorAtual3 > 0) {
+    corAtual3 = '#e63535';
+} else {
+    corAtual3 = '#60CE60';
+}
 
 const configVazamentoAtual3 = {
     type: 'doughnut',
     data: {
         labels: ["Vazamento atual"],
         datasets: [{
-            backgroundColor: ['#60CE60', 'rgba(0, 0, 0, 0.1)'],
+            backgroundColor: [corAtual3, 'rgba(0, 0, 0, 0.1)'],
             borderWidth: 0,
-            data: [valorVazamento3, 45 - valorVazamento3]
+            data: [valorAtual3, 45 - valorAtual3]
         }]
     },
     options: {

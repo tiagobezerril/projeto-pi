@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/sessao.js"></script>
+    <script src="../../js/sessao.js"></script>
     
 </head>
 
@@ -28,13 +28,12 @@
         </div>
         <div class="centro">
             <a href="index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
-            <p class="titulo">Filial 1</p>
+            <p class="titulo">Filial 2</p>
         </div>
         <div class="direita">
             <span id="sensores">
-                <button onclick="clickSensor1()" id="botaoSensor1" class="alerta">Fogão 01</button>
-                <button onclick="clickSensor2()" id="botaoSensor2">Forno 01</button>
-                <button onclick="clickSensor3()" id="botaoSensor3">Cilindro 01</button>
+                <button onclick="clickSensor1()" id="botaoSensor1">Chapa 01</button>
+                <button onclick="clickSensor2()" id="botaoSensor2">Cilindro 01</button>
             </span>
 
             <a onclick="clickOpcoes()" class="perfil" id="setaPerfil">
@@ -54,9 +53,9 @@
 
     <div id="opcoes">
         <div>
-            <a class="filial">Filial 1</a>
+            <a class="filial" href="dashboard.html" style="text-decoration: none;">Filial 1</a>
             <span class="linha"></span>
-            <a class="filial" href="dashboard2.html" style="text-decoration: none;">Filial 2</a>
+            <a class="filial">Filial 2</a>
         </div>
         <a href="index.html" class="voltar">Voltar</a>
     </div>
@@ -69,18 +68,10 @@
             <span class="manutencao">
                 <h3>Sensor cilindro 01</h3>
                 <span class="horario">
-                    <b>Horario de inicio:</b> 08:21:09 - 12/11/2024 <br>
-                    <b>Horario de término:</b> 08:25:03 - 12/11/2024
+                    <b>Horario de inicio:</b> 07:09:09 - 16/11/2024 <br>
+                    <b>Horario de término:</b> 07:12:03 - 16/11/2024
                 </span>
             </span>
-            <!-- <span class="manutencao">
-                <h3>Sensor do fogão 01</h3>
-                <p>Estava em manutenção para troca de cabos.</p>
-                <span class="horario">
-                    <b>Horario de inicio:</b> 08:21:09 - 10/11/2024 <br>
-                    <b>Horario de término:</b> 08:25:03 - 10/11/2024
-                </span>
-            </span> -->
         </div>
         <span id="close" onclick="closeManu()" class="material-symbols-outlined">
             close
@@ -135,7 +126,7 @@
         </span>
     </div>
 
-    <div id="alerta">
+    <!-- <div id="alerta">
         <span class="card">
             <span id="closeAlerta" onclick="closeAlerta()" class="material-symbols-outlined">
                 close
@@ -145,13 +136,13 @@
             <p class='atencao'>Um vazamento foi detectado!</p> 
             <p>O sensor do fogão 1 acabou de detectar um vazamento, tome já as providências necessárias para a segurança do seu estabelecimento.</p>
         </span>
-    </div>
+    </div> -->
 
     <div class="dash" id="sensor1">
         <div class="cima">
             <div class="esquerda">
                 <span class="spanTitulo">
-                    <p id="tituloSensor1" class="titulo alerta">Fogão 01</p>
+                    <p id="tituloSensor1" class="titulo">Chapa 01</p>
                     <div class="onoff">
                         <p>Modo manutenção</p>
                         <input type="checkbox" class="toggle" id="onoff1">
@@ -168,15 +159,15 @@
                     <div class="KPIs">
                         <span class="inicio">
                             <p class="nome">Horario de início</p>
-                            <p class="dado">11:32:06</p>
+                            <p class="dado">--</p>
                         </span>
                         <span class="final">
                             <p class="nome">Horario de encerramento</p>
-                            <p class="dado" style="color: #e63535;">Ativo</p>
+                            <p class="dado">--</p>
                         </span>
-                        <span class="status alerta">
+                        <span class="status seguro">
                             <p class="nome">Status de vazamento</p>
-                            <p class="dado">Ativo</p>
+                            <p class="dado">Sem vazamentos</p>
                         </span>
                     </div>
                 </div>
@@ -199,7 +190,7 @@
                 </span>
                    
                 <div class="baixo">
-                    <p class="graficoTitulo">Quantidade de vazamentos mensal</p>
+                    <p class="graficoTitulo">Quantidade de vazamentos mensal por sensor</p>
                     <canvas id="graficoMensal1" style="height: 200px;"></canvas>
                 </div>
             </div>
@@ -210,7 +201,7 @@
         <div class="cima">
             <div class="esquerda">
                 <span class="spanTitulo">
-                    <p id="tituloSensor2" class="titulo">Forno 01</p>
+                    <p id="tituloSensor2" class="titulo">Cilindro 01</p>
                     <div class="onoff">
                         <p>Modo manutenção</p>
                         <input type="checkbox" class="toggle" id="onoff2">
@@ -234,7 +225,7 @@
                         </span>
                         <span class="status seguro">
                             <p class="nome">Status de vazamento</p>
-                            <p class="dado">Sem vazamento</p>
+                            <p class="dado">Sem vazamentos</p>
                         </span>
                     </div>
                 </div>
@@ -257,72 +248,14 @@
                 </span>
 
                 <div class="baixo">
-                    <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
+                    <p class="graficoTitulo">Quantidade de vazamentos mensal por sensor</p>
                     <canvas id="graficoMensal2" height="100px !important;"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="dash" id="sensor3">
-        <div class="cima">
-            <div class="esquerda">
-                <span class="spanTitulo">
-                    <p id="tituloSensor3" class="titulo">Fogão 02</p>
-                    <div class="onoff">
-                        <p>Modo manutenção</p>
-                        <input type="checkbox" class="toggle" id="onoff3">
-                        <label for="onoff3"> </label>
-                    </div>
-                </span>
-                <div class="divEsq">
-                    <span>
-                        <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                        <canvas id="graficoLinha3" class="graficoLinha" height="300px" width="600px"></canvas>
-                    </span>
-
-                    <div class="KPIs">
-                        <span class="inicio">
-                            <p class="nome">Horario de início</p>
-                            <p class="dado">07:02:12</p>
-                        </span>
-                        <span class="final">
-                            <p class="nome">Horario de encerramento</p>
-                            <p class="dado">07:54:36</p>
-                        </span>
-                        <span class="status seguro">
-                            <p class="nome">Status de vazamento</p>
-                            <p class="dado">Sem vazamento</p>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="direita">
-                <div class="metricas">
-                    <span class="seguro">Seguro</span>
-                    <span class="risco">Em risco</span>
-                    <span class="extremo">Extremo risco</span>
-                    
-                    <p>0%</p>
-                    <p>>0% e <2%</p>
-                    <p>>2% </p>
-                </div>
-
-                <span style="width: 180px;">
-                    <p class="graficoTitulo">Porcentagem atual</p>
-                    <canvas id="graficoMeia3" class="meiaLua"></canvas>
-                </span>
-
-                <div class="baixo">
-                    <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-                    <canvas id="graficoMensal3" height="100px !important;"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="../js/dash1.js"></script>
+    <script src="../../js/dash2.js"></script>
 
     <script>
         function clickMenu() {
@@ -371,7 +304,6 @@
         function clickSensor1(){
             sensor1.style.display = 'flex';
             sensor2.style.display = 'none';
-            sensor3.style.display = 'none';
 
             if (botaoSensor1.classList.contains("alerta")){
                 botaoSensor1.style.border = '3px solid #a11919';
@@ -379,33 +311,17 @@
                 botaoSensor1.style.border = '3px solid #2e972e';
             }
             botaoSensor2.style.border = 'none';
-            botaoSensor3.style.border = 'none';
         }
     
         function clickSensor2(){
             sensor1.style.display = 'none';
             sensor2.style.display = 'flex';
-            sensor3.style.display = 'none';
 
             botaoSensor1.style.border = 'none';
             if (botaoSensor2.classList.contains("alerta")){
                 botaoSensor2.style.border = '3px solid #a11919';
             } else {
                 botaoSensor2.style.border = '3px solid #2e972e';
-            }
-            botaoSensor3.style.border = 'none';
-        }
-    
-        function clickSensor3(){
-            sensor1.style.display = 'none';
-            sensor2.style.display = 'none';
-            sensor3.style.display = 'flex';
-            botaoSensor1.style.border = 'none';
-            botaoSensor2.style.border = 'none';
-            if (botaoSensor3.classList.contains("alerta")){
-                botaoSensor3.style.border = '3px solid #a11919';
-            } else {
-                botaoSensor3.style.border = '3px solid #2e972e';
             }
         }
     </script>
