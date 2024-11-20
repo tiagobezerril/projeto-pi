@@ -27,15 +27,26 @@ function autenticar(req, res) {
 
                                     empresaModel.buscarFiliaisPorRestaurante(resultadoAutenticar[0].fkRestaurante)
                                         .then((resultadoFilial) => {
+                                            if (resultadoRestaurante.length > 0) {
 
-                                            res.json({
-                                                idUsuario: resultadoAutenticar[0].idUsuario,
-                                                nome: resultadoAutenticar[0].nome,
-                                                email: resultadoAutenticar[0].email,
-                                                senha: resultadoAutenticar[0].senha,
-                                                restaurantes: resultadoRestaurante,
-                                                filiais: resultadoFiliais
-                                            });  
+                                                empresaModel.buscarSensoresPorRestaurante(resultadoAutenticar[0].fkRestaurante)
+                                                    .then((resultadoSensor) => {
+                                                        if (resultadoSensor.length > 0) {
+
+                                                            res.json({
+                                                                idFuncionario: resultadoAutenticar[0].idFuncionario,
+                                                                nome: resultadoAutenticar[0].nome,
+                                                                email: resultadoAutenticar[0].email,
+                                                                senha: resultadoAutenticar[0].senha,
+                                                                restaurantes: resultadoRestaurante,
+                                                                filiais: resultadoFilial,
+                                                                sensores: resultadoSensor
+                                                            });  
+                                                        }
+                                                    })
+                                            } else {
+                                                res.status(204).json({ restaurantes: [] });
+                                            }
                                         });
                                 } else {
                                     res.status(204).json({ restaurantes: [] });

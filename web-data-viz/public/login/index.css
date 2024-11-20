@@ -352,7 +352,8 @@ input{
 
 .cimaEsq p{
     margin: 0;
-    color: #e40f0f;
+    color: #60CE60;
+    /* color: #e40f0f; */
     font-weight: 500;
 }
 
@@ -411,16 +412,17 @@ input{
 
 #baixo {
     width: 100%;
+    height: 40vh;
     padding: 2vh 7vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
+    align-items: start;
     /* grid-template-rows: 1fr 1fr; */
 }
 
 #baixo a {
     width: 90%;
-    height: 35vh;
     border-radius: 1vh;
 
     display: flex;
