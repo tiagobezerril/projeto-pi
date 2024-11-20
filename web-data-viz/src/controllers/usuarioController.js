@@ -34,7 +34,10 @@ function autenticar(req, res) {
                                                 email: resultadoAutenticar[0].email,
                                                 senha: resultadoAutenticar[0].senha,
                                                 restaurantes: resultadoRestaurante,
-                                                filiais: resultadoFiliais
+                                                nomeFuncionario: resultadoAutenticar[0].nomefuncionario,
+                                                emailFuncionario: resultadoAutenticar[0].emailFuncionario,
+                                                senhaFuncionario: resultadoAutenticar[0].senhafuncionario,
+                                                filiais: resultadoFilial
                                             });  
                                         });
                                 } else {
@@ -81,7 +84,7 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else if (rep == undefined) {
         res.status(400).send(`Seu representante está undefined`);
-    }
+    } 
     else {
 
 
@@ -104,7 +107,41 @@ function cadastrar(req, res) {
     }
 }
 
+function cadastrarFuncionario (req, res) {
+
+    var nomeFuncionario = req.body.nomeFuncionarioServer;
+    var emailFuncionario = req.body.emailFuncionarioServer;
+    var senhaFuncionario = req.body.senhaFuncionarioServer;
+
+
+    if (nomeFuncionario == undefined) {
+        res.status(400).send(`Seu representante está undefined`);
+    } else if (emailFuncionario == undefined) {
+        res.status(400).send(`Seu representante está undefined`);
+    } else if (senhaFuncionario == undefined) {
+        res.status(400).send(`Seu representante está undefined`);
+    }
+
+    usuarioModel.cadastrarFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    cadastrarFuncionario
 }

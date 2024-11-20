@@ -19,7 +19,7 @@ function buscarRestauranteDoUsuario(fkRestaurante){
 }
 
 function buscarFiliaisPorRestaurante(fkRestaurante){
-  var instrucaoSql = `SELECT idFilial WHERE fkRestaurante = '${fkRestaurante}'`;
+  var instrucaoSql = `SELECT idFilial From filial WHERE fkRestaurante = '${fkRestaurante}'`;
 
   return database.executar(instrucaoSql);
 }
