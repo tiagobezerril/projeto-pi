@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/sessao.js"></script>    
+    <script src="../js/sessao.js"></script>
 </head>
 
-<body>
+<body onload="validarSessao()">
     <header class="menu">
         <div class="esquerda">
             <!-- <a href="home.html" style="text-decoration: none"> -->
@@ -43,7 +43,7 @@
 
     <div id="cima">
         <div class="cimaEsq">
-            <h1>Empresa X</h1>
+            <h1 id="bRestaurante">Empresa X</h1>
             <div>
                 <span>Status geral</span>
                 <p>Vazamento detectado</p>
@@ -56,9 +56,9 @@
         <div class="cimaDir">
             <span>
                 <b>Quantidade de filiais</b>
-                <p>2</p>
+                <p id="qtdFiliais">2</p>
                 <b>Quantidade de sensores</b>
-                <p>5</p>
+                <p id="qtdSensores">5</p>
             </span>
             <canvas id="graficoGeral" height="300" width="800"></canvas>
         </div>

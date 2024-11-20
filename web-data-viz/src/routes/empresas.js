@@ -16,6 +16,15 @@ router.get("/buscar/:id", function (req, res) {
   empresaController.buscarPorId(req, res);
 });
 
+router.get("/buscarRestauranteDoUsuario/:fkRestaurante", function (req, res){
+  empresaController.buscarRestauranteDoUsuario(req, res);
+});
+
+router.get("/buscarFiliaisPorRestaurante/:fkRestaurante", function (req, res){
+  empresaController.buscarFiliaisPorRestaurante(req, res);
+});
+
+
 router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
 });

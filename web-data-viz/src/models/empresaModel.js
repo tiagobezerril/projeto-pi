@@ -12,6 +12,18 @@ function listar() {
   return database.executar(instrucaoSql);
 }
 
+function buscarRestauranteDoUsuario(fkRestaurante){
+  var instrucaoSql = `SELECT idCadastro, nome_fantasia, cnpj FROM restaurante where idCadastro = '${fkRestaurante}'`;
+
+  return database.executar(instrucaoSql);
+}
+
+function buscarFiliaisPorRestaurante(fkRestaurante){
+  var instrucaoSql = `SELECT idFilial WHERE fkRestaurante = '${fkRestaurante}'`;
+
+  return database.executar(instrucaoSql);
+}
+
 function buscarPorCnpj(cnpj) {
   var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
 
@@ -24,4 +36,11 @@ function cadastrar(razaoSocial, cnpj) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+module.exports = { 
+  buscarPorCnpj, 
+  buscarPorId, 
+  cadastrar,
+  listar,
+  buscarRestauranteDoUsuario,
+  buscarFiliaisPorRestaurante
+};

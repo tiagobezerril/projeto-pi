@@ -3,12 +3,13 @@ function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
     var idUsuario = sessionStorage.ID_USUARIO;
+    var nomeEmpresa = JSON.parse(sessionStorage.RESTAURANTES).nome_fantasia;
 
-    var b_usuario = document.getElementById("b_usuario");
+    var bRestaurante = document.getElementById("bRestaurante");
     // var divID = document.getElementById("divMens");
 
     if (email != null && nome != null) {
-        b_usuario.innerHTML = nome;
+        bRestaurante.innerHTML = nomeEmpresa;
     } else {
         window.location = "../login.html";
     }
@@ -19,10 +20,10 @@ function exibirUsuario() {
     console.log("ID do usuário: ", sessionStorage.ID_USUARIO);
 }
 
-document.addEventListener("DOMContentLoaded", function () { 
-    validarSessao(); 
-    exibirUsuario();
-});
+// document.addEventListener("DOMContentLoaded", function () { 
+//     validarSessao(); 
+//     exibirUsuario();
+// });
 
 function limparSessao() {
     sessionStorage.clear();

@@ -1,4 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
+var empresaModel = require("../models/empresaModel");
 // var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
@@ -16,26 +17,30 @@ function autenticar(req, res) {
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-
+                    //  buscarRestauranteDoUsuario
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-                        res.json({
-                            id: resultadoAutenticar[0].id,
-                            email: resultadoAutenticar[0].email,
-                            razao: resultadoAutenticar[0].razao,
-                            fantasia: resultadoAutenticar[0].fantasia,
-                            cnpj: resultadoAutenticar[0].cnpj,
-                            senha: resultadoAutenticar[0].senha,
-                            // aquarios: resultadoAutenticar
-                        }); 
-                        // aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                        //     .then((resultadoAutenticar) => {
-                        //         if (resultadoAutenticar.length > 0) {
-                                    
-                        //         } else {
-                        //             res.status(204).json({ aquarios: [] });
-                        //         }
-                        //     })
+                        
+                        empresaModel.buscarRestauranteDoUsuario(resultadoAutenticar[0].fkRestaurante)
+                            .then((resultadoRestaurante) => {
+                                if (resultadoRestaurante.length > 0) {
+
+                                    empresaModel.buscarFiliaisPorRestaurante(resultadoAutenticar[0].fkRestaurante)
+                                        .then((resultadoFilial) => {
+
+                                            res.json({
+                                                idUsuario: resultadoAutenticar[0].idUsuario,
+                                                nome: resultadoAutenticar[0].nome,
+                                                email: resultadoAutenticar[0].email,
+                                                senha: resultadoAutenticar[0].senha,
+                                                restaurantes: resultadoRestaurante,
+                                                filiais: resultadoFiliais
+                                            });  
+                                        });
+                                } else {
+                                    res.status(204).json({ restaurantes: [] });
+                                }
+                            })
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {

@@ -22,6 +22,22 @@ function buscarPorId(req, res) {
   });
 }
 
+function buscarRestauranteDoUsuario(req, res){
+    var fkRestaurante = req.body.fkRestaurante;
+
+    empresaModel.buscarRestauranteDoUsuario(fkRestaurante).then((resultado) => {
+      res.status(200).json(resultado);
+    });
+}
+
+function buscarFiliaisPorRestaurante(req, res){
+  var fkRestaurante = req.body.fkRestaurante;
+
+    empresaModel.buscarFiliaisPorRestaurante(fkRestaurante).then((resultado) => {
+      res.status(200).json(resultado);
+    });
+}
+
 function cadastrar(req, res) {
   var cnpj = req.body.cnpj;
   var razaoSocial = req.body.razaoSocial;
@@ -44,4 +60,6 @@ module.exports = {
   buscarPorId,
   cadastrar,
   listar,
+  buscarRestauranteDoUsuario,
+  buscarFiliaisPorRestaurante
 };
