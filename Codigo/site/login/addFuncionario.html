@@ -194,11 +194,15 @@
                 conSenha.innerHTML = "As senhas não conferem."
                 ipt_confirm.style.border = "3px solid #f70000"
                 correto = false
-            }
+            }}
 
             ///////////////////////////////////////////////////////////////////////
-          
-            if (nome == "" || email == "") {
+            function add(){
+                var nome = ipt_nomeFuncionario.value;
+                var email = ipt_emailFuncionario.value;
+                var senha = ipt_senha.value
+                var confirmacao = ipt_confirm.value
+                if (nome == "" || email == "") {
                 ipt_nomeFuncionario.style.border = "3px solid #f70000"
                 ipt_emailFuncionario.style.border = "3px solid #f70000"
                 alert("Por favor, preencha todos os campos de autenticação.");
