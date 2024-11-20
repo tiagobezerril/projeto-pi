@@ -23,7 +23,7 @@
 
         <div class="esquerda">
 
-            <a style="cursor: default;"><span class="logo">SafeWare</span></a>
+            <a style="cursor: pointer;" href = 'index.html'><span class="logo">SafeWare</span></a>
 
             <p class="titulo">Gerenciamento de funcionários</p>
         </div>
@@ -40,15 +40,33 @@
     </div>
     <h6></h6>
 
-    <div id="addFuncionario">
-        <!-- div para adicionar funcionários type text -->
-        <input type="text" id="ipt_nomeFuncionario" placeholder="Nome do funcionário">
-        <input type="text" id="ipt_emailFuncionario" placeholder="Email do funcionário">
+    <div id="alerta">
+        <span class="card">
+            <span id="closeAlerta" onclick="closeAlerta()" class="material-symbols-outlined">
+                close
+            </span>
 
-        <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha do Funcionário">
-        <div id="senhas"></div>
-        <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha">
-        <div id="conSenha"></div>
+            <p class='atencao'>Cadastro</p> 
+
+            <input type="text" id="ipt_nomeFuncionario" placeholder="Nome do funcionário">
+        
+            <input type="text" id="ipt_emailFuncionario" placeholder="Email do funcionário">
+
+            <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha do Funcionário">
+
+            <div id="senhas"></div>
+
+            <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha">
+
+            <div id="conSenha"></div>
+
+            <button onclick="cadastrarFuncionario()" class="botao_cadastro">Cadastrar</button>
+        </span>
+    </div>
+
+    <div id="addFuncionario" class="addFuncionario">
+        <!-- div para adicionar funcionários type text -->
+        
     </div>
 
     <div id="menuPerfil">
@@ -58,6 +76,10 @@
     </div>
 
     <script>
+
+        function closeAlerta() {
+                    alerta.style.display = 'none';
+                }
 
         // menu fechado com variavel falsa esperando ser ativada após execucacao da funcao true
         var menuAberto = false;
@@ -107,14 +129,14 @@
                 <div class="info">
                 <strong>${funcionariosLista[index].nome}</strong>
                 <p>Email: ${funcionariosLista[index].email}</p>
-                <p>Senha: <input type="password" value="${funcionariosLista[index].senha}" readonly></p>
+                
                 </div> <button onclick="del(${index})" class="delete-button">X</button> </div>
                 `;
 
             }
 
             quadroFuncionarios += `
-                <button onclick="cadastrarFuncionario()" class="add-button">Adicionar um funcionário</button>`;
+                <button onclick="iniciar_cadastro()" class="add-button">Adicionar um funcionário</button>`;
 
             div_funcionarioQuadro.innerHTML = quadroFuncionarios;
         }
@@ -144,7 +166,7 @@
                 || email.endsWith('.net')
 
             /////////////////////////////////////////////////////////////////////////////
-
+            
         }
 
         function validarSenha() {
@@ -293,6 +315,10 @@
 
         // Renderiza os 2 funcionários iniciais acrescentados previamente  após carregar a página.
         admFuncionarios();
+
+        function iniciar_cadastro(){
+            alerta.style.display = 'flex';
+        }
     </script>
 </body>
 
