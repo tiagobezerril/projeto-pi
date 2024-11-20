@@ -5,23 +5,27 @@ CREATE TABLE restaurante (
   idCadastro INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
   razao_social VARCHAR(120) UNIQUE,
   nome_fantasia VARCHAR(60) UNIQUE,
-  cnpj CHAR(14) UNIQUE
+  cnpj CHAR(18) UNIQUE
 ) AUTO_INCREMENT = 100;
 
 INSERT INTO restaurante VALUES
-(default, 'Bella Alimentos Ltda', 'Bella Alimentos', '48967422000167'),
+(default, 'Bella Alimentos Ltda', 'Bella Alimentos', '48.967.422/0001-67'),
 (default, 'La Na Cozinha Solucoes em Alimentos e Bebidas LTDA', 'La Na Cozinha', '34763320000115'),
 (default, 'Renome Refeicoes Coletivas LTDA', 'Renome Refeicoes Coletivas', '04436006000167'),
 (default, 'Degustas Comercio de Alimentacao Corporativa LTDA', 'Degustas', '09720990000107'),
 (default, 'W.m. Iguarias LTDA', 'Suvide Restaurantes Empresariais', '56761836000163');
+
 SELECT * FROM restaurante;
 
 CREATE TABLE filial (
-    idFilial INT PRIMARY KEY AUTO_INCREMENT,
+    idFilial INT AUTO_INCREMENT,
     fkRestaurante INT,
+    PRIMARY KEY (idFilial, fkRestaurante),
     FOREIGN KEY (fkRestaurante)
         REFERENCES restaurante (idCadastro)
 )  AUTO_INCREMENT=100;
+
+SELECT * FROM filial;
 
 INSERT INTO filial VALUES 
 	(DEFAULT, 100),
@@ -40,16 +44,19 @@ CREATE TABLE endereco (
     numero VARCHAR(7),
     cep CHAR(8),
     fkFilial INT,
-    CONSTRAINT fkFilialEnd FOREIGN KEY (fkFilial) REFERENCES filial(idFilial)
+    CONSTRAINT fkFilialEnd FOREIGN KEY (fkFilial) REFERENCES filial(idFilial),
+    fkRestaurante INT,
+    FOREIGN KEY (fkRestaurante)
+        REFERENCES filial (fkRestaurante)
 )  AUTO_INCREMENT=1000;
-
+SELECT * FROM filial;
 INSERT INTO endereco VALUES
-(default, 'SP', 'São Paulo', 'Vila Moraes', 'Rua Angaturama', '240', '04164010', '100'),
-(default, 'SP', 'São Paulo', 'Vila Monumento', 'Rua Vasconcelos Drumond', '206', '01548000', '100'),
-(default, 'SP', 'São Paulo', 'Vila Monumento', 'Rua Vasconcelos Drumond', '204', '01548000', '101'),
-(default, 'SP', 'São Paulo', 'Agua Fria', 'Rua Ismael Neri', '764', '02335001', '102'),
-(default, 'SP', 'São Paulo', 'City America', 'Avenida Do Anastacio', '359', '05119000', '103'),
-(default, 'SP', 'São Paulo', 'Vila Carrao', 'Rua Antonio de Barros', '2831', '03401001', '104');
+(default, 'SP', 'São Paulo', 'Vila Moraes', 'Rua Angaturama', '240', '04164010', '100', '100'),
+(default, 'SP', 'São Paulo', 'Vila Monumento', 'Rua Vasconcelos Drumond', '206', '01548000', '101', '100'),
+(default, 'SP', 'São Paulo', 'Vila Monumento', 'Rua Vasconcelos Drumond', '204', '01548000', '102', '101'),
+(default, 'SP', 'São Paulo', 'Agua Fria', 'Rua Ismael Neri', '764', '02335001', '103', '102'),
+(default, 'SP', 'São Paulo', 'City America', 'Avenida Do Anastacio', '359', '05119000', '104', '103'),
+(default, 'SP', 'São Paulo', 'Vila Carrao', 'Rua Antonio de Barros', '2831', '03401001', '105', '104');
 
 CREATE TABLE funcionario (
     idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
@@ -93,16 +100,19 @@ CREATE TABLE sensor (
     stts VARCHAR(7) CHECK (stts IN ('ativo' , 'inativo')),
     local_inst VARCHAR(45),
     fkFilial INT,
+    fkRestaurante INT,
     FOREIGN KEY (fkFilial)
-        REFERENCES filial (idFilial)
+        REFERENCES filial (idFilial),
+	FOREIGN KEY (fkRestaurante)
+        REFERENCES filial (fkRestaurante)
 )  AUTO_INCREMENT=2000;
 
-INSERT INTO sensor(tipo,dtInstalacao,stts,local_inst,fkFilial) VALUES 
-	('MQ3','2024-11-10','ativo','Fogão 01',100),
-    ('MQ3','2024-11-10','ativo','Forno 01',100),
-    ('MQ3','2024-11-10','ativo','Cilindro 01',100),
-    ('MQ3','2024-11-15','ativo','Chapa 01',101),
-    ('MQ3','2024-11-15','ativo','Cilindro 01',101);
+INSERT INTO sensor(tipo, dtInstalacao, stts, local_inst, fkFilial, fkRestaurante) VALUES 
+	('MQ3','2024-11-10','ativo','Fogão 01',100, 100),
+    ('MQ3','2024-11-10','ativo','Forno 01',100, 100),
+    ('MQ3','2024-11-10','ativo','Cilindro 01',100, 100),
+    ('MQ3','2024-11-15','ativo','Chapa 01',101, 100),
+    ('MQ3','2024-11-15','ativo','Cilindro 01',101, 100);
 
 SELECT * FROM sensor;
 
@@ -117,8 +127,6 @@ CREATE TABLE manutencao (
 
 INSERT INTO manutencao VALUES 
 	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03',2004);
-    
-SELECT last_insert_id(idManutencao) FROM manutencao;
 
 CREATE TABLE dados (
     idDados INT PRIMARY KEY AUTO_INCREMENT,
@@ -128,6 +136,8 @@ CREATE TABLE dados (
     FOREIGN KEY (fksensor)
         REFERENCES sensor(idsensor)
 )  AUTO_INCREMENT=3000;
+SELECT idFilial, CONCAT(e.logradouro, ', ', e.numero) AS endereco FROM filial JOIN endereco AS e ON fkFilial = idFilial WHERE filial.fkRestaurante = 100;
+SELECT f.*, CONCAT(e.logradouro, ', ', e.numero) FROM filial AS f JOIN endereco AS e ON fkFilial = idFilial;
 
 SELECT razao_social as 'Razão Social',
 nome_fantasia as 'Nome Fantasia',

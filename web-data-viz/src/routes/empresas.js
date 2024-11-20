@@ -24,6 +24,9 @@ router.get("/buscarFiliaisPorRestaurante/:fkRestaurante", function (req, res){
   empresaController.buscarFiliaisPorRestaurante(req, res);
 });
 
+router.get("/buscarSensoresPorRestaurante/:fkRestaurante", function (req, res){
+  empresaController.buscarSensoresPorRestaurante(req, res);
+});
 
 router.get("/listar", function (req, res) {
   empresaController.listar(req, res);
