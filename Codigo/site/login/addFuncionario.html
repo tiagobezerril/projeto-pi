@@ -38,15 +38,17 @@
     <div id="div_funcionarioQuadro">
         <!-- quadro inicial de funcionários renderizada a partir de var global -->
     </div>
-
+    <h6></h6>
 
     <div id="addFuncionario">
         <!-- div para adicionar funcionários type text -->
-        <input type="text" id="ipt_nomeFuncionario" style="border-style: solid; border-color: rgb(117, 117, 117);"
-            placeholder="Nome do funcionário">
-        <input type="text" id="ipt_emailFuncionario" style="border-style: solid; border-color: rgb(117, 117, 117);"
-            placeholder="Email do funcionário">
+        <input type="text" id="ipt_nomeFuncionario" placeholder="Nome do funcionário">
+        <input type="text" id="ipt_emailFuncionario" placeholder="Email do funcionário">
 
+        <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha do Funcionário">
+        <div id="senhas"></div>
+        <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha">
+        <div id="conSenha"></div>
     </div>
 
     <div id="menuPerfil">
@@ -105,6 +107,7 @@
                 <div class="info">
                 <strong>${funcionariosLista[index].nome}</strong>
                 <p>Email: ${funcionariosLista[index].email}</p>
+                <p>Senha: <input type="password" value="${funcionariosLista[index].senha}" readonly></p>
                 </div> <button onclick="del(${index})" class="delete-button">X</button> </div>
                 `;
 
@@ -125,29 +128,101 @@
 
         }
 
+        var correto = true
+        var abc = true
+
         // Função para adicionar um novo funcionário.
         function add() {
 
             var nome = ipt_nomeFuncionario.value;
             var email = ipt_emailFuncionario.value;
+
             var possui_arroba = ipt_emailFuncionario.value.includes("@")
             var termina_com = email.endsWith("Sptech.School")
                 || email.endsWith('.com')
                 || email.endsWith('.br')
                 || email.endsWith('.net')
 
+            /////////////////////////////////////////////////////////////////////////////
 
-            if (nome == "" || email == "") {
+        }
+
+        function validarSenha() {
+            var senha = ipt_senha.value
+            var possui_esp = ipt_senha.value.includes("!")
+                || ipt_senha.value.includes("@")
+                || ipt_senha.value.includes("#")
+                || ipt_senha.value.includes("$")
+                || ipt_senha.value.includes("%")
+                || ipt_senha.value.includes("*")
+                || ipt_senha.value.includes("&")
+            var possui_num = ipt_senha.value.includes("1")
+                || ipt_senha.value.includes("2")
+                || ipt_senha.value.includes("3")
+                || ipt_senha.value.includes("4")
+                || ipt_senha.value.includes("5")
+                || ipt_senha.value.includes("6")
+                || ipt_senha.value.includes("7")
+                || ipt_senha.value.includes("8")
+                || ipt_senha.value.includes("9")
+                || ipt_senha.value.includes("0")
+            var texto_minusculo = senha.toLowerCase()
+            var texto_maiusculo = senha.toUpperCase()
+
+            abc = (senha != texto_maiusculo && senha != texto_minusculo)
+
+            if (abc && senha.length >= 8 && possui_esp && possui_num) {
+                senhas.innerHTML = "Senha Válida"
+                ipt_senha.style.border = "3px solid #08a708"
+            } else {
+                senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número."
+                ipt_senha.style.border = "3px solid #f70000"
+                correto = false
+            }
+
+        }
+
+        function validarConfirmacao() {
+            var nome = ipt_nomeFuncionario.value;
+            var email = ipt_emailFuncionario.value;
+            var senha = ipt_senha.value
+            var confirmacao = ipt_confirm.value
+            if (confirmacao == senha && confirmacao.length >= 8) {
+                conSenha.innerHTML = "Senhas Válidas"
+                ipt_confirm.style.border = "3px solid #08a708"
+            } else {
+                conSenha.innerHTML = "As senhas não conferem."
+                ipt_confirm.style.border = "3px solid #f70000"
+                correto = false
+            }}
+
+            ///////////////////////////////////////////////////////////////////////
+            function add(){
+                var nome = ipt_nomeFuncionario.value;
+                var email = ipt_emailFuncionario.value;
+                var senha = ipt_senha.value
+                var confirmacao = ipt_confirm.value
+                if (nome == "" || email == "") {
                 ipt_nomeFuncionario.style.border = "3px solid #f70000"
                 ipt_emailFuncionario.style.border = "3px solid #f70000"
-                alert("Por favor, preencha o nome e o email.");
+                alert("Por favor, preencha todos os campos de autenticação.");
                 return;
 
-            } else if (nome || email != "" && mail.length > 3 && possui_arroba && termina_com) {
+            } else if (senha == "" && confirmacao == "") {
+                ipt_senha.style.border = "3px solid #f70000"
+                ipt_emailFuncionario.style.border = "3px solid #f70000"
+                alert("Por favor, preencha todos os campos de autenticação.");
+                return;
+            } else if (nome != "" && email != "" && confirmacao == senha) {
                 ipt_nomeFuncionario.style.border = "3px solid #08a708"
                 ipt_emailFuncionario.style.border = "3px solid #08a708"
+                ipt_senha.style.border = "3px solid #08a708"
+                ipt_confirm.style.border = "3px solid #08a708"
 
-                funcionariosLista.push({ nome: nome, email: email }); // Adiciona o funcionário ao array.
+
+                funcionariosLista.push({
+                    nome: nome, email: email, senha: senha
+                }); // Adiciona o funcionário ao array.
 
                 admFuncionarios(); // ativa a função de array e atualiza a pagina .
 
