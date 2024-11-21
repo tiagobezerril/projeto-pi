@@ -136,9 +136,24 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.idFuncionario;
+                    sessionStorage.TIPOFUNC = json.tipo;
                     sessionStorage.RESTAURANTES = JSON.stringify(json.restaurantes[0]);
                     sessionStorage.FILIAIS = JSON.stringify(json.filiais);
                     sessionStorage.SENSORES = JSON.stringify(json.sensores);
+
+                    if (sessionStorage.TIPOFUNC == 'Supervisor'){
+                        setTimeout(function () {
+                            window.location = "login/index.html";
+                        }, 1000); // apenas para exibir o loading
+                    } else if (sessionStorage.TIPOFUNC == 'Suporte'){
+                        setTimeout(function () {
+                            window.location = "login/telasSuporte/index.html";
+                        }, 1000);
+                    } else {
+                        setTimeout(function () {
+                            window.location = "login/telasFuncionario/index.html";
+                        }, 1000);
+                    }
 
                     setTimeout(function () {
                         window.location = "login/index.html";

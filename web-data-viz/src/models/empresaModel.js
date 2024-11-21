@@ -20,7 +20,7 @@ function buscarRestauranteDoUsuario(fkRestaurante){
 
 function buscarFiliaisPorRestaurante(fkRestaurante){
   var instrucaoSql = `
-    SELECT idFilial, CONCAT(e.logradouro, ', ', e.numero) AS endereco FROM filial JOIN endereco AS e ON 
+    SELECT idFilial, CONCAT(e.bairro, ', ', e.logradouro, ' - ', e.numero) AS endereco FROM filial JOIN endereco AS e ON 
       fkFilial = idFilial WHERE filial.fkRestaurante = '${fkRestaurante}'`;
 
   return database.executar(instrucaoSql);

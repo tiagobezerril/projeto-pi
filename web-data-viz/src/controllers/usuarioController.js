@@ -38,6 +38,7 @@ function autenticar(req, res) {
                                                                 nome: resultadoAutenticar[0].nome,
                                                                 email: resultadoAutenticar[0].email,
                                                                 senha: resultadoAutenticar[0].senha,
+                                                                tipo: resultadoAutenticar[0].tipo,
                                                                 restaurantes: resultadoRestaurante,
                                                                 filiais: resultadoFilial,
                                                                 sensores: resultadoSensor
