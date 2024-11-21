@@ -3,14 +3,17 @@ var router = express.Router();
 
 var dashboardController = require("../controllers/dashboardController");
 
-router.get("/puxar", function (req, res) {
+// Endpoint para buscar dados no banco
+router.get("/puxar/:idDados", function (req, res) {
     dashboardController.puxarBanco(req, res);
 });
 
+// Endpoint para guardar dados no banco
 router.post("/guardar", function (req, res) {
     dashboardController.guardarBanco(req, res);
-})
+});
 
+module.exports = router;
 
 
 // router.get("/puxar/:idDados", function (req, res) {
@@ -33,5 +36,3 @@ router.post("/guardar", function (req, res) {
 //     avisoController.deletar(req, res);
 // });
 
-
-module.exports = router;

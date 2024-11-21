@@ -2,28 +2,27 @@
 
 var sensorAnalogico1 = document.getElementById('graficoLinha1').getContext('2d');
 
-var dadosLabel = ['05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h'];
-
+// Configuração inicial do gráfico
 const configLinha = {
     type: 'line',
     data: {
-        datasets: [{
-            label: 'Índice de vazamento',
-            borderColor: '#464646',
-            backgroundColor: '#464646',
-            data: [0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 3] // COMENTAR QUANDO FOR CONECTAR NA API
-        },
-        {
-            label: 'Extremo risco',
-            borderColor: '#e63535',
-            backgroundColor: '#e63535',
-            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
-            borderDash: [5, 5], // Configuração para linha pontilhada
-            tension: 0.3 // Para suavizar a linha
-        }
+        datasets: [
+            {
+                label: 'Índice de vazamento',
+                borderColor: '#464646',
+                backgroundColor: '#464646',
+                data: [] // Dados virão da API
+            },
+            {
+                label: 'Extremo risco',
+                borderColor: '#e63535',
+                backgroundColor: '#e63535',
+                data: Array(11).fill(2), // Linha fixa para "Extremo risco"
+                borderDash: [5, 5], // Configuração para linha pontilhada
+                tension: 0.3 // Para suavizar a linha
+            }
         ],
-        labels: dadosLabel // COMENTAR QUANDO FOR CONECTAR NA API
-
+        labels: [] // Labels virão da API
     },
     options: {
         responsive: false,
@@ -36,14 +35,39 @@ const configLinha = {
                     display: true,
                     text: '(%)'
                 },
-                beginAtZero: true,
+                beginAtZero: true
             },
         },
+    }
+};
 
+// Inicializar gráfico
+var grafico1 = new Chart(sensorAnalogico1, configLinha);
+
+// Função para buscar dados da API e atualizar o gráfico
+async function atualizarGrafico() {
+    try {
+        const idDados = 1; // Substituir pelo ID desejado
+        const response = await fetch(`/dashboard/puxar/${idDados}`); // Chamada ao endpoint
+        const data = await response.json();
+
+        // Processar os dados para labels e porcentagens
+        const labels = data.map(item => item.horario);
+        const porcentagens = data.map(item => item.porcentagem);
+
+        // Atualizar gráfico
+        grafico1.data.labels = labels;
+        grafico1.data.datasets[0].data = porcentagens;
+        grafico1.update();
+    } catch (error) {
+        console.error("Erro ao buscar dados da API:", error);
     }
 }
 
-var grafico1 = new Chart(sensorAnalogico1, configLinha);
+// Atualizar gráfico em tempo real (a cada 1 minuto)
+setInterval(atualizarGrafico, 60000);
+atualizarGrafico(); // Chamar imediatamente ao carregar
+
 
 /// --------------------------GRAFICO MEIA LUA----------------------------------------------------------
 
