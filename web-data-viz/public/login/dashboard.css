@@ -751,17 +751,16 @@ span#burguer:hover, span#burguer:focus{
 }
 
 .card {
-    width: 450px;
-    height: 300px;
+    width: 35vw;
+    height: 55vh;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 2vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     color: #696969;
     font-weight: bold;
-    text-align: center;
     gap: 10px;
     padding: 20px;
 }

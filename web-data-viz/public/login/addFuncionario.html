@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="addFuncionario.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
+    <script src="../js/sessao.js"></script>
 </head>
 
 <body>
@@ -46,17 +47,24 @@
                 close
             </span>
 
-            <p class='atencao'>Cadastro</p> 
-
-            <input type="text" id="ipt_nomeFuncionario" placeholder="Nome do funcionário">
-        
-            <input type="text" id="ipt_emailFuncionario" placeholder="Email do funcionário">
-
-            <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha do Funcionário">
-
-            <div id="senhas"></div>
-
-            <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha">
+            <h2 class='titulo'>Cadastro</h2> 
+            <span>
+                <label>Nome do funcionário</label>
+                <input type="text" id="ipt_nomeFuncionario" placeholder="Nome">
+            </span>
+            <span>
+                <label>Email do funcionário</label>
+                <input type="text" id="ipt_emailFuncionario" placeholder="emal@provedor.com">
+            </span>
+            <span>
+                <label>Senha do funcionário</label>
+                <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha do Funcionário">
+                <div id="senhas" style="display: none;"></div>
+            </span>
+            <span>
+                <label>Confirmação de senha</label>
+                <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha">
+            </span>
 
             <div id="conSenha"></div>
 
@@ -71,8 +79,8 @@
 
     <div id="menuPerfil">
         <!-- div do menu para sair da conta logada - função sair ainda será criada -->
-        <a href="index.html">Dashboard</a>
-        <a onclick="sair()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
+        <a href="index.html">Visão geral</a>
+        <a onclick="limparSessao()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
     </div>
 
     <script>

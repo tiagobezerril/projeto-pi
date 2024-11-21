@@ -499,6 +499,13 @@ body {
     justify-content: center;
     color: white;
     font-weight: bold;
+    cursor: pointer;
+
+    transition: ease-in-out 0.2s;
+}
+
+.delete-button:hover, .delete-button:focus{
+    transform: scale(0.95);
 }
 
 #div_funcionarioQuadro .add-button {
@@ -515,19 +522,26 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+
+    transition: ease-in-out 0.2s;
+}
+
+.add-button:hover, .add-button:focus{
+    transform: scale(0.95);
 }
 
 #alerta input {
-    width: 400px;
-    max-height: 80px;
-    height: 50px;
-    border: 2;
-    border-color: rgb(117, 117, 117);
-    border-radius: 20px;
-    padding-left: 15px;
-    font-weight: 700;
-    font-family: "Inter", sans-serif;
+    width: 100%;
+    height: 5vh;
+    border-radius: 8px;
+    border: 2px solid #b8b8b8;
+    color: #696969;
+    padding: 0 10px;
+}
 
+#alerta input::placeholder{
+    color: #a8a8a8;
+    font-weight: 600;
 }
 
 /* .addFuncionario {
@@ -555,8 +569,8 @@ body {
 }
 
 .card {
-    width: 450px;
-    height: 300px;
+    width: 35vw;
+    height: fit-content;
     background-color: white;
     border-radius: 20px;
     display: flex;
@@ -565,7 +579,6 @@ body {
     flex-direction: column;
     color: #696969;
     font-weight: bold;
-    text-align: center;
     gap: 10px;
     padding: 20px;
 }
@@ -578,15 +591,29 @@ body {
     margin: 0;
 }
 
-.card .atencao {
-    color: #e40f0f;
-    font-size: 23px;
+.card .titulo {
+    color: #2D20EE;
+    font-size: 5vh;
+    margin: 0.5vh;
+    margin-top: 0;
+}
+
+.card span{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.card label{
+    align-self: flex-start;
 }
 
 .card #closeAlerta {
     color: #a09f9f;
     font-size: 30px;
-    align-self: end;
+    text-align: end;
 }
 
 .card #closeAlerta:hover {
@@ -595,12 +622,18 @@ body {
 }
 
 .botao_cadastro{
+    width: 100%;
+    height: 35px;
     background-color: #2D20EE;
     border: 0;
-    border-radius: 8px;
-    height: 35px;
+    border-radius: 1vh;
     color: white;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 2.5vh;
     cursor: pointer;
+    transition: ease-in-out 0.2s;
+}
+
+.botao_cadastro:hover, .botao_cadastro:focus{
+    background-color: #5348f0;
 }
