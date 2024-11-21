@@ -19,7 +19,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), exibirFiliais()">
     <header class="menu">
         <div class="esquerda">
             <!-- <a href="home.html" style="text-decoration: none"> -->
@@ -46,7 +46,7 @@
             <h1 id="bRestaurante">Empresa X</h1>
             <div>
                 <span>Status geral</span>
-                <p>Vazamento detectado</p>
+                <p id="sttsVazamento">Sem vazamentos</p>
             </div>
         </div>
         <script data-jsd-embedded data-key="eb6df58d-df11-4966-8be2-7d3087316574" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
@@ -57,24 +57,24 @@
         <div class="cimaDir">
             <span>
                 <b>Quantidade de filiais</b>
-                <p id="qtdFiliais">2</p>
+                <p id="qtdFiliais">0</p>
                 <b>Quantidade de sensores</b>
-                <p id="qtdSensores">5</p>
+                <p id="qtdSensores">0</p>
             </span>
             <canvas id="graficoGeral" height="300" width="800"></canvas>
         </div>
     </div>
     <div id="baixo">
-        <a href="dashboard.html" class="alerta cozinha" style="text-decoration: none;">
+        <!-- <a href="dashboard.html" class="alerta cozinha" style="text-decoration: none;">
             <img src="../img/cozinhaPerigo.png">
             <h2>Filial 1</h2>
         </a>
         <a href="dashboard2.html" class="seguro cozinha" style="text-decoration: none;">
             <img src="../img/cozinhaSegura.png">
             <h2>Filial 2</h2>
-        </a>
-        <div class="vazio">
-        </div>
+        </a> -->
+        <!-- <div class="vazio">
+        </div> -->
     </div>
 
     <div id="alerta">
@@ -115,6 +115,17 @@
             alerta.style.display = 'none';
         }
 
+        function exibirFiliais() {
+            JSON.parse(sessionStorage.FILIAIS).forEach(item => {
+                document.getElementById("baixo").innerHTML += `
+                    <a href="dashboard.html" class="cozinha" style="text-decoration: none;">
+                        <img src="../img/cozinhaSegura.png">
+                        <h3 style="text-align: center;">Filial - ${item.endereco}</h3>
+                    </a>        
+                    `
+                    // class="alerta cozinha"
+            });
+        }
         // ------------------- GRAFICO VISÃO GERAL ---------------------------------------
 
         var graficoGeral = document.getElementById('graficoGeral');

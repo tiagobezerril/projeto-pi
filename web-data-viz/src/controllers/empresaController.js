@@ -38,6 +38,14 @@ function buscarFiliaisPorRestaurante(req, res){
     });
 }
 
+function buscarSensoresPorRestaurante(req, res){
+  var fkFilial = req.body.fkFilial;
+
+    empresaModel.buscarSensoresPorRestaurante(fkFilial).then((resultado) => {
+      res.status(200).json(resultado);
+    });
+}
+
 function cadastrar(req, res) {
   var cnpj = req.body.cnpj;
   var razaoSocial = req.body.razaoSocial;
@@ -61,5 +69,6 @@ module.exports = {
   cadastrar,
   listar,
   buscarRestauranteDoUsuario,
-  buscarFiliaisPorRestaurante
+  buscarFiliaisPorRestaurante,
+  buscarSensoresPorRestaurante
 };

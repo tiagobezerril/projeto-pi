@@ -27,15 +27,27 @@ function autenticar(req, res) {
 
                                     empresaModel.buscarFiliaisPorRestaurante(resultadoAutenticar[0].fkRestaurante)
                                         .then((resultadoFilial) => {
+                                            if (resultadoRestaurante.length > 0) {
 
-                                            res.json({
-                                                idUsuario: resultadoAutenticar[0].idUsuario,
-                                                nome: resultadoAutenticar[0].nome,
-                                                email: resultadoAutenticar[0].email,
-                                                senha: resultadoAutenticar[0].senha,
-                                                restaurantes: resultadoRestaurante,
-                                                filiais: resultadoFiliais
-                                            });  
+                                                empresaModel.buscarSensoresPorRestaurante(resultadoAutenticar[0].fkRestaurante)
+                                                    .then((resultadoSensor) => {
+                                                        if (resultadoSensor.length > 0) {
+
+                                                            res.json({
+                                                                idFuncionario: resultadoAutenticar[0].idFuncionario,
+                                                                nome: resultadoAutenticar[0].nome,
+                                                                email: resultadoAutenticar[0].email,
+                                                                senha: resultadoAutenticar[0].senha,
+                                                                tipo: resultadoAutenticar[0].tipo,
+                                                                restaurantes: resultadoRestaurante,
+                                                                filiais: resultadoFilial,
+                                                                sensores: resultadoSensor
+                                                            });  
+                                                        }
+                                                    })
+                                            } else {
+                                                res.status(204).json({ restaurantes: [] });
+                                            }
                                         });
                                 } else {
                                     res.status(204).json({ restaurantes: [] });
@@ -81,7 +93,7 @@ function cadastrar(req, res) {
         res.status(400).send("Sua senha está undefined!");
     } else if (rep == undefined) {
         res.status(400).send(`Seu representante está undefined`);
-    }
+    } 
     else {
 
 
@@ -104,7 +116,41 @@ function cadastrar(req, res) {
     }
 }
 
+function cadastrarFuncionario (req, res) {
+
+    var nomeFuncionario = req.body.nomeFuncionarioServer;
+    var emailFuncionario = req.body.emailFuncionarioServer;
+    var senhaFuncionario = req.body.senhaFuncionarioServer;
+
+
+    if (nomeFuncionario == undefined) {
+        res.status(400).send(`Seu representante está undefined`);
+    } else if (emailFuncionario == undefined) {
+        res.status(400).send(`Seu representante está undefined`);
+    } else if (senhaFuncionario == undefined) {
+        res.status(400).send(`Seu representante está undefined`);
+    }
+
+    usuarioModel.cadastrarFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario)
+    .then(
+        function (resultado) {
+            res.json(resultado);
+        }
+    ).catch(
+        function (erro) {
+            console.log(erro);
+            console.log(
+                "\nHouve um erro ao realizar o cadastro! Erro: ",
+                erro.sqlMessage
+            );
+            res.status(500).json(erro.sqlMessage);
+        }
+    );
+
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    cadastrarFuncionario
 }

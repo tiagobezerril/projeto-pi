@@ -29,6 +29,7 @@ function cadastrar (razao, fantasia, cnpj, rep, email, senha) {
             ('${rep}', '${email}', '${senha}', 'Supervisor',
             (SELECT idCadastro FROM restaurante ORDER BY idCadastro DESC LIMIT 1));
     `
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
         .then(() => {
@@ -41,7 +42,21 @@ function cadastrar (razao, fantasia, cnpj, rep, email, senha) {
     })
 }
 
+    function cadastrarFuncionario (nomeFuncionario, emailFuncionario, senhaFuncionario){
+
+        console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarFuncionario():", nomeFuncionario, emailFuncionario, senhaFuncionario);
+        
+        var instrucaoSql = `
+        INSERT INTO funcionario (nome, email, senha, tipo, fkRestaurante) VALUES 
+            ('${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', 'Comum',
+            (SELECT idCadastro FROM restaurante ORDER BY idCadastro DESC LIMIT 1));
+    `
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+    }
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    cadastrarFuncionario
 };

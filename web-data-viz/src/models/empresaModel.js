@@ -19,7 +19,15 @@ function buscarRestauranteDoUsuario(fkRestaurante){
 }
 
 function buscarFiliaisPorRestaurante(fkRestaurante){
-  var instrucaoSql = `SELECT idFilial WHERE fkRestaurante = '${fkRestaurante}'`;
+  var instrucaoSql = `
+    SELECT idFilial, CONCAT(e.bairro, ', ', e.logradouro, ' - ', e.numero) AS endereco FROM filial JOIN endereco AS e ON 
+      fkFilial = idFilial WHERE filial.fkRestaurante = '${fkRestaurante}'`;
+
+  return database.executar(instrucaoSql);
+}
+
+function buscarSensoresPorRestaurante(fkRestaurante){
+  var instrucaoSql = `SELECT fkFilial, idSensor, dtInstalacao, stts, local_inst FROM sensor WHERE fkRestaurante= '${fkRestaurante}'`;
 
   return database.executar(instrucaoSql);
 }
@@ -42,5 +50,6 @@ module.exports = {
   cadastrar,
   listar,
   buscarRestauranteDoUsuario,
-  buscarFiliaisPorRestaurante
+  buscarFiliaisPorRestaurante,
+  buscarSensoresPorRestaurante
 };

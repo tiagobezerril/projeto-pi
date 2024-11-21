@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="addFuncionario.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
+    <script src="../js/sessao.js"></script>
 </head>
 
 <body>
@@ -23,7 +24,7 @@
 
         <div class="esquerda">
 
-            <a style="cursor: default;"><span class="logo">SafeWare</span></a>
+            <a style="cursor: pointer;" href = 'index.html'><span class="logo">SafeWare</span></a>
 
             <p class="titulo">Gerenciamento de funcionários</p>
         </div>
@@ -38,24 +39,55 @@
     <div id="div_funcionarioQuadro">
         <!-- quadro inicial de funcionários renderizada a partir de var global -->
     </div>
+    <h6></h6>
 
+    <div id="alerta">
+        <span class="card">
+            <span id="closeAlerta" onclick="closeAlerta()" class="material-symbols-outlined">
+                close
+            </span>
 
-    <div id="addFuncionario">
+            <h2 class='titulo'>Cadastro</h2> 
+            <span>
+                <label>Nome do funcionário</label>
+                <input type="text" id="ipt_nomeFuncionario" placeholder="Nome">
+            </span>
+            <span>
+                <label>Email do funcionário</label>
+                <input type="text" id="ipt_emailFuncionario" placeholder="emal@provedor.com">
+            </span>
+            <span>
+                <label>Senha do funcionário</label>
+                <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha do Funcionário">
+                <div id="senhas" style="display: none;"></div>
+            </span>
+            <span>
+                <label>Confirmação de senha</label>
+                <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha">
+            </span>
+
+            <div id="conSenha"></div>
+
+            <button onclick="cadastrarFuncionario()" class="botao_cadastro">Cadastrar</button>
+        </span>
+    </div>
+
+    <div id="addFuncionario" class="addFuncionario">
         <!-- div para adicionar funcionários type text -->
-        <input type="text" id="ipt_nomeFuncionario" style="border-style: solid; border-color: rgb(117, 117, 117);"
-            placeholder="Nome do funcionário">
-        <input type="text" id="ipt_emailFuncionario" style="border-style: solid; border-color: rgb(117, 117, 117);"
-            placeholder="Email do funcionário">
-
+        
     </div>
 
     <div id="menuPerfil">
         <!-- div do menu para sair da conta logada - função sair ainda será criada -->
-        <a href="index.html">Dashboard</a>
-        <a onclick="sair()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
+        <a href="index.html">Visão geral</a>
+        <a onclick="limparSessao()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
     </div>
 
     <script>
+
+        function closeAlerta() {
+                    alerta.style.display = 'none';
+                }
 
         // menu fechado com variavel falsa esperando ser ativada após execucacao da funcao true
         var menuAberto = false;
@@ -105,13 +137,14 @@
                 <div class="info">
                 <strong>${funcionariosLista[index].nome}</strong>
                 <p>Email: ${funcionariosLista[index].email}</p>
+                
                 </div> <button onclick="del(${index})" class="delete-button">X</button> </div>
                 `;
 
             }
 
             quadroFuncionarios += `
-                <button onclick="add()" class="add-button">Adicionar um funcionário</button>`;
+                <button onclick="iniciar_cadastro()" class="add-button">Adicionar um funcionário</button>`;
 
             div_funcionarioQuadro.innerHTML = quadroFuncionarios;
         }
@@ -125,39 +158,175 @@
 
         }
 
+        var correto = true
+        var abc = true
+
         // Função para adicionar um novo funcionário.
-        function add() {
+        function cadastrarFuncionario() {
 
             var nome = ipt_nomeFuncionario.value;
             var email = ipt_emailFuncionario.value;
+
             var possui_arroba = ipt_emailFuncionario.value.includes("@")
             var termina_com = email.endsWith("Sptech.School")
                 || email.endsWith('.com')
                 || email.endsWith('.br')
                 || email.endsWith('.net')
 
+            /////////////////////////////////////////////////////////////////////////////
+            
+        }
 
+        function validarSenha() {
+            var senha = ipt_senha.value
+            var possui_esp = ipt_senha.value.includes("!")
+                || ipt_senha.value.includes("@")
+                || ipt_senha.value.includes("#")
+                || ipt_senha.value.includes("$")
+                || ipt_senha.value.includes("%")
+                || ipt_senha.value.includes("*")
+                || ipt_senha.value.includes("&")
+            var possui_num = ipt_senha.value.includes("1")
+                || ipt_senha.value.includes("2")
+                || ipt_senha.value.includes("3")
+                || ipt_senha.value.includes("4")
+                || ipt_senha.value.includes("5")
+                || ipt_senha.value.includes("6")
+                || ipt_senha.value.includes("7")
+                || ipt_senha.value.includes("8")
+                || ipt_senha.value.includes("9")
+                || ipt_senha.value.includes("0")
+            var texto_minusculo = senha.toLowerCase()
+            var texto_maiusculo = senha.toUpperCase()
+
+            abc = (senha != texto_maiusculo && senha != texto_minusculo)
+
+            if (abc && senha.length >= 8 && possui_esp && possui_num) {
+                senhas.innerHTML = "Senha Válida"
+                ipt_senha.style.border = "3px solid #08a708"
+            } else {
+                senhas.innerHTML = "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número."
+                ipt_senha.style.border = "3px solid #f70000"
+                correto = false
+            }
+
+        }
+
+        function validarConfirmacao() {
+            var nome = ipt_nomeFuncionario.value;
+            var email = ipt_emailFuncionario.value;
+            var senha = ipt_senha.value
+            var confirmacao = ipt_confirm.value
+            if (confirmacao == senha && confirmacao.length >= 8) {
+                conSenha.innerHTML = "Senhas Válidas"
+                ipt_confirm.style.border = "3px solid #08a708"
+            } else {
+                conSenha.innerHTML = "As senhas não conferem."
+                ipt_confirm.style.border = "3px solid #f70000"
+                correto = false
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////
+        function cadastrarFuncionario() {
+            var nome = ipt_nomeFuncionario.value;
+            var email = ipt_emailFuncionario.value;
+            var senha = ipt_senha.value
+            var confirmacao = ipt_confirm.value
             if (nome == "" || email == "") {
                 ipt_nomeFuncionario.style.border = "3px solid #f70000"
                 ipt_emailFuncionario.style.border = "3px solid #f70000"
-                alert("Por favor, preencha o nome e o email.");
+                alert("Por favor, preencha todos os campos de autenticação.");
                 return;
 
-            } else if (nome || email != "" && mail.length > 3 && possui_arroba && termina_com) {
+            } else if (senha == "" && confirmacao == "") {
+                ipt_senha.style.border = "3px solid #f70000"
+                ipt_emailFuncionario.style.border = "3px solid #f70000"
+                alert("Por favor, preencha todos os campos de autenticação.");
+                return;
+            } else if (nome != "" && email != "" && confirmacao == senha) {
                 ipt_nomeFuncionario.style.border = "3px solid #08a708"
                 ipt_emailFuncionario.style.border = "3px solid #08a708"
+                ipt_senha.style.border = "3px solid #08a708"
+                ipt_confirm.style.border = "3px solid #08a708"
 
-                funcionariosLista.push({ nome: nome, email: email }); // Adiciona o funcionário ao array.
+
+                funcionariosLista.push({
+                    nome: nome, email: email, senha: senha
+                }); // Adiciona o funcionário ao array.
 
                 admFuncionarios(); // ativa a função de array e atualiza a pagina .
 
             }
 
+            fetch("/usuarios/cadastrarFuncionario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nomeFuncionarioServer: nome,
+                    emailFuncionarioServer: email,
+                    senhaFuncionarioServer: senha
+                })
+            }).then(function (resposta) {
+                console.log("resposta: ", resposta);
 
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                    setTimeout(() => {
+                        window.location = "login.html";
+                    }, "2000");
+
+                    limparFormulario();
+                    finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    finalizarAguardar();
+                });
+
+            return false;
+        }
+
+        // Listando empresas cadastradas 
+        function listar() {
+            fetch("/empresas/listar", {
+                method: "GET",
+            })
+                .then(function (resposta) {
+                    resposta.json().then((empresas) => {
+                        empresas.forEach((empresa) => {
+                            listaEmpresasCadastradas.push(empresa);
+
+                            console.log("listaEmpresasCadastradas")
+                            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+                        });
+                    });
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+        }
+
+        function sumirMensagem() {
+            cardErro.style.display = "none";
+            return false;
         }
 
         // Renderiza os 2 funcionários iniciais acrescentados previamente  após carregar a página.
         admFuncionarios();
+
+        function iniciar_cadastro(){
+            alerta.style.display = 'flex';
+        }
     </script>
 </body>
 
