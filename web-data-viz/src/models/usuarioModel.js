@@ -19,7 +19,7 @@ function cadastrar (razao, fantasia, cnpj, rep, email, senha) {
         INSERT INTO restaurante (razao_social, nome_fantasia, cnpj) VALUES ('${razao}', '${fantasia}', '${cnpj}');
         `
 
-    var instrucaoFilial = `
+        var instrucaoFilial = `
         INSERT INTO filial (fkRestaurante)  
 	        SELECT idCadastro FROM restaurante ORDER BY idCadastro DESC LIMIT 1;
     `
