@@ -7,12 +7,26 @@
     <link rel="stylesheet" href="suporte.css">
 </head>
 <body>
-    <h1>Suporte</h1>
+    <header class="menu">
 
-    <a href="https://safewaresptech.atlassian.net/jira/servicedesk/projects/SUP/settings/widget">
-    <img src="https://i.pinimg.com/originals/37/0a/6c/370a6cb7a084c4b4c2fe667147509e1b.png" alt="">
+        <div class="esquerda">
+
+            <a style="cursor: pointer;" href = 'index.html'><span class="logo">SafeWare</span></a>
+
+            <p class="titulo">Suporte</p>
+        </div>
+        <div class="direita">
+            
+        </div>
+    </header>
+
+    
+    <a href="https://safewaresptech.atlassian.net/jira/servicedesk/projects/SUP/queues/custom/1">
+    <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/atlassian_jira_logo_icon_170511.png" alt="">
     </a>
 
+    <button onclick="abrirBob()">BobIA</button>
+ 
     <div id="container">
         <h1>BobIA</h1>
         <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
@@ -44,4 +58,15 @@
     </script>
     
 </body>
+
+<script>
+    function abrirBob(){
+
+        if(container.style.display == 'none'){
+            container.style.display = 'flex';
+        } else{
+            container.style.display = 'none';
+        }
+    }
+</script>
 </html>
