@@ -140,6 +140,7 @@
                     sessionStorage.RESTAURANTES = JSON.stringify(json.restaurantes[0]);
                     sessionStorage.FILIAIS = JSON.stringify(json.filiais);
                     sessionStorage.SENSORES = JSON.stringify(json.sensores);
+                    sessionStorage.FUNCIONARIOS = JSON.stringify(json.funcionarios);
 
                     if (sessionStorage.TIPOFUNC == 'Supervisor'){
                         setTimeout(function () {
@@ -154,11 +155,6 @@
                             window.location = "login/telasFuncionario/index.html";
                         }, 1000);
                     }
-
-                    setTimeout(function () {
-                        window.location = "login/index.html";
-                    }, 1000); // apenas para exibir o loading
-
                 });
                 
 

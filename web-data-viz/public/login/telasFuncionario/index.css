@@ -302,16 +302,17 @@ input{
 
 #baixo {
     width: 100%;
+    height: 40vh;
     padding: 2vh 7vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-items: center;
+    align-items: start;
     /* grid-template-rows: 1fr 1fr; */
 }
 
 #baixo a {
     width: 90%;
-    height: 35vh;
     border-radius: 1vh;
 
     display: flex;
@@ -328,7 +329,7 @@ input{
     border-radius: 2vh;
 }
 
-#baixo h2{
+#baixo h3{
     margin: 0;
     color: #60CE60;
 }
@@ -340,12 +341,12 @@ input{
     border: #e40f0f solid 3px;
 }
 
-#baixo .vazio{
+/* #baixo .vazio{
     background-color: #EFEFEF;
     width: 90%;
     height: 35vh;
     border-radius: 1vh;
-}
+} */
 
 #baixo .cozinha:hover, #baixo .cozinha:focus{
     cursor: pointer;
