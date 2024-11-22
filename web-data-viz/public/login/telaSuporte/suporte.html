@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SafeWare | Suporte</title>
+        <link rel="stylesheet" href="suporte.css">
+        <link rel="shortcut icon" type="imagex/png" href="../../img/logo.png">
+    </head>
+    <body>
+        <header class="menu">
+            <div class="esquerda">
+                <span class="logo">SafeWare</span>
+                <p class="titulo">Suporte</p>
+            </div>
+        </header>
+        <section>
+            <div class="divJira">
+                <h2>Jira</h2>
+                <p>Entre na ferramenta de suporte Jira para acessar os pedidos.</p>
+                <p>
+                    <a href="https://safewaresptech.atlassian.net/jira/servicedesk/projects/SUP/queues/custom/1" target="_blank">
+                        <img src="../../img/iconeJira.png" alt="">
+                        Entrar no Jira
+                    </a>
+                </p>
+            </div>
+
+            <div class="divBob">
+                <h2>BobIA</h2>
+                <p>Acesse a BobIA para ajudar no atendimento ao cliente.</p>
+                <button onclick="abrirBob()">
+                    BobIA
+                </button>
+            </div>
+    
+    
+            <div id="container">
+                <h1>BobIA</h1>
+                <textarea id="pergunta" type="text" placeholder="Digite a pergunta..."></textarea>
+                <br><br>
+                <button onclick="gerarResposta()">Gerar Resposta</button>
+                <h3>Resposta da IA:</h3>
+                <div id="resposta"></div>
+            </div>
+        </section>
+
+        <script>
+            async function gerarResposta() {
+                const pergunta = document.getElementById('pergunta').value;
+
+                const response = await fetch('/perguntar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ pergunta })
+                });
+
+                const data = await response.json();
+
+                resposta.style.display = 'block';
+                document.getElementById('resposta').innerText = data.resultado;
+            }
+            
+            container.style.display = 'none';
+            function abrirBob() {
+                if (container.style.display == 'none') {
+                    container.style.display = 'flex';
+                } else {
+                    container.style.display = 'none';
+                }
+            }
+        </script>
+    </body>
+</html>

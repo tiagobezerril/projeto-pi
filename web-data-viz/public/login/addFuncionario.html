@@ -21,11 +21,8 @@
 
 <body>
     <header class="menu">
-
         <div class="esquerda">
-
-            <a style="cursor: pointer;" href = 'index.html'><span class="logo">SafeWare</span></a>
-
+            <a style="cursor: pointer;" href='index.html'><span class="logo">SafeWare</span></a>
             <p class="titulo">Gerenciamento de funcionários</p>
         </div>
         <div class="direita">
@@ -35,11 +32,20 @@
         </div>
     </header>
 
-    <h1>Funcionários</h1>
-    <div id="div_funcionarioQuadro">
-        <!-- quadro inicial de funcionários renderizada a partir de var global -->
-    </div>
-    <h6></h6>
+    <section>
+        <h1>Funcionários</h1>
+        <div id="div_funcionarioQuadro">
+            <div class="funcionario-card">
+                <div class="info">
+                    <b>Nome</b>
+                    <p>Email: email@provedor.com</p>
+                </div>
+                <button onclick="deletarFuncionario()" class="delete-button">Excluir conta</button>
+            </div>
+    
+            <button onclick="iniciar_cadastro()" class="add-button">Adicionar um funcionário</button>
+        </div>
+    </section>
 
     <div id="alerta">
         <span class="card">
@@ -47,7 +53,7 @@
                 close
             </span>
 
-            <h2 class='titulo'>Cadastro</h2> 
+            <h2 class='titulo'>Cadastro</h2>
             <span>
                 <label>Nome do funcionário</label>
                 <input type="text" id="ipt_nomeFuncionario" placeholder="Nome">
@@ -65,20 +71,13 @@
                 <label>Confirmação de senha</label>
                 <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha">
             </span>
-
             <div id="conSenha"></div>
 
             <button onclick="cadastrarFuncionario()" class="botao_cadastro">Cadastrar</button>
         </span>
     </div>
 
-    <div id="addFuncionario" class="addFuncionario">
-        <!-- div para adicionar funcionários type text -->
-        
-    </div>
-
     <div id="menuPerfil">
-        <!-- div do menu para sair da conta logada - função sair ainda será criada -->
         <a href="index.html">Visão geral</a>
         <a onclick="limparSessao()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
     </div>
@@ -86,31 +85,14 @@
     <script>
 
         function closeAlerta() {
-                    alerta.style.display = 'none';
-                }
+            alerta.style.display = 'none';
+        }
 
-        // menu fechado com variavel falsa esperando ser ativada após execucacao da funcao true
-        var menuAberto = false;
-
-        // função completa que alterna o perfil para sair ou acessar as dashboards
         function clickOpcoes() {
-
-            // altere o menu do perfil entre aberto e fechado utilizando elementos DOM para puxar a div menuPerfil e puxar a div setaMenu arrow_drop_down para descer e subir a seta de opcoes
-
-            var menuPerfil = document.getElementById('menuPerfil');
-            var setaMenu = document.getElementById('setaMenu');
-
-            // if que obtém os elementos do menu e do ícone da seta. Style e top puxados diretamente do css aplicado
-
-
             if (menuPerfil.style.top == '-5vw') {
-
-                // Se o menu estiver fechado, abre o menu com as medidas -5vw aplicadas no css.
                 menuPerfil.style.top = '5vw';
-                // elemento innerHTML da flechinha que abre e fecha
                 setaMenu.innerHTML = 'arrow_drop_up';
             } else {
-                // Caso não queira mais utilizar o menu, aperte, feche o menu e veja a flechinha mudando de diração.
                 menuPerfil.style.top = '-5vw';
                 setaMenu.innerHTML = 'arrow_drop_down';
             }
@@ -119,48 +101,45 @@
 
         // vetor funcionariosLista já com dois funcionários padrões feito para guardar mais nomes de funcionários utilizando a funcao admFuncionarios
 
-
-
-        var funcionariosLista =
-            [{ nome: "Nome X", email: "email@gmail.com" },
-            { nome: "Nome Y", email: "email@gmail.com" }];
+        // var funcionariosLista =
+        //     [{ nome: "Nome X", email: "email@gmail.com" },
+        //     { nome: "Nome Y", email: "email@gmail.com" }];
 
         // função para adicionar e excluir funcionários do quadro.
-        function admFuncionarios() {
+        // function admFuncionarios() {
 
-            var quadroFuncionarios = "";
+        //     var quadroFuncionarios = "";
 
-            for (var index = 0; index < funcionariosLista.length; index++) {
+        //     for (var index = 0; index < funcionariosLista.length; index++) {
 
-                quadroFuncionarios += `
-                <div class="funcionario-card">
-                <div class="info">
-                <strong>${funcionariosLista[index].nome}</strong>
-                <p>Email: ${funcionariosLista[index].email}</p>
-                
-                </div> <button onclick="del(${index})" class="delete-button">X</button> </div>
-                `;
+        //         quadroFuncionarios += `
+        //         <div class="funcionario-card">
+        //         <div class="info">
+        //         <strong>${funcionariosLista[index].nome}</strong>
+        //         <p>Email: ${funcionariosLista[index].email}</p>
 
-            }
+        //         </div> <button onclick="del(${index})" class="delete-button">X</button> </div>
+        //         `;
 
-            quadroFuncionarios += `
-                <button onclick="iniciar_cadastro()" class="add-button">Adicionar um funcionário</button>`;
+        //     }
 
-            div_funcionarioQuadro.innerHTML = quadroFuncionarios;
-        }
+        //     quadroFuncionarios += `
+        //         <button onclick="iniciar_cadastro()" class="add-button">Adicionar um funcionário</button>`;
+
+        //     div_funcionarioQuadro.innerHTML = quadroFuncionarios;
+        // }
 
         // Função para excluir um funcionário com base no index acrescentado pela função admFuncionarios.
-        function del(index) {
-            if (index >= 0 && index < funcionariosLista.length) {
-                funcionariosLista.splice(index, 1); // Deleta o funcionário do VETOR utilizando SPLICE, função que é usada para alterar/deletar/substituir o conteúdo existente do VETOR admFuncionarios, 1 por vez ao clicar no X. 
-                admFuncionarios(); // função ativada que atualiza a página após deletar o funcionário utilizando o splice acima.
-            }
+        // function del(index) {
+        //     if (index >= 0 && index < funcionariosLista.length) {
+        //         funcionariosLista.splice(index, 1); // Deleta o funcionário do VETOR utilizando SPLICE, função que é usada para alterar/deletar/substituir o conteúdo existente do VETOR admFuncionarios, 1 por vez ao clicar no X. 
+        //         admFuncionarios(); // função ativada que atualiza a página após deletar o funcionário utilizando o splice acima.
+        //     }
 
-        }
+        // }
 
         var correto = true
         var abc = true
-
         // Função para adicionar um novo funcionário.
         function cadastrarFuncionario() {
 
@@ -172,9 +151,6 @@
                 || email.endsWith('.com')
                 || email.endsWith('.br')
                 || email.endsWith('.net')
-
-            /////////////////////////////////////////////////////////////////////////////
-            
         }
 
         function validarSenha() {
@@ -185,7 +161,8 @@
                 || ipt_senha.value.includes("$")
                 || ipt_senha.value.includes("%")
                 || ipt_senha.value.includes("*")
-                || ipt_senha.value.includes("&")
+                || ipt_senha.value.includes("&");
+
             var possui_num = ipt_senha.value.includes("1")
                 || ipt_senha.value.includes("2")
                 || ipt_senha.value.includes("3")
@@ -196,6 +173,7 @@
                 || ipt_senha.value.includes("8")
                 || ipt_senha.value.includes("9")
                 || ipt_senha.value.includes("0")
+
             var texto_minusculo = senha.toLowerCase()
             var texto_maiusculo = senha.toUpperCase()
 
@@ -227,7 +205,6 @@
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////
         function cadastrarFuncionario() {
             var nome = ipt_nomeFuncionario.value;
             var email = ipt_emailFuncionario.value;
@@ -251,12 +228,11 @@
                 ipt_confirm.style.border = "3px solid #08a708"
 
 
-                funcionariosLista.push({
-                    nome: nome, email: email, senha: senha
-                }); // Adiciona o funcionário ao array.
+                // funcionariosLista.push({
+                //     nome: nome, email: email, senha: senha
+                // }); // Adiciona o funcionário ao array.
 
-                admFuncionarios(); // ativa a função de array e atualiza a pagina .
-
+                // admFuncionarios(); 
             }
 
             fetch("/usuarios/cadastrarFuncionario", {
@@ -276,21 +252,21 @@
                     cardErro.style.display = "block";
 
                     mensagem_erro.innerHTML =
-                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                        "Cadastro realizado com sucesso!";
 
-                    setTimeout(() => {
-                        window.location = "login.html";
-                    }, "2000");
+                    // setTimeout(() => {
+                    //     window.location = "login.html";
+                    // }, "2000");
 
-                    limparFormulario();
-                    finalizarAguardar();
+                    // limparFormulario();
+                    // finalizarAguardar();
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
             })
                 .catch(function (resposta) {
                     console.log(`#ERRO: ${resposta}`);
-                    finalizarAguardar();
+                    // finalizarAguardar();
                 });
 
             return false;
@@ -320,11 +296,9 @@
             cardErro.style.display = "none";
             return false;
         }
+        // admFuncionarios();
 
-        // Renderiza os 2 funcionários iniciais acrescentados previamente  após carregar a página.
-        admFuncionarios();
-
-        function iniciar_cadastro(){
+        function iniciar_cadastro() {
             alerta.style.display = 'flex';
         }
     </script>

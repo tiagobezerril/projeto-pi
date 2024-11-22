@@ -1,42 +1,26 @@
-body {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    justify-content: space-evenly;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+* {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
-#container {
-    position: absolute;
-    right: 0px;
-    bottom: 0px;
-    width: 50% !important;
-    height: 400px;
-    margin-bottom: 0px !important;
-    border: 5px #1F2A44 solid;
-    background-color: #63B1BC;
-    display: none;
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
-    margin: 50px auto;
-    text-align: center;
-} 
-
-img{
-    height: 100px;
-    margin-top: 200px;
+    background-image: url(../img/circle.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 100vh;
 }
 
 .menu {
     position: fixed;
+    top: 0;
     background-color: #EFF0F0;
     width: 100%;
     height: 10vh;
-    top: 0px;
     display: grid;
     grid-template-columns: 60% 40%;
     gap: 5px;
@@ -92,6 +76,96 @@ img{
     justify-content: flex-end;
     align-items: center;
 }
+
+section {
+    padding: 2vh 15vh;
+    margin-top: 15vh;
+    width: 100%;
+    height: 100vh;
+}
+
+section h2{
+    margin: 0;
+    color: #2D20EE;
+    font-size: 5vh;
+    font-weight: 800;
+}
+
+section p{
+    color: #63666A;
+    font-weight: 600;
+}
+
+.divJira{
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+    height: 24vh;
+    width: 100%;
+}
+
+.divJira a {
+    background-color: #2D20EE;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 6vh;
+    border-radius: 1vh;
+    text-decoration: none;
+    gap: 1vh;
+
+    transition: ease-in-out 0.2s;
+}
+
+.divJira a:hover, .divJira a:focus {
+    background-color: #5347f3;
+}
+
+.divJira p {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+img{
+    height: 4vh;
+}
+
+.divBob button{
+    background-color: #63B1BC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vh;
+    width: 12vw;
+    height: 6vh;
+    font-size: 3vh;
+    font-weight: 700;
+    border-radius: 1vh;
+
+    transition: ease-in-out 0.2s;
+}
+
+#container {
+    position: absolute;
+    right: 2vw;
+    bottom: 2vw;
+    width: 50% !important;
+    height: 80%;
+    margin-bottom: 0px !important;
+    border: 2px #1F2A44 solid;
+    border-radius: 1vh;
+    background-color: #63B1BC;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+} 
 
 h1 {
     color: #1F2A44;
