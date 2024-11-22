@@ -120,6 +120,8 @@ function cadastrarFuncionario(req, res) {
   var nomeFuncionario = req.body.nomeFuncionarioServer;
   var emailFuncionario = req.body.emailFuncionarioServer;
   var senhaFuncionario = req.body.senhaFuncionarioServer;
+  var fkRestaurante = req.body.idRestaurante;
+  var fkSupervisor = req.body.idSupervisor;
 
   if (nomeFuncionario == undefined) {
     res.status(400).send(`Seu representante está undefined`);
@@ -129,7 +131,7 @@ function cadastrarFuncionario(req, res) {
     res.status(400).send(`Seu representante está undefined`);
   }
 
-  usuarioModel.cadastrarFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario)
+  usuarioModel.cadastrarFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario, fkRestaurante, fkSupervisor)
     .then(function (resultado) {
       res.json(resultado);
     })
@@ -164,9 +166,29 @@ function buscarFuncionariosPorSupervisor(req, res){
         })
 }
 
+function deletarFuncionario(req, res){
+  var idFuncionario = req.body.idFuncionario;
+
+  console.log('Entrei no controller');
+
+  usuarioModel.deletarFuncionario(idFuncionario)
+    .then(function (resultado){
+      res.json(resultado);
+    })
+    .catch (function (erro) {
+      console.log(erro);
+            console.log(
+                "\nHouve um erro ao excluir a conta! Erro: ",
+                erro.sqlMessage
+              );
+              res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
   autenticar,
   cadastrar,
   cadastrarFuncionario,
-  buscarFuncionariosPorSupervisor
+  buscarFuncionariosPorSupervisor,
+  deletarFuncionario
 };

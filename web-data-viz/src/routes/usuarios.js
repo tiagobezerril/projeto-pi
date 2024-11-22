@@ -20,4 +20,8 @@ router.post("/buscarFuncionariosPorSupervisor", function (req, res) {
     usuarioController.buscarFuncionariosPorSupervisor(req, res);
 })
 
+router.delete("/deletarFuncionario", function (req, res) {
+    usuarioController.deletarFuncionario(req, res);
+})
+
 module.exports = router;

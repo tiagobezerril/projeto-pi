@@ -55,7 +55,9 @@ function cadastrar(razao, fantasia, cnpj, rep, email, senha) {
 function cadastrarFuncionario(
   nomeFuncionario,
   emailFuncionario,
-  senhaFuncionario
+  senhaFuncionario,
+  fkRestaurante,
+  fkSupervisor
 ) {
   console.log(
     "ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarFuncionario():",
@@ -65,9 +67,8 @@ function cadastrarFuncionario(
   );
 
   var instrucaoSql = `
-        INSERT INTO funcionario (nome, email, senha, tipo, fkRestaurante) VALUES 
-            ('${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', 'Comum',
-            (SELECT idCadastro FROM restaurante ORDER BY idCadastro DESC LIMIT 1));
+        INSERT INTO funcionario (nome, email, senha, tipo, fkRestaurante, fkSupervisor) VALUES 
+            ('${nomeFuncionario}', '${emailFuncionario}', '${senhaFuncionario}', 'Comum', ${fkRestaurante}, ${fkSupervisor});
     `;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -76,16 +77,26 @@ function cadastrarFuncionario(
 
 function buscarFuncionariosPorSupervisor(idSupervisor){
     var instrucaoSql = `
-        SELECT nome, email, senha FROM funcionario WHERE fkSupervisor = '${idSupervisor}'
+        SELECT idFuncionario, nome, email, senha FROM funcionario WHERE fkSupervisor = '${idSupervisor}';
     `;
     
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
+function deletarFuncionario(idFuncionario) {
+  var instrucaoSql = `
+    DELETE FROM funcionario WHERE idFuncionario = ${idFuncionario};
+  `;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 module.exports = {
   autenticar,
   cadastrar,
   cadastrarFuncionario,
-  buscarFuncionariosPorSupervisor
+  buscarFuncionariosPorSupervisor,
+  deletarFuncionario
 };

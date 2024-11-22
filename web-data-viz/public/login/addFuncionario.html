@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
+
+<head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,320 +14,323 @@
 
     <link rel="shortcut icon" type="imagex/png" href="../img/logo.png" />
     <link rel="stylesheet" href="addFuncionario.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up"
-    />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
     <script src="../js/sessao.js"></script>
-  </head>
+</head>
 
-  <body >
+<body onload="exibirFuncionarios()">
     <header class="menu">
-      <div class="esquerda">
-        <a style="cursor: pointer" href="index.html"
-          ><span class="logo">SafeWare</span></a
-        >
-        <p class="titulo">Gerenciamento de funcionários</p>
-      </div>
-      <div class="direita">
-        <a onclick="clickOpcoes()" class="perfil" id="setaPerfil">
-          <span class="material-symbols-outlined" id="setaMenu"
-            >arrow_drop_down</span
-          >
-        </a>
-      </div>
+        <div class="esquerda">
+            <a style="cursor: pointer" href="index.html"><span class="logo">SafeWare</span></a>
+            <p class="titulo">Gerenciamento de funcionários</p>
+        </div>
+        <div class="direita">
+            <a onclick="clickOpcoes()" class="perfil" id="setaPerfil">
+                <span class="material-symbols-outlined" id="setaMenu">arrow_drop_down</span>
+            </a>
+        </div>
     </header>
 
     <section>
-      <h1>Funcionários</h1>
-      <div id="div_funcionarioQuadro">
-        <div class="funcionario-card">
-          <div class="info">
-            <b>Nome</b>
-            <p>Email: email@provedor.com</p>
-          </div>
-          <button onclick="deletarFuncionario()" class="delete-button">
-            Excluir conta
-          </button>
+        <h1>Funcionários</h1>
+        <div id="div_funcionarioQuadro">
+            <button onclick="iniciar_cadastro()" class="add-button">
+                Adicionar um funcionário
+            </button>
         </div>
-
-        <button onclick="iniciar_cadastro()" class="add-button">
-          Adicionar um funcionário
-        </button>
-      </div>
     </section>
 
     <div id="alerta">
-      <span class="card">
-        <span
-          id="closeAlerta"
-          onclick="closeAlerta()"
-          class="material-symbols-outlined"
-        >
-          close
-        </span>
+        <span class="card">
+            <span id="closeAlerta" onclick="closeAlerta()" class="material-symbols-outlined">
+                close
+            </span>
 
-        <h2 class="titulo">Cadastro</h2>
-        <span>
-          <label>Nome do funcionário</label>
-          <input type="text" id="ipt_nomeFuncionario" placeholder="Nome" />
+            <h2 class="titulo">Cadastro</h2>
+            <span>
+                <label>Nome do funcionário</label>
+                <input type="text" id="ipt_nomeFuncionario" placeholder="Nome" />
+            </span>
+            <span>
+                <label>Email do funcionário</label>
+                <input type="text" id="ipt_emailFuncionario" placeholder="emal@provedor.com" />
+            </span>
+            <span>
+                <label>Senha do funcionário</label>
+                <input oninput="validarSenha()" type="password" id="ipt_senha" placeholder="Senha do Funcionário" />
+                <div id="senhas" style="display: none"></div>
+            </span>
+            <span>
+                <label>Confirmação de senha</label>
+                <input oninput="validarConfirmacao()" type="password" id="ipt_confirm" placeholder="Confirme a senha" />
+            </span>
+            <span id="conSenha"></span>
+            <!-- <span id="mensagem_erro"></span> -->
+            <button onclick="cadastrarFuncionario()" class="botao_cadastro">
+                Cadastrar
+            </button>
         </span>
-        <span>
-          <label>Email do funcionário</label>
-          <input
-            type="text"
-            id="ipt_emailFuncionario"
-            placeholder="emal@provedor.com"
-          />
-        </span>
-        <span>
-          <label>Senha do funcionário</label>
-          <input
-            oninput="validarSenha()"
-            type="password"
-            id="ipt_senha"
-            placeholder="Senha do Funcionário"
-          />
-          <div id="senhas" style="display: none"></div>
-        </span>
-        <span>
-          <label>Confirmação de senha</label>
-          <input
-            oninput="validarConfirmacao()"
-            type="password"
-            id="ipt_confirm"
-            placeholder="Confirme a senha"
-          />
-        </span>
-        <div id="conSenha"></div>
-
-        <button onclick="cadastrarFuncionario()" class="botao_cadastro">
-          Cadastrar
-        </button>
-      </span>
     </div>
 
+    <div id="alertaDel">
+        <div class="card" id="idCard">
+            <!-- <span id="closeAlerta" onclick="closeAlertaFunc()" class="material-symbols-outlined">
+                close
+            </span>
+            <b>Tem certeza que deseja excluir a conta desse funcionario?</b>
+            <p>Ele não terá mais acesso ao sistema.</p>
+            <span class="botoes">
+                <button class="delete-button" onclick="deletarFuncionario()">Deletar</button>
+                <button class="cancel-button" onclick="closeAlertaFunc()">Cancelar</button>
+            </span>
+            <span id="mensagemDel"></span> -->
+        </div>
+     </div>
+
     <div id="menuPerfil">
-      <a href="index.html">Visão geral</a>
-      <a onclick="limparSessao()" style="border-radius: 0 0 1vh 1vh">Sair</a>
+        <a href="index.html">Visão geral</a>
+        <a onclick="limparSessao()" style="border-radius: 0 0 1vh 1vh">Sair</a>
     </div>
 
     <script>
-      function closeAlerta() {
-        alerta.style.display = "none";
-      }
-
-      function clickOpcoes() {
-        if (menuPerfil.style.top == "-5vw") {
-          menuPerfil.style.top = "5vw";
-          setaMenu.innerHTML = "arrow_drop_up";
-        } else {
-          menuPerfil.style.top = "-5vw";
-          setaMenu.innerHTML = "arrow_drop_down";
-        }
-      }
-      // vetor funcionariosLista já com dois funcionários padrões feito para guardar mais nomes de funcionários utilizando a funcao admFuncionarios
-
-      // var funcionariosLista =
-      //     [{ nome: "Nome X", email: "email@gmail.com" },
-      //     { nome: "Nome Y", email: "email@gmail.com" }];
-
-      // função para adicionar e excluir funcionários do quadro.
-      // function admFuncionarios() {
-
-      //     var quadroFuncionarios = "";
-
-      //     for (var index = 0; index < funcionariosLista.length; index++) {
-
-      //         quadroFuncionarios += `
-      //         <div class="funcionario-card">
-      //         <div class="info">
-      //         <strong>${funcionariosLista[index].nome}</strong>
-      //         <p>Email: ${funcionariosLista[index].email}</p>
-
-      //         </div> <button onclick="del(${index})" class="delete-button">X</button> </div>
-      //         `;
-
-      //     }
-
-      //     quadroFuncionarios += `
-      //         <button onclick="iniciar_cadastro()" class="add-button">Adicionar um funcionário</button>`;
-
-      //     div_funcionarioQuadro.innerHTML = quadroFuncionarios;
-      // }
-
-      // Função para excluir um funcionário com base no index acrescentado pela função admFuncionarios.
-      // function del(index) {
-      //     if (index >= 0 && index < funcionariosLista.length) {
-      //         funcionariosLista.splice(index, 1); // Deleta o funcionário do VETOR utilizando SPLICE, função que é usada para alterar/deletar/substituir o conteúdo existente do VETOR admFuncionarios, 1 por vez ao clicar no X.
-      //         admFuncionarios(); // função ativada que atualiza a página após deletar o funcionário utilizando o splice acima.
-      //     }
-
-      // }
-
-      var correto = true;
-      var abc = true;
-      // Função para adicionar um novo funcionário.
-      function cadastrarFuncionario() {
-        var nome = ipt_nomeFuncionario.value;
-        var email = ipt_emailFuncionario.value;
-
-        var possui_arroba = ipt_emailFuncionario.value.includes("@");
-        var termina_com =
-          email.endsWith("Sptech.School") ||
-          email.endsWith(".com") ||
-          email.endsWith(".br") ||
-          email.endsWith(".net");
-      }
-
-      function validarSenha() {
-        var senha = ipt_senha.value;
-        var possui_esp =
-          ipt_senha.value.includes("!") ||
-          ipt_senha.value.includes("@") ||
-          ipt_senha.value.includes("#") ||
-          ipt_senha.value.includes("$") ||
-          ipt_senha.value.includes("%") ||
-          ipt_senha.value.includes("*") ||
-          ipt_senha.value.includes("&");
-
-        var possui_num =
-          ipt_senha.value.includes("1") ||
-          ipt_senha.value.includes("2") ||
-          ipt_senha.value.includes("3") ||
-          ipt_senha.value.includes("4") ||
-          ipt_senha.value.includes("5") ||
-          ipt_senha.value.includes("6") ||
-          ipt_senha.value.includes("7") ||
-          ipt_senha.value.includes("8") ||
-          ipt_senha.value.includes("9") ||
-          ipt_senha.value.includes("0");
-
-        var texto_minusculo = senha.toLowerCase();
-        var texto_maiusculo = senha.toUpperCase();
-
-        abc = senha != texto_maiusculo && senha != texto_minusculo;
-
-        if (abc && senha.length >= 8 && possui_esp && possui_num) {
-          senhas.innerHTML = "Senha Válida";
-          ipt_senha.style.border = "3px solid #08a708";
-        } else {
-          senhas.innerHTML =
-            "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número.";
-          ipt_senha.style.border = "3px solid #f70000";
-          correto = false;
-        }
-      }
-
-      function validarConfirmacao() {
-        var nome = ipt_nomeFuncionario.value;
-        var email = ipt_emailFuncionario.value;
-        var senha = ipt_senha.value;
-        var confirmacao = ipt_confirm.value;
-        if (confirmacao == senha && confirmacao.length >= 8) {
-          conSenha.innerHTML = "Senhas Válidas";
-          ipt_confirm.style.border = "3px solid #08a708";
-        } else {
-          conSenha.innerHTML = "As senhas não conferem.";
-          ipt_confirm.style.border = "3px solid #f70000";
-          correto = false;
-        }
-      }
-
-      function cadastrarFuncionario() {
-        var nome = ipt_nomeFuncionario.value;
-        var email = ipt_emailFuncionario.value;
-        var senha = ipt_senha.value;
-        var confirmacao = ipt_confirm.value;
-        if (nome == "" || email == "") {
-          ipt_nomeFuncionario.style.border = "3px solid #f70000";
-          ipt_emailFuncionario.style.border = "3px solid #f70000";
-          alert("Por favor, preencha todos os campos de autenticação.");
-          return;
-        } else if (senha == "" && confirmacao == "") {
-          ipt_senha.style.border = "3px solid #f70000";
-          ipt_emailFuncionario.style.border = "3px solid #f70000";
-          alert("Por favor, preencha todos os campos de autenticação.");
-          return;
-        } else if (nome != "" && email != "" && confirmacao == senha) {
-          ipt_nomeFuncionario.style.border = "3px solid #08a708";
-          ipt_emailFuncionario.style.border = "3px solid #08a708";
-          ipt_senha.style.border = "3px solid #08a708";
-          ipt_confirm.style.border = "3px solid #08a708";
-
-          // funcionariosLista.push({
-          //     nome: nome, email: email, senha: senha
-          // }); // Adiciona o funcionário ao array.
-
-          // admFuncionarios();
+        function closeAlerta() {
+            alerta.style.display = "none";
         }
 
-        fetch("/usuarios/cadastrarFuncionario", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            nomeFuncionarioServer: nome,
-            emailFuncionarioServer: email,
-            senhaFuncionarioServer: senha,
-          }),
-        })
-          .then(function (resposta) {
-            console.log("resposta: ", resposta);
+        function closeAlertaFunc(){
+            alertaDel.style.display = "none";
+        }
 
-            if (resposta.ok) {
-              cardErro.style.display = "block";
+        function iniciar_cadastro() {
+            alerta.style.display = "flex";
+        }
 
-              mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
-
-              // setTimeout(() => {
-              //     window.location = "login.html";
-              // }, "2000");
-
-              // limparFormulario();
-              // finalizarAguardar();
+        function clickOpcoes() {
+            if (menuPerfil.style.top == "-5vw") {
+                menuPerfil.style.top = "5vw";
+                setaMenu.innerHTML = "arrow_drop_up";
             } else {
-              throw "Houve um erro ao tentar realizar o cadastro!";
+                menuPerfil.style.top = "-5vw";
+                setaMenu.innerHTML = "arrow_drop_down";
             }
-          })
-          .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
-          });
+        }
 
-        return false;
-      }
+        function cardDel(idFuncionario){
 
-      // Listando empresas cadastradas
-      function listar() {
-        fetch("/empresas/listar", {
-          method: "GET",
-        })
-          .then(function (resposta) {
-            resposta.json().then((empresas) => {
-              empresas.forEach((empresa) => {
-                listaEmpresasCadastradas.push(empresa);
+            alertaDel.style.display = 'flex';
 
-                console.log("listaEmpresasCadastradas");
-                console.log(listaEmpresasCadastradas[0].codigo_ativacao);
-              });
+            idCard.innerHTML = `
+                <span id="closeAlerta" onclick="closeAlertaFunc()" class="material-symbols-outlined">
+                    close
+                </span>
+                <b>Tem certeza que deseja excluir a conta desse funcionario?</b>
+                <p>Ele não terá mais acesso ao sistema.</p>
+                <span class="botoes">
+                    <button class="delete-button" onclick="deletarFuncionario(${idFuncionario})">Deletar</button>
+                    <button class="cancel-button" onclick="closeAlertaFunc()">Cancelar</button>
+                </span>
+                <span id="mensagemDel"></span>
+            `;
+
+        }
+
+        var funcionarios = JSON.parse(sessionStorage.FUNCIONARIOS);
+
+        function exibirFuncionarios() {
+            funcionarios.forEach(item => {
+                document.getElementById("div_funcionarioQuadro").innerHTML += `
+                    <div class="funcionario-card">
+                        <div class="info">
+                            <b>Nome: ${item.nome}</b>
+                            <p>Email: ${item.email}</p>
+                        </div>
+                        <button onclick="cardDel(${item.idFuncionario})" class="delete-button">
+                            Excluir conta
+                        </button>
+                    </div>        
+                    `
+                    // class="alerta cozinha"
             });
-          })
-          .catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-          });
-      }
+        }
 
-      function sumirMensagem() {
-        cardErro.style.display = "none";
-        return false;
-      }
-      // admFuncionarios();
+        // vetor funcionariosLista já com dois funcionários padrões feito para guardar mais nomes de funcionários utilizando a funcao admFuncionarios
 
-      function iniciar_cadastro() {
-        alerta.style.display = "flex";
-      }
+        // var funcionariosLista =
+        //     [{ nome: "Nome X", email: "email@gmail.com" },
+        //     { nome: "Nome Y", email: "email@gmail.com" }];
+
+        // função para adicionar e excluir funcionários do quadro.
+        // function admFuncionarios() {
+
+        //     var quadroFuncionarios = "";
+
+        //     for (var index = 0; index < funcionariosLista.length; index++) {
+
+        //         quadroFuncionarios += `
+        //         <div class="funcionario-card">
+        //         <div class="info">
+        //         <strong>${funcionariosLista[index].nome}</strong>
+        //         <p>Email: ${funcionariosLista[index].email}</p>
+
+        //         </div> <button onclick="del(${index})" class="delete-button">X</button> </div>
+        //         `;
+
+        //     }
+
+        //     quadroFuncionarios += `
+        //         <button onclick="iniciar_cadastro()" class="add-button">Adicionar um funcionário</button>`;
+
+        //     div_funcionarioQuadro.innerHTML = quadroFuncionarios;
+        // }
+
+        // Função para excluir um funcionário com base no index acrescentado pela função admFuncionarios.
+        // function del(index) {
+        //     if (index >= 0 && index < funcionariosLista.length) {
+        //         funcionariosLista.splice(index, 1); // Deleta o funcionário do VETOR utilizando SPLICE, função que é usada para alterar/deletar/substituir o conteúdo existente do VETOR admFuncionarios, 1 por vez ao clicar no X.
+        //         admFuncionarios(); // função ativada que atualiza a página após deletar o funcionário utilizando o splice acima.
+        //     }
+
+        // }
+
+        var correto = true;
+        var abc = true;
+        function validarSenha() {
+            var senha = ipt_senha.value;
+            var possui_esp =
+                ipt_senha.value.includes("!") ||
+                ipt_senha.value.includes("@") ||
+                ipt_senha.value.includes("#") ||
+                ipt_senha.value.includes("$") ||
+                ipt_senha.value.includes("%") ||
+                ipt_senha.value.includes("*") ||
+                ipt_senha.value.includes("&");
+
+            var possui_num =
+                ipt_senha.value.includes("1") ||
+                ipt_senha.value.includes("2") ||
+                ipt_senha.value.includes("3") ||
+                ipt_senha.value.includes("4") ||
+                ipt_senha.value.includes("5") ||
+                ipt_senha.value.includes("6") ||
+                ipt_senha.value.includes("7") ||
+                ipt_senha.value.includes("8") ||
+                ipt_senha.value.includes("9") ||
+                ipt_senha.value.includes("0");
+
+            var texto_minusculo = senha.toLowerCase();
+            var texto_maiusculo = senha.toUpperCase();
+
+            abc = senha != texto_maiusculo && senha != texto_minusculo;
+
+            if (abc && senha.length >= 8 && possui_esp && possui_num) {
+                senhas.innerHTML = "Senha Válida";
+                ipt_senha.style.border = "3px solid #08a708";
+            } else {
+                senhas.innerHTML =
+                    "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número.";
+                ipt_senha.style.border = "3px solid #f70000";
+                correto = false;
+            }
+        }
+
+        function validarConfirmacao() {
+            var nome = ipt_nomeFuncionario.value;
+            var email = ipt_emailFuncionario.value;
+            var senha = ipt_senha.value;
+            var confirmacao = ipt_confirm.value;
+            if (confirmacao == senha && confirmacao.length >= 8) {
+                conSenha.innerHTML = "Senhas Válidas";
+                ipt_confirm.style.border = "3px solid #08a708";
+            } else {
+                conSenha.innerHTML = "As senhas não conferem.";
+                ipt_confirm.style.border = "3px solid #f70000";
+                correto = false;
+            }
+        }
+
+        function cadastrarFuncionario() {
+            conSenha.style.color = "#696969";
+
+            var nome = ipt_nomeFuncionario.value;
+            var email = ipt_emailFuncionario.value;
+            var senha = ipt_senha.value;
+            var confirmacao = ipt_confirm.value;
+            var idRestaurante = JSON.parse(sessionStorage.RESTAURANTES).idCadastro;
+            var idSupervisor = JSON.parse(sessionStorage.ID_USUARIO);
+
+            if (nome == "" || email == "") {
+                ipt_nomeFuncionario.style.border = "3px solid #f70000";
+                ipt_emailFuncionario.style.border = "3px solid #f70000";
+                alert("Por favor, preencha todos os campos de autenticação.");
+                return;
+            } else if (senha == "" && confirmacao == "") {
+                ipt_senha.style.border = "3px solid #f70000";
+                ipt_emailFuncionario.style.border = "3px solid #f70000";
+                alert("Por favor, preencha todos os campos de autenticação.");
+                return;
+            } else if (nome != "" && email != "" && confirmacao == senha) {
+                ipt_nomeFuncionario.style.border = "3px solid #08a708";
+                ipt_emailFuncionario.style.border = "3px solid #08a708";
+                ipt_senha.style.border = "3px solid #08a708";
+                ipt_confirm.style.border = "3px solid #08a708";
+            }
+
+            fetch("/usuarios/cadastrarFuncionario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nomeFuncionarioServer: nome,
+                    emailFuncionarioServer: email,
+                    senhaFuncionarioServer: senha,
+                    idRestaurante: idRestaurante,
+                    idSupervisor: idSupervisor
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+                    if (resposta.ok) {
+                        conSenha.innerHTML = "Cadastro realizado com sucesso!";
+                        conSenha.style.color = "#60CE60";
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+
+        function deletarFuncionario(idFuncionario){
+            fetch("/usuarios/deletarFuncionario", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idFuncionario: idFuncionario
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+                    if (resposta.ok) {
+                        mensagemDel.innerHTML = "Conta excluida com sucesso";
+                        mensagemDel.style.color = "#60CE60";
+                    } else {
+                        throw "Houve um erro ao tentar excluir a conta!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
     </script>
-  </body>
+</body>
+
 </html>
