@@ -9,7 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(../img/circle.png);
+    background-image: url(img/circle.png);
     background-repeat: no-repeat;
     background-position: right;
     height: 100vh;
