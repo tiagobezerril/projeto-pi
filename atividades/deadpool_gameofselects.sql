@@ -121,6 +121,32 @@ INSERT INTO viagem VALUES
     (DEFAULT, 2, 4, '2025-03-28'),
     (DEFAULT, 1, 5, '2025-03-13');
 
+create table batalha (
+idBatalha int auto_increment,
+fkUniverso int,
+primary key (idBatalha, fkUniverso),
+dtBatalha date,
+constraint fkBatalhaUniverso
+foreign key (fkUniverso)
+references universo (idUniverso)
+);
+
+
+
+INSERT INTO batalha (idBatalha, fkUniverso, dtBatalha) VALUES
+    (DEFAULT, 1, '2024-01-15'),
+    (DEFAULT, 2, '2024-02-20'),
+    (DEFAULT, 3, '2024-03-25'),
+    (DEFAULT, 4, '2024-04-30'),
+    (DEFAULT, 5, '2024-05-05'),
+    (DEFAULT, 1, '2024-06-10'),
+    (DEFAULT, 2, '2024-07-15'),
+    (DEFAULT, 3, '2024-08-20'),
+    (DEFAULT, 4, '2024-09-25'),
+    (DEFAULT, 2, '2025-12-10'),
+    (DEFAULT, 4, '2025-02-20'),
+    (DEFAULT, 5, '2025-03-25');
+    
 create table luta(
 fkDeadpool int,
 fkBatalha int,
@@ -134,34 +160,26 @@ references batalha (idBatalha)
 );
 
 insert into luta values
-()
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 2),
+(5, 3),
+(6, 3),
+(7, 4),
+(8, 4),
+(9, 5),
+(10, 5),
+(1, 6),
+(4, 6),
+(10, 7),
+(9, 7),
+(5, 7),
+(2, 7),
+(6, 8),
+(3, 8),
+(10, 8);
 
-create table batalha (
-idBatalha int auto_increment,
-fkUniverso int,
-primary key (idBatalha, fkDeadpool, fkUniverso),
-dtBatalha date,
-constraint fkBatalhaDeadpool
-foreign key (fkDeadpool)
-references deadpool (idDeadpool),
-constraint fkBatalhaUniverso
-foreign key (fkUniverso)
-references universo (idUniverso)
-);
-
-INSERT INTO batalha (idBatalha, fkDeadpool, fkUniverso, dtBatalha) VALUES
-    (DEFAULT, 1, '2024-01-15'),
-    (DEFAULT, 2, '2024-02-20'),
-    (DEFAULT, 3, '2024-03-25'),
-    (DEFAULT, 4, '2024-04-30'),
-    (DEFAULT, 5, '2024-05-05'),
-    (DEFAULT, 1, '2024-06-10'),
-    (DEFAULT, 2, '2024-07-15'),
-    (DEFAULT, 3, '2024-08-20'),
-    (DEFAULT, 4, '2024-09-25'),
-    (DEFAULT, 2, '2025-12-10'),
-    (DEFAULT, 4, '2025-02-20'),
-    (DEFAULT, 5, '2025-03-25');
     
 -- QUESTÕES
 
