@@ -140,7 +140,7 @@
         function exibirFuncionarios() {
             funcionarios.forEach(item => {
                 document.getElementById("div_funcionarioQuadro").innerHTML += `
-                    <div class="funcionario-card">
+                    <div class="funcionario-card" id="contaFunc${item.idFuncionario}">
                         <div class="info">
                             <b>Nome: ${item.nome}</b>
                             <p>Email: ${item.email}</p>
@@ -320,6 +320,10 @@
                     if (resposta.ok) {
                         mensagemDel.innerHTML = "Conta excluida com sucesso";
                         mensagemDel.style.color = "#60CE60";
+
+                        // var contaFunc = document.getElementById("contaFunc" + idFuncionario);
+                        // contaFunc.style.display = "none";
+
                     } else {
                         throw "Houve um erro ao tentar excluir a conta!";
                     }

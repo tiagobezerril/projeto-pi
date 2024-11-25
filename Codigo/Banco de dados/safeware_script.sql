@@ -137,6 +137,8 @@ CREATE TABLE dados (
         REFERENCES sensor(idsensor)
 )  AUTO_INCREMENT=3000;
 
+
+
 -- DATE_FORMAT (`data`, '%d/%m/%Y' )
 SELECT idFilial, CONCAT(e.logradouro, ', ', e.numero) AS endereco FROM filial JOIN endereco AS e ON fkFilial = idFilial WHERE filial.fkRestaurante = 100;
 SELECT f.*, CONCAT(e.logradouro, ', ', e.numero) FROM filial AS f JOIN endereco AS e ON fkFilial = idFilial;
@@ -146,6 +148,7 @@ nome_fantasia as 'Nome Fantasia',
 cnpj as CNPJ
 FROM restaurante
 WHERE razao_social LIKE '%LTDA%';
+
 
 SELECT em.nome_fantasia as 'Nome Fantasia',
   en.Estado,
