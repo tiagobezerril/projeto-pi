@@ -43,11 +43,11 @@ insert into arma values
 (default, 'Glock-30', 'Arma de Fogo', 10),
 (default, 'Escalibur', 'Arma Mágica', 6),
 (default, 'Manopla do Infinito', 'Arma Mágica', 3),
-(default, 'Anel da Tropa dos Lanternas', 'Arma Mágica', 10),
+(default, 'Anel da Tropa dos Lanternas', 'Arma Mágica', null),
 (default, 'Cacetete', 'Arma Lendária', 8),
 (default, 'Saco do Papai Noel', 'Arma Mágica', 4),
 (default, 'Bexiga', 'Arma Comum', 1),
-(default, 'Ossos', 'Arma Comum', 2),
+(default, 'Ossos', 'Arma Comum', null),
 (default, 'Canivete', 'Arma Branca', 4),
 (default, 'Torta de Creme', 'Arma Culinária', 9),
 (default, 'Unicórnio de Pelucia', 'Arma Mágica', 7);
@@ -131,8 +131,6 @@ foreign key (fkUniverso)
 references universo (idUniverso)
 );
 
-
-
 INSERT INTO batalha (idBatalha, fkUniverso, dtBatalha) VALUES
     (DEFAULT, 1, '2024-01-15'),
     (DEFAULT, 2, '2024-02-20'),
@@ -185,32 +183,69 @@ insert into luta values
 
 -- mostre o nome, os deaths, kills e assists de cada deadpool - médio
 
+select nome as Deadpool,
+deaths as D,
+kills as K,
+assists as A
+from kda
+join deadpool
+on idDeadpool = fkDeadpool;
 
 -- mostre as batalhas da mais recente para a mais antiga - fácil
 
--- select * from batalha order by dtBatalha;
+select * from batalha
+order by dtBatalha asc;
 
 -- mostre todos os universos e suas características - fácil
 
+select nome as Universo,
+caracteristica as Caracteristica
+from universo;
 
 -- mostre os universos que o nome termina com a letra O - fácil
 
+select nome as Universo
+from universo
+where nome like '%o';
 
 -- mostre todas as armas que o tipo é 'arma branca' - fácil
 
+select nome as Arma,
+tipo as Tipo
+from arma
+where tipo = 'Arma Branca';
 
 -- mostre todas as armas ordenadas em ordem alfabética - fácil
 
+select * from arma
+order by nome;
 
 -- mostre todas as armas que não pertencem a nenhum Deadpool - fácil
 
+select * from arma
+where fkDeadpool = null;
 
 -- mostre o nome, status e a arma de cada deadpool - médio
 
+select d.nome as Deadpool,
+d.stts as 'Status',
+a.nome as Arma
+from deadpool as d
+join arma as a
+on fkDeadpool = idDeadpool;
 
 -- mostre o nome e a quantidade de kills de cada deadpool em ordem decrescente - médio
 
+select nome as Deadpool,
+kills as K
+from deadpool
+join KDA
+on fkDeadpool = idDeadpool
+order by kills desc;
 
 -- mostre o universo e a quantidade de batalhas que aconteceram nele - médio
+
+select nome as Universo,
+ from universo;
 
 -- mostre a quantidade de viagens feitas por todos os deadpools em cada universo, o nome do Deadpool e o nome do universo - difícil
