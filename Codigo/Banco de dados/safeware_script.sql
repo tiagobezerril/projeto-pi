@@ -1,5 +1,6 @@
 CREATE DATABASE safeware;
 USE safeware;
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE restaurante (
   idCadastro INT PRIMARY KEY AUTO_INCREMENT UNIQUE,
@@ -16,6 +17,7 @@ INSERT INTO restaurante VALUES
 (default, 'W.m. Iguarias LTDA', 'Suvide Restaurantes Empresariais', '56761836000163');
 
 SELECT * FROM restaurante;
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE filial (
     idFilial INT AUTO_INCREMENT,
@@ -34,7 +36,7 @@ INSERT INTO filial VALUES
     (DEFAULT, 102),
     (DEFAULT, 103),
     (DEFAULT, 104);
-
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE endereco (
     idEndereco INT PRIMARY KEY AUTO_INCREMENT,
     estado VARCHAR(45),
@@ -50,6 +52,7 @@ CREATE TABLE endereco (
         REFERENCES filial (fkRestaurante)
 )  AUTO_INCREMENT=1000;
 SELECT * FROM filial;
+
 INSERT INTO endereco VALUES
 (default, 'SP', 'São Paulo', 'Vila Moraes', 'Rua Angaturama', '240', '04164010', '100', '100'),
 (default, 'SP', 'São Paulo', 'Vila Monumento', 'Rua Vasconcelos Drumond', '206', '01548000', '101', '100'),
@@ -57,6 +60,7 @@ INSERT INTO endereco VALUES
 (default, 'SP', 'São Paulo', 'Agua Fria', 'Rua Ismael Neri', '764', '02335001', '103', '102'),
 (default, 'SP', 'São Paulo', 'City America', 'Avenida Do Anastacio', '359', '05119000', '104', '103'),
 (default, 'SP', 'São Paulo', 'Vila Carrao', 'Rua Antonio de Barros', '2831', '03401001', '105', '104');
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE funcionario (
     idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
@@ -79,7 +83,7 @@ INSERT INTO funcionario (tipo, nome, email, senha, fkRestaurante) VALUES
     ('Supervisor', 'Gabriela', 'gabriela@gmail.com', 'Senha#123', 102);
     
 SELECT * FROM funcionario;
-    
+
 INSERT INTO funcionario (tipo, nome, email, senha, fkRestaurante, fkSupervisor) VALUES
 	('Comum', 'Carlos', 'carlos@gmail.com', 'Senha#123', 100, 100),
     ('Comum', 'Roseli', 'roseli@gmail.com', 'Senha#123', 100, 100),
@@ -92,6 +96,7 @@ INSERT INTO funcionario (tipo, nome, email, senha) VALUES
 	('Suporte', 'Kaio', 'kaio@gmail.com', 'Senha#123'),
 	('Suporte', 'Tiago', 'tiago@gmail.com', 'Senha#123'),
 	('Suporte', 'Erik', 'erik@gmail.com', 'Senha#123');
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE sensor (
     idSensor INT PRIMARY KEY AUTO_INCREMENT,
@@ -115,6 +120,7 @@ INSERT INTO sensor(tipo, dtInstalacao, stts, local_inst, fkFilial, fkRestaurante
     ('MQ3','2024-11-15','ativo','Cilindro 01',101, 100);
 
 SELECT * FROM sensor;
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE manutencao (
     idManutencao INT PRIMARY KEY AUTO_INCREMENT,
@@ -127,6 +133,7 @@ CREATE TABLE manutencao (
 
 INSERT INTO manutencao VALUES 
 	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03',2004);
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE dados (
     idDados INT PRIMARY KEY AUTO_INCREMENT,
@@ -137,6 +144,7 @@ CREATE TABLE dados (
         REFERENCES sensor(idsensor)
 )  AUTO_INCREMENT=3000;
 
+-- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 -- DATE_FORMAT (`data`, '%d/%m/%Y' )
