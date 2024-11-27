@@ -142,9 +142,10 @@
                     sessionStorage.SENSORES = JSON.stringify(json.sensores);
                     sessionStorage.FUNCIONARIOS = JSON.stringify(json.funcionarios);
 
+                    console.log(resposta);
                     if (sessionStorage.TIPOFUNC == 'Supervisor'){
                         setTimeout(function () {
-                            window.location = "login/index.html";
+                            window.location = "login/index.html"
                         }, 1000); // apenas para exibir o loading
                     } else if (sessionStorage.TIPOFUNC == 'Suporte'){
                         setTimeout(function () {

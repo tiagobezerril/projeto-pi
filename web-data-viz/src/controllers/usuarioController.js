@@ -11,8 +11,7 @@ function autenticar(req, res) {
   } else if (senha == undefined) {
     res.status(400).send("Sua senha está indefinida!");
   } else {
-    usuarioModel
-      .autenticar(email, senha)
+    usuarioModel.autenticar(email, senha)
       .then(function (resultadoAutenticar) {
         console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
         console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
@@ -24,21 +23,21 @@ function autenticar(req, res) {
             .then((resultadoRestaurante) => {
               if (resultadoRestaurante.length > 0) {
                 empresaModel.buscarFiliaisPorRestaurante(
-                    resultadoAutenticar[0].fkRestaurante
-                  )
+                  resultadoAutenticar[0].fkRestaurante
+                )
                   .then((resultadoFilial) => {
                     if (resultadoRestaurante.length > 0) {
                       empresaModel.buscarSensoresPorRestaurante(
-                          resultadoAutenticar[0].fkRestaurante
-                        )
+                        resultadoAutenticar[0].fkRestaurante
+                      )
                         .then((resultadoSensor) => {
                           if (resultadoSensor.length > 0) {
                             usuarioModel.buscarFuncionariosPorSupervisor(
-                                resultadoAutenticar[0].idFuncionario
-                              )
+                              resultadoAutenticar[0].idFuncionario
+                            )
                               .then((resultadoFuncionarios) => {
                                 res.json({
-                                  idFuncionario:resultadoAutenticar[0].idFuncionario,
+                                  idFuncionario: resultadoAutenticar[0].idFuncionario,
                                   nome: resultadoAutenticar[0].nome,
                                   email: resultadoAutenticar[0].email,
                                   senha: resultadoAutenticar[0].senha,
@@ -145,43 +144,43 @@ function cadastrarFuncionario(req, res) {
     });
 }
 
-function buscarFuncionariosPorSupervisor(req, res){
-    var idSupervisor = req.body.idFuncionario;
+function buscarFuncionariosPorSupervisor(req, res) {
+  var idSupervisor = req.body.idFuncionario;
 
-    if (idSupervisor == undefined) {
-        res.status(400).send(`Seu idFuncionario está undefined`);
-    }
+  if (idSupervisor == undefined) {
+    res.status(400).send(`Seu idFuncionario está undefined`);
+  }
 
-    usuarioModel.buscarFuncionariosPorSupervisor(idSupervisor)
-        .then(function (resultado){
-            res.json(resultado);
-        })
-        .catch(function (erro){
-            console.log(erro);
-            console.log(
-                "\nHouve um erro ao realizar o cadastro! Erro: ",
-                erro.sqlMessage
-              );
-              res.status(500).json(erro.sqlMessage);
-        })
+  usuarioModel.buscarFuncionariosPorSupervisor(idSupervisor)
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log(
+        "\nHouve um erro ao realizar o cadastro! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
+    })
 }
 
-function deletarFuncionario(req, res){
+function deletarFuncionario(req, res) {
   var idFuncionario = req.body.idFuncionario;
 
   console.log('Entrei no controller');
 
   usuarioModel.deletarFuncionario(idFuncionario)
-    .then(function (resultado){
+    .then(function (resultado) {
       res.json(resultado);
     })
-    .catch (function (erro) {
+    .catch(function (erro) {
       console.log(erro);
-            console.log(
-                "\nHouve um erro ao excluir a conta! Erro: ",
-                erro.sqlMessage
-              );
-              res.status(500).json(erro.sqlMessage);
+      console.log(
+        "\nHouve um erro ao excluir a conta! Erro: ",
+        erro.sqlMessage
+      );
+      res.status(500).json(erro.sqlMessage);
     })
 }
 
