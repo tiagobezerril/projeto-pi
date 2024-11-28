@@ -3,18 +3,15 @@ var router = express.Router();
 
 var dashboardController = require("../controllers/dashboardController");
 
-// Endpoint para buscar dados no banco
-router.get("/puxar/:idDados", function (req, res) {
-    dashboardController.puxarBanco(req, res);
-});
 
-// Endpoint para guardar dados no banco
-router.post("/guardar", function (req, res) {
-    dashboardController.guardarBanco(req, res);
-});
+
+
+
+router.get("/dashboardFun", function (req, res) {
+    dashboardController.DashboardFun(req, res);
+})
 
 module.exports = router;
-
 
 // router.get("/puxar/:idDados", function (req, res) {
 //     dashboardController.puxarBanco(req, res);

@@ -3,33 +3,39 @@
 const publicacoes = [
 
 ];
+window.onload = function() {
+    puxarBanco(); // Chama a função ao carregar a página
+};
 
-function puxarBanco() {
-const ctxTotal = document.getElementById('chartTotal').getContext('2d');
-const chartTotal = new Chart(ctxTotal, { // Salve o gráfico na variável 'chartTotal'
-type: 'line',
-data: {
-    labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril'],
-    datasets: [{
-        label: 'Publicações',
-        data: [],
-        borderColor: 'rgba(75, 192, 192, 1)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)'
-    }]
-},
-});
+function puxarBanco(idSensor) {
+    
+    const ctxTotal = document.getElementById('chartTotal').getContext('2d');
+    const chartTotal = new Chart(ctxTotal, {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Porcentagem',
+                data: [],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)'
+            }]
+        },
+    });
 
-fetch(`/dashboard/idDados`)
+    fetch(`/ultimo/${idSensor}`)
         .then(response => response.json())
         .then(resultado => {
             console.log("Dados recebidos do servidor:", resultado);
-            // Preenchendo os labels e os dados para o gráfico
             resultado.forEach((item) => {
-                chartTotal.data.datasets[0].data.push(item.acertos); // Use 'chartTotal' para acessar os dados do gráfico
-                chartTotal.update(); // Atualize o gráfico para refletir as mudanças
+                chartTotal.data.labels.push(item.dtColeta);
+                chartTotal.data.datasets[0].data.push(item.porcentagem);
             });
+            chartTotal.update();
+        })
+        .catch(error => {
+            console.error("Erro ao buscar dados:", error);
         });
-
 }
 // var sensorAnalogico1 = document.getElementById('graficoLinha1').getContext('2d');
 

@@ -18,7 +18,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
-var aquariosRouter = require("./src/routes/aquarios");
+var ultimoRouter = require("./src/routes/ultimo");
 var empresasRouter = require("./src/routes/empresas");
 var dashboardRouter = require("./src/routes/dashboard");
 
@@ -31,9 +31,10 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
-app.use("/aquarios", aquariosRouter);
+app.use("/ultimo", ultimoRouter);
 app.use("/empresas", empresasRouter);
 app.use("/dashboard", dashboardRouter);
+
 
 app.listen(PORTA_APP, function () {
     console.log(`
