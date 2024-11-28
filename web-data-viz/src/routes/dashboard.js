@@ -11,6 +11,10 @@ router.get("/dashboardFun", function (req, res) {
     dashboardController.DashboardFun(req, res);
 })
 
+router.get("/atualizarDashboard", function (req, res) { // primeiro de tudo
+    insightsController.totalPublicacoes(req, res);
+});
+
 module.exports = router;
 
 // router.get("/puxar/:idDados", function (req, res) {

@@ -43,7 +43,7 @@ const configLinha = {
     }
 }
 
-var grafico1 = new Chart(sensorAnalogico1, configLinha);
+
 
 /// --------------------------GRAFICO MEIA LUA----------------------------------------------------------
 
