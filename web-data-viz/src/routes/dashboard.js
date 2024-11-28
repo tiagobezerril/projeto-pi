@@ -13,6 +13,10 @@ router.post("/guardar", function (req, res) {
     dashboardController.guardarBanco(req, res);
 });
 
+router.get("/atualizarDashboard", function (req, res) { // primeiro de tudo
+    insightsController.totalPublicacoes(req, res);
+});
+
 module.exports = router;
 
 
