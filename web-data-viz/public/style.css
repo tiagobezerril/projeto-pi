@@ -35,7 +35,7 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 92%;
     height: 60px;
     display: grid;
-    grid-template-columns: 10% 80% 10%;
+    grid-template-columns: 10% 70% 20%;
     justify-content: space-between;
     gap: 5px;
     align-items: center;
@@ -87,19 +87,52 @@ input[type="number"]::-webkit-outer-spin-button {
     transition: 0.4s;
 }
 
-.contratar {
+.span_contratar{
+    display: flex;
+    flex-direction: row;
+}
+
+.entrar {
     width: 100px;
     height: 30px;
-    background: #2D20EE;
+    /* background: ; */
     border-radius: 25px;
     
-    color: white;
     font-size: 18px;
     font-weight: 800;
     align-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 10px;
+
+    text-decoration: none;
+    color: #2D20EE;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 18px;
+    transition: background 0.5s ease, transform 0.5s ease;
+
+}
+
+.entrar:hover, .entrar:focus {
+    /* background: #7269F2; */
+    transform: scale(1.1);
+}
+
+.contratar {
+    width: 100px;
+    height: 30px;
+    background: #2D20EE;
+    border-radius: 25px;
+    
+    font-size: 18px;
+    font-weight: 800;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
 
     text-decoration: none;
     color: white;
