@@ -1,22 +1,24 @@
 // ------------------- GRAFICOS SENSOR 1 ----------------------------------------
 
-const publicacoes = [
+// const publicacoes = [
 
-];
+// ];
 window.onload = function() {
     puxarBanco(); // Chama a função ao carregar a página
 };
 
 function puxarBanco(idSensor) {
+
     
-    const ctxTotal = document.getElementById('chartTotal').getContext('2d');
+    
+    const ctxTotal = document.getElementById('graficoLinha1').getContext('2d');
     const chartTotal = new Chart(ctxTotal, {
         type: 'line',
         data: {
-            labels: [],
+            labels: ['Red', 'Blue'],
             datasets: [{
                 label: 'Porcentagem',
-                data: [],
+                data: [12, 13],
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)'
             }]
@@ -133,7 +135,7 @@ function puxarBanco(idSensor) {
 
 // // ---------------- GRAFICO MENSAL --------------------
 
-// const mesCtx = document.getElementById('graficoMensal1');
+// const mesCtx = document.getElementBLinha');
 
 // new Chart(mesCtx, {
 //     type: 'bar',
