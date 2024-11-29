@@ -1,7 +1,6 @@
-
 var database = require("../database/config");
 
-function obterResultados() {
+function puxarDados(idSensor) {
     var instrucaoSql = `
                 SELECT porcentagem, dtColeta FROM dados where fkSensor = 2000; 
 
@@ -10,6 +9,6 @@ function obterResultados() {
     return database.executar(instrucaoSql);
 }
     module.exports = {
-        obterResultados,
+        puxarDados,
       };
       

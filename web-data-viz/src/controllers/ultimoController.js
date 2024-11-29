@@ -1,19 +1,19 @@
 
 var ultimoModel = require("../models/ultimoModel");
 
-function obterResultados(req, res) {
-    var idSensor = req.params.idSensor
-    ultimoModel.obterResultados(idSensor)
-        .then(resultados => {
-            res.json(resultados);
+function puxarDados(req, res) {
+    var idSensor = req.body.idSensor
+    ultimoModel.puxarDados(idSensor)
+        .then(idSensor => {
+            res.json(idSensor);
         })
         .catch(e => {
             console.error(e);
-            res.status(500).send("Erro ao obter os resultados.");
+            res.status(500).send("Erro ao obter os idSensor.");
         });
 }
 
 module.exports = {
-    obterResultados 
+    puxarDados
 };
 
