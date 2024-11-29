@@ -6,12 +6,6 @@ function buscarPorId(id) {
   return database.executar(instrucaoSql);
 }
 
-function listar() {
-  var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
-
-  return database.executar(instrucaoSql);
-}
-
 function buscarRestauranteDoUsuario(fkRestaurante){
   var instrucaoSql = `SELECT idCadastro, nome_fantasia, cnpj FROM restaurante where idCadastro = '${fkRestaurante}'`;
 
@@ -44,12 +38,38 @@ function cadastrar(razaoSocial, cnpj) {
   return database.executar(instrucaoSql);
 }
 
+function buscarEnderecoFilial(idFilial){
+  var instrucaoSql = `SELECT estado, cidade, bairro, logradouro, numero, cep, fkFilial FROM endereco WHERE fkFilial = ${idFilial};`
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function buscarManutencaoFilial(idFilial){
+  var instrucaoSql = `SELECT DATE_FORMAT(dtHoraInicio, '%H:%i:%s - %d/%c/%Y') AS inicio, 
+    DATE_FORMAT(dtHoraTermino, '%H:%i:%s - %d/%c/%Y') AS termino,
+    local_inst FROM manutencao JOIN sensor ON fkSensor = idSensor WHERE fkFilial = ${idFilial};`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function atualizarEnderecoFilial(idFilial, estado, cidade, bairro, cep, rua, numero){
+  var instrucaoSql = `UPDATE endereco SET estado = '${estado}', cidade = '${cidade}', bairro = '${bairro}', cep = '${cep}', 
+    logradouro = '${rua}', numero = ${numero} WHERE fkFilial = ${idFilial}`;
+  
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 module.exports = { 
   buscarPorCnpj, 
   buscarPorId, 
   cadastrar,
-  listar,
   buscarRestauranteDoUsuario,
   buscarFiliaisPorRestaurante,
-  buscarSensoresPorRestaurante
+  buscarSensoresPorRestaurante,
+  buscarEnderecoFilial,
+  buscarManutencaoFilial,
+  atualizarEnderecoFilial
 };

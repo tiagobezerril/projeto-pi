@@ -75,16 +75,7 @@
 
     <div id="alertaDel">
         <div class="card" id="idCard">
-            <!-- <span id="closeAlerta" onclick="closeAlertaFunc()" class="material-symbols-outlined">
-                close
-            </span>
-            <b>Tem certeza que deseja excluir a conta desse funcionario?</b>
-            <p>Ele não terá mais acesso ao sistema.</p>
-            <span class="botoes">
-                <button class="delete-button" onclick="deletarFuncionario()">Deletar</button>
-                <button class="cancel-button" onclick="closeAlertaFunc()">Cancelar</button>
-            </span>
-            <span id="mensagemDel"></span> -->
+
         </div>
      </div>
 
@@ -320,10 +311,6 @@
                     if (resposta.ok) {
                         mensagemDel.innerHTML = "Conta excluida com sucesso";
                         mensagemDel.style.color = "#60CE60";
-
-                        // var contaFunc = document.getElementById("contaFunc" + idFuncionario);
-                        // contaFunc.style.display = "none";
-
                     } else {
                         throw "Houve um erro ao tentar excluir a conta!";
                     }

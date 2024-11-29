@@ -67,7 +67,7 @@ input{
 .menu .titulo {
     color: #2D20EE;
     font-weight: 900;
-    font-size: 20px;
+    font-size: 2.5vh;
     margin: 0;
 }
 
@@ -206,14 +206,14 @@ span#burguer:hover, span#burguer:focus{
 
 #opcoes .filial{
     width: 100%;
-    height: 50px;
+    height: fit-content;
     padding: 10px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     color: #2D20EE;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 2.2vh;
     border-bottom: #afafaf solid 2px;
     /* border: 2px solid #999999; */
 }
@@ -495,7 +495,7 @@ span#burguer:hover, span#burguer:focus{
 #endereco .titulo{
     color: #2D20EE;
     font-weight: bolder;
-    font-size: 40px;
+    font-size: 4vh;
     margin: 0;
     align-self: center;
 }
@@ -513,7 +513,7 @@ span#burguer:hover, span#burguer:focus{
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     font-size: 15px;
     padding: 0 25px;
 }

@@ -8,12 +8,6 @@ function buscarPorCnpj(req, res) {
   });
 }
 
-function listar(req, res) {
-  empresaModel.listar().then((resultado) => {
-    res.status(200).json(resultado);
-  });
-}
-
 function buscarPorId(req, res) {
   var id = req.params.id;
 
@@ -52,9 +46,7 @@ function cadastrar(req, res) {
 
   empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
     if (resultado.length > 0) {
-      res
-        .status(401)
-        .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
+      res.status(401).json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
     } else {
       empresaModel.cadastrar(razaoSocial, cnpj).then((resultado) => {
         res.status(201).json(resultado);
@@ -63,12 +55,48 @@ function cadastrar(req, res) {
   });
 }
 
+function buscarEnderecoFilial(req, res){
+  var idFilial = req.params.idFilial;
+
+  empresaModel.buscarEnderecoFilial(idFilial).then((resultado) => {
+    res.json({
+      endereco: resultado
+    })
+  })
+}
+
+function buscarManutencaoFilial(req, res){
+  var idFilial = req.params.idFilial;
+
+  empresaModel.buscarManutencaoFilial(idFilial).then((resultado) => {
+    res.json({
+      manutencao: resultado
+    })
+  })
+}
+
+function atualizarEnderecoFilial(req,res){
+  var idFilial = req.body.idFilial;
+  var estado = req.body.estado;
+  var cidade = req.body.cidade;
+  var bairro = req.body.bairro;
+  var cep = req.body.cep;
+  var rua = req.body.rua;
+  var numero = req.body.numero;
+
+  empresaModel.atualizarEnderecoFilial(idFilial, estado, cidade, bairro, cep, rua, numero).then((resultado) => {
+    res.status(200).json(resultado);
+  })
+}
+
 module.exports = {
   buscarPorCnpj,
   buscarPorId,
   cadastrar,
-  listar,
   buscarRestauranteDoUsuario,
   buscarFiliaisPorRestaurante,
-  buscarSensoresPorRestaurante
+  buscarSensoresPorRestaurante,
+  buscarEnderecoFilial,
+  buscarManutencaoFilial,
+  atualizarEnderecoFilial
 };

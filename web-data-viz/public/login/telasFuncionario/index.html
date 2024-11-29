@@ -38,7 +38,7 @@
     </header>
 
     <div id="menuPerfil">
-        <a onclick="limparSessaoFunc()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
+        <a onclick="limparSessaoComum()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
     </div>
 
     <div id="cima">
@@ -50,8 +50,7 @@
             </div>
         </div>
         <div class="cimaMeio">
-            <p>Está com algum problema? Acesse nosso suporte</p>
-            <a href="https://safewaresptech.atlassian.net/servicedesk/customer/portals" target="_blank">Acessar suporte</a>
+            
         </div>
         <div class="cimaDir">
             <span>
@@ -108,15 +107,19 @@
             alerta.style.display = 'none';
         }
 
+        function direcionarDash(idFilial){
+            sessionStorage.setItem('idFilialAtual', idFilial);
+            window.location = "dashboard.html";
+        };
+
         function exibirFiliais() {
             JSON.parse(sessionStorage.FILIAIS).forEach(item => {
                 document.getElementById("baixo").innerHTML += `
-                    <a href="dashboard.html" class="cozinha" style="text-decoration: none;">
-                        <img src="../../img/cozinhaSegura.png">
+                    <a style="cursor: pointer;" onclick="direcionarDash(${item.idFilial})" class="cozinha" id="filial${item.idFilial}" style="text-decoration: none;">
+                        <img src="../img/cozinhaSegura.png">
                         <h3 style="text-align: center;">Filial - ${item.endereco}</h3>
                     </a>        
                     `
-                    // class="alerta cozinha"
             });
         }
 

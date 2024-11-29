@@ -451,13 +451,6 @@ input{
     border: #e40f0f solid 3px;
 }
 
-/* #baixo .vazio{
-    background-color: #EFEFEF;
-    width: 90%;
-    height: 35vh;
-    border-radius: 1vh;
-} */
-
 #baixo .cozinha:hover, #baixo .cozinha:focus{
     cursor: pointer;
     transform: scale(1.1);

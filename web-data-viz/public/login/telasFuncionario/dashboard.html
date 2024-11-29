@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="dashboard.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/sessao.js"></script>
 </head>
 
 <body>
@@ -26,13 +27,11 @@
         </div>
         <div class="centro">
             <a href="index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
-            <p class="titulo">Filial 1</p>
+            <p class="titulo">Filial X</p>
         </div>
         <div class="direita">
             <span id="sensores">
-                <button onclick="clickSensor1()" id="botaoSensor1" class="alerta">Fogão 01</button>
-                <button onclick="clickSensor2()" id="botaoSensor2">Forno 01</button>
-                <button onclick="clickSensor3()" id="botaoSensor3">Cilindro 01</button>
+                
             </span>
 
             <a onclick="clickOpcoes()" class="perfil" id="setaPerfil">
@@ -47,14 +46,12 @@
         <a href="addFuncionario.html">Funcionários</a>
         <a onclick="clickEndereco()">Endereço</a>
         <a onclick="clickManutencao()">Manutenções</a>
-        <a onclick="limparSessao()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
+        <a onclick="limparSessaoComum()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
     </div>
 
     <div id="opcoes">
-        <div>
-            <a class="filial">Filial 1</a>
-            <span class="linha"></span>
-            <a class="filial" href="dashboard2.html" style="text-decoration: none;">Filial 2</a>
+        <div id="dashFiliais">
+            
         </div>
         <a href="index.html" class="voltar">Voltar</a>
     </div>
@@ -64,21 +61,7 @@
         <span class="linha"></span>
 
         <div id="historico">
-            <span class="manutencao">
-                <h3>Sensor cilindro 01</h3>
-                <span class="horario">
-                    <b>Horario de inicio:</b> 08:21:09 - 12/11/2024 <br>
-                    <b>Horario de término:</b> 08:25:03 - 12/11/2024
-                </span>
-            </span>
-            <!-- <span class="manutencao">
-                <h3>Sensor do fogão 01</h3>
-                <p>Estava em manutenção para troca de cabos.</p>
-                <span class="horario">
-                    <b>Horario de inicio:</b> 08:21:09 - 10/11/2024 <br>
-                    <b>Horario de término:</b> 08:25:03 - 10/11/2024
-                </span>
-            </span> -->
+            
         </div>
         <span id="close" onclick="closeManu()" class="material-symbols-outlined">
             close
@@ -87,11 +70,10 @@
 
     <div id="endereco">
         <p class="titulo">Endereço</p>
-        <span class="linha"></span>
         <div class="form">
             <p class="subtitulo">Atualize o endereço do estabelecimento</p>
             <p>Estado:</p>
-            <select id="">
+            <select id="slcEstado">
                 <option value="AC">Acre</option>
                 <option value="AL">Alagoas</option>
                 <option value="AP">Amapá</option>
@@ -120,13 +102,17 @@
                 <option value="TO">Tocantins</option>
             </select>
             <p>Cidade:</p>
-            <input type="text" placeholder="Cidade">
+            <input type="text" placeholder="Cidade" id="inpCidade">
+            <p>Bairro:</p>
+            <input type="text" placeholder="Bairro" id="inpBairro">
+            <p>CEP:</p>
+            <input type="number" placeholder="CEP" id="inpCEP">
             <p>Rua:</p>
-            <input type="text" placeholder="Rua">
+            <input type="text" placeholder="Rua" id="inpRua">
             <p>Número:</p>
-            <input type="number" placeholder="Número">
-            <button>Atualizar endereço</button>
-            <!-- <a href="" class="aFuncionario">Funcionários</a> -->
+            <input type="number" placeholder="Número" id="inpNum">
+            <span id="mensagemEnd"></span>
+            <button onclick="atualizarEndereco()">Atualizar endereço</button>
         </div>
         <span id="close" onclick="clickClose()" class="material-symbols-outlined">
             close
@@ -145,11 +131,12 @@
         </span>
     </div>
 
-    <div class="dash" id="sensor1">
+    <div class="dash">
         <div class="cima">
             <div class="esquerda">
                 <span class="spanTitulo">
-                    <p id="tituloSensor1" class="titulo alerta">Fogão 01</p>
+                    <p id="tituloSensor" class="titulo">Sensor X</p>
+
                     <div class="onoff">
                         <p>Modo manutenção</p>
                         <input type="checkbox" class="toggle" id="onoff">
@@ -160,7 +147,7 @@
                 <div class="divEsq">
                     <span>
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                        <canvas id="chartTotal" class="graficoLinha" width="400" height="200"></canvas>
+                        <canvas id="graficoLinha1" class="graficoLinha"></canvas>
                     </span>
     
                     <div class="KPIs">
@@ -204,126 +191,169 @@
         </div>
     </div>
 
-    <div class="dash" id="sensor2">
-        <div class="cima">
-            <div class="esquerda">
-                <span class="spanTitulo">
-                    <p id="tituloSensor2" class="titulo">Forno 01</p>
-                    <div class="onoff">
-                        <p>Modo manutenção</p>
-                        <input type="checkbox" class="toggle" id="onoff2">
-                        <label for="onoff2"> </label>
-                    </div>
-                </span>
-                <div class="divEsq">
-                    <span>
-                        <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                        <canvas id="graficoLinha2" class="graficoLinha" height="300px" width="600px"></canvas>
-                    </span>
-
-                    <div class="KPIs">
-                        <span class="inicio">
-                            <p class="nome">Horario de início</p>
-                            <p class="dado">--</p>
-                        </span>
-                        <span class="final">
-                            <p class="nome">Horario de encerramento</p>
-                            <p class="dado">--</p>
-                        </span>
-                        <span class="status seguro">
-                            <p class="nome">Status de vazamento</p>
-                            <p class="dado">Sem vazamento</p>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="direita">
-                <div class="metricas">
-                    <span class="seguro">Seguro</span>
-                    <span class="risco">Em risco</span>
-                    <span class="extremo">Extremo risco</span>
-                    
-                    <p> 0% </p>
-                    <p> >0% e <2%</p>
-                    <p> >2% </p>
-                </div>
-
-                <span style="width: 180px;">
-                    <p class="graficoTitulo">Porcentagem atual</p>
-                    <canvas id="graficoMeia2" class="meiaLua"></canvas>
-                </span>
-
-                <div class="baixo">
-                    <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-                    <canvas id="graficoMensal2" height="100px !important;"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="dash" id="sensor3">
-        <div class="cima">
-            <div class="esquerda">
-                <span class="spanTitulo">
-                    <p id="tituloSensor3" class="titulo">Fogão 02</p>
-                    <div class="onoff">
-                        <p>Modo manutenção</p>
-                        <input type="checkbox" class="toggle" id="onoff3">
-                        <label for="onoff3"> </label>
-                    </div>
-                </span>
-                <div class="divEsq">
-                    <span>
-                        <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                        
-                        <canvas id="graficoLinha3" class="graficoLinha" height="300px" width="600px"></canvas>
-                    </span>
-
-                    <div class="KPIs">
-                        <span class="inicio">
-                            <p class="nome">Horario de início</p>
-                            <p class="dado">07:02:12</p>
-                        </span>
-                        <span class="final">
-                            <p class="nome">Horario de encerramento</p>
-                            <p class="dado">07:54:36</p>
-                        </span>
-                        <span class="status seguro">
-                            <p class="nome">Status de vazamento</p>
-                            <p class="dado">Sem vazamento</p>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="direita">
-                <div class="metricas">
-                    <span class="seguro">Seguro</span>
-                    <span class="risco">Em risco</span>
-                    <span class="extremo">Extremo risco</span>
-                    
-                    <p>0%</p>
-                    <p>>0% e <2%</p>
-                    <p>>2% </p>
-                </div>
-
-                <span style="width: 180px;">
-                    <p class="graficoTitulo">Porcentagem atual</p>
-                    <canvas id="graficoMeia3" class="meiaLua"></canvas>
-                </span>
-
-                <div class="baixo">
-                    <p class="graficoTitulo">Quantidade de vazamentos por sensor</p>
-                    <canvas id="graficoMensal3" height="100px !important;"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="../../js/dash1.js"></script>
 
     <script>
+var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
+        var jsonFiliais = JSON.parse(sessionStorage.FILIAIS);
+        var jsonSensores = JSON.parse(sessionStorage.SENSORES);
+        var filialAtual = 0;
+        var sensoresFilialAtual = [];
+
+        window.onload = carregarDados();
+
+        function carregarDados(){
+            for(var i = 0; i < jsonFiliais.length; i++){
+                if (jsonFiliais[i].idFilial == idFilialAtual){
+                    filialAtual = jsonFiliais[i]; 
+                }
+            }
+
+            for(var i = 0; i < jsonSensores.length; i++){
+                if(jsonSensores[i].fkFilial == idFilialAtual){
+                    sensoresFilialAtual.push(jsonSensores[i]);
+                }
+            }
+
+            nomeFilial.innerHTML = filialAtual.endereco;
+            exibirDados();
+        }
+
+        function direcionarDash(idFilial){
+            sessionStorage.setItem('idFilialAtual', idFilial);
+            window.location = "dashboard.html";
+        };
+
+        function exibirDados() {
+            JSON.parse(sessionStorage.FILIAIS).forEach(item => {
+                document.getElementById("dashFiliais").innerHTML += `
+                        <a class="filial" onclick="direcionarDash(${item.idFilial})" style="text-decoration: none;">Filial - ${item.endereco}</a>
+                        <span class="linha"></span>    
+                    `;
+            });
+
+            sensoresFilialAtual.forEach(item => {
+                document.getElementById("sensores").innerHTML += `
+                    <button onclick="clickSensor(${item.idSensor})" id="botaoSensor${item.idSensor}">${item.local_inst}</button>
+                `;
+            })
+            clickSensor(sensoresFilialAtual[0].idSensor);
+        }
+
+        function buscarEnderecoFilial(idFilial){
+            fetch(`/empresas/buscarEnderecoFilial/${idFilial}`,{
+                method: "GET",
+            }).then(function(resposta){
+                console.log(resposta)
+                resposta.json().then(json => {
+                    sessionStorage.setItem('ENDERECO', JSON.stringify(json.endereco));
+                    console.log("Endereço armazenado: ", json.endereco);
+
+                    carregarDadosEndereco();
+                });
+            }).catch(function(resposta){
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+
+        function carregarDadosEndereco(){
+            var jsonEndereco = JSON.parse(sessionStorage.ENDERECO); 
+            slcEstado.value = jsonEndereco[0].estado;
+            inpCidade.value = jsonEndereco[0].cidade;
+            inpBairro.value = jsonEndereco[0].bairro;
+            inpRua.value = jsonEndereco[0].logradouro;
+            inpNum.value = jsonEndereco[0].numero;
+            inpCEP.value = jsonEndereco[0].cep;
+        }
+
+        function buscarManutencaoFilial(){
+            var idFilial = filialAtual.idFilial;
+
+            fetch(`/empresas/buscarManutencaoFilial/${idFilial}`,{
+                method: "GET",
+            }).then(function(resposta){
+                console.log(resposta)
+                resposta.json().then(json => {
+                    sessionStorage.setItem('MANUTENCAO', JSON.stringify(json.manutencao));
+                    if (sessionStorage.MANUTENCAO == '[]'){
+                        historico.innerHTML = 'Não houveram avisos de manutenções nessa filial'
+                    } else {
+                        console.log("Manutenção armazenadas: ", json.manutencao);
+
+                        carregarManutencoes();
+                    }                    
+                });
+            }).catch(function(resposta){
+                console.log(`#ERRO: ${resposta}`);
+            });
+        }
+
+        function carregarManutencoes(){
+            var manutencoes = JSON.parse(sessionStorage.MANUTENCAO);
+
+            manutencoes.forEach(item => {
+                document.getElementById("historico").innerHTML += `
+                          <span class="manutencao">
+                            <h3>Sensor ${item.local_inst}</h3>
+                            <span class="horario">
+                                <b>Horario de inicio:</b> ${item.inicio} <br>
+                                <b>Horario de término:</b> ${item.termino}
+                            </span>
+                        </span>
+                    `;
+            });
+        }
+
+        function atualizarEndereco(){
+            var idFilial = filialAtual.idFilial;
+            var estado = slcEstado.value;
+            var cidade = inpCidade.value;
+            var bairro = inpBairro.value;
+            var cep = inpCEP.value;
+            var rua = inpRua.value;
+            var numero = inpNum.value;
+
+            if(estado == '' || cidade == '' || bairro == '' || cep == '' || rua == '' || numero == ''){
+                mensagemEnd.innerHTML = '<p style="color: #e63535">Preencha todos os campos.</p>';
+
+                setTimeout(() => {
+                    mensagemEnd.innerHTML = '';
+                }, 2000);
+            } else {
+                fetch(`/empresas/atualizarEnderecoFilial`,{
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        idFilial: idFilial,
+                        estado: estado,
+                        cidade: cidade,
+                        bairro: bairro,
+                        cep: cep,
+                        rua: rua,
+                        numero: numero
+                    })
+                }).then(function(resposta){
+                    console.log(resposta);
+                    if(resposta.ok){
+                        console.log('Endereço atualizado com sucesso!');
+                        mensagemEnd.innerHTML = '<p style="color: #60CE60">Endereço atualizado com sucesso!</p>'
+                        buscarEnderecoFilial();
+
+                        setTimeout(() => {
+                            mensagemEnd.innerHTML = '';
+                        }, 2000);
+                    } else {
+                        console.error('Erro ao cadastrar endereço');
+                    }
+                }).catch(function(error){
+                    console.error('Erro ao atualizar endereço: ', error.message);
+                });
+            }
+
+        }
+
         function clickMenu() {
             if (opcoes.style.left == '-300px') {
                 opcoes.style.left = '0';
@@ -346,6 +376,7 @@
         }       
 
         function clickManutencao(){
+            buscarManutencaoFilial();
             manutencao.style.right = '0';
             clickOpcoes();
         }
@@ -355,6 +386,7 @@
         }
     
         function clickEndereco() {
+            buscarEnderecoFilial(filialAtual.idFilial);
             endereco.style.right = '0';
             clickOpcoes();
         }
@@ -367,45 +399,14 @@
             alerta.style.display = 'none';
         }
     
-        function clickSensor1(){
-            sensor1.style.display = 'flex';
-            sensor2.style.display = 'none';
-            sensor3.style.display = 'none';
-
-            if (botaoSensor1.classList.contains("alerta")){
-                botaoSensor1.style.border = '3px solid #a11919';
-            } else {
-                botaoSensor1.style.border = '3px solid #2e972e';
+        function clickSensor(idSensor){
+            var sensorAtual = [];
+            for(var i = 0; i < sensoresFilialAtual.length; i++){
+                if(sensoresFilialAtual[i].idSensor == idSensor){
+                    sensorAtual.push(sensoresFilialAtual[i]);
+                }
             }
-            botaoSensor2.style.border = 'none';
-            botaoSensor3.style.border = 'none';
-        }
-    
-        function clickSensor2(){
-            sensor1.style.display = 'none';
-            sensor2.style.display = 'flex';
-            sensor3.style.display = 'none';
-
-            botaoSensor1.style.border = 'none';
-            if (botaoSensor2.classList.contains("alerta")){
-                botaoSensor2.style.border = '3px solid #a11919';
-            } else {
-                botaoSensor2.style.border = '3px solid #2e972e';
-            }
-            botaoSensor3.style.border = 'none';
-        }
-    
-        function clickSensor3(){
-            sensor1.style.display = 'none';
-            sensor2.style.display = 'none';
-            sensor3.style.display = 'flex';
-            botaoSensor1.style.border = 'none';
-            botaoSensor2.style.border = 'none';
-            if (botaoSensor3.classList.contains("alerta")){
-                botaoSensor3.style.border = '3px solid #a11919';
-            } else {
-                botaoSensor3.style.border = '3px solid #2e972e';
-            }
+            tituloSensor.innerHTML = sensorAtual[0].local_inst;
         }
     </script>
 </body>

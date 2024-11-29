@@ -33,6 +33,11 @@ function limparSessaoFunc() {
     window.location = "../../index.html";
 }
 
+function limparSessaoComum() {
+    sessionStorage.clear();
+    window.location = "../../index.html";
+}
+
 // carregamento (loading)
 function aguardar() {
     var divAguardar = document.getElementById("div_aguardar");
