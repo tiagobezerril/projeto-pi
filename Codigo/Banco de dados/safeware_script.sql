@@ -89,7 +89,7 @@ INSERT INTO funcionario (tipo, nome, email, senha, fkRestaurante, fkSupervisor) 
     ('Comum', 'Roseli', 'roseli@gmail.com', 'Senha#123', 100, 100),
     ('Comum', 'Vitor', 'vitor@gmail.com', 'Senha#123', 101, 101),
     ('Comum', 'Luiz', 'luiz@gmail.com', 'Senha#123', 102, 102);
-    
+
 INSERT INTO funcionario (tipo, nome, email, senha) VALUES
 	('Suporte', 'Viviane', 'viviane@gmail.com', 'Senha#123'),
 	('Suporte', 'Bhreno', 'bhreno@gmail.com', 'Senha#123'),
@@ -132,7 +132,8 @@ CREATE TABLE manutencao (
 )  AUTO_INCREMENT=2000;
 
 INSERT INTO manutencao VALUES 
-	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03',2004);
+	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03',2002);
+
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE dados (
