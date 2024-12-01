@@ -4,7 +4,9 @@
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +14,8 @@
 
     <link rel="shortcut icon" type="imagex/png" href="../../img/logo.png">
     <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../js/sessao.js"></script>
@@ -27,11 +30,11 @@
         </div>
         <div class="centro">
             <a href="index.html" style="text-decoration: none"><span class="logo">SafeWare</span></a>
-            <p class="titulo">Filial X</p>
+            <p id="nomeFilial" class="titulo">Filial X</p>
         </div>
         <div class="direita">
             <span id="sensores">
-                
+
             </span>
 
             <a onclick="clickOpcoes()" class="perfil" id="setaPerfil">
@@ -51,7 +54,7 @@
 
     <div id="opcoes">
         <div id="dashFiliais">
-            
+
         </div>
         <a href="index.html" class="voltar">Voltar</a>
     </div>
@@ -61,7 +64,7 @@
         <span class="linha"></span>
 
         <div id="historico">
-            
+
         </div>
         <span id="close" onclick="closeManu()" class="material-symbols-outlined">
             close
@@ -126,8 +129,9 @@
             </span>
 
             <img src='../../img/aviso.png'>
-            <p class='atencao'>Um vazamento foi detectado!</p> 
-            <p>O sensor do fogão 1 acabou de detectar um vazamento, tome já as providências necessárias para a segurança do seu estabelecimento.</p>
+            <p class='atencao'>Um vazamento foi detectado!</p>
+            <p>O sensor do fogão 1 acabou de detectar um vazamento, tome já as providências necessárias para a segurança
+                do seu estabelecimento.</p>
         </span>
     </div>
 
@@ -149,7 +153,7 @@
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
                         <canvas id="graficoLinha1" class="graficoLinha"></canvas>
                     </span>
-    
+
                     <div class="KPIs">
                         <span class="inicio">
                             <p class="nome">Horario de início</p>
@@ -172,17 +176,17 @@
                     <span class="seguro">Seguro</span>
                     <span class="risco">Em risco</span>
                     <span class="extremo">Extremo risco</span>
-                    
+
                     <p> 0% </p>
-                    <p> >0% e <2%</p>
-                    <p> >2% </p>
+                    <p> >0% e <2%< /p>
+                            <p> >2% </p>
                 </div>
 
                 <span style="width: 180px;">
                     <p class="graficoTitulo">Porcentagem atual</p>
                     <canvas id="graficoMeia1" class="meiaLua">Grafico</canvas>
                 </span>
-                   
+
                 <div class="baixo">
                     <p class="graficoTitulo">Quantidade de vazamentos mensal</p>
                     <canvas id="graficoMensal1" style="height: 200px;"></canvas>
@@ -191,10 +195,9 @@
         </div>
     </div>
 
-    <script src="../../js/dash1.js"></script>
 
     <script>
-var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
+        var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
         var jsonFiliais = JSON.parse(sessionStorage.FILIAIS);
         var jsonSensores = JSON.parse(sessionStorage.SENSORES);
         var filialAtual = 0;
@@ -202,15 +205,15 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
 
         window.onload = carregarDados();
 
-        function carregarDados(){
-            for(var i = 0; i < jsonFiliais.length; i++){
-                if (jsonFiliais[i].idFilial == idFilialAtual){
-                    filialAtual = jsonFiliais[i]; 
+        function carregarDados() {
+            for (var i = 0; i < jsonFiliais.length; i++) {
+                if (jsonFiliais[i].idFilial == idFilialAtual) {
+                    filialAtual = jsonFiliais[i];
                 }
             }
 
-            for(var i = 0; i < jsonSensores.length; i++){
-                if(jsonSensores[i].fkFilial == idFilialAtual){
+            for (var i = 0; i < jsonSensores.length; i++) {
+                if (jsonSensores[i].fkFilial == idFilialAtual) {
                     sensoresFilialAtual.push(jsonSensores[i]);
                 }
             }
@@ -219,7 +222,7 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
             exibirDados();
         }
 
-        function direcionarDash(idFilial){
+        function direcionarDash(idFilial) {
             sessionStorage.setItem('idFilialAtual', idFilial);
             window.location = "dashboard.html";
         };
@@ -240,10 +243,10 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
             clickSensor(sensoresFilialAtual[0].idSensor);
         }
 
-        function buscarEnderecoFilial(idFilial){
-            fetch(`/empresas/buscarEnderecoFilial/${idFilial}`,{
+        function buscarEnderecoFilial(idFilial) {
+            fetch(`/empresas/buscarEnderecoFilial/${idFilial}`, {
                 method: "GET",
-            }).then(function(resposta){
+            }).then(function (resposta) {
                 console.log(resposta)
                 resposta.json().then(json => {
                     sessionStorage.setItem('ENDERECO', JSON.stringify(json.endereco));
@@ -251,13 +254,13 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
 
                     carregarDadosEndereco();
                 });
-            }).catch(function(resposta){
+            }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
         }
 
-        function carregarDadosEndereco(){
-            var jsonEndereco = JSON.parse(sessionStorage.ENDERECO); 
+        function carregarDadosEndereco() {
+            var jsonEndereco = JSON.parse(sessionStorage.ENDERECO);
             slcEstado.value = jsonEndereco[0].estado;
             inpCidade.value = jsonEndereco[0].cidade;
             inpBairro.value = jsonEndereco[0].bairro;
@@ -266,29 +269,29 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
             inpCEP.value = jsonEndereco[0].cep;
         }
 
-        function buscarManutencaoFilial(){
+        function buscarManutencaoFilial() {
             var idFilial = filialAtual.idFilial;
 
-            fetch(`/empresas/buscarManutencaoFilial/${idFilial}`,{
+            fetch(`/empresas/buscarManutencaoFilial/${idFilial}`, {
                 method: "GET",
-            }).then(function(resposta){
+            }).then(function (resposta) {
                 console.log(resposta)
                 resposta.json().then(json => {
                     sessionStorage.setItem('MANUTENCAO', JSON.stringify(json.manutencao));
-                    if (sessionStorage.MANUTENCAO == '[]'){
+                    if (sessionStorage.MANUTENCAO == '[]') {
                         historico.innerHTML = 'Não houveram avisos de manutenções nessa filial'
                     } else {
                         console.log("Manutenção armazenadas: ", json.manutencao);
 
                         carregarManutencoes();
-                    }                    
+                    }
                 });
-            }).catch(function(resposta){
+            }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
         }
 
-        function carregarManutencoes(){
+        function carregarManutencoes() {
             var manutencoes = JSON.parse(sessionStorage.MANUTENCAO);
 
             manutencoes.forEach(item => {
@@ -304,7 +307,7 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
             });
         }
 
-        function atualizarEndereco(){
+        function atualizarEndereco() {
             var idFilial = filialAtual.idFilial;
             var estado = slcEstado.value;
             var cidade = inpCidade.value;
@@ -313,14 +316,14 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
             var rua = inpRua.value;
             var numero = inpNum.value;
 
-            if(estado == '' || cidade == '' || bairro == '' || cep == '' || rua == '' || numero == ''){
+            if (estado == '' || cidade == '' || bairro == '' || cep == '' || rua == '' || numero == '') {
                 mensagemEnd.innerHTML = '<p style="color: #e63535">Preencha todos os campos.</p>';
 
                 setTimeout(() => {
                     mensagemEnd.innerHTML = '';
                 }, 2000);
             } else {
-                fetch(`/empresas/atualizarEnderecoFilial`,{
+                fetch(`/empresas/atualizarEnderecoFilial`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -334,9 +337,9 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
                         rua: rua,
                         numero: numero
                     })
-                }).then(function(resposta){
+                }).then(function (resposta) {
                     console.log(resposta);
-                    if(resposta.ok){
+                    if (resposta.ok) {
                         console.log('Endereço atualizado com sucesso!');
                         mensagemEnd.innerHTML = '<p style="color: #60CE60">Endereço atualizado com sucesso!</p>'
                         buscarEnderecoFilial();
@@ -347,7 +350,7 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
                     } else {
                         console.error('Erro ao cadastrar endereço');
                     }
-                }).catch(function(error){
+                }).catch(function (error) {
                     console.error('Erro ao atualizar endereço: ', error.message);
                 });
             }
@@ -363,7 +366,7 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
         }
 
         function clickOpcoes() {
-            if (endereco.style.right == '0'){
+            if (endereco.style.right == '0') {
                 menuPerfil.style.top = '-5vw';
                 setaMenu.innerHTML = 'arrow_drop_down';
             } else if (menuPerfil.style.top == '-5vw') {
@@ -373,24 +376,24 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
                 menuPerfil.style.top = '-5vw';
                 setaMenu.innerHTML = 'arrow_drop_down';
             }
-        }       
+        }
 
-        function clickManutencao(){
+        function clickManutencao() {
             buscarManutencaoFilial();
             manutencao.style.right = '0';
             clickOpcoes();
         }
 
-        function closeManu(){
+        function closeManu() {
             manutencao.style.right = '-620px';
         }
-    
+
         function clickEndereco() {
             buscarEnderecoFilial(filialAtual.idFilial);
             endereco.style.right = '0';
             clickOpcoes();
         }
-    
+
         function clickClose() {
             endereco.style.right = '-620px';
         }
@@ -398,16 +401,476 @@ var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
         function closeAlerta() {
             alerta.style.display = 'none';
         }
-    
-        function clickSensor(idSensor){
+
+        function clickSensor(idSensor) {
             var sensorAtual = [];
-            for(var i = 0; i < sensoresFilialAtual.length; i++){
-                if(sensoresFilialAtual[i].idSensor == idSensor){
+            for (var i = 0; i < sensoresFilialAtual.length; i++) {
+                if (sensoresFilialAtual[i].idSensor == idSensor) {
                     sensorAtual.push(sensoresFilialAtual[i]);
                 }
             }
             tituloSensor.innerHTML = sensorAtual[0].local_inst;
         }
+
+        window.onload = function () {
+            puxarBanco(); // Chama a função ao carregar a página
+        };
+
+        function puxarBanco(idSensor) {
+
+
+
+            // const ctxTotal = document.getElementById('graficoLinha1').getContext('2d');
+            // const chartTotal = new Chart(ctxTotal, {
+            //     type: 'line',
+            //     data: {
+            //         labels: [],
+            //         datasets: [{
+            //             label: 'Porcentagem',
+            //             data: [],
+            //             borderColor: 'rgba(75, 192, 192, 1)',
+            //             backgroundColor: 'rgba(75, 192, 192, 0.2)'
+            //         }]
+            //     },
+            // });
+
+            fetch(`/ultimo/puxarDados`, {
+                method: 'POST',
+                headers: {
+                "Content-Type": "application/json",
+                    },
+            body: JSON.stringify({
+                idSensor: jsonSensores.idSensor
+            })
+            }).then(response => response.json())
+                .then(resultado => {
+                    console.log("Dados recebidos do servidor:", resultado);
+                    sessionStorage(resultado)
+                    resultado.forEach((item) => {
+                        chartTotal.data.labels.push(item.dtColeta);
+                        chartTotal.data.datasets[0].data.push(item.porcentagem);
+                    });
+                    chartTotal.update();
+                })
+                .catch(error => {
+                    console.error(`Erro ao buscar dados: ${error}` );
+                });
+        }
+
+        var sensorAnalogico1 = document.getElementById('graficoLinha1').getContext('2d');
+
+        var dadosLabel = ['05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h'];
+
+        const configLinha = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: ``,
+                    borderColor: '#464646',
+                    backgroundColor: '#464646',
+                    data: [] // COMENTAR QUANDO FOR CONECTAR NA API
+                },
+                {
+                    label: 'Extremo risco',
+                    borderColor: '#e63535',
+                    backgroundColor: '#e63535',
+                    data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
+                    borderDash: [5, 5], // Configuração para linha pontilhada
+                    tension: 0.3 // Para suavizar a linha
+                }
+                ],
+                labels: dadosLabel // COMENTAR QUANDO FOR CONECTAR NA API
+
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(%)'
+                        },
+                        beginAtZero: true,
+                    },
+                },
+
+            }
+        }
+
+        var grafico1 = new Chart(sensorAnalogico1, configLinha);
+
+        /// --------------------------GRAFICO MEIA LUA----------------------------------------------------------
+
+        // CONFIGURAÇÃO DE MEIA LUA 
+
+        var vazamentoAtual = document.getElementById("graficoMeia1").getContext('2d');
+
+        var valorAtual1 = 3;
+        var corAtual1 = '#e63535';
+
+        if (valorAtual1 > 0) {
+            corAtual1 = '#e63535';
+        } else {
+            corAtual1 = '#60CE60';
+        }
+
+        const configVazamentoAtual = {
+            type: 'doughnut',
+            data: {
+                labels: ["Vazamento atual"],
+                datasets: [{
+                    backgroundColor: [corAtual1, 'rgba(0, 0, 0, 0.1)'],
+                    borderWidth: 0,
+                    data: [valorAtual1, 45 - valorAtual1]
+                }]
+            },
+            options: {
+                responsive: true,
+                cutoutPercentage: 85,
+                rotation: -90,
+                circumference: 180,
+                tooltips: {
+                    enabled: false
+                },
+                legend: {
+                    display: false
+                },
+                animation: {
+                    animateRotate: true,
+                    animateScale: false
+                },
+                title: {
+                    display: true,
+                    text: "Vazamento atual",
+                    fontSize: 16
+                }
+            }
+        }
+        new Chart(vazamentoAtual, configVazamentoAtual);
+
+        // ---------------- GRAFICO MENSAL --------------------
+
+        const mesCtx = document.getElementById('graficoMensal1');
+
+        new Chart(mesCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+                datasets: [{
+                    label: 'Fogão 01',
+                    data: [2, 0, 0, 2, 4, 4],
+                    backgroundColor: '#6e65ec',
+                    borderColor: '#6e65ec'
+                },
+                {
+                    label: 'Forno 01',
+                    data: [0, 1, 0, 1, 0, 1],
+                    backgroundColor: '#36317a',
+                    borderColor: '#36317a'
+                },
+                {
+                    label: 'Fogão 02',
+                    data: [1, 0, 2, 0, 0, 1],
+                    backgroundColor: '#5b5baa',
+                    borderColor: '#5b5baa'
+                },
+                {
+                    label: 'Total de vazamentos',
+                    data: [3, 1, 2, 3, 4, 6],
+                    backgroundColor: '#939399',
+                    borderColor: '#939399'
+                }
+                ]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+
+        // ------------------- GRAFICOS SENSOR 2 ----------------------------------------
+
+        // var linhaCtx2 = document.getElementById('graficoLinha2').getContext('2d');
+
+        // var dadosLabel = ['05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h'];
+
+        // const configLinha2 = {
+        //     type: 'line',
+        //     data: {
+        //         datasets: [{
+        //             label: 'Índice de vazamento',
+        //             borderColor: '#60CE60',
+        //             backgroundColor: '#60CE60',
+        //             data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        //         },
+        //         {
+        //             label: 'Extremo risco',
+        //             borderColor: '#e63535',
+        //             backgroundColor: '#e63535',
+        //             data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
+        //             borderDash: [5, 5], // Configuração para linha pontilhada
+        //             tension: 0.3 // Para suavizar a linha
+        //         }
+        //         ],
+        //         labels: dadosLabel
+
+        //     },
+        //     options: {
+        //         responsive: false,
+        //         scales: {
+        //             x: {
+        //                 beginAtZero: true
+        //             },
+        //             y: {
+        //                 title: {
+        //                     display: true,
+        //                     text: '(%)'
+        //                 },
+        //                 beginAtZero: true,
+        //             },
+        //         },
+
+        //     }
+        // }
+
+        // var grafico = new Chart(linhaCtx2, configLinha2);
+
+        // /// --------------------------GRAFICO MEIA LUA----------------------------------------------------------
+
+        // // CONFIGURAÇÃO DE MEIA LUA 
+
+        // var vazamentoAtual2 = document.getElementById("graficoMeia2").getContext('2d');
+
+        // var valorAtual2 = 0;
+        // var corAtual2 = '#e63535';
+
+        // if (valorAtual2 > 0) {
+        //     corAtual2 = '#e63535';
+        // } else {
+        //     corAtual2 = '#60CE60';
+        // }
+
+        // const configVazamentoAtual2 = {
+        //     type: 'doughnut',
+        //     data: {
+        //         labels: ["Vazamento atual"],
+        //         datasets: [{
+        //             backgroundColor: [corAtual2, 'rgba(0, 0, 0, 0.1)'],
+        //             borderWidth: 0,
+        //             data: [valorAtual2, 45 - valorAtual2]
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         cutoutPercentage: 85,
+        //         rotation: -90,
+        //         circumference: 180,
+        //         tooltips: {
+        //             enabled: false
+        //         },
+        //         legend: {
+        //             display: false
+        //         },
+        //         animation: {
+        //             animateRotate: true,
+        //             animateScale: false
+        //         },
+        //         title: {
+        //             display: true,
+        //             text: "Vazamento atual",
+        //             fontSize: 16
+        //         }
+        //     }
+        // }
+        // new Chart(vazamentoAtual2, configVazamentoAtual2);
+
+        // // ---------------- GRAFICO MENSAL --------------------
+
+        // const mes2Ctx = document.getElementById('graficoMensal2');
+
+        // new Chart(document.getElementById('graficoMensal2'), {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+        //         datasets: [{
+        //             label: 'Fogão 01',
+        //             data: [2, 0, 0, 2, 4, 4],
+        //             backgroundColor: '#6e65ec',
+        //             borderColor: '#6e65ec'
+        //         },
+        //         {
+        //             label: 'Forno 01',
+        //             data: [0, 1, 0, 1, 0, 1],
+        //             backgroundColor: '#36317a',
+        //             borderColor: '#36317a'
+        //         },
+        //         {
+        //             label: 'Fogão 02',
+        //             data: [1, 0, 2, 0, 0, 1],
+        //             backgroundColor: '#5b5baa',
+        //             borderColor: '#5b5baa'
+        //         },
+        //         {
+        //             label: 'Total de vazamentos',
+        //             data: [3, 1, 2, 3, 4, 6],
+        //             backgroundColor: '#939399',
+        //             borderColor: '#939399'
+        //         }
+        //         ]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
+        // // ----------------------- GRAFICOS SENSOR 3 -----------------------
+
+        // var linhaCtx3 = document.getElementById('graficoLinha3').getContext('2d');
+
+        // const configLinha3 = {
+        //     type: 'line',
+        //     data: {
+        //         datasets: [{
+        //             label: 'Índice de vazamento',
+        //             borderColor: '#60CE60',
+        //             backgroundColor: '#60CE60',
+        //             data: [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+        //         },
+        //         {
+        //             label: 'Extremo risco',
+        //             borderColor: '#e63535',
+        //             backgroundColor: '#e63535',
+        //             data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
+        //             borderDash: [5, 5], // Configuração para linha pontilhada
+        //             tension: 0.3 // Para suavizar a linha
+        //         }
+        //         ],
+        //         labels: dadosLabel
+
+        //     },
+        //     options: {
+        //         responsive: false,
+        //         scales: {
+        //             x: {
+        //                 beginAtZero: true
+        //             },
+        //             y: {
+        //                 title: {
+        //                     display: true,
+        //                     text: '(%)'
+        //                 },
+        //                 beginAtZero: true,
+        //             },
+        //         },
+
+        //     }
+        // }
+
+        // var grafico = new Chart(linhaCtx3, configLinha3);
+
+        // /// --------------------------GRAFICO MEIA LUA----------------------------------------------------------
+
+        // // CONFIGURAÇÃO DE MEIA LUA 
+
+        // var vazamentoAtual3 = document.getElementById("graficoMeia3").getContext('2d');
+
+        // var valorAtual3 = 0;
+        // var corAtual3 = '#e63535';
+
+        // if (valorAtual3 > 0) {
+        //     corAtual3 = '#e63535';
+        // } else {
+        //     corAtual3 = '#60CE60';
+        // }
+
+        // const configVazamentoAtual3 = {
+        //     type: 'doughnut',
+        //     data: {
+        //         labels: ["Vazamento atual"],
+        //         datasets: [{
+        //             backgroundColor: [corAtual3, 'rgba(0, 0, 0, 0.1)'],
+        //             borderWidth: 0,
+        //             data: [valorAtual3, 45 - valorAtual3]
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         cutoutPercentage: 85,
+        //         rotation: -90,
+        //         circumference: 180,
+        //         tooltips: {
+        //             enabled: false
+        //         },
+        //         legend: {
+        //             display: false
+        //         },
+        //         animation: {
+        //             animateRotate: true,
+        //             animateScale: false
+        //         },
+        //         title: {
+        //             display: true,
+        //             text: "Vazamento atual",
+        //             fontSize: 16
+        //         }
+        //     }
+        // }
+        // new Chart(vazamentoAtual3, configVazamentoAtual3);
+
+        // // ---------------- GRAFICO MENSAL --------------------
+
+        // const mes3Ctx = document.getElementById('graficoMensal2');
+
+        // new Chart(document.getElementById('graficoMensal3'), {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
+        //         datasets: [{
+        //             label: 'Fogão 01',
+        //             data: [2, 0, 0, 2, 4, 4],
+        //             backgroundColor: '#6e65ec',
+        //             borderColor: '#6e65ec'
+        //         },
+        //         {
+        //             label: 'Forno 01',
+        //             data: [0, 1, 0, 1, 0, 1],
+        //             backgroundColor: '#36317a',
+        //             borderColor: '#36317a'
+        //         },
+        //         {
+        //             label: 'Fogão 02',
+        //             data: [1, 0, 2, 0, 0, 1],
+        //             backgroundColor: '#5b5baa',
+        //             borderColor: '#5b5baa'
+        //         },
+        //         {
+        //             label: 'Total de vazamentos',
+        //             data: [3, 1, 2, 3, 4, 6],
+        //             backgroundColor: '#939399',
+        //             borderColor: '#939399'
+        //         }
+        //         ]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
     </script>
 </body>
+
 </html>
