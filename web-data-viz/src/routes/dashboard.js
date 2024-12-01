@@ -3,10 +3,6 @@ var router = express.Router();
 
 var dashboardController = require("../controllers/dashboardController");
 
-
-
-
-
 router.get("/dashboardFun", function (req, res) {
     dashboardController.DashboardFun(req, res);
 })

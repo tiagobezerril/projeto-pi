@@ -19,7 +19,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), exibirFiliais()">
+<body onload="validarSessao(), exibirFiliais(), obterDadosVisaoGeral()">
     <header class="menu">
         <div class="esquerda">
             <!-- <a href="home.html" style="text-decoration: none"> -->
@@ -68,7 +68,7 @@
         
     </div>
 
-    <div id="alerta">
+    <div id="alerta" style="display: none;">
         <span class="card">
             <span id="closeAlerta" onclick="closeAlerta()" class="material-symbols-outlined">
                 close
@@ -125,48 +125,123 @@
             });
         }
 
+        var dadosGrafico = []
 
+        function obterDadosVisaoGeral(){
+            var jsonFiliais = JSON.parse(sessionStorage.FILIAIS);
+            var idFilialAtual = 0;
 
-        // ------------------- GRAFICO VISÃO GERAL ---------------------------------------
+            for (var i = 0; i < jsonFiliais.length; i++){
+                idFilialAtual = jsonFiliais[i].idFilial;
 
-        var graficoGeral = document.getElementById('graficoGeral');
-
-        var dadosGeral = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'];
-
-        var configGeral = {
-            responsive: false,
-            type: 'bar',
-            data: {
-                datasets: [{
-                    label: 'Filial 1',
-                    data: [3, 1, 2, 3, 4, 6],
-                    borderColor: '#6e65ec',
-                    backgroundColor: '#6e65ec'
-                },
-                {
-                    label: 'Filial 2',
-                    data: [1, 2, 2, 5, 3, 2],
-                    borderColor: '#36317a',
-                    backgroundColor: '#36317a'
-                },
-                {
-                    label: 'Total de vazamentos',
-                    data: [4, 3, 4, 8, 7, 8],
-                    backgroundColor: '#939399',
-                    borderColor: '#939399'    
-                }],
-                labels: dadosGeral
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
+                fetch(`/visaoGeral/obterDadosVisaoGeral/${idFilialAtual}`,{
+                    method: 'GET',
+                }).then(function(resposta){
+                    console.log(resposta)
+                    resposta.json().then(json => {
+                        dadosGrafico.push(json.dados);
+                        console.log("Dados armazenados: ", json.dados);
+                        prepararDados();
+                    })
+                })
             }
         }
 
-        var chartGeral = new Chart (graficoGeral, configGeral);
+        var listaDatasets = [];
+        var listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        function prepararDados(){
+            var listaMeses = []
+            var idFilial;
+
+            for(var index = 0; index < dadosGrafico.length; index++){
+                var dadosAtual = dadosGrafico[index];
+                var tamanhoJsonAtual = dadosGrafico[index].length-1;
+                if (dadosGrafico[index].length < 12){
+                    for(var i = 0; i < tamanhoJsonAtual; i++){
+                        listaMeses.push(dadosGrafico[index][i].Mes)
+                        idFilial =  dadosGrafico[index][i].fkFilial;
+                    }
+                    var naoTem =[]
+                    for(var i = 1; i < 12; i++){
+                        if(!listaMeses.includes(i)){
+                            naoTem.push(i)
+                        }
+                    }
+                    for(var i = 0; i < naoTem.length; i++){
+                        dadosGrafico[index].push({Mes: naoTem[i], qtdVazamentos: 0, fkFilial: idFilial});
+                    }
+                }
+                // Função para reordenar o json em ordem decrescente pelo numero do mês
+                dadosAtual.sort((a, b) => a.Mes - b.Mes);
+            }
+
+            for(var index = 0; index < dadosGrafico.length; index++){
+                var listaDados = []
+                for(var i = 0; i < 12; i++){
+                    listaDados.push(dadosGrafico[index][i].qtdVazamentos);
+                    var nomeFilial;
+        
+                    if (dadosGrafico[index][i].fkFilial == JSON.parse(sessionStorage.FILIAIS)[index].idFilial){
+                        nomeFilial = JSON.parse(sessionStorage.FILIAIS)[index].endereco
+
+                    }
+
+                    // Calculando o total de vazamentos por mês
+                    listaTotal[i] += dadosGrafico[index][i].qtdVazamentos;
+                }
+            }
+
+            listaCores = ['#6e65ec', '#36317a', '#939399']
+            
+            listaDatasets.push({
+                label: nomeFilial,
+                data: listaDados,
+                borderColor: '#6e65ec',
+                backgroundColor: '#6e65ec'
+            })
+
+            listaDatasets.push({
+                label: 'Totla de vazamentos',
+                data: listaTotal,
+                borderColor: '#36317a',
+                backgroundColor: '#36317a'
+            })
+
+            plotarGrafico();
+        }
+
+        function plotarGrafico(){
+            var graficoGeral = document.getElementById('graficoGeral');
+
+            var dadosGeral = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+            var configGeral = {
+                responsive: false,
+                type: 'bar',
+                data: { 
+                    labels: dadosGeral,
+                    datasets: listaDatasets                
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            }
+
+            chartGeral = new Chart(graficoGeral, configGeral);
+        }
+        
+        // ------------------- GRAFICO VISÃO GERAL ---------------------------------------
+
     </script>
 </body>
 </html>
