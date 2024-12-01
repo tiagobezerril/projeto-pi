@@ -141,10 +141,13 @@
                     resposta.json().then(json => {
                         dadosGrafico.push(json.dados);
                         console.log("Dados armazenados: ", json.dados);
+
                         prepararDados();
-                    })
-                })
-            }
+                    });
+                    
+                });
+            };
+            
         }
 
         var listaDatasets = [];
@@ -174,7 +177,9 @@
                 }
                 // Função para reordenar o json em ordem decrescente pelo numero do mês
                 dadosAtual.sort((a, b) => a.Mes - b.Mes);
-            }
+            };
+
+            listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
             for(var index = 0; index < dadosGrafico.length; index++){
                 var listaDados = []
@@ -190,23 +195,26 @@
                     // Calculando o total de vazamentos por mês
                     listaTotal[i] += dadosGrafico[index][i].qtdVazamentos;
                 }
+                
+            };
+
+            if (listaDatasets.length <= 1){
+                listaDatasets.push({
+                    label: nomeFilial,
+                    data: listaDados,
+                    borderColor: '#6e65ec',
+                    backgroundColor: '#6e65ec',
+                });
             }
-
-            listaCores = ['#6e65ec', '#36317a', '#939399']
             
-            listaDatasets.push({
-                label: nomeFilial,
-                data: listaDados,
-                borderColor: '#6e65ec',
-                backgroundColor: '#6e65ec'
-            })
-
-            listaDatasets.push({
-                label: 'Totla de vazamentos',
-                data: listaTotal,
-                borderColor: '#36317a',
-                backgroundColor: '#36317a'
-            })
+            if(listaDatasets.length == 2){
+                listaDatasets.push({
+                    label: 'Total de vazamentos',
+                    data: listaTotal,
+                    borderColor: '#36317a',
+                    backgroundColor: '#36317a'
+                });
+            }
 
             plotarGrafico();
         }
