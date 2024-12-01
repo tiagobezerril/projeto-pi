@@ -15,6 +15,10 @@ router.get("/obterDadosBarras/:idSensor", function(req, res){
     dashboardController.obterDadosBarras(req, res);
 })
 
+router.get("/obterDadosAtual/:idSensor", function(req, res){
+    dashboardController.obterDadosAtual(req, res);
+})
+
 module.exports = router;
 
 // router.get("/puxar/:idDados", function (req, res) {

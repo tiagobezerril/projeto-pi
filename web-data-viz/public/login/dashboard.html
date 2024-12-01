@@ -148,7 +148,7 @@
                 <div class="divEsq">
                     <span>
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                        <canvas id="graficoLinha1" class="graficoLinha"></canvas>
+                        <canvas id="graficoLinha" class="graficoLinha"></canvas>
                     </span>
     
                     <div class="KPIs">
@@ -175,13 +175,13 @@
                     <span class="extremo">Extremo risco</span>
                     
                     <p> 0% </p>
-                    <p> >0% e <2%</p>
+                    <p> >0% e <2% </p>
                     <p> >2% </p>
                 </div>
 
                 <span style="width: 180px;">
                     <p class="graficoTitulo">Porcentagem atual</p>
-                    <canvas id="graficoMeia1" class="meiaLua">Grafico</canvas>
+                    <canvas id="graficoMeia" class="meiaLua">Grafico</canvas>
                 </span>
                    
                 <div class="baixo">
@@ -192,16 +192,15 @@
         </div>
     </div>
 
-    <!-- <script src="../js/dash1.js"></script> -->
-
     <script>
         var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
         var jsonFiliais = JSON.parse(sessionStorage.FILIAIS);
         var jsonSensores = JSON.parse(sessionStorage.SENSORES);
         var filialAtual = 0;
+        var sensorAtual;
         var sensoresFilialAtual = [];
 
-        window.onload = carregarDados();
+        window.onload = carregarDados(), obterDadosBarras(), obterDadosAtual();
 
         function carregarDados(){
             for(var i = 0; i < jsonFiliais.length; i++){
@@ -215,7 +214,8 @@
                     sensoresFilialAtual.push(jsonSensores[i]);
                 }
             }
-
+            
+            sensorAtual = sensoresFilialAtual[0];
             nomeFilial.innerHTML = filialAtual.endereco;
             exibirDados();
         }
@@ -399,29 +399,15 @@
         function closeAlerta() {
             alerta.style.display = 'none';
         }
-    
+           
         function clickSensor(idSensor){
-            var sensorAtual = [];
             for(var i = 0; i < sensoresFilialAtual.length; i++){
                 if(sensoresFilialAtual[i].idSensor == idSensor){
-                    sensorAtual.push(sensoresFilialAtual[i]);
+                    sensorAtual = sensoresFilialAtual[i];
                 }
             }
-            tituloSensor.innerHTML = sensorAtual[0].local_inst;
-            // sensor1.style.display = 'flex';
-            // sensor2.style.display = 'none';
-            // sensor3.style.display = 'none';
-
-            // if (botaoSensor1.classList.contains("alerta")){
-            //     botaoSensor1.style.border = '3px solid #a11919';
-            // } else {
-            //     botaoSensor1.style.border = '3px solid #2e972e';
-            // }
-            // botaoSensor2.style.border = 'none';
-            // botaoSensor3.style.border = 'none';
+            tituloSensor.innerHTML = sensorAtual.local_inst;
         }
-    
-        window.onload = obterDadosBarras();
 
         var dadosGraficoBarra = [];
 
@@ -534,6 +520,106 @@
             }
 
             chartGeral = new Chart(graficoGeral, configGeral);
+        }
+
+        var dadoGraficoAtual;
+
+        function obterDadosAtual(){
+            idSensorAtual = sensorAtual.idSensor;
+
+            fetch(`/dashboard/obterDadosAtual/${idSensorAtual}`,{
+                method: 'GET',
+            }).then(function(resposta){
+                console.log(resposta)
+                resposta.json().then(json => {
+                    dadoGraficoAtual = json.dados;
+                    console.log("Dados coletados: ", json.dados);
+                }); 
+            });
+            
+            setTimeout(() => {
+                valorAtual = dadoGraficoAtual[0].porcentagem;
+                plotarGraficoAtual();
+            }, 1000);
+        };
+
+        function atualizarGraficoAtual(){
+            dSensorAtual = sensorAtual.idSensor;
+
+            fetch(`/dashboard/obterDadosAtual/${idSensorAtual}`,{
+                method: 'GET',
+            }).then(function(resposta){
+                // console.log(resposta)
+                resposta.json().then(json => {
+                    dadoGraficoAtual = json.dados;
+                    console.log("Dados coletados: ", json.dados);
+                }); 
+            });
+            
+            setInterval(() => {
+                atualizarGraficoAtual();
+            }, 4000);
+        }
+
+        var myChart;
+        var valorAtual;
+        // setInterval(atualizarGraficoAtual, 5000);
+        
+        function plotarGraficoAtual(){
+            var corAtual = '#e63535';
+            
+            if (valorAtual > 0) {
+                corAtual = '#e63535';
+            } else {
+                corAtual = '#60CE60';
+            }
+    
+            const configVazamentoAtual = {
+                type: 'doughnut',
+                data: {
+                    labels: ["Vazamento atual"],
+                    datasets: [{
+                        backgroundColor: [corAtual, 'rgba(0, 0, 0, 0.1)'],
+                        borderWidth: 0,
+                        data: [dadoGraficoAtual[0].porcentagem, 45 - dadoGraficoAtual[0].porcentagem]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutoutPercentage: 85,
+                    rotation: -90,
+                    circumference: 180,
+                    tooltips: {
+                        enabled: false
+                    },
+                    legend: {
+                        display: false
+                    },
+                    animation: {
+                        animateRotate: true,
+                        animateScale: false
+                    },
+                    title: {
+                        display: true,
+                        text: "Vazamento atual",
+                        fontSize: 16
+                    }
+                }
+            }
+    
+            // setInterval(() => {
+            //     configVazamentoAtual.data.datasets.data.shift();
+            //     configVazamentoAtual.data.datasets.data.push(valorAtual);
+            // }, 2000)
+
+            setTimeout(() => {
+                atualizarGraficoAtual();
+            }, 2000);
+    
+            var vazamentoAtual = document.getElementById("graficoMeia").getContext('2d');
+            myChart = new Chart(vazamentoAtual, configVazamentoAtual);
+            
+            // myChart.update();
         }
     </script>
 </body>

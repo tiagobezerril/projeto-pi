@@ -11,6 +11,15 @@ function obterDadosBarras(idSensor){
     return database.executar(instrucaoSql);
 };
 
+function obterDadosAtual(idSensor){
+    var instrucaoSql = `
+        SELECT porcentagem FROM dados WHERE fkSensor = ${idSensor} ORDER BY idDados DESC LIMIT 1;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+};
+
 module.exports = {
-    obterDadosBarras
+    obterDadosBarras,
+    obterDadosAtual
 };

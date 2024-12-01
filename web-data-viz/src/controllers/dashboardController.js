@@ -12,6 +12,19 @@ function obterDadosBarras(req, res){
     })
 }
 
+function obterDadosAtual(req, res){
+    var idSensor = req.params.idSensor;
+
+    dashboardModel.obterDadosAtual(idSensor).then(function(resultado){
+        res.json({
+            dados: resultado
+        })
+    }).catch(function(erro){
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
 module.exports = {
-    obterDadosBarras
+    obterDadosBarras,
+    obterDadosAtual
 };

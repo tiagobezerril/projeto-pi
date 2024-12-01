@@ -7,10 +7,7 @@ window.onload = function() {
     puxarBanco(); // Chama a função ao carregar a página
 };
 
-function puxarBanco(idSensor) {
-
-    
-    
+function puxarBanco(idSensor) {    
     const ctxTotal = document.getElementById('graficoLinha1').getContext('2d');
     const chartTotal = new Chart(ctxTotal, {
         type: 'line',
@@ -83,99 +80,6 @@ function puxarBanco(idSensor) {
 // }
 
 // var grafico1 = new Chart(sensorAnalogico1, configLinha);
-
-// /// --------------------------GRAFICO MEIA LUA----------------------------------------------------------
-
-// // CONFIGURAÇÃO DE MEIA LUA 
-
-// var vazamentoAtual = document.getElementById("graficoMeia1").getContext('2d');
-
-// var valorAtual1 = 3;
-// var corAtual1 = '#e63535';
-
-// if (valorAtual1 > 0) {
-//     corAtual1 = '#e63535';
-// } else {
-//     corAtual1 = '#60CE60';
-// }
-
-// const configVazamentoAtual = {
-//     type: 'doughnut',
-//     data: {
-//         labels: ["Vazamento atual"],
-//         datasets: [{
-//             backgroundColor: [corAtual1, 'rgba(0, 0, 0, 0.1)'],
-//             borderWidth: 0,
-//             data: [valorAtual1, 45 - valorAtual1]
-//         }]
-//     },
-//     options: {
-//         responsive: true,
-//         cutoutPercentage: 85,
-//         rotation: -90,
-//         circumference: 180,
-//         tooltips: {
-//             enabled: false
-//         },
-//         legend: {
-//             display: false
-//         },
-//         animation: {
-//             animateRotate: true,
-//             animateScale: false
-//         },
-//         title: {
-//             display: true,
-//             text: "Vazamento atual",
-//             fontSize: 16
-//         }
-//     }
-// }
-//  new Chart(vazamentoAtual, configVazamentoAtual);
-
-// // ---------------- GRAFICO MENSAL --------------------
-
-// const mesCtx = document.getElementBLinha');
-
-// new Chart(mesCtx, {
-//     type: 'bar',
-//     data: {
-//         labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-//         datasets: [{
-//             label: 'Fogão 01',
-//             data: [2, 0, 0, 2, 4, 4],
-//             backgroundColor: '#6e65ec',
-//             borderColor: '#6e65ec'
-//         },
-//         {
-//             label: 'Forno 01',
-//             data: [0, 1, 0, 1, 0, 1],
-//             backgroundColor: '#36317a',
-//             borderColor: '#36317a'
-//         },
-//         {
-//             label: 'Fogão 02',
-//             data: [1, 0, 2, 0, 0, 1],
-//             backgroundColor: '#5b5baa',
-//             borderColor: '#5b5baa'
-//         },
-//         {
-//             label: 'Total de vazamentos',
-//             data: [3, 1, 2, 3, 4, 6],
-//             backgroundColor: '#939399',
-//             borderColor: '#939399'
-//         }
-//         ]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });    
-
 
 // // ------------------- GRAFICOS SENSOR 2 ----------------------------------------
 

@@ -185,13 +185,12 @@
 
             for(var index = 0; index < dadosGrafico.length; index++){
                 var listaDados = []
-                for(var i = 0; i <= 12; i++){
+                for(var i = 0; i < 12; i++){
                     listaDados.push(dadosGrafico[index][i].qtdVazamentos);
                     var nomeFilial;
         
                     if (dadosGrafico[index][i].fkFilial == JSON.parse(sessionStorage.FILIAIS)[index].idFilial){
                         nomeFilial = JSON.parse(sessionStorage.FILIAIS)[index].endereco
-
                     }
 
                     // Calculando o total de vazamentos por mês
@@ -212,11 +211,6 @@
                 borderColor: '#36317a',
                 backgroundColor: '#36317a'
             });
-            // if (listaDatasets.length <= 1){
-            // }
-            
-            // if(listaDatasets.length == 2){
-            // }
 
             plotarGrafico();
         }
