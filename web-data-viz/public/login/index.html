@@ -22,9 +22,7 @@
 <body onload="validarSessao(), exibirFiliais(), obterDadosVisaoGeral()">
     <header class="menu">
         <div class="esquerda">
-            <!-- <a href="home.html" style="text-decoration: none"> -->
-                <span class="logo" style="cursor: default;">SafeWare</span>
-            <!-- </a> -->
+            <span class="logo" style="cursor: default;">SafeWare</span>
             <p class="titulo">Visão geral</p>
         </div>
         <div class="direita">
@@ -142,11 +140,14 @@
                         dadosGrafico.push(json.dados);
                         console.log("Dados armazenados: ", json.dados);
 
-                        prepararDados();
+                        // prepararDados();
                     });
                     
                 });
             };
+            setTimeout(() => {
+                prepararDados();
+            }, 1000);
             
         }
 
@@ -154,12 +155,13 @@
         var listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         function prepararDados(){
-            var listaMeses = []
             var idFilial;
-
+            
             for(var index = 0; index < dadosGrafico.length; index++){
                 var dadosAtual = dadosGrafico[index];
                 var tamanhoJsonAtual = dadosGrafico[index].length-1;
+                var listaMeses = []
+
                 if (dadosGrafico[index].length < 12){
                     for(var i = 0; i < tamanhoJsonAtual; i++){
                         listaMeses.push(dadosGrafico[index][i].Mes)
@@ -183,7 +185,7 @@
 
             for(var index = 0; index < dadosGrafico.length; index++){
                 var listaDados = []
-                for(var i = 0; i < 12; i++){
+                for(var i = 0; i <= 12; i++){
                     listaDados.push(dadosGrafico[index][i].qtdVazamentos);
                     var nomeFilial;
         
@@ -196,25 +198,25 @@
                     listaTotal[i] += dadosGrafico[index][i].qtdVazamentos;
                 }
                 
-            };
-
-            if (listaDatasets.length <= 1){
                 listaDatasets.push({
                     label: nomeFilial,
                     data: listaDados,
                     borderColor: '#6e65ec',
                     backgroundColor: '#6e65ec',
                 });
-            }
+            };
+
+            listaDatasets.push({
+                label: 'Total de vazamentos',
+                data: listaTotal,
+                borderColor: '#36317a',
+                backgroundColor: '#36317a'
+            });
+            // if (listaDatasets.length <= 1){
+            // }
             
-            if(listaDatasets.length == 2){
-                listaDatasets.push({
-                    label: 'Total de vazamentos',
-                    data: listaTotal,
-                    borderColor: '#36317a',
-                    backgroundColor: '#36317a'
-                });
-            }
+            // if(listaDatasets.length == 2){
+            // }
 
             plotarGrafico();
         }
@@ -247,9 +249,6 @@
 
             chartGeral = new Chart(graficoGeral, configGeral);
         }
-        
-        // ------------------- GRAFICO VISÃO GERAL ---------------------------------------
-
     </script>
 </body>
 </html>

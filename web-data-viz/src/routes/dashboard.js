@@ -3,13 +3,17 @@ var router = express.Router();
 
 var dashboardController = require("../controllers/dashboardController");
 
-router.get("/dashboardFun", function (req, res) {
-    dashboardController.DashboardFun(req, res);
-})
+// router.get("/dashboardFun", function (req, res) {
+//     dashboardController.DashboardFun(req, res);
+// })
 
-router.get("/atualizarDashboard", function (req, res) { // primeiro de tudo
-    insightsController.totalPublicacoes(req, res);
-});
+// router.get("/atualizarDashboard", function (req, res) { // primeiro de tudo
+//     insightsController.totalPublicacoes(req, res);
+// });
+
+router.get("/obterDadosBarras/:idSensor", function(req, res){
+    dashboardController.obterDadosBarras(req, res);
+})
 
 module.exports = router;
 

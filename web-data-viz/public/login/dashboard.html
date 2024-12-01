@@ -120,7 +120,7 @@
         </span>
     </div>
 
-    <div id="alerta">
+    <div id="alerta" style="display: none;">
         <span class="card">
             <span id="closeAlerta" onclick="closeAlerta()" class="material-symbols-outlined">
                 close
@@ -186,13 +186,13 @@
                    
                 <div class="baixo">
                     <p class="graficoTitulo">Quantidade de vazamentos mensal</p>
-                    <canvas id="graficoMensal1" style="height: 200px;"></canvas>
+                    <canvas id="graficoMensal" style="height: 200px;"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="../js/dash1.js"></script>
+    <!-- <script src="../js/dash1.js"></script> -->
 
     <script>
         var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
@@ -419,6 +419,121 @@
             // }
             // botaoSensor2.style.border = 'none';
             // botaoSensor3.style.border = 'none';
+        }
+    
+        window.onload = obterDadosBarras();
+
+        var dadosGraficoBarra = [];
+
+        function obterDadosBarras(){
+            for (var i = 0; i < sensoresFilialAtual.length; i++){
+                idSensorAtual = sensoresFilialAtual[i].idSensor;
+
+                fetch(`/dashboard/obterDadosBarras/${idSensorAtual}`,{
+                    method: 'GET',
+                }).then(function(resposta){
+                    console.log(resposta)
+                    resposta.json().then(json => {
+                        dadosGraficoBarra.push(json.dados);
+                        console.log("Dados armazenados: ", json.dados);
+                    });
+                    
+                });
+            };
+
+            setTimeout(() => {
+                prepararDadosBarras();
+            }, 1000);
+        }
+
+        var listaDatasets = [];
+        var listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+        function prepararDadosBarras(){
+            var nomeSensor;
+            
+            for(var index = 0; index < dadosGraficoBarra.length; index++){
+                var dadosAtual = dadosGraficoBarra[index];
+                var tamanhoJsonAtual = dadosGraficoBarra[index].length;
+                var listaMeses = []
+
+                if (dadosGraficoBarra[index].length < 12){
+                    for(var i = 0; i < tamanhoJsonAtual; i++){
+                        listaMeses.push(dadosGraficoBarra[index][i].Mes)
+                        nomeSensor = dadosGraficoBarra[index][i].local_inst;
+                    }
+                    var naoTem =[]
+                    for(var i = 1; i <= 12; i++){
+                        if(!listaMeses.includes(i)){
+                            naoTem.push(i)
+                        }
+                    }
+                    for(var i = 0; i < naoTem.length; i++){
+                        dadosGraficoBarra[index].push({Mes: naoTem[i], qtdVazamentos: 0, local_inst: nomeSensor});
+                    }
+                }
+
+                // Função para reordenar o json em ordem decrescente pelo numero do mês
+                dadosAtual.sort((a, b) => a.Mes - b.Mes);
+            };
+
+            listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            for(var index = 0; index < dadosGraficoBarra.length; index++){
+                var listaDados = []
+                for(var i = 0; i < 12; i++){
+                    listaDados.push(dadosGraficoBarra[index][i].qtdVazamentos);
+                    var nomeSensor = dadosGraficoBarra[index][i].local_inst;
+
+                    // Calculando o total de vazamentos por mês
+                    listaTotal[i] += dadosGraficoBarra[index][i].qtdVazamentos;
+                }
+                
+                listaDatasets.push({
+                    label: nomeSensor,
+                    data: listaDados,
+                    borderColor: '#6e65ec',
+                    backgroundColor: '#6e65ec',
+                });
+            };
+
+            listaDatasets.push({
+                label: 'Total de vazamentos',
+                data: listaTotal,
+                borderColor: '#36317a',
+                backgroundColor: '#36317a'
+            });
+
+            plotarGraficoBarras();
+        }
+
+        function plotarGraficoBarras(){
+            var graficoGeral = document.getElementById('graficoMensal');
+
+            var dadosGeral = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
+
+            var configGeral = {
+                responsive: false,
+                type: 'bar',
+                data: { 
+                    labels: dadosGeral,
+                    datasets: listaDatasets                
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            }
+
+            chartGeral = new Chart(graficoGeral, configGeral);
         }
     </script>
 </body>

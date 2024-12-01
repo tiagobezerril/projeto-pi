@@ -24,7 +24,7 @@ var avisosRouter = require("./src/routes/avisos");
 var ultimoRouter = require("./src/routes/ultimo");
 var empresasRouter = require("./src/routes/empresas");
 var visaoGeralRouter = require("./src/routes/visaoGeral");
-// var dashboardRouter = require("./src/routes/dashboard");
+var dashboardRouter = require("./src/routes/dashboard");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,7 +38,7 @@ app.use("/avisos", avisosRouter);
 app.use("/ultimo", ultimoRouter);
 app.use("/empresas", empresasRouter);
 app.use("/visaoGeral", visaoGeralRouter);
-// app.use("/dashboard", dashboardRouter);
+app.use("/dashboard", dashboardRouter);
 
 
 app.listen(PORTA_APP, function () {
