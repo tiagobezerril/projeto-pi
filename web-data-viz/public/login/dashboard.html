@@ -522,6 +522,12 @@
             chartGeral = new Chart(graficoGeral, configGeral);
         }
 
+        function atualizarGraficoAtual(){           
+            setInterval(() => {
+                obterDadosAtual();
+            }, 3000);
+        }
+        
         var dadoGraficoAtual;
 
         function obterDadosAtual(){
@@ -538,87 +544,69 @@
             });
             
             setTimeout(() => {
-                valorAtual = dadoGraficoAtual[0].porcentagem;
+                valorAtual = [dadoGraficoAtual[0].porcentagem, 45 - dadoGraficoAtual[0].porcentagem];
                 plotarGraficoAtual();
-            }, 1000);
+            }, 100);
         };
 
-        function atualizarGraficoAtual(){
-            dSensorAtual = sensorAtual.idSensor;
-
-            fetch(`/dashboard/obterDadosAtual/${idSensorAtual}`,{
-                method: 'GET',
-            }).then(function(resposta){
-                // console.log(resposta)
-                resposta.json().then(json => {
-                    dadoGraficoAtual = json.dados;
-                    console.log("Dados coletados: ", json.dados);
-                }); 
-            });
-            
-            // setInterval(() => {
-            //     atualizarGraficoAtual();
-            //     myChart.update();
-            // }, 4000);
-        }
-
+        
         var valorAtual;
-        // setInterval(atualizarGraficoAtual, 5000);
+        var myChart;
         
         function plotarGraficoAtual(){
             var corAtual = '#e63535';
             
-            if (valorAtual > 0) {
+            if (dadoGraficoAtual[0].porcentagem > 0) {
                 corAtual = '#e63535';
             } else {
                 corAtual = '#60CE60';
             }
-    
-            const configVazamentoAtual = {
-                type: 'doughnut',
-                data: {
-                    labels: ["Vazamento atual"],
-                    datasets: [{
-                        backgroundColor: [corAtual, 'rgba(0, 0, 0, 0.1)'],
-                        borderWidth: 0,
-                        data: [dadoGraficoAtual[0].porcentagem, 45 - dadoGraficoAtual[0].porcentagem]
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    cutoutPercentage: 85,
-                    rotation: -90,
-                    circumference: 180,
-                    tooltips: {
-                        enabled: false
-                    },
-                    legend: {
-                        display: false
-                    },
-                    animation: {
-                        animateRotate: true,
-                        animateScale: false
-                    },
-                    title: {
-                        display: true,
-                        text: "Vazamento atual",
-                        fontSize: 16
-                    }
-                }
-            }
-    
-            // setInterval(() => {
-            //     configVazamentoAtual.data.datasets.data.shift();
-            //     configVazamentoAtual.data.datasets.data.push(valorAtual);
-            // }, 4000)
 
-            setTimeout(() => {
-                atualizarGraficoAtual();
-            }, 2000);
-    
-            var vazamentoAtual = document.getElementById("graficoMeia").getContext('2d');
-            var myChart = new Chart(vazamentoAtual, configVazamentoAtual);
-            
+            const vazamentoAtual = document.getElementById("graficoMeia").getContext('2d');
+
+            if(myChart != undefined){
+                myChart.data.datasets[0].data = valorAtual;
+                myChart.update();
+            } else {
+                const configVazamentoAtual = {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Vazamento atual"],
+                        datasets: [{
+                            backgroundColor: [corAtual, 'rgba(0, 0, 0, 0.1)'],
+                            borderWidth: 0,
+                            data: valorAtual
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        cutoutPercentage: 85,
+                        rotation: -90,
+                        circumference: 180,
+                        tooltips: {
+                            enabled: false
+                        },
+                        legend: {
+                            display: false
+                        },
+                        animation: {
+                            animateRotate: true,
+                            animateScale: false
+                        },
+                        title: {
+                            display: true,
+                            text: "Vazamento atual",
+                            fontSize: 16
+                        }
+                    }
+                }    
+                
+                myChart = new Chart(vazamentoAtual, configVazamentoAtual);
+                
+                setTimeout(() => {
+                    atualizarGraficoAtual();
+                }, 300);
+            }            
             // myChart.update();
         }
     </script>
