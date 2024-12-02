@@ -148,7 +148,7 @@
                 <div class="divEsq">
                     <span>
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                        <canvas id="graficoLinha1" class="graficoLinha1"></canvas>
+                        <canvas id="graficoLinha1" class="graficoLinha1" width="100px"></canvas>
                     </span>
     
                     <div class="KPIs">
@@ -194,7 +194,7 @@
 
     <script>
 
-var sensorAnalogico = new Chart(document.getElementById('graficoLinha1').getContext('2d'), {
+        var sensorAnalogico = new Chart(document.getElementById('graficoLinha1').getContext('2d'), {
         type: 'line',
         data: {
             datasets: [{
@@ -610,11 +610,20 @@ var sensorAnalogico = new Chart(document.getElementById('graficoLinha1').getCont
                     console.log("Dados coletados: ", json.dados);
                 }); 
             });
-            
+
             setTimeout(() => {
-                valorAtual = [dadoGraficoAtual[0].porcentagem, 45 - dadoGraficoAtual[0].porcentagem];
-                plotarGraficoAtual();
-            }, 100);
+                if (dadoGraficoAtual && dadoGraficoAtual.length > 0 && dadoGraficoAtual[0].porcentagem == undefined) {
+                    valorAtual = [0, 100 - 0];
+                    plotarGraficoAtual();
+                } else {
+                    setTimeout(() => {
+                        valorAtual = [dadoGraficoAtual[0].porcentagem, 100 - dadoGraficoAtual[0].porcentagem];
+                        plotarGraficoAtual();
+                    }, 100);
+                }
+            }, 100)
+
+            
         };
 
         var valorAtual;
@@ -633,6 +642,7 @@ var sensorAnalogico = new Chart(document.getElementById('graficoLinha1').getCont
 
             if(myChart != undefined){
                 myChart.data.datasets[0].data = valorAtual;
+                myChart.data.datasets[0].backgroundColor = [corAtual, 'rgba(0, 0, 0, 0.1)']
                 myChart.update();
             } else {
                 const configVazamentoAtual = {
