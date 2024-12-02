@@ -7,9 +7,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-        rel="stylesheet">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +14,6 @@
 
     <link rel="shortcut icon" type="imagex/png" href="../img/logo.png">
     <link rel="stylesheet" href="dashboard.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=close,menu,personarrow_drop_downarrow_drop_up" />
 
@@ -39,7 +34,6 @@
         </div>
         <div class="direita">
             <span id="sensores">
-
 
             </span>
 
@@ -76,9 +70,6 @@
             close
         </span>
     </div>
-    <script data-jsd-embedded data-key="eb6df58d-df11-4966-8be2-7d3087316574"
-        data-base-url="https://jsd-widget.atlassian.com"
-        src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
     <script data-jsd-embedded data-key="eb6df58d-df11-4966-8be2-7d3087316574"
         data-base-url="https://jsd-widget.atlassian.com"
         src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
@@ -144,9 +135,6 @@
             <p class='atencao'>Um vazamento foi detectado!</p>
             <p>O sensor do fogão 1 acabou de detectar um vazamento, tome já as providências necessárias para a segurança
                 do seu estabelecimento.</p>
-            <p class='atencao'>Um vazamento foi detectado!</p>
-            <p>O sensor do fogão 1 acabou de detectar um vazamento, tome já as providências necessárias para a segurança
-                do seu estabelecimento.</p>
         </span>
     </div>
 
@@ -168,7 +156,6 @@
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
                         <canvas id="graficoLinha1" class="graficoLinha1" width="100px"></canvas>
                     </span>
-
 
                     <div class="KPIs">
                         <span class="inicio">
@@ -193,10 +180,8 @@
                     <span class="risco">Em risco</span>
                     <span class="extremo">Extremo risco</span>
 
-
                     <p> 0% </p>
                     <p> >0% e <2% </p>
-                            <p> >2% </p>
                             <p> >2% </p>
                 </div>
 
@@ -204,7 +189,6 @@
                     <p class="graficoTitulo">Porcentagem atual</p>
                     <canvas id="graficoMeia" class="meiaLua">Grafico</canvas>
                 </span>
-
 
                 <div class="baixo">
                     <p class="graficoTitulo">Quantidade de vazamentos mensal</p>
@@ -266,7 +250,7 @@
                             grafico.data.datasets[0].data.shift();
                         }
 
-                        var alertaExibido = false;
+                        var alertaExibido = false 
                         
                         if (parseFloat(valor) > 0) {
                             if (!alertaExibido) {  
@@ -309,28 +293,20 @@
             for (var i = 0; i < jsonFiliais.length; i++) {
                 if (jsonFiliais[i].idFilial == idFilialAtual) {
                     filialAtual = jsonFiliais[i];
-        function carregarDados() {
-            for (var i = 0; i < jsonFiliais.length; i++) {
-                if (jsonFiliais[i].idFilial == idFilialAtual) {
-                    filialAtual = jsonFiliais[i];
                 }
             }
 
-            for (var i = 0; i < jsonSensores.length; i++) {
-                if (jsonSensores[i].fkFilial == idFilialAtual) {
             for (var i = 0; i < jsonSensores.length; i++) {
                 if (jsonSensores[i].fkFilial == idFilialAtual) {
                     sensoresFilialAtual.push(jsonSensores[i]);
                 }
             }
 
-
             sensorAtual = sensoresFilialAtual[0];
             nomeFilial.innerHTML = filialAtual.endereco;
             exibirDados();
         }
 
-        function direcionarDash(idFilial) {
         function direcionarDash(idFilial) {
             sessionStorage.setItem('idFilialAtual', idFilial);
             window.location = "dashboard.html";
@@ -354,10 +330,7 @@
 
         function buscarEnderecoFilial(idFilial) {
             fetch(`/empresas/buscarEnderecoFilial/${idFilial}`, {
-        function buscarEnderecoFilial(idFilial) {
-            fetch(`/empresas/buscarEnderecoFilial/${idFilial}`, {
                 method: "GET",
-            }).then(function (resposta) {
             }).then(function (resposta) {
                 console.log(resposta)
                 resposta.json().then(json => {
@@ -367,13 +340,10 @@
                     carregarDadosEndereco();
                 });
             }).catch(function (resposta) {
-            }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
         }
 
-        function carregarDadosEndereco() {
-            var jsonEndereco = JSON.parse(sessionStorage.ENDERECO);
         function carregarDadosEndereco() {
             var jsonEndereco = JSON.parse(sessionStorage.ENDERECO);
             slcEstado.value = jsonEndereco[0].estado;
@@ -385,18 +355,14 @@
         }
 
         function buscarManutencaoFilial() {
-        function buscarManutencaoFilial() {
             var idFilial = filialAtual.idFilial;
 
             fetch(`/empresas/buscarManutencaoFilial/${idFilial}`, {
-            fetch(`/empresas/buscarManutencaoFilial/${idFilial}`, {
                 method: "GET",
-            }).then(function (resposta) {
             }).then(function (resposta) {
                 console.log(resposta)
                 resposta.json().then(json => {
                     sessionStorage.setItem('MANUTENCAO', JSON.stringify(json.manutencao));
-                    if (sessionStorage.MANUTENCAO == '[]') {
                     if (sessionStorage.MANUTENCAO == '[]') {
                         historico.innerHTML = 'Não houveram avisos de manutenções nessa filial'
                     } else {
@@ -404,15 +370,12 @@
 
                         carregarManutencoes();
                     }
-                    }
                 });
-            }).catch(function (resposta) {
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
         }
 
-        function carregarManutencoes() {
         function carregarManutencoes() {
             var manutencoes = JSON.parse(sessionStorage.MANUTENCAO);
 
@@ -430,7 +393,6 @@
         }
 
         function atualizarEndereco() {
-        function atualizarEndereco() {
             var idFilial = filialAtual.idFilial;
             var estado = slcEstado.value;
             var cidade = inpCidade.value;
@@ -440,14 +402,12 @@
             var numero = inpNum.value;
 
             if (estado == '' || cidade == '' || bairro == '' || cep == '' || rua == '' || numero == '') {
-            if (estado == '' || cidade == '' || bairro == '' || cep == '' || rua == '' || numero == '') {
                 mensagemEnd.innerHTML = '<p style="color: #e63535">Preencha todos os campos.</p>';
 
                 setTimeout(() => {
                     mensagemEnd.innerHTML = '';
                 }, 2000);
             } else {
-                fetch(`/empresas/atualizarEnderecoFilial`, {
                 fetch(`/empresas/atualizarEnderecoFilial`, {
                     method: 'POST',
                     headers: {
@@ -463,9 +423,7 @@
                         numero: numero
                     })
                 }).then(function (resposta) {
-                }).then(function (resposta) {
                     console.log(resposta);
-                    if (resposta.ok) {
                     if (resposta.ok) {
                         console.log('Endereço atualizado com sucesso!');
                         mensagemEnd.innerHTML = '<p style="color: #60CE60">Endereço atualizado com sucesso!</p>'
@@ -477,7 +435,6 @@
                     } else {
                         console.error('Erro ao cadastrar endereço');
                     }
-                }).catch(function (error) {
                 }).catch(function (error) {
                     console.error('Erro ao atualizar endereço: ', error.message);
                 });
@@ -495,7 +452,6 @@
 
         function clickOpcoes() {
             if (endereco.style.right == '0') {
-            if (endereco.style.right == '0') {
                 menuPerfil.style.top = '-5vw';
                 setaMenu.innerHTML = 'arrow_drop_down';
             } else if (menuPerfil.style.top == '-5vw') {
@@ -506,9 +462,7 @@
                 setaMenu.innerHTML = 'arrow_drop_down';
             }
         }
-        }
 
-        function clickManutencao() {
         function clickManutencao() {
             buscarManutencaoFilial();
             manutencao.style.right = '0';
@@ -516,17 +470,14 @@
         }
 
         function closeManu() {
-        function closeManu() {
             manutencao.style.right = '-620px';
         }
-
 
         function clickEndereco() {
             buscarEnderecoFilial(filialAtual.idFilial);
             endereco.style.right = '0';
             clickOpcoes();
         }
-
 
         function clickClose() {
             endereco.style.right = '-620px';
@@ -535,10 +486,6 @@
         function closeAlerta() {
             alerta.style.display = 'none';
         }
-
-        function clickSensor(idSensor) {
-            for (var i = 0; i < sensoresFilialAtual.length; i++) {
-                if (sensoresFilialAtual[i].idSensor == idSensor) {
 
         function clickSensor(idSensor) {
             for (var i = 0; i < sensoresFilialAtual.length; i++) {
@@ -553,21 +500,16 @@
 
         function obterDadosBarras() {
             for (var i = 0; i < sensoresFilialAtual.length; i++) {
-        function obterDadosBarras() {
-            for (var i = 0; i < sensoresFilialAtual.length; i++) {
                 idSensorAtual = sensoresFilialAtual[i].idSensor;
 
                 fetch(`/dashboard/obterDadosBarras/${idSensorAtual}`, {
-                fetch(`/dashboard/obterDadosBarras/${idSensorAtual}`, {
                     method: 'GET',
-                }).then(function (resposta) {
                 }).then(function (resposta) {
                     console.log(resposta)
                     resposta.json().then(json => {
                         dadosGraficoBarra.push(json.dados);
                         console.log("Dados armazenados: ", json.dados);
                     });
-
 
                 });
             };
@@ -581,10 +523,7 @@
         var listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         function prepararDadosBarras() {
-        function prepararDadosBarras() {
             var nomeSensor;
-
-            for (var index = 0; index < dadosGraficoBarra.length; index++) {
 
             for (var index = 0; index < dadosGraficoBarra.length; index++) {
                 var dadosAtual = dadosGraficoBarra[index];
@@ -593,22 +532,15 @@
 
                 if (dadosGraficoBarra[index].length < 12) {
                     for (var i = 0; i < tamanhoJsonAtual; i++) {
-                if (dadosGraficoBarra[index].length < 12) {
-                    for (var i = 0; i < tamanhoJsonAtual; i++) {
                         listaMeses.push(dadosGraficoBarra[index][i].Mes)
                         nomeSensor = dadosGraficoBarra[index][i].local_inst;
                     }
                     var naoTem = []
                     for (var i = 1; i <= 12; i++) {
                         if (!listaMeses.includes(i)) {
-                    var naoTem = []
-                    for (var i = 1; i <= 12; i++) {
-                        if (!listaMeses.includes(i)) {
                             naoTem.push(i)
                         }
                     }
-                    for (var i = 0; i < naoTem.length; i++) {
-                        dadosGraficoBarra[index].push({ Mes: naoTem[i], qtdVazamentos: 0, local_inst: nomeSensor });
                     for (var i = 0; i < naoTem.length; i++) {
                         dadosGraficoBarra[index].push({ Mes: naoTem[i], qtdVazamentos: 0, local_inst: nomeSensor });
                     }
@@ -621,9 +553,7 @@
             listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
             for (var index = 0; index < dadosGraficoBarra.length; index++) {
-            for (var index = 0; index < dadosGraficoBarra.length; index++) {
                 var listaDados = []
-                for (var i = 0; i < 12; i++) {
                 for (var i = 0; i < 12; i++) {
                     listaDados.push(dadosGraficoBarra[index][i].qtdVazamentos);
                     var nomeSensor = dadosGraficoBarra[index][i].local_inst;
@@ -631,7 +561,6 @@
                     // Calculando o total de vazamentos por mês
                     listaTotal[i] += dadosGraficoBarra[index][i].qtdVazamentos;
                 }
-
 
                 listaDatasets.push({
                     label: nomeSensor,
@@ -652,7 +581,6 @@
         }
 
         function plotarGraficoBarras() {
-        function plotarGraficoBarras() {
             var graficoGeral = document.getElementById('graficoMensal');
 
             var dadosGeral = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -661,9 +589,7 @@
                 responsive: false,
                 type: 'bar',
                 data: {
-                data: {
                     labels: dadosGeral,
-                    datasets: listaDatasets
                     datasets: listaDatasets
                 },
                 options: {
@@ -692,19 +618,15 @@
         var dadoGraficoAtual;
 
         function obterDadosAtual() {
-        function obterDadosAtual() {
             idSensorAtual = sensorAtual.idSensor;
 
             fetch(`/dashboard/obterDadosAtual/${idSensorAtual}`, {
-            fetch(`/dashboard/obterDadosAtual/${idSensorAtual}`, {
                 method: 'GET',
-            }).then(function (resposta) {
             }).then(function (resposta) {
                 console.log(resposta)
                 resposta.json().then(json => {
                     dadoGraficoAtual = json.dados;
                     console.log("Dados coletados: ", json.dados);
-                });
                 });
             });
 
@@ -727,10 +649,7 @@
         var myChart;
 
         function plotarGraficoAtual() {
-
-        function plotarGraficoAtual() {
             var corAtual = '#e63535';
-
 
             if (dadoGraficoAtual[0].porcentagem > 0) {
                 corAtual = '#e63535';
@@ -740,7 +659,6 @@
 
             const vazamentoAtual = document.getElementById("graficoMeia").getContext('2d');
 
-            if (myChart != undefined) {
             if (myChart != undefined) {
                 myChart.data.datasets[0].data = valorAtual;
                 myChart.data.datasets[0].backgroundColor = [corAtual, 'rgba(0, 0, 0, 0.1)']
@@ -779,15 +697,11 @@
                     }
                 }
 
-                }
-
                 myChart = new Chart(vazamentoAtual, configVazamentoAtual);
-
 
                 setTimeout(() => {
                     atualizarGraficoAtual();
                 }, 300);
-            }
             }
             // myChart.update();
         }
@@ -795,6 +709,5 @@
 
     </script>
 </body>
-
 
 </html>
