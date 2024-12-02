@@ -148,7 +148,7 @@
                 <div class="divEsq">
                     <span>
                         <p class="graficoTitulo">Porcentagem de vazamento durante o dia</p>
-                        <canvas id="graficoLinha1" class="graficoLinha1" width="100px"></canvas>
+                        <canvas id="graficoLinha" class="graficoLinha1" width="600px"></canvas>
                     </span>
     
                     <div class="KPIs">
@@ -194,72 +194,68 @@
 
     <script>
 
-        var sensorAnalogico = new Chart(document.getElementById('graficoLinha1').getContext('2d'), {
-        type: 'line',
-        data: {
-            datasets: [{
-                label: 'Analogico',
-                borderColor: '#e63535',
-                backgroundColor: '#e63535'
+    //     var sensorAnalogico = new Chart(document.getElementById('graficoLinha1').getContext('2d'), {
+    //     type: 'line',
+    //     data: {
+    //         datasets: [{
+    //             label: 'Analogico',
+    //             borderColor: '#e63535',
+    //             backgroundColor: '#e63535'
 
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    beginAtZero: true
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: '(%)'
-                    },
-                    beginAtZero: true,
-                },
-            },
-        }
-    });
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             x: {
+    //                 beginAtZero: true
+    //             },
+    //             y: {
+    //                 title: {
+    //                     display: true,
+    //                     text: '(%)'
+    //                 },
+    //                 beginAtZero: true,
+    //             },
+    //         },
+    //     }
+    // });
 
-    var paginacao = {};
-    var tempo = {};
+    // var paginacao = {};
+    // var tempo = {};
 
-    function obterDados(grafico, endpoint) {
-        fetch('http://localhost:3300/sensores/' + endpoint)
-            .then(response => response.json())
-            .then(valores => {
-                if (paginacao[endpoint] == null) {
-                    paginacao[endpoint] = 0;
-                }
-                if (tempo[endpoint] == null) {
-                    tempo[endpoint] = 0;
-                }
+    // function obterDados(grafico, endpoint) {
+    //     fetch('http://localhost:3300/sensores/' + endpoint)
+    //         .then(response => response.json())
+    //         .then(valores => {
+    //             if (paginacao[endpoint] == null) {
+    //                 paginacao[endpoint] = 0;
+    //             }
+    //             if (tempo[endpoint] == null) {
+    //                 tempo[endpoint] = 0;
+    //             }
 
-                var ultimaPaginacao = paginacao[endpoint];
-                paginacao[endpoint] = valores.length;
-                valores = valores.slice(ultimaPaginacao);
+    //             var ultimaPaginacao = paginacao[endpoint];
+    //             paginacao[endpoint] = valores.length;
+    //             valores = valores.slice(ultimaPaginacao);
 
-                valores.forEach((valor) => {
-                    if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
-                        grafico.data.labels.shift();
-                        grafico.data.datasets[0].data.shift();
-                    }
+    //             valores.forEach((valor) => {
+    //                 if (grafico.data.labels.length == 10 && grafico.data.datasets[0].data.length == 10) {
+    //                     grafico.data.labels.shift();
+    //                     grafico.data.datasets[0].data.shift();
+    //                 }
 
-                    grafico.data.labels.push(tempo[endpoint]++);
-                    grafico.data.datasets[0].data.push(parseFloat(valor));
-                    grafico.update();
-                });
-            })
-            .catch(error => console.error('Erro ao obter dados:', error));
-    }
+    //                 grafico.data.labels.push(tempo[endpoint]++);
+    //                 grafico.data.datasets[0].data.push(parseFloat(valor));
+    //                 grafico.update();
+    //             });
+    //         })
+    //         .catch(error => console.error('Erro ao obter dados:', error));
+    // }
 
-    setInterval(() => {
-        obterDados(sensorAnalogico, 'analogico');
-        // obterDados(sensorDigital, 'digital');
-    }, 1000);
-
-
-
-
+    // setInterval(() => {
+    //     obterDados(sensorAnalogico, 'analogico');
+    //     // obterDados(sensorDigital, 'digital');
+    // }, 1000);
 
         var idFilialAtual = JSON.parse(sessionStorage.idFilialAtual);
         var jsonFiliais = JSON.parse(sessionStorage.FILIAIS);
@@ -268,7 +264,7 @@
         var sensorAtual;
         var sensoresFilialAtual = [];
 
-        window.onload = carregarDados(), obterDadosBarras(), obterDadosAtual();
+        window.onload = carregarDados(), obterDadosBarras(), obterDadosAtual(), obterDadosLinha();
 
         function carregarDados(){
             for(var i = 0; i < jsonFiliais.length; i++){
@@ -687,6 +683,85 @@
             // myChart.update();
         }
 
+        function atualizarGraficoLinha(){           
+            setInterval(() => {
+                obterDadosLinha();
+            }, 3000);
+        };
+
+        var porcentagemGraficoLinha = '';
+        var dtColetaGraficoLinha = '';
+
+        function obterDadosLinha() {
+            fetch(`/ultimo/puxarDados`, {
+                method: 'POST',
+                headers: {
+                "Content-Type": "application/json",
+                    },
+                body: JSON.stringify({
+                    idSensor: idSensorAtual
+                })
+            }).then(response => response.json())
+                .then(resultado => {
+                    console.log("Dados recebidos do servidor:", resultado);
+                    resultado.forEach((item) => {
+                            porcentagemGraficoLinha.push(item.porcentagem);
+                            dtColetaGraficoLinha.push(item.dtColeta);
+                            // chartTotal.data.labels.push(item.dtColeta);
+                            // chartTotal.data.datasets[0].data.push(item.porcentagem);
+                        });
+                        chartTotal.update();
+
+                    // setTimeout(() => {
+                    //     atualizarGraficoLinha();
+                    // }, 1000)
+                })
+                .catch(error => {
+                    console.error(`Erro ao buscar dados: ${error}` );
+                });
+            }
+
+            var sensorAnalogico1 = document.getElementById('graficoLinha').getContext('2d');
+
+            // var dadosLabel = ['05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h'];
+
+            const configLinha = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Porcentagem',
+                    borderColor: '#464646',
+                    backgroundColor: '#464646',
+                    data: [] // COMENTAR QUANDO FOR CONECTAR NA API
+                },
+                {
+                    label: 'Extremo risco',
+                    borderColor: '#e63535',
+                    backgroundColor: '#e63535',
+                    data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
+                    borderDash: [5, 5], // Configuração para linha pontilhada
+                    tension: 0.3 // Para suavizar a linha
+                }],
+            },
+            options: {
+                responsive: false,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: '(%)'
+                        },
+                        beginAtZero: true,
+                    },
+                },
+
+            }
+        }
+
+        var chartTotal = new Chart(sensorAnalogico1, configLinha);
 
     </script>
 </body>
