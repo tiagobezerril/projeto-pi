@@ -556,12 +556,12 @@
                 }); 
             });
             
-            setInterval(() => {
-                atualizarGraficoAtual();
-            }, 4000);
+            // setInterval(() => {
+            //     atualizarGraficoAtual();
+            //     myChart.update();
+            // }, 4000);
         }
 
-        var myChart;
         var valorAtual;
         // setInterval(atualizarGraficoAtual, 5000);
         
@@ -610,14 +610,14 @@
             // setInterval(() => {
             //     configVazamentoAtual.data.datasets.data.shift();
             //     configVazamentoAtual.data.datasets.data.push(valorAtual);
-            // }, 2000)
+            // }, 4000)
 
             setTimeout(() => {
                 atualizarGraficoAtual();
             }, 2000);
     
             var vazamentoAtual = document.getElementById("graficoMeia").getContext('2d');
-            myChart = new Chart(vazamentoAtual, configVazamentoAtual);
+            var myChart = new Chart(vazamentoAtual, configVazamentoAtual);
             
             // myChart.update();
         }
