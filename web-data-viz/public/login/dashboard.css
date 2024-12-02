@@ -471,6 +471,12 @@ span#burguer:hover, span#burguer:focus{
     padding: 0 10px;
 }
 
+.graficoLinha1{
+    width: 850px;
+    height: 450px;
+    margin-bottom: 10px;
+}
+
 /* ENDEREÇO */
 
 #endereco {
