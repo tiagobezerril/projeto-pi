@@ -3,6 +3,9 @@
 // const publicacoes = [
 
 // ];
+
+//////////////////////////////////////////////////////////
+
 window.onload = function() {
     puxarBanco(); // Chama a função ao carregar a página
 };
@@ -36,6 +39,9 @@ function puxarBanco(idSensor) {
             console.error("Erro ao buscar dados:", error);
         });
 }
+
+//////////////////////////////////////////////////////////
+
 // var sensorAnalogico1 = document.getElementById('graficoLinha1').getContext('2d');
 
 // var dadosLabel = ['05h', '06h', '07h', '08h', '09h', '10h', '11h', '12h', '13h', '14h', '15h'];
