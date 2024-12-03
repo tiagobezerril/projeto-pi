@@ -1,5 +1,5 @@
-var ambiente_processo = 'producao';
-// var ambiente_processo = 'desenvolvimento';
+// var ambiente_processo = 'producao';
+var ambiente_processo = 'desenvolvimento';
 
 
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
@@ -20,7 +20,6 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var avisosRouter = require("./src/routes/avisos");
 var ultimoRouter = require("./src/routes/ultimo");
 var empresasRouter = require("./src/routes/empresas");
 var visaoGeralRouter = require("./src/routes/visaoGeral");
@@ -35,7 +34,6 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
-app.use("/avisos", avisosRouter);
 app.use("/ultimo", ultimoRouter);
 app.use("/empresas", empresasRouter);
 app.use("/visaoGeral", visaoGeralRouter);

@@ -772,6 +772,7 @@ span#burguer:hover, span#burguer:focus{
 
 .card p{
     margin: 0;
+    text-align: center;
 }
 
 .card .atencao{

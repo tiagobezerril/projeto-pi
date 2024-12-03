@@ -19,7 +19,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), exibirFiliais(), obterDadosVisaoGeral()">
+<body>
     <header class="menu">
         <div class="esquerda">
             <span class="logo" style="cursor: default;">SafeWare</span>
@@ -81,6 +81,53 @@
     <script data-jsd-embedded data-key="eb6df58d-df11-4966-8be2-7d3087316574" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
 
     <script>
+        window.onload = obterDadosAtual(), obterDadosVisaoGeral(), validarSessao(), exibirFiliais();
+
+        function atualizarGraficoAtual() {
+            setInterval(() => {
+                obterDadosAtual();
+            }, 3000);
+        };
+
+        var dadoGraficoAtual;
+        var alertaExibido = false;
+
+        function obterDadosAtual() {
+            fetch(`/dashboard/obterDadosAtual/2000`, {
+                method: 'GET',
+            }).then(function (resposta) {
+                console.log(resposta)
+                resposta.json().then(json => {
+                    dadoGraficoAtual = json.dados;
+                    console.log("Dados coletados: ", json.dados);
+                });
+            });
+          
+            setTimeout(() => {
+                if (dadoGraficoAtual[0].porcentagem > 0) {
+                    if (!alertaExibido) {  
+                        alerta.style.display = 'flex'; 
+                        alertaExibido = true;
+                        filial100.innerHTML = `<img src='../img/cozinhaPerigo.png'>
+                        <h3 style="text-align: center; color: #e63535">Filial - Vila Moraes, Rua Angaturama - 240</h3>`
+                        filial100.classList.add('alerta');
+
+                        sttsVazamento.style.color = '#e63535';
+                        sttsVazamento.innerHTML = 'Há um vazamento ativo';
+                    }
+                } else {
+                    alerta.style.display = 'none'; 
+                    alertaExibido = false;
+                    filial100.classList.remove('alerta');
+
+                    sttsVazamento.style.color = '#60CE60';
+                    sttsVazamento.innerHTML = 'Sem vazamentos ativos';
+                }
+
+                atualizarGraficoAtual();
+            }, 1000)
+        };
+
         function clickMenu() {
             if (opcoes.style.left == '-300px') {
                 opcoes.style.left = '0';
@@ -139,15 +186,13 @@
                     resposta.json().then(json => {
                         dadosGrafico.push(json.dados);
                         console.log("Dados armazenados: ", json.dados);
-
-                        // prepararDados();
                     });
                     
                 });
             };
             setTimeout(() => {
                 prepararDados();
-            }, 1000);
+            }, 2000);
             
         }
 

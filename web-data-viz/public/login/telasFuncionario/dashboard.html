@@ -144,7 +144,7 @@
                     <div class="onoff">
                         <p>Modo manutenção</p>
                         <input type="checkbox" class="toggle" id="onoff">
-                        <label for="onoff"> </label>
+                        <label for="onoff" onclick="manutencao()"> </label>
                     </div>
                 </span>
 
@@ -157,15 +157,15 @@
                     <div class="KPIs">
                         <span class="inicio">
                             <p class="nome">Horario de início</p>
-                            <p class="dado">11:32:06</p>
+                            <p id="horaIni" class="dado">--</p>
                         </span>
                         <span class="final">
                             <p class="nome">Horario de encerramento</p>
-                            <p class="dado" style="color: #e63535;">Ativo</p>
+                            <p id="horaFim" class="dado">Inativo</p>
                         </span>
-                        <span class="status alerta">
+                        <span class="status" id="sttsVazamento">
                             <p class="nome">Status de vazamento</p>
-                            <p class="dado">Ativo</p>
+                            <p class="dado" id="sttsVazamentoDado">Inativo</p>
                         </span>
                     </div>
                 </div>
@@ -202,26 +202,27 @@
         var filialAtual = 0;
         var sensoresFilialAtual = [];
 
-        window.onload = carregarDados(), obterDadosBarras();
+        window.onload = carregarDados(), obterDadosBarras(), obterDadosAtual(), obterDadosLinha();
 
-        function carregarDados(){
-            for(var i = 0; i < jsonFiliais.length; i++){
-                if (jsonFiliais[i].idFilial == idFilialAtual){
-                    filialAtual = jsonFiliais[i]; 
+        function carregarDados() {
+            for (var i = 0; i < jsonFiliais.length; i++) {
+                if (jsonFiliais[i].idFilial == idFilialAtual) {
+                    filialAtual = jsonFiliais[i];
                 }
             }
 
-            for(var i = 0; i < jsonSensores.length; i++){
-                if(jsonSensores[i].fkFilial == idFilialAtual){
+            for (var i = 0; i < jsonSensores.length; i++) {
+                if (jsonSensores[i].fkFilial == idFilialAtual) {
                     sensoresFilialAtual.push(jsonSensores[i]);
                 }
             }
 
+            sensorAtual = sensoresFilialAtual[0];
             nomeFilial.innerHTML = filialAtual.endereco;
             exibirDados();
         }
 
-        function direcionarDash(idFilial){
+        function direcionarDash(idFilial) {
             sessionStorage.setItem('idFilialAtual', idFilial);
             window.location = "dashboard.html";
         };
@@ -242,10 +243,10 @@
             clickSensor(sensoresFilialAtual[0].idSensor);
         }
 
-        function buscarEnderecoFilial(idFilial){
-            fetch(`/empresas/buscarEnderecoFilial/${idFilial}`,{
+        function buscarEnderecoFilial(idFilial) {
+            fetch(`/empresas/buscarEnderecoFilial/${idFilial}`, {
                 method: "GET",
-            }).then(function(resposta){
+            }).then(function (resposta) {
                 console.log(resposta)
                 resposta.json().then(json => {
                     sessionStorage.setItem('ENDERECO', JSON.stringify(json.endereco));
@@ -253,13 +254,13 @@
 
                     carregarDadosEndereco();
                 });
-            }).catch(function(resposta){
+            }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
         }
 
-        function carregarDadosEndereco(){
-            var jsonEndereco = JSON.parse(sessionStorage.ENDERECO); 
+        function carregarDadosEndereco() {
+            var jsonEndereco = JSON.parse(sessionStorage.ENDERECO);
             slcEstado.value = jsonEndereco[0].estado;
             inpCidade.value = jsonEndereco[0].cidade;
             inpBairro.value = jsonEndereco[0].bairro;
@@ -268,29 +269,29 @@
             inpCEP.value = jsonEndereco[0].cep;
         }
 
-        function buscarManutencaoFilial(){
+        function buscarManutencaoFilial() {
             var idFilial = filialAtual.idFilial;
 
-            fetch(`/empresas/buscarManutencaoFilial/${idFilial}`,{
+            fetch(`/empresas/buscarManutencaoFilial/${idFilial}`, {
                 method: "GET",
-            }).then(function(resposta){
+            }).then(function (resposta) {
                 console.log(resposta)
                 resposta.json().then(json => {
                     sessionStorage.setItem('MANUTENCAO', JSON.stringify(json.manutencao));
-                    if (sessionStorage.MANUTENCAO == '[]'){
+                    if (sessionStorage.MANUTENCAO == '[]') {
                         historico.innerHTML = 'Não houveram avisos de manutenções nessa filial'
                     } else {
                         console.log("Manutenção armazenadas: ", json.manutencao);
 
                         carregarManutencoes();
-                    }                    
+                    }
                 });
-            }).catch(function(resposta){
+            }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
             });
         }
 
-        function carregarManutencoes(){
+        function carregarManutencoes() {
             var manutencoes = JSON.parse(sessionStorage.MANUTENCAO);
 
             manutencoes.forEach(item => {
@@ -306,7 +307,7 @@
             });
         }
 
-        function atualizarEndereco(){
+        function atualizarEndereco() {
             var idFilial = filialAtual.idFilial;
             var estado = slcEstado.value;
             var cidade = inpCidade.value;
@@ -315,14 +316,14 @@
             var rua = inpRua.value;
             var numero = inpNum.value;
 
-            if(estado == '' || cidade == '' || bairro == '' || cep == '' || rua == '' || numero == ''){
+            if (estado == '' || cidade == '' || bairro == '' || cep == '' || rua == '' || numero == '') {
                 mensagemEnd.innerHTML = '<p style="color: #e63535">Preencha todos os campos.</p>';
 
                 setTimeout(() => {
                     mensagemEnd.innerHTML = '';
                 }, 2000);
             } else {
-                fetch(`/empresas/atualizarEnderecoFilial`,{
+                fetch(`/empresas/atualizarEnderecoFilial`, {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",
@@ -336,9 +337,9 @@
                         rua: rua,
                         numero: numero
                     })
-                }).then(function(resposta){
+                }).then(function (resposta) {
                     console.log(resposta);
-                    if(resposta.ok){
+                    if (resposta.ok) {
                         console.log('Endereço atualizado com sucesso!');
                         mensagemEnd.innerHTML = '<p style="color: #60CE60">Endereço atualizado com sucesso!</p>'
                         buscarEnderecoFilial();
@@ -349,7 +350,7 @@
                     } else {
                         console.error('Erro ao cadastrar endereço');
                     }
-                }).catch(function(error){
+                }).catch(function (error) {
                     console.error('Erro ao atualizar endereço: ', error.message);
                 });
             }
@@ -365,7 +366,7 @@
         }
 
         function clickOpcoes() {
-            if (endereco.style.right == '0'){
+            if (endereco.style.right == '0') {
                 menuPerfil.style.top = '-5vw';
                 setaMenu.innerHTML = 'arrow_drop_down';
             } else if (menuPerfil.style.top == '-5vw') {
@@ -375,24 +376,24 @@
                 menuPerfil.style.top = '-5vw';
                 setaMenu.innerHTML = 'arrow_drop_down';
             }
-        }       
+        }
 
-        function clickManutencao(){
+        function clickManutencao() {
             buscarManutencaoFilial();
             manutencao.style.right = '0';
             clickOpcoes();
         }
 
-        function closeManu(){
+        function closeManu() {
             manutencao.style.right = '-620px';
         }
-    
+
         function clickEndereco() {
             buscarEnderecoFilial(filialAtual.idFilial);
             endereco.style.right = '0';
             clickOpcoes();
         }
-    
+
         function clickClose() {
             endereco.style.right = '-620px';
         }
@@ -400,43 +401,33 @@
         function closeAlerta() {
             alerta.style.display = 'none';
         }
-    
-        function clickSensor(idSensor){
-            var sensorAtual = [];
-            for(var i = 0; i < sensoresFilialAtual.length; i++){
-                if(sensoresFilialAtual[i].idSensor == idSensor){
-                    sensorAtual.push(sensoresFilialAtual[i]);
+
+        function clickSensor(idSensor) {
+            for (var i = 0; i < sensoresFilialAtual.length; i++) {
+                if (sensoresFilialAtual[i].idSensor == idSensor) {
+                    sensorAtual = sensoresFilialAtual[i];
                 }
             }
-            tituloSensor.innerHTML = sensorAtual[0].local_inst;
-            // sensor1.style.display = 'flex';
-            // sensor2.style.display = 'none';
-            // sensor3.style.display = 'none';
-
-            // if (botaoSensor1.classList.contains("alerta")){
-            //     botaoSensor1.style.border = '3px solid #a11919';
-            // } else {
-            //     botaoSensor1.style.border = '3px solid #2e972e';
-            // }
-            // botaoSensor2.style.border = 'none';
-            // botaoSensor3.style.border = 'none';
+            tituloSensor.innerHTML = sensorAtual.local_inst;
+            obterDadosLinha();
+            obterDadosAtual();
         }
 
         var dadosGraficoBarra = [];
 
-        function obterDadosBarras(){
-            for (var i = 0; i < sensoresFilialAtual.length; i++){
+        function obterDadosBarras() {
+            for (var i = 0; i < sensoresFilialAtual.length; i++) {
                 idSensorAtual = sensoresFilialAtual[i].idSensor;
 
-                fetch(`/dashboard/obterDadosBarras/${idSensorAtual}`,{
+                fetch(`/dashboard/obterDadosBarras/${idSensorAtual}`, {
                     method: 'GET',
-                }).then(function(resposta){
+                }).then(function (resposta) {
                     console.log(resposta)
                     resposta.json().then(json => {
                         dadosGraficoBarra.push(json.dados);
                         console.log("Dados armazenados: ", json.dados);
                     });
-                    
+
                 });
             };
 
@@ -448,27 +439,27 @@
         var listaDatasets = [];
         var listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-        function prepararDadosBarras(){
+        function prepararDadosBarras() {
             var nomeSensor;
-            
-            for(var index = 0; index < dadosGraficoBarra.length; index++){
+
+            for (var index = 0; index < dadosGraficoBarra.length; index++) {
                 var dadosAtual = dadosGraficoBarra[index];
                 var tamanhoJsonAtual = dadosGraficoBarra[index].length;
                 var listaMeses = []
 
-                if (dadosGraficoBarra[index].length < 12){
-                    for(var i = 0; i < tamanhoJsonAtual; i++){
+                if (dadosGraficoBarra[index].length < 12) {
+                    for (var i = 0; i < tamanhoJsonAtual; i++) {
                         listaMeses.push(dadosGraficoBarra[index][i].Mes)
                         nomeSensor = dadosGraficoBarra[index][i].local_inst;
                     }
-                    var naoTem =[]
-                    for(var i = 1; i <= 12; i++){
-                        if(!listaMeses.includes(i)){
+                    var naoTem = []
+                    for (var i = 1; i <= 12; i++) {
+                        if (!listaMeses.includes(i)) {
                             naoTem.push(i)
                         }
                     }
-                    for(var i = 0; i < naoTem.length; i++){
-                        dadosGraficoBarra[index].push({Mes: naoTem[i], qtdVazamentos: 0, local_inst: nomeSensor});
+                    for (var i = 0; i < naoTem.length; i++) {
+                        dadosGraficoBarra[index].push({ Mes: naoTem[i], qtdVazamentos: 0, local_inst: nomeSensor });
                     }
                 }
 
@@ -478,16 +469,16 @@
 
             listaTotal = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-            for(var index = 0; index < dadosGraficoBarra.length; index++){
+            for (var index = 0; index < dadosGraficoBarra.length; index++) {
                 var listaDados = []
-                for(var i = 0; i < 12; i++){
+                for (var i = 0; i < 12; i++) {
                     listaDados.push(dadosGraficoBarra[index][i].qtdVazamentos);
                     var nomeSensor = dadosGraficoBarra[index][i].local_inst;
 
                     // Calculando o total de vazamentos por mês
                     listaTotal[i] += dadosGraficoBarra[index][i].qtdVazamentos;
                 }
-                
+
                 listaDatasets.push({
                     label: nomeSensor,
                     data: listaDados,
@@ -506,7 +497,7 @@
             plotarGraficoBarras();
         }
 
-        function plotarGraficoBarras(){
+        function plotarGraficoBarras() {
             var graficoGeral = document.getElementById('graficoMensal');
 
             var dadosGeral = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];
@@ -514,9 +505,9 @@
             var configGeral = {
                 responsive: false,
                 type: 'bar',
-                data: { 
+                data: {
                     labels: dadosGeral,
-                    datasets: listaDatasets                
+                    datasets: listaDatasets
                 },
                 options: {
                     scales: {
@@ -534,150 +525,355 @@
 
             chartGeral = new Chart(graficoGeral, configGeral);
         }
-    
-        function obterDadosLinha(){
-            idSensor = idSensorAtual;
 
-            fetch(`/dashboard/obterDadosLinha/${idSensor}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+        function atualizarGraficoAtual() {
+            setInterval(() => {
+                obterDadosAtual();
+            }, 3000);
+        };
 
-                    // plotarGrafico(resposta, idSensor);
+        var dadoGraficoAtual;
+        var alertaExibido = false;
+
+        function obterDadosAtual() {
+            var idSensorAtual = sensorAtual.idSensor;
+
+            fetch(`/dashboard/obterDadosAtual/${idSensorAtual}`, {
+                method: 'GET',
+            }).then(function (resposta) {
+                console.log(resposta)
+                resposta.json().then(json => {
+                    dadoGraficoAtual = json.dados;
+                    console.log("Dados coletados: ", json.dados);
                 });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
-    }
 
-        // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-        // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
-        // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-        function plotarGrafico(resposta, idAquario) {
+            setTimeout(() => {
 
-            console.log('iniciando plotagem do gráfico...');
+                if (dadoGraficoAtual && dadoGraficoAtual.length > 0 && dadoGraficoAtual[0].porcentagem == undefined) {
+                    valorAtual = [0, 100 - 0];
+                    plotarGraficoAtual();
+                } else {
+                    setTimeout(() => {
+                        valorAtual = [dadoGraficoAtual[0].porcentagem, 100 - dadoGraficoAtual[0].porcentagem];
+                        plotarGraficoAtual();
+                    }, 100);
+                }
+                
+                var idSensorAtual = sensorAtual.idSensor;
+                botaoSensorAtual = document.getElementById('botaoSensor' + idSensorAtual);
+                console.log(botaoSensorAtual);
+                      
+                setTimeout(() => {
+                    if (dadoGraficoAtual[0].porcentagem > 0) {
+                        if (!alertaExibido) {  
+                            alerta.style.display = 'flex'; 
+                            alertaExibido = true;
+                            
+                            sttsVazamento.classList.add('alerta');
+                            sttsVazamentoDado.innerHTML = 'Ativo';
+                            botaoSensorAtual.classList.add('alerta');
+                            tituloSensor.classList.add('alerta');
+                        }
+                    } else {
+                        alerta.style.display = 'none'; 
+                        alertaExibido = false;
+    
+                        sttsVazamento.classList.remove('alerta');
+                        botaoSensorAtual.classList.remove('alerta');
+                        sttsVazamentoDado.innerHTML = 'Inativo';
+                        tituloSensor.classList.remove('alerta');
+                    }
+                }, 10)
 
-            // Criando estrutura para plotar gráfico - labels
-            let labels = [];
 
-            // Criando estrutura para plotar gráfico - dados
-            let dados = {
-                labels: labels,
-                datasets: [{
-                    label: 'Umidade',
-                    data: [],
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                },
-                {
-                    label: 'Temperatura',
-                    data: [],
-                    fill: false,
-                    borderColor: 'rgb(199, 52, 52)',
-                    tension: 0.1
-                }]
-            };
+            }, 100)
+        };
 
-            console.log('----------------------------------------------')
-            console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-            console.log(resposta)
+        var valorAtual;
+        var myChart;
+        var corAtual = '#60CE60';
 
-            // Inserindo valores recebidos em estrutura para plotar o gráfico
-            for (i = 0; i < resposta.length; i++) {
-                var registro = resposta[i];
-                labels.push(registro.momento_grafico);
-                dados.datasets[0].data.push(registro.umidade);
-                dados.datasets[1].data.push(registro.temperatura);
+        function plotarGraficoAtual() {
+
+            if (dadoGraficoAtual[0].porcentagem > 0) {
+                corAtual = '#ffad14';
+
+                if (dadoGraficoAtual[0].porcentagem > 2){
+                    corAtual = '#e63535';
+                }
+            } else {
+                corAtual = '#60CE60';
             }
 
-            console.log('----------------------------------------------')
-            console.log('O gráfico será plotado com os respectivos valores:')
-            console.log('Labels:')
-            console.log(labels)
-            console.log('Dados:')
-            console.log(dados.datasets)
-            console.log('----------------------------------------------')
+            const vazamentoAtual = document.getElementById("graficoMeia").getContext('2d');
 
-            // Criando estrutura para plotar gráfico - config
-            const config = {
-                type: 'line',
-                data: dados,
-            };
-
-            // Adicionando gráfico criado em div na tela
-            let myChart = new Chart(
-                document.getElementById(`myChartCanvas${idAquario}`),
-                config
-            );
-
-            setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-        }
-
-
-        // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-        // buscando a última medida inserida em tabela contendo as capturas, 
-
-        //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-        //     Para ajustar o "select", ajuste o comando sql em src/models
-        function atualizarGrafico(idAquario, dados, myChart) {
-            fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (novoRegistro) {
-
-                        obterdados(idAquario);
-                        // alertar(novoRegistro, idAquario);
-                        console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                        console.log(`Dados atuais do gráfico:`);
-                        console.log(dados);
-
-                        let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-                        avisoCaptura.innerHTML = ""
-
-
-                        if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-                            console.log("---------------------------------------------------------------")
-                            console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                            avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-                            console.log("Horário do novo dado capturado:")
-                            console.log(novoRegistro[0].momento_grafico)
-                            console.log("Horário do último dado capturado:")
-                            console.log(dados.labels[dados.labels.length - 1])
-                            console.log("---------------------------------------------------------------")
-                        } else {
-                            // tirando e colocando valores no gráfico
-                            dados.labels.shift(); // apagar o primeiro
-                            dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-                            dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                            dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-                            dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                            dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                            myChart.update();
+            if (myChart != undefined) {
+                myChart.data.datasets[0].data = valorAtual;
+                myChart.data.datasets[0].backgroundColor = [corAtual, 'rgba(0, 0, 0, 0.1)']
+                myChart.update();
+            } else {
+                const configVazamentoAtual = {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Vazamento atual"],
+                        datasets: [{
+                            backgroundColor: [corAtual, 'rgba(0, 0, 0, 0.1)'],
+                            borderWidth: 0,
+                            data: valorAtual
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        cutoutPercentage: 85,
+                        rotation: -90,
+                        circumference: 180,
+                        tooltips: {
+                            enabled: false
+                        },
+                        legend: {
+                            display: false
+                        },
+                        animation: {
+                            animateRotate: true,
+                            animateScale: false
+                        },
+                        title: {
+                            display: true,
+                            text: "Vazamento atual",
+                            fontSize: 16
                         }
-
-                        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                        proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                    }
                 }
-            })
-                .catch(function (error) {
-                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                });
 
+                myChart = new Chart(vazamentoAtual, configVazamentoAtual);
+
+                setTimeout(() => {
+                    atualizarGraficoAtual();
+                }, 300);
+            }
+            // myChart.update();
         }
 
+        function atualizarGraficoLinha() {
+            if (dadoGraficoAtual[0].porcentagem > 0) {
+                corAtual = '#ffad14';
+
+                if (dadoGraficoAtual[0].porcentagem > 2){
+                    corAtual = '#e63535';
+                }
+            } else {
+                corAtual = '#60CE60';
+            }
+            
+            setInterval(() => {
+                obterDadosLinha();
+            }, 3000);
+        };
+
+        var porcentagemGraficoLinha = [];
+        var dtColetaGraficoLinha = [];
+
+        function obterDadosLinha() {
+            var idSensorAtual = sensorAtual.idSensor;
+
+            fetch(`/ultimo/puxarDados`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idSensor: idSensorAtual
+                })
+            }).then(response => response.json())
+                .then(resultado => {
+                    porcentagemGraficoLinha = [];
+                    dtColetaGraficoLinha = [];
+
+                    console.log("Dados recebidos do servidor: ", resultado);
+                    resultado.forEach((item) => {
+                        porcentagemGraficoLinha.push(item.porcentagem);
+                        dtColetaGraficoLinha.push(item.dtColeta);
+                    });
+
+                    setTimeout(() => {
+                        porcentagemGraficoLinha.reverse();
+                        dtColetaGraficoLinha.reverse();
+                        plotarGraficoLinha();
+                    }, 100);
+                })
+                .catch(error => {
+                    console.error(`Erro ao buscar dados: ${error}`);
+                });
+        }
+
+        var HoraINI= ``;
+        var HoraEND= ``;
+
+        function obterHoraINI() {
+            var idSensorAtual = sensorAtual.idSensor;
+
+            fetch(`/ultimo/puxarDados`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idSensor: idSensorAtual
+                })
+            }).then(response => response.json())
+                .then(resultado => {
+                    for (var index = 0; index < dtColetaGraficoLinha.length; index++) {
+                        var HoraAtual = dtColetaGraficoLinha[index];
+                        var dadoAtual = porcentagemGraficoLinha[index];
+                        if (dadoAtual > 0 && porcentagemGraficoLinha[index - 1] == 0) {
+                            HoraINI = HoraAtual;
+                    } else if(porcentagemGraficoLinha[0] > 0) {
+                        HoraINI = dtColetaGraficoLinha[0]
+                    }
+                        if (dadoAtual == 0 && porcentagemGraficoLinha[index - 1] > 0) {
+                        HoraEND = HoraAtual;
+                } else if(dadoAtual > 0 && porcentagemGraficoLinha[index + 1] > 0){
+                    HoraEND = `Ativo`;
+                }
+            }
+                horaIni.innerHTML = HoraINI;
+                horaFim.innerHTML = HoraEND;
+                }
+            )
+                .catch(error => {
+                    console.error(`Erro ao buscar dados: ${error}`);
+                });
+        }
+
+        var chartTotal;
+
+        function plotarGraficoLinha() {
+            porcentagemGraficoLinha.reverse();
+            dtColetaGraficoLinha.reverse();
+
+            obterHoraINI();
+
+            const sensorAnalogico1 = document.getElementById('graficoLinha').getContext('2d');
+
+            console.log('Porcentagem: ', porcentagemGraficoLinha);
+            console.log('dtColeta: ', dtColetaGraficoLinha);
+
+            if (chartTotal != undefined) {
+                chartTotal.data.datasets[0].data = porcentagemGraficoLinha;
+                chartTotal.data.datasets[0].borderColor = corAtual;
+                chartTotal.data.datasets[0].backgroundColor = corAtual;
+                chartTotal.data.labels = dtColetaGraficoLinha;
+
+                chartTotal.update();
+            } else {
+                const configLinha = {
+                    type: 'line',
+                    data: {
+                        labels: dtColetaGraficoLinha,
+                        datasets: [{
+                            label: 'Porcentagem',
+                            borderColor: corAtual,
+                            backgroundColor: corAtual,
+                            data: porcentagemGraficoLinha // COMENTAR QUANDO FOR CONECTAR NA API
+                        },
+                        {
+                            label: 'Extremo risco',
+                            borderColor: '#e63535',
+                            backgroundColor: '#e63535',
+                            data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], // COMENTAR QUANDO FOR CONECTAR NA API
+                            borderDash: [5, 5], // Configuração para linha pontilhada
+                            tension: 0.3 // Para suavizar a linha
+                        }],
+                    },
+                    options: {
+                        responsive: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: '(%)'
+                                },
+                                beginAtZero: true,
+                            },
+                        },
+                    }
+                }
+
+                chartTotal = new Chart(sensorAnalogico1, configLinha);
+
+                setTimeout(() => {
+                    atualizarGraficoLinha();
+                }, 300);
+            }
+        }
+    
+
+        function manutencao(){
+            if(onoff.checked){
+                atualizarManutencao();
+                console.log('Manutenção desligada');
+
+                // module.exports = manutencao;
+            } else{
+                inserirManutencao()
+                console.log('Manutenção ligada');
+                // manutencao = true;
+
+                // module.exports = manutencao;
+            }
+        }
+
+        var idManutencao;
+
+        function inserirManutencao(){
+            var idSensor = sensorAtual.idSensor;
+
+            fetch(`/manutencao/inserirManutencao/${idSensor}`, {
+                method: 'POST'
+            }).then(response => response.json())  
+                .then(resultado => {
+                    idManutencao = resultado.idManutencao;
+                    console.log(response);
+                    if (response.ok) {
+                        console.log('Manutenção inserida com sucesso!');
+                        console.log(idManutencao);
+                        // mensagemEnd.innerHTML = '<p style="color: #60CE60">Modo manutenção ligado</p>'
+                    } else {
+                        console.error('Erro ao inserir manutenção');
+                    }
+                }).catch(error => {
+                    console.error(`Erro ao buscar manutencao: ${error}`);
+                });
+        }
+
+        function atualizarManutencao(){
+            var idSensor = sensorAtual.idSensor;
+
+            fetch(`/manutencao/atualizarManutencao`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idSensor: idSensor,
+                    idManutencao: idManutencao.idManutencao
+                })
+            }).then(function(resposta){
+                console.log(resposta);
+                if (resposta.ok) {
+                    console.log('Manutenção atualizada com sucesso!');
+                    // mensagemEnd.innerHTML = '<p style="color: #60CE60">Modo manutenção ligado</p>'
+                } else {
+                    console.error('Erro ao atualizar manutenção');
+                }
+            }).catch(function (error) {
+                console.error('Erro ao atualzar manutenção: ', error.message);
+            });           
+        }
     </script>
 </body>
 
