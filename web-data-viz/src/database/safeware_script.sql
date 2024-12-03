@@ -123,16 +123,18 @@ SELECT * FROM sensor;
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE loginControle (
+idLogin INT auto_increment,
 fkFuncionario INT,
-fkSensor INT,
-PRIMARY KEY (fkFuncionario, fkSensor),
+fkRestaurante INT,
+PRIMARY KEY (idLogin, fkFuncionario, fkRestaurante),
 CONSTRAINT fkFuncionarioLogin
 FOREIGN KEY (fkFuncionario)
 REFERENCES funcionario (idFuncionario),
-CONSTRAINT fkSensorLogin
-FOREIGN KEY (fkSensor)
-REFERENCES sensor (idSensor)
+CONSTRAINT fkRestauranteLogin
+FOREIGN KEY (fkRestaurante)
+REFERENCES restaurante (idCadastro)
 );
+select * from loginControle;
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE manutencao (
@@ -259,3 +261,4 @@ SELECT
   END AS 'Descrição do Status'
 FROM sensor AS se;
 
+select * from funcionario;
