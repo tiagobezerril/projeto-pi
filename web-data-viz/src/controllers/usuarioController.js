@@ -1,5 +1,6 @@
 var usuarioModel = require("../models/usuarioModel");
 var empresaModel = require("../models/empresaModel");
+var registroModel = require("../models/registroModel");
 // var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
@@ -36,17 +37,27 @@ function autenticar(req, res) {
                               resultadoAutenticar[0].idFuncionario
                             )
                               .then((resultadoFuncionarios) => {
-                                res.json({
-                                  idFuncionario: resultadoAutenticar[0].idFuncionario,
-                                  nome: resultadoAutenticar[0].nome,
-                                  email: resultadoAutenticar[0].email,
-                                  senha: resultadoAutenticar[0].senha,
-                                  tipo: resultadoAutenticar[0].tipo,
-                                  restaurantes: resultadoRestaurante,
-                                  filiais: resultadoFilial,
-                                  sensores: resultadoSensor,
-                                  funcionarios: resultadoFuncionarios,
-                                });
+                                
+                                  res.json({
+                                    idFuncionario: resultadoAutenticar[0].idFuncionario,
+                                    nome: resultadoAutenticar[0].nome,
+                                    email: resultadoAutenticar[0].email,
+                                    senha: resultadoAutenticar[0].senha,
+                                    tipo: resultadoAutenticar[0].tipo,
+                                    restaurantes: resultadoRestaurante,
+                                    filiais: resultadoFilial,
+                                    sensores: resultadoSensor,
+                                    funcionarios: resultadoFuncionarios,
+                                  });
+                                  console.log(resultadoAutenticar[0].idFuncionario)
+                                  console.log(resultadoAutenticar[0].fkRestaurante)
+                                  registroModel.registrar(
+                                    resultadoAutenticar[0].idFuncionario,
+                                    resultadoAutenticar[0].fkRestaurante
+                                  ).then((resultadoAutenticar) => {
+                                    console.log('Registro efetuado com sucesso!');
+                                  })
+        
                               });
                           }
                         });
