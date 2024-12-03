@@ -165,9 +165,9 @@
                             <p class="nome">Horario de encerramento</p>
                             <p class="dado" style="color: #e63535;">Ativo</p>
                         </span>
-                        <span class="status alerta">
+                        <span class="status" id="sttsVazamento">
                             <p class="nome">Status de vazamento</p>
-                            <p class="dado">Ativo</p>
+                            <p class="dado" id="sttsVazamentoDado">Inativo</p>
                         </span>
                     </div>
                 </div>
@@ -181,7 +181,7 @@
 
                     <p> 0% </p>
                     <p> >0% e <2% </p>
-                            <p> >2% </p>
+                    <p> >2% </p>
                 </div>
 
                 <span style="width: 180px;">
@@ -412,6 +412,8 @@
                 }
             }
             tituloSensor.innerHTML = sensorAtual.local_inst;
+            obterDadosLinha();
+            obterDadosAtual();
         }
 
         var dadosGraficoBarra = [];
@@ -534,9 +536,10 @@
         };
 
         var dadoGraficoAtual;
+        var alertaExibido = false;
 
         function obterDadosAtual() {
-            idSensorAtual = sensorAtual.idSensor;
+            var idSensorAtual = sensorAtual.idSensor;
 
             fetch(`/dashboard/obterDadosAtual/${idSensorAtual}`, {
                 method: 'GET',
@@ -549,6 +552,7 @@
             });
 
             setTimeout(() => {
+
                 if (dadoGraficoAtual && dadoGraficoAtual.length > 0 && dadoGraficoAtual[0].porcentagem == undefined) {
                     valorAtual = [0, 100 - 0];
                     plotarGraficoAtual();
@@ -558,17 +562,47 @@
                         plotarGraficoAtual();
                     }, 100);
                 }
+                
+                var idSensorAtual = sensorAtual.idSensor;
+                botaoSensorAtual = document.getElementById('botaoSensor' + idSensorAtual);
+                console.log(botaoSensorAtual);
+                      
+                setTimeout(() => {
+                    if (dadoGraficoAtual[0].porcentagem > 0) {
+                        if (!alertaExibido) {  
+                            alerta.style.display = 'flex'; 
+                            alertaExibido = true;
+                            
+                            sttsVazamento.classList.add('alerta');
+                            sttsVazamentoDado.innerHTML = 'Ativo';
+                            botaoSensorAtual.classList.add('alerta');
+                        }
+                    } else {
+                        alerta.style.display = 'none'; 
+                        alertaExibido = false;
+    
+                        sttsVazamento.classList.remove('alerta');
+                        botaoSensorAtual.classList.remove('alerta');
+                        sttsVazamentoDado.innerHTML = 'Inativo';
+                    }
+                }, 100)
+
+
             }, 100)
         };
 
         var valorAtual;
         var myChart;
+        var corAtual = '#60CE60';
 
         function plotarGraficoAtual() {
-            var corAtual = '#e63535';
 
             if (dadoGraficoAtual[0].porcentagem > 0) {
-                corAtual = '#e63535';
+                corAtual = '#ffad14';
+
+                if (dadoGraficoAtual[0].porcentagem > 2){
+                    corAtual = '#e63535';
+                }
             } else {
                 corAtual = '#60CE60';
             }
@@ -632,6 +666,8 @@
         var dtColetaGraficoLinha = [];
 
         function obterDadosLinha() {
+            var idSensorAtual = sensorAtual.idSensor;
+
             fetch(`/ultimo/puxarDados`, {
                 method: 'POST',
                 headers: {
@@ -650,21 +686,6 @@
                         porcentagemGraficoLinha.push(item.porcentagem);
                         dtColetaGraficoLinha.push(item.dtColeta);
                     });
-
-                    console.log('Porcentagem: ', porcentagemGraficoLinha);
-                    console.log('dtColeta: ', dtColetaGraficoLinha);
-
-                    var alertaExibido = false;
-                        
-                    if (porcentagemGraficoLinha[8] > 0) {
-                        if (!alertaExibido) {  
-                            alerta.style.display = 'flex'; 
-                            alertaExibido = true;  
-                        }
-                    } else {
-                        alerta.style.display = 'none'; 
-                        alertaExibido = false;  
-                    }
 
                     setTimeout(() => {
                         plotarGraficoLinha();
@@ -688,7 +709,9 @@
 
             if (chartTotal != undefined) {
                 chartTotal.data.datasets[0].data = porcentagemGraficoLinha;
-                chartTotal.data.label = dtColetaGraficoLinha
+                chartTotal.data.datasets[0].borderColor = corAtual;
+                chartTotal.data.datasets[0].backgroundColor = corAtual;
+                chartTotal.data.label = dtColetaGraficoLinha;
                 chartTotal.update();
             } else {
                 const configLinha = {
@@ -697,8 +720,8 @@
                         labels: dtColetaGraficoLinha,
                         datasets: [{
                             label: 'Porcentagem',
-                            borderColor: '#464646',
-                            backgroundColor: '#464646',
+                            borderColor: corAtual,
+                            backgroundColor: corAtual,
                             data: porcentagemGraficoLinha // COMENTAR QUANDO FOR CONECTAR NA API
                         },
                         {

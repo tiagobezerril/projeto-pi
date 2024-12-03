@@ -1,5 +1,5 @@
-// var ambiente_processo = 'desenvolvimento';
-var ambiente_processo = 'producao';
+var ambiente_processo = 'desenvolvimento';
+// var ambiente_processo = 'producao';
 
 
 var caminho_env = ambiente_processo === 'producao' ? '.env' : '.env.dev';
@@ -25,7 +25,7 @@ var ultimoRouter = require("./src/routes/ultimo");
 var empresasRouter = require("./src/routes/empresas");
 var visaoGeralRouter = require("./src/routes/visaoGeral");
 var dashboardRouter = require("./src/routes/dashboard");
-var registroRouter = require(".src/routes/registro");
+var registroRouter = require("./src/routes/registro");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

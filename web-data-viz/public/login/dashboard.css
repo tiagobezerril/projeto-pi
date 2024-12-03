@@ -12,6 +12,12 @@
   'opsz' 24
 }
 
+/* div {
+    color: #e63535;
+    color: #ffad14;
+    color: #60CE60;
+} */
+
 body {
     margin: 0;
     padding: 0;
@@ -758,7 +764,7 @@ span#burguer:hover, span#burguer:focus{
 
 .card {
     width: 35vw;
-    height: 55vh;
+    height: 52vh;
     background-color: white;
     border-radius: 2vh;
     display: flex;
@@ -777,6 +783,7 @@ span#burguer:hover, span#burguer:focus{
 
 .card p{
     margin: 0;
+    text-align: center;
 }
 
 .card .atencao{
