@@ -159,11 +159,11 @@
                     <div class="KPIs">
                         <span class="inicio">
                             <p class="nome">Horario de início</p>
-                            <p class="dado">11:32:06</p>
+                            <p id="horaIni" class="dado"></p>
                         </span>
                         <span class="final">
                             <p class="nome">Horario de encerramento</p>
-                            <p class="dado" style="color: #e63535;">Ativo</p>
+                            <p id="horaFim" class="dado" style="color: #e63535;"></p>
                         </span>
                         <span class="status" id="sttsVazamento">
                             <p class="nome">Status de vazamento</p>
@@ -530,9 +530,9 @@
         }
 
         function atualizarGraficoAtual() {
-            // setInterval(() => {
-            //     obterDadosAtual();
-            // }, 3000);
+            setInterval(() => {
+                obterDadosAtual();
+            }, 3000);
         };
 
         var dadoGraficoAtual;
@@ -696,9 +696,51 @@
                 });
         }
 
+        var HoraINI= ``;
+        var HoraEND= ``;
+
+        function obterHoraINI() {
+            var idSensorAtual = sensorAtual.idSensor;
+
+
+            fetch(`/ultimo/puxarDados`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idSensor: idSensorAtual
+                })
+            }).then(response => response.json())
+                .then(resultado => {
+
+                    for (var index = 0; index < dtColetaGraficoLinha.length; index++) {
+                        var HoraAtual = dtColetaGraficoLinha[index];
+                        var dadoAtual = porcentagemGraficoLinha[index];
+                        if (dadoAtual > 0 && porcentagemGraficoLinha[index - 1] == 0) {
+                            HoraINI = HoraAtual;
+                    } else if(porcentagemGraficoLinha[0] > 0) {
+                        HoraINI = dtColetaGraficoLinha[0]
+                    }
+                        if (dadoAtual == 0 && porcentagemGraficoLinha[index - 1] > 0) {
+                        HoraEND = HoraAtual;
+                } else if(dadoAtual > 0 && porcentagemGraficoLinha[index + 1] > 0){
+                    HoraEND = `Ativo`;
+                }
+                    }
+                horaIni.innerHTML = HoraINI;
+                horaFim.innerHTML = HoraEND;
+                }
+            )
+                .catch(error => {
+                    console.error(`Erro ao buscar dados: ${error}`);
+                });
+        }
+
         var chartTotal;
 
         function plotarGraficoLinha() {
+            obterHoraINI()
             const sensorAnalogico1 = document.getElementById('graficoLinha').getContext('2d');
 
             porcentagemGraficoLinha.reverse();
