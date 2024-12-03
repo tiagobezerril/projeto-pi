@@ -147,6 +147,7 @@ CREATE TABLE manutencao (
 )  AUTO_INCREMENT=2000;
 
 ALTER TABLE manutencao ADD COLUMN stts BOOLEAN;
+INSERT INTO dados (porcentagem, fkSensor) VALUES (0,2000);
 
 INSERT INTO manutencao VALUES 
 	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03',2002);

@@ -63,12 +63,13 @@ const serial = async (
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
-                await poolBancoDados.execute('SELECT stts FROM manutencao WHERE fkSensor = 2000 ORDER BY idManutencao DESC LIMIT 1;');
-                console.log('rows: ', rows);
-                if(rows = 1){
+                var resultado = await poolBancoDados.execute('SELECT stts FROM manutencao WHERE fkSensor = 2000 ORDER BY idManutencao DESC LIMIT 1;');
+                console.log('Status: ', resultado[0][0].stts);
+
+                if(resultado[0][0].stts == 1){
                     await poolBancoDados.execute(
                         'INSERT INTO dados (porcentagem, fkSensor) VALUES (0,?);',
-                        [sensorAnalogico, 2000]
+                        [2000]
                     );
     
                     // este insert irá inserir os dados na tabela "medida"

@@ -159,11 +159,11 @@
                     <div class="KPIs">
                         <span class="inicio">
                             <p class="nome">Horario de início</p>
-                            <p id="horaIni" class="dado"></p>
+                            <p id="horaIni" class="dado">--</p>
                         </span>
                         <span class="final">
                             <p class="nome">Horario de encerramento</p>
-                            <p id="horaFim" class="dado" style="color: #e63535;"></p>
+                            <p id="horaFim" class="dado" style="color: #e63535;">Inativo</p>
                         </span>
                         <span class="status" id="sttsVazamento">
                             <p class="nome">Status de vazamento</p>
@@ -576,6 +576,7 @@
                             sttsVazamento.classList.add('alerta');
                             sttsVazamentoDado.innerHTML = 'Ativo';
                             botaoSensorAtual.classList.add('alerta');
+                            tituloSensor.classList.add('alerta');
                         }
                     } else {
                         alerta.style.display = 'none'; 
@@ -584,8 +585,9 @@
                         sttsVazamento.classList.remove('alerta');
                         botaoSensorAtual.classList.remove('alerta');
                         sttsVazamentoDado.innerHTML = 'Inativo';
+                        tituloSensor.classList.remove('alerta');
                     }
-                }, 100)
+                }, 10)
 
 
             }, 100)
@@ -657,6 +659,16 @@
         }
 
         function atualizarGraficoLinha() {
+            if (dadoGraficoAtual[0].porcentagem > 0) {
+                corAtual = '#ffad14';
+
+                if (dadoGraficoAtual[0].porcentagem > 2){
+                    corAtual = '#e63535';
+                }
+            } else {
+                corAtual = '#60CE60';
+            }
+            
             setInterval(() => {
                 obterDadosLinha();
             }, 3000);
@@ -681,7 +693,7 @@
                     porcentagemGraficoLinha = [];
                     dtColetaGraficoLinha = [];
 
-                    console.log("Dados recebidos do servidor:", resultado);
+                    console.log("Dados recebidos do servidor: ", resultado);
                     resultado.forEach((item) => {
                         porcentagemGraficoLinha.push(item.porcentagem);
                         dtColetaGraficoLinha.push(item.dtColeta);
@@ -753,7 +765,8 @@
                 chartTotal.data.datasets[0].data = porcentagemGraficoLinha;
                 chartTotal.data.datasets[0].borderColor = corAtual;
                 chartTotal.data.datasets[0].backgroundColor = corAtual;
-                chartTotal.data.label = dtColetaGraficoLinha;
+                chartTotal.data.labels = dtColetaGraficoLinha;
+
                 chartTotal.update();
             } else {
                 const configLinha = {
