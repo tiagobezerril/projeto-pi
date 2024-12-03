@@ -110,8 +110,7 @@ function cadastrar(req, res) {
     res.status(400).send(`Seu representante está undefined`);
   } else {
     // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-    usuarioModel
-      .cadastrar(razao, fantasia, cnpj, rep, email, senha)
+    usuarioModel.cadastrar(razao, fantasia, cnpj, rep, email, senha)
       .then(function (resultado) {
         res.json(resultado);
       })
