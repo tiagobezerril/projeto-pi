@@ -106,16 +106,16 @@
         correto = true
         validarEmail()
         validarSenha()
-
+        
         var emailVar = ipt_email.value;
         var senhaVar = ipt_senha.value;
-
+        
         if (correto != true) {
             alert("Verifique os campos preenchidos!")
             correto = true
         } else {
-
-        fetch("/usuarios/autenticar", {
+            
+            fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -126,10 +126,10 @@
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
-
+            
             if (resposta.ok) {
                 console.log(resposta);
-
+                
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
@@ -141,21 +141,8 @@
                     sessionStorage.FILIAIS = JSON.stringify(json.filiais);
                     sessionStorage.SENSORES = JSON.stringify(json.sensores);
                     sessionStorage.FUNCIONARIOS = JSON.stringify(json.funcionarios);
-
-                    var id = sessionStorage.getItem("ID_USUARIO");
-                    var sensor = sessionStorage.getItem("SENSORES");
-
-                    fetch("/registro/registrar", {
-                        method: "POST",
-                        headers: {
-                            "Content-type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            idUsuarioServer: id,
-                            sensorServer: sensor 
-                        })
-                    })
-
+                    
+                    
                     console.log(resposta);
                     if (sessionStorage.TIPOFUNC == 'Supervisor'){
                         setTimeout(function () {
@@ -171,6 +158,18 @@
                         }, 400);
                     }
                 });
+
+
+                // fetch("/registro/registrar", {
+                //         method: "POST",
+                //         headers: {
+                //             "Content-type": "application/json"
+                //         },
+                //         body: JSON.stringify({
+                //             idUsuarioServer: id,
+                //             restauranteServer: restaurantes
+                //         })
+                //     });
 
             } else {
                 console.log("Houve um erro ao tentar realizar o login!");
