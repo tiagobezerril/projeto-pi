@@ -4,10 +4,15 @@ function inserirManutencao(req, res) {
     var idSensor = req.params.idSensor;
 
     manutencaoModel.inserirManutencao(idSensor).then(function(resposta){
-        res.status(200).json(resposta);
+        manutencaoModel.procurarUltimaManutencao(idSensor).then((resultado) => {
+            res.json({
+                idManutencao: resultado[0]
+            })
+        })
+        // res.status(200).json(resposta);
     }).catch(function(erro){
         console.log(erro);
-        console.log("\nHouve um erro ao realizar o login! Erro: ",
+        console.log("\nHouve um erro ao inserir! Erro: ",
           erro.sqlMessage
         );
         res.status(500).json(erro.sqlMessage);
@@ -15,13 +20,14 @@ function inserirManutencao(req, res) {
 }
 
 function atualizarManutencao(req, res){
-    var idSensor = req.params.idSensor;
+    var idSensor = req.body.idSensor;
+    var idManutencao = req.body.idManutencao;
 
-    manutencaoModel.atualizarManutencao(idSensor).then(function(resposta){
+    manutencaoModel.atualizarManutencao(idSensor, idManutencao).then(function(resposta){
         res.status(200).json(resposta);
     }).catch(function(erro){
         console.log(erro);
-        console.log("\nHouve um erro ao realizar o login! Erro: ",
+        console.log("\nHouve um erro ao atualizar! Erro: ",
           erro.sqlMessage
         );
         res.status(500).json(erro.sqlMessage);

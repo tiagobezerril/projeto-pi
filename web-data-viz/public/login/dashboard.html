@@ -760,7 +760,7 @@
     
         function manutencao(){
             if(onoff.checked){
-                // atualizarManutencao();
+                atualizarManutencao();
                 console.log('Manutenção desligada');
             } else{
                 inserirManutencao()
@@ -768,29 +768,41 @@
             }
         }
 
+        var idManutencao;
+
         function inserirManutencao(){
             var idSensor = idSensorAtual;
 
             fetch(`/manutencao/inserirManutencao/${idSensor}`, {
                 method: 'POST'
-            }).then(function(resposta){
-                console.log(resposta);
-                if (resposta.ok) {
-                    console.log('Manutenção inserida com sucesso!');
-                    // mensagemEnd.innerHTML = '<p style="color: #60CE60">Modo manutenção ligado</p>'
-                } else {
-                    console.error('Erro ao inserir manutenção');
-                }
-            }).catch(function (error) {
-                console.error('Erro ao inserir manutenção: ', error.message);
-            });
+            }).then(response => response.json())  
+                .then(resultado => {
+                    idManutencao = resultado.idManutencao;
+                    console.log(response);
+                    if (response.ok) {
+                        console.log('Manutenção inserida com sucesso!');
+                        console.log(idManutencao);
+                        // mensagemEnd.innerHTML = '<p style="color: #60CE60">Modo manutenção ligado</p>'
+                    } else {
+                        console.error('Erro ao inserir manutenção');
+                    }
+                }).catch(error => {
+                    console.error(`Erro ao buscar manutencao: ${error}`);
+                });
         }
 
         function atualizarManutencao(){
             var idSensor = idSensorAtual;
 
-            fetch(`/manutencao/atualizarManutencao/${idSensor}`, {
-                method: 'POST'
+            fetch(`/manutencao/atualizarManutencao`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idSensor: idSensor,
+                    idManutencao: idManutencao.idManutencao
+                })
             }).then(function(resposta){
                 console.log(resposta);
                 if (resposta.ok) {
