@@ -7,7 +7,7 @@ router.post("/inserirManutencao/:idSensor", function (req, res) {
     manutencaoController.inserirManutencao(req, res);
 });
 
-router.post("/atualizarManutencao/:idSensor", function (req, res) {
+router.post("/atualizarManutencao", function (req, res) {
     manutencaoController.atualizarManutencao(req, res);
 });
 
