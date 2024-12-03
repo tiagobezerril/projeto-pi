@@ -1,10 +1,10 @@
 var database = require("../database/config")
 
-    function registrar (body){
+    function registrar (idFuncionario, fkRestaurante){
 
-        console.log("ACESSEI O REGISTRO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarFuncionario():", body);
+        console.log("ACESSEI O REGISTRO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarFuncionario():", idFuncionario, fkRestaurante);
 
-        var instrucaoSql = `INSERT INTO loginControle VALUES (${body.usuarioServer}, ${body.sensorServer}) `
+        var instrucaoSql = `INSERT INTO loginControle VALUES (${idFuncionario}, ${fkRestaurante}) `
 
         return database.executar(instrucaoSql);
     }
