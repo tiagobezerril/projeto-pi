@@ -1,4 +1,0 @@
--- DASHBOARD --
-colocar a duração do vazamento
-pesquisar porcentagem segura de vazamento
-visão geral das cozinhas
