@@ -3,6 +3,11 @@ const serialport = require('serialport');
 const express = require('express');
 const mysql = require('mysql2');
 
+// var arquivo = require('../../web-data-viz/src/controllers/manutencaoController');
+
+// var manutencao = arquivo.manutencao;
+// console.log(manutencao);
+
 // constantes para configurações
 const SERIAL_BAUD_RATE = 9600;
 const SERVIDOR_PORTA = 3300;
@@ -51,22 +56,33 @@ const serial = async (
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
         const valores = data.split(';');
-        // const sensorDigital = parseInt(valores[0]);
         const sensorAnalogico = parseFloat(valores[0]);
 
         // armazena os valores dos sensores nos arrays correspondentes
         valoresSensorAnalogico.push(sensorAnalogico);
-        // valoresSensorDigital.push(sensorDigital);
 
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
+                await poolBancoDados.execute('SELECT stts FROM manutencao WHERE fkSensor = 2000 ORDER BY idManutencao DESC LIMIT 1;');
 
-            // este insert irá inserir os dados na tabela "medida"
-            await poolBancoDados.execute(
-                'INSERT INTO dados (porcentagem,fkSensor) VALUES (?,?)',
-                [sensorAnalogico, 2000]
-            );
-            console.log("Valores inserido no banco: ", sensorAnalogico);
+                if(rows = 1){
+                    await poolBancoDados.execute(
+                        'INSERT INTO dados (porcentagem, fkSensor) VALUES (0,?)',
+                        [sensorAnalogico, 2000]
+                    );
+    
+                    // este insert irá inserir os dados na tabela "medida"
+                    console.log("Valores inserido no banco: ", sensorAnalogico);
+                } else {
+                    await poolBancoDados.execute(
+                        'INSERT INTO dados (porcentagem, fkSensor) VALUES (?,?)',
+                        [sensorAnalogico, 2000]
+                    );
+    
+                    // este insert irá inserir os dados na tabela "medida"
+                    console.log("Valores inserido no banco: ", sensorAnalogico);
+                }
+
 
         }
 

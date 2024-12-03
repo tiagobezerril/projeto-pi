@@ -758,20 +758,26 @@
             }
         }
     
+
         function manutencao(){
             if(onoff.checked){
                 atualizarManutencao();
                 console.log('Manutenção desligada');
+
+                // module.exports = manutencao;
             } else{
                 inserirManutencao()
                 console.log('Manutenção ligada');
+                // manutencao = true;
+
+                // module.exports = manutencao;
             }
         }
 
         var idManutencao;
 
         function inserirManutencao(){
-            var idSensor = idSensorAtual;
+            var idSensor = sensorAtual.idSensor;
 
             fetch(`/manutencao/inserirManutencao/${idSensor}`, {
                 method: 'POST'
@@ -792,7 +798,7 @@
         }
 
         function atualizarManutencao(){
-            var idSensor = idSensorAtual;
+            var idSensor = sensorAtual.idSensor;
 
             fetch(`/manutencao/atualizarManutencao`, {
                 method: 'POST',
