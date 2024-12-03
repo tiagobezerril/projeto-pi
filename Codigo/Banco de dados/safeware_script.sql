@@ -123,22 +123,23 @@ SELECT * FROM sensor;
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE loginControle (
-fkFuncionario INT,
-fkSensor INT,
-PRIMARY KEY (fkFuncionario, fkSensor),
-CONSTRAINT fkFuncionarioLogin
-FOREIGN KEY (fkFuncionario)
-REFERENCES funcionario (idFuncionario),
-CONSTRAINT fkSensorLogin
-FOREIGN KEY (fkSensor)
-REFERENCES sensor (idSensor)
+	idLogin INT auto_increment,
+	fkFuncionario INT,
+	fkRestaurante INT,
+	PRIMARY KEY (idLogin, fkFuncionario, fkRestaurante),
+	CONSTRAINT fkFuncionarioLogin
+	FOREIGN KEY (fkFuncionario)
+	REFERENCES funcionario (idFuncionario),
+	CONSTRAINT fkSensorLogin
+	FOREIGN KEY (fkRestaurante)
+	REFERENCES restaurante(idCadastro)
 );
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE manutencao (
     idManutencao INT PRIMARY KEY AUTO_INCREMENT,
-    dtHoraInicio DATETIME,
-    dtHoraTermino DATETIME,
+    dtHoraInicio DATETIME DEFAULT CURRENT_TIMESTAMP,
+    dtHoraTermino DATETIME DEFAULT CURRENT_TIMESTAMP,
     fkSensor INT,
     FOREIGN KEY (fkSensor)
         REFERENCES sensor(idsensor)

@@ -146,7 +146,7 @@
                     <div class="onoff">
                         <p>Modo manutenção</p>
                         <input type="checkbox" class="toggle" id="onoff">
-                        <label for="onoff"> </label>
+                        <label for="onoff" onclick="manutencao()"> </label>
                     </div>
                 </span>
 
@@ -657,9 +657,9 @@
         }
 
         function atualizarGraficoLinha() {
-            setInterval(() => {
-                obterDadosLinha();
-            }, 3000);
+            // setInterval(() => {
+            //     obterDadosLinha();
+            // }, 3000);
         };
 
         var porcentagemGraficoLinha = [];
@@ -757,6 +757,53 @@
                 }, 300);
             }
         }
+    
+        function manutencao(){
+            if(onoff.checked){
+                // atualizarManutencao();
+                console.log('Manutenção desligada');
+            } else{
+                inserirManutencao()
+                console.log('Manutenção ligada');
+            }
+        }
+
+        function inserirManutencao(){
+            var idSensor = idSensorAtual;
+
+            fetch(`/manutencao/inserirManutencao/${idSensor}`, {
+                method: 'POST'
+            }).then(function(resposta){
+                console.log(resposta);
+                if (resposta.ok) {
+                    console.log('Manutenção inserida com sucesso!');
+                    // mensagemEnd.innerHTML = '<p style="color: #60CE60">Modo manutenção ligado</p>'
+                } else {
+                    console.error('Erro ao inserir manutenção');
+                }
+            }).catch(function (error) {
+                console.error('Erro ao inserir manutenção: ', error.message);
+            });
+        }
+
+        function atualizarManutencao(){
+            var idSensor = idSensorAtual;
+
+            fetch(`/manutencao/atualizarManutencao/${idSensor}`, {
+                method: 'POST'
+            }).then(function(resposta){
+                console.log(resposta);
+                if (resposta.ok) {
+                    console.log('Manutenção atualizada com sucesso!');
+                    // mensagemEnd.innerHTML = '<p style="color: #60CE60">Modo manutenção ligado</p>'
+                } else {
+                    console.error('Erro ao atualizar manutenção');
+                }
+            }).catch(function (error) {
+                console.error('Erro ao atualzar manutenção: ', error.message);
+            });           
+        }
+
     </script>
 </body>
 
