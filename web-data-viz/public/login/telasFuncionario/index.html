@@ -113,7 +113,7 @@
             JSON.parse(sessionStorage.FILIAIS).forEach(item => {
                 document.getElementById("baixo").innerHTML += `
                     <a style="cursor: pointer;" onclick="direcionarDash(${item.idFilial})" class="cozinha" id="filial${item.idFilial}" style="text-decoration: none;">
-                        <img src="../img/cozinhaSegura.png">
+                        <img src="../../img/cozinhaSegura.png">
                         <h3 style="text-align: center;">Filial - ${item.endereco}</h3>
                     </a>        
                     `
