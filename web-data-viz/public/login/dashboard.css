@@ -594,7 +594,7 @@ span#burguer:hover, span#burguer:focus{
 
 /* MANUTENÇÃO */
 
-#manutencao {
+#divManutencao {
     position: fixed;
     right: -620px;
     /* right: 0; */

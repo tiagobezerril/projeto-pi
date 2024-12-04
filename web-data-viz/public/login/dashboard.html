@@ -47,7 +47,7 @@
     <div id="menuPerfil">
         <a href="addFuncionario.html">Funcionários</a>
         <a onclick="clickEndereco()">Endereço</a>
-        <a onclick="clickManutencao()">Manutenções</a>
+        <!-- <a onclick="clickManutencao()">Manutenções</a> -->
         <a onclick="limparSessaoFunc()" style="border-radius: 0 0 1vh 1vh;">Sair</a>
     </div>
 
@@ -58,7 +58,7 @@
         <a href="index.html" class="voltar">Voltar</a>
     </div>
 
-    <div id="manutencao">
+    <div id="divManutencao">
         <p class="titulo">Historico de manutenções</p>
         <span class="linha"></span>
 
@@ -383,12 +383,12 @@
 
         function clickManutencao() {
             buscarManutencaoFilial();
-            manutencao.style.right = '0';
+            divManutencao.style.right = '0';
             clickOpcoes();
         }
 
         function closeManu() {
-            manutencao.style.right = '-620px';
+            divManutencao.style.right = '-620px';
         }
 
         function clickEndereco() {
