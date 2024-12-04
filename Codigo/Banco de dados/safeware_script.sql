@@ -146,11 +146,15 @@ CREATE TABLE manutencao (
         REFERENCES sensor(idsensor)
 )  AUTO_INCREMENT=2000;
 
-ALTER TABLE manutencao ADD COLUMN stts BOOLEAN;
-INSERT INTO dados (porcentagem, fkSensor) VALUES (0,2000);
+select * from manutencao;
 
+ALTER TABLE manutencao ADD COLUMN stts BOOLEAN;
+UPDATE manutencao SET dtHoraTermino = DEFAULT WHERE idManutencao = 2001;
+INSERT INTO manutencao(dtHoraInicio, dtHoraTermino, stts, fkSensor) VALUES (DEFAULT, NULL, 0, 2000);
+INSERT INTO dados (porcentagem, fkSensor) VALUES (0,2000);
+DROP TABLE manutencao;
 INSERT INTO manutencao VALUES 
-	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03',2002);
+	(DEFAULT, '2024-11-16 07:09:09','2024-11-16 07:12:03', 0, 2002);
 
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -162,6 +166,8 @@ CREATE TABLE dados (
     FOREIGN KEY (fksensor)
         REFERENCES sensor(idsensor)
 )  AUTO_INCREMENT=3000;
+
+SELECT * FROM dados;
 
 INSERT INTO dados(fkSensor, porcentagem, dtColeta) VALUES 
     (2000, 15, '2024-01-10 08:15:25'),
