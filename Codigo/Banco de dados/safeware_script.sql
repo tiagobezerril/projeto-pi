@@ -16,7 +16,17 @@ INSERT INTO restaurante VALUES
 (default, 'Degustas Comercio de Alimentacao Corporativa LTDA', 'Degustas', '09720990000107'),
 (default, 'W.m. Iguarias LTDA', 'Suvide Restaurantes Empresariais', '56761836000163');
 
-SELECT * FROM restaurante;
+UPDATE funcionario SET fkRestaurante = 100 WHERE idFuncionario = 107;
+UPDATE funcionario SET fkRestaurante = 100 WHERE idFuncionario = 108;
+UPDATE funcionario SET fkRestaurante = 100 WHERE idFuncionario = 109;
+UPDATE funcionario SET fkRestaurante = 100 WHERE idFuncionario = 110;
+UPDATE funcionario SET fkRestaurante = 100 WHERE idFuncionario = 111;
+
+INSERT INTO filial(fkRestaurante) VALUES (105);
+INSERT INTO sensor(tipo, dtInstalacao, stts, local_inst, fkFilial, fkRestaurante) VALUES ('MQ3', '2024-12-01', 'inativo', 'Teste', 106, 105);
+INSERT INTO endereco(estado, cidade, fkFilial, fkRestaurante) VALUES ('SP', 'São Paulo', 106, 105);
+
+INSERT INTO restaurante (razao_social, nome_fantasia, cnpj) VALUES ('Restaurante do suporte', 'Suporte', '12.345.678/0002-32');
 -- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 CREATE TABLE filial (
