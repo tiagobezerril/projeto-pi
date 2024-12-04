@@ -16,63 +16,72 @@ function autenticar(req, res) {
       .then(function (resultadoAutenticar) {
         console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
         console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-        //  buscarRestauranteDoUsuario
-        if (resultadoAutenticar.length == 1) {
-          console.log(resultadoAutenticar);
-
-          empresaModel.buscarRestauranteDoUsuario(resultadoAutenticar[0].fkRestaurante)
-            .then((resultadoRestaurante) => {
-              if (resultadoRestaurante.length > 0) {
-                empresaModel.buscarFiliaisPorRestaurante(
-                  resultadoAutenticar[0].fkRestaurante
-                )
-                  .then((resultadoFilial) => {
-                    if (resultadoRestaurante.length > 0) {
-                      empresaModel.buscarSensoresPorRestaurante(
-                        resultadoAutenticar[0].fkRestaurante
-                      )
-                        .then((resultadoSensor) => {
-                          if (resultadoSensor.length > 0) {
-                            usuarioModel.buscarFuncionariosPorSupervisor(
-                              resultadoAutenticar[0].idFuncionario
-                            )
-                              .then((resultadoFuncionarios) => {
-                                
-                                  res.json({
-                                    idFuncionario: resultadoAutenticar[0].idFuncionario,
-                                    nome: resultadoAutenticar[0].nome,
-                                    email: resultadoAutenticar[0].email,
-                                    senha: resultadoAutenticar[0].senha,
-                                    tipo: resultadoAutenticar[0].tipo,
-                                    restaurantes: resultadoRestaurante,
-                                    filiais: resultadoFilial,
-                                    sensores: resultadoSensor,
-                                    funcionarios: resultadoFuncionarios,
-                                  });
-                                  console.log(resultadoAutenticar[0].idFuncionario)
-                                  console.log(resultadoAutenticar[0].fkRestaurante)
-                                  registroModel.registrar(
-                                    resultadoAutenticar[0].idFuncionario,
-                                    resultadoAutenticar[0].fkRestaurante
-                                  ).then((resultadoAutenticar) => {
-                                    console.log('Registro efetuado com sucesso!');
-                                  })
-        
-                              });
-                          }
-                        });
-                    } else {
-                      res.status(204).json({ sensores: [] });
-                    }
-                  });
-              } else {
-                res.status(204).json({ restaurantes: [] });
-              }
-            });
-        } else if (resultadoAutenticar.length == 0) {
-          res.status(403).send("Email e/ou senha inválido(s)");
+        if(resultadoAutenticar[0].tipo == 'Suporte'){
+          res.json({
+            idFuncionario: resultadoAutenticar[0].idFuncionario,
+            nome: resultadoAutenticar[0].nome,
+            email: resultadoAutenticar[0].email,
+            senha: resultadoAutenticar[0].senha,
+            tipo: resultadoAutenticar[0].tipo
+          });
         } else {
-          res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+          //  buscarRestauranteDoUsuario
+          if (resultadoAutenticar.length == 1) {
+            console.log(resultadoAutenticar);
+  
+            empresaModel.buscarRestauranteDoUsuario(resultadoAutenticar[0].fkRestaurante)
+              .then((resultadoRestaurante) => {
+                if (resultadoRestaurante.length > 0) {
+                  empresaModel.buscarFiliaisPorRestaurante(
+                    resultadoAutenticar[0].fkRestaurante
+                  )
+                    .then((resultadoFilial) => {
+                      if (resultadoRestaurante.length > 0) {
+                        empresaModel.buscarSensoresPorRestaurante(
+                          resultadoAutenticar[0].fkRestaurante
+                        )
+                          .then((resultadoSensor) => {
+                            if (resultadoSensor.length > 0) {
+                              usuarioModel.buscarFuncionariosPorSupervisor(
+                                resultadoAutenticar[0].idFuncionario
+                              )
+                                .then((resultadoFuncionarios) => {
+                                    res.json({
+                                      idFuncionario: resultadoAutenticar[0].idFuncionario,
+                                      nome: resultadoAutenticar[0].nome,
+                                      email: resultadoAutenticar[0].email,
+                                      senha: resultadoAutenticar[0].senha,
+                                      tipo: resultadoAutenticar[0].tipo,
+                                      restaurantes: resultadoRestaurante,
+                                      filiais: resultadoFilial,
+                                      sensores: resultadoSensor,
+                                      funcionarios: resultadoFuncionarios,
+                                    });
+                                    console.log(resultadoAutenticar[0].idFuncionario)
+                                    console.log(resultadoAutenticar[0].fkRestaurante)
+                                    registroModel.registrar(
+                                      resultadoAutenticar[0].idFuncionario,
+                                      resultadoAutenticar[0].fkRestaurante
+                                    ).then((resultadoAutenticar) => {
+                                      console.log('Registro efetuado com sucesso!');
+                                    })
+                                });
+                            }
+                          });
+  
+                      } else {
+                        res.status(204).json({ sensores: [] });
+                      }
+                    });
+                } else {
+                  res.status(204).json({ restaurantes: [] });
+                }
+              });
+          } else if (resultadoAutenticar.length == 0) {
+            res.status(403).send("Email e/ou senha inválido(s)");
+          } else {
+            res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+          }
         }
       })
       .catch(function (erro) {
